@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NetBijak - 宽带比价专家</title>
   <link rel="stylesheet" href="style.css" />
+  <!-- 加载 Supabase SDK（会创建全局 supabase 对象） -->
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 </head>
 <body>
@@ -25,14 +26,13 @@
     <div class="hero-content">
       <h1 id="hero-title">马来西亚最智能的宽带比价</h1>
       <p id="hero-sub">对比所有运营商的配套，找到最适合您的</p>
-      <!-- 暂时不提供 Landed/High-rise 筛选，因为表里没有分类字段 -->
     </div>
   </header>
 
   <!-- 配套展示区 -->
   <section class="packages-section">
     <div class="section-header">
-      <h2 id="section-title">📡 Unifi 所有配套</h2>
+      <h2 id="section-title">📡 所有配套</h2>
       <div class="provider-filter">
         <button class="filter-btn active" data-provider="all">全部</button>
         <button class="filter-btn" data-provider="unifi">Unifi</button>
@@ -42,15 +42,14 @@
         <button class="filter-btn" data-provider="umobile">U Mobile</button>
       </div>
     </div>
-    <div id="package-grid" class="package-grid">
-      <!-- 由 JavaScript 动态渲染 -->
-    </div>
+    <div id="package-grid" class="package-grid"></div>
   </section>
 
   <footer class="footer">
     <p>© 2026 NetBijak.com · 宽带比价专家</p>
   </footer>
 
+  <!-- 加载主逻辑 -->
   <script src="app.js"></script>
 </body>
 </html>

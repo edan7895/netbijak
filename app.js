@@ -22,14 +22,13 @@ let currentLang = 'zh';
 let allPackages = [];
 let currentProvider = 'all';
 
-// ========== 安全初始化 Supabase 客户端（避免重复声明） ==========
-let supabase;
-if (typeof window.supabase !== 'undefined') {
-  supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-} else {
-  // 如果 SDK 未加载，则报错提示
-  console.error('Supabase SDK 未加载，请检查 index.html 中的 script 标签');
+// ========== 使用全局 supabase（由 SDK 注入）创建客户端，存为不同变量名 ==========
+// 如果全局 supabase 对象存在，则创建客户端，否则报错
+if (typeof window.supabase === 'undefined') {
+  alert('Supabase SDK 未加载，请检查网络或刷新页面');
+  throw new Error('Supabase SDK not loaded');
 }
+const sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 // ========== 缓存工具（5分钟） ==========
 const CACHE_KEY = 'netbijak_packages';
@@ -57,13 +56,8 @@ async function fetchPackages() {
     return;
   }
 
-  if (!supabase) {
-    alert('Supabase 未初始化，请检查网络或刷新页面');
-    return;
-  }
-
   try {
-    const { data, error } = await supabase
+    const { data, error } = await sbClient
       .from('packages')
       .select('*')
       .order('promo_price', { ascending: true });
@@ -74,6 +68,7 @@ async function fetchPackages() {
     renderPackages();
   } catch (err) {
     console.error('Supabase fetch error:', err);
+    // 降级：使用过期缓存（如果有）
     const oldCache = localStorage.getItem(CACHE_KEY);
     if (oldCache) {
       try {
@@ -87,7 +82,7 @@ async function fetchPackages() {
   }
 }
 
-// ========== 渲染卡片（完全适配您的表结构） ==========
+// ========== 渲染卡片 ==========
 function renderPackages() {
   const grid = document.getElementById('package-grid');
   if (!grid) return;
