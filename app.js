@@ -1,5 +1,6 @@
 // ========== 配置 ==========
-const SUPABASE_URL = 'https://yslzoodokunufsgeoazk.supabase.co/rest/v1/';
+// 修正：移除末尾的 /rest/v1/
+const SUPABASE_URL = 'https://yslzoodokunufsgeoazk.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlzbHpvb2Rva3VudWZzZ2VvYXprIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY0ODgwMTcsImV4cCI6MjEwMjA2NDAxN30.LFQ8KoSfw_2kCDcoYgfLTrmFebEniQ1O5oUS1r2v-lg';
 
 // 运营商Logo映射
@@ -22,15 +23,14 @@ let currentLang = 'zh';
 let allPackages = [];
 let currentProvider = 'all';
 
-// ========== 使用全局 supabase（由 SDK 注入）创建客户端，存为不同变量名 ==========
-// 如果全局 supabase 对象存在，则创建客户端，否则报错
+// ========== 使用全局 supabase 创建客户端 ==========
 if (typeof window.supabase === 'undefined') {
   alert('Supabase SDK 未加载，请检查网络或刷新页面');
   throw new Error('Supabase SDK not loaded');
 }
 const sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// ========== 缓存工具（5分钟） ==========
+// ========== 缓存工具 ==========
 const CACHE_KEY = 'netbijak_packages';
 const CACHE_EXPIRY = 5 * 60 * 1000;
 
@@ -68,7 +68,6 @@ async function fetchPackages() {
     renderPackages();
   } catch (err) {
     console.error('Supabase fetch error:', err);
-    // 降级：使用过期缓存（如果有）
     const oldCache = localStorage.getItem(CACHE_KEY);
     if (oldCache) {
       try {
@@ -143,7 +142,6 @@ function setLanguage(lang) {
 
 // ========== 绑定事件 ==========
 document.addEventListener('DOMContentLoaded', function() {
-  // 语言按钮
   document.querySelectorAll('.lang-switcher button').forEach(btn => {
     btn.addEventListener('click', function() {
       const lang = this.dataset.lang;
@@ -153,7 +151,6 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // 供应商筛选
   document.querySelectorAll('.filter-btn').forEach(btn => {
     btn.addEventListener('click', function() {
       currentProvider = this.dataset.provider;
@@ -163,6 +160,5 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
-  // 加载数据
   fetchPackages();
 });
