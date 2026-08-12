@@ -22,8 +22,14 @@ let currentLang = 'zh';
 let allPackages = [];
 let currentProvider = 'all';
 
-// ========== Supabase 客户端 ==========
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+// ========== 安全初始化 Supabase 客户端（避免重复声明） ==========
+let supabase;
+if (typeof window.supabase !== 'undefined') {
+  supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+} else {
+  // 如果 SDK 未加载，则报错提示
+  console.error('Supabase SDK 未加载，请检查 index.html 中的 script 标签');
+}
 
 // ========== 缓存工具（5分钟） ==========
 const CACHE_KEY = 'netbijak_packages';
@@ -51,12 +57,16 @@ async function fetchPackages() {
     return;
   }
 
+  if (!supabase) {
+    alert('Supabase 未初始化，请检查网络或刷新页面');
+    return;
+  }
+
   try {
-    // 注意：这里我们没有过滤 status，因为表里没有该字段
     const { data, error } = await supabase
       .from('packages')
       .select('*')
-      .order('promo_price', { ascending: true }); // 按促销价排序
+      .order('promo_price', { ascending: true });
 
     if (error) throw error;
     allPackages = data || [];
@@ -77,7 +87,7 @@ async function fetchPackages() {
   }
 }
 
-// ========== 渲染卡片 ==========
+// ========== 渲染卡片（完全适配您的表结构） ==========
 function renderPackages() {
   const grid = document.getElementById('package-grid');
   if (!grid) return;
@@ -95,7 +105,6 @@ function renderPackages() {
   let html = '';
   filtered.forEach(pkg => {
     const logoUrl = PROVIDER_LOGOS[pkg.provider] || '';
-    // 分割 features（按逗号或换行）
     const featureList = pkg.features ? pkg.features.split(',').map(f => f.trim()).filter(f => f) : [];
 
     html += `
