@@ -1,5 +1,4 @@
 // ========== 配置 ==========
-// 修正：移除末尾的 /rest/v1/
 const SUPABASE_URL = 'https://yslzoodokunufsgeoazk.supabase.co';
 const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InlzbHpvb2Rva3VudWZzZ2VvYXprIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODY0ODgwMTcsImV4cCI6MjEwMjA2NDAxN30.LFQ8KoSfw_2kCDcoYgfLTrmFebEniQ1O5oUS1r2v-lg';
 
@@ -12,7 +11,6 @@ const PROVIDER_LOGOS = {
   umobile: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/5c/U_Mobile_logo.svg/1280px-U_Mobile_logo.svg.png'
 };
 
-// 界面文本（三语）
 const TEXTS = {
   en: { heroTitle: 'Malaysia\'s Smartest Broadband Comparison', heroSub: 'Compare all providers and find the best plan for you', sectionTitle: '📡 All Packages', filterAll: 'All' },
   zh: { heroTitle: '马来西亚最智能的宽带比价', heroSub: '对比所有运营商的配套，找到最适合您的', sectionTitle: '📡 所有配套', filterAll: '全部' },
@@ -23,14 +21,12 @@ let currentLang = 'zh';
 let allPackages = [];
 let currentProvider = 'all';
 
-// ========== 使用全局 supabase 创建客户端 ==========
 if (typeof window.supabase === 'undefined') {
   alert('Supabase SDK 未加载，请检查网络或刷新页面');
   throw new Error('Supabase SDK not loaded');
 }
 const sbClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
-// ========== 缓存工具 ==========
 const CACHE_KEY = 'netbijak_packages';
 const CACHE_EXPIRY = 5 * 60 * 1000;
 
@@ -47,7 +43,6 @@ function setCache(packages) {
   localStorage.setItem(CACHE_KEY, JSON.stringify({ timestamp: Date.now(), packages }));
 }
 
-// ========== 获取数据 ==========
 async function fetchPackages() {
   const cached = getCache();
   if (cached && cached.length > 0) {
@@ -57,10 +52,10 @@ async function fetchPackages() {
   }
 
   try {
+    // 移除了 .order()，避免列名不存在的问题
     const { data, error } = await sbClient
       .from('packages')
-      .select('*')
-      .order('promo_price', { ascending: true });
+      .select('*');
 
     if (error) throw error;
     allPackages = data || [];
@@ -81,7 +76,6 @@ async function fetchPackages() {
   }
 }
 
-// ========== 渲染卡片 ==========
 function renderPackages() {
   const grid = document.getElementById('package-grid');
   if (!grid) return;
@@ -129,7 +123,6 @@ function renderPackages() {
   grid.innerHTML = html;
 }
 
-// ========== 语言切换 ==========
 function setLanguage(lang) {
   currentLang = lang;
   const t = TEXTS[lang];
@@ -140,7 +133,6 @@ function setLanguage(lang) {
   document.getElementById('filter-all').textContent = t.filterAll;
 }
 
-// ========== 绑定事件 ==========
 document.addEventListener('DOMContentLoaded', function() {
   document.querySelectorAll('.lang-switcher button').forEach(btn => {
     btn.addEventListener('click', function() {
