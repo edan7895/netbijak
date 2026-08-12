@@ -1,169 +1,56 @@
 <!DOCTYPE html>
 <html lang="zh">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Netbijak.com - 马来西亚最明智的宽带比价网</title>
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NetBijak - 宽带比价专家</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 </head>
-<body class="bg-gray-50 text-gray-800 flex flex-col min-h-screen font-sans">
-
-  <!-- Header -->
-  <header class="bg-white shadow-sm border-b sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
-      <a href="index.html" class="text-2xl font-black text-blue-600 flex items-center gap-1">
-        ⚡ Netbijak<span class="text-orange-500">.com</span>
-      </a>
-
-      <nav class="hidden md:flex space-x-8 font-medium text-sm">
-        <a href="index.html" class="text-blue-600 font-bold" data-i18n="nav_home">首页</a>
-        <a href="provider.html?p=Unifi" class="text-gray-600 hover:text-blue-600" data-i18n="nav_providers">宽带运营商</a>
-      </nav>
-
-      <div class="flex items-center gap-3">
-        <select id="lang-selector" onchange="setLanguage(this.value)" class="bg-gray-100 border border-gray-300 text-gray-700 text-xs rounded-lg p-2 font-bold cursor-pointer">
-          <option value="zh">中文</option>
-          <option value="en">English</option>
-          <option value="ms">Bahasa Melayu</option>
-        </select>
+<body>
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">NetBijak</a>
+      <div class="lang-switcher">
+        <button data-lang="en">EN</button>
+        <button data-lang="zh" class="active">中文</button>
+        <button data-lang="ms">BM</button>
       </div>
+    </div>
+  </nav>
+
+  <!-- 宽屏Banner -->
+  <header class="hero">
+    <div class="hero-content">
+      <h1 id="hero-title">马来西亚最智能的宽带比价</h1>
+      <p id="hero-sub">对比所有运营商的配套，找到最适合您的</p>
+      <!-- 暂时不提供 Landed/High-rise 筛选，因为表里没有分类字段 -->
     </div>
   </header>
 
-  <!-- Hero 区 + 核心筛选器 -->
-  <main class="flex-grow">
-    <section class="bg-gradient-to-r from-blue-600 to-indigo-700 text-white py-16 px-4 text-center">
-      <div class="max-w-4xl mx-auto">
-        <h1 class="text-3xl md:text-5xl font-extrabold mb-4 leading-tight" data-i18n="hero_title">
-          Netbijak.com — 寻找马来西亚最佳宽带配套
-        </h1>
-        <p class="text-base md:text-xl text-blue-100 mb-8" data-i18n="hero_subtitle">
-          明智比较 Unifi, TIME, Maxis 等多家宽带，获取独家优惠与回扣！
-        </p>
-
-        <!-- 筛选器控制台 -->
-        <div class="bg-white p-6 rounded-2xl shadow-xl text-gray-800 max-w-3xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
-          <div>
-            <label class="block text-sm font-semibold text-gray-700 mb-2" data-i18n="filter_housing_title">选择住宅类型：</label>
-            <select id="housing-filter" onchange="fetchPlans()" class="w-full bg-gray-50 border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
-              <option value="all" data-i18n="filter_all_housing">全部住宅</option>
-              <option value="landed" data-i18n="filter_landed">排屋 / 有地住宅 (Landed)</option>
-              <option value="highrise" data-i18n="filter_highrise">公寓 / 高楼住宅 (High-rise)</option>
-            </select>
-          </div>
-
-          <div>
-            <label class="block text-sm font-semibold text-gray-700 mb-2" data-i18n="filter_app_title">选择申请类型：</label>
-            <select id="app-filter" onchange="fetchPlans()" class="w-full bg-gray-50 border border-gray-300 rounded-lg p-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none">
-              <option value="all" data-i18n="filter_all_app">全部类型</option>
-              <option value="new_only" data-i18n="filter_new">新报装 (New)</option>
-              <option value="transfer_only" data-i18n="filter_transfer">转网/跳槽 (Transfer)</option>
-            </select>
-          </div>
-        </div>
+  <!-- 配套展示区 -->
+  <section class="packages-section">
+    <div class="section-header">
+      <h2 id="section-title">📡 Unifi 所有配套</h2>
+      <div class="provider-filter">
+        <button class="filter-btn active" data-provider="all">全部</button>
+        <button class="filter-btn" data-provider="unifi">Unifi</button>
+        <button class="filter-btn" data-provider="maxis">Maxis</button>
+        <button class="filter-btn" data-provider="time">TIME</button>
+        <button class="filter-btn" data-provider="yes">Yes</button>
+        <button class="filter-btn" data-provider="umobile">U Mobile</button>
       </div>
-    </section>
+    </div>
+    <div id="package-grid" class="package-grid">
+      <!-- 由 JavaScript 动态渲染 -->
+    </div>
+  </section>
 
-    <!-- 比价卡片网格 -->
-    <section class="max-w-7xl mx-auto px-4 py-12">
-      <h2 class="text-2xl font-bold text-gray-900 mb-8 text-center" data-i18n="plans_title">精选宽带配套比价</h2>
-      <div id="plans-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <div class="col-span-full text-center py-12 text-gray-400">正在从 Netbijak 数据库调取最新配套...</div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-gray-400 py-8 border-t border-gray-800 text-center text-sm" data-i18n="footer_rights">
-    © 2026 Netbijak.com. 版权所有。
+  <footer class="footer">
+    <p>© 2026 NetBijak.com · 宽带比价专家</p>
   </footer>
 
-  <script src="config.js"></script>
-  <script src="i18n.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      initSupabase();
-      fetchPlans();
-    });
-
-    async function fetchPlans() {
-      const container = document.getElementById('plans-container');
-      const housingFilter = document.getElementById('housing-filter').value;
-      const appFilter = document.getElementById('app-filter').value;
-
-      if (!supabaseClient) {
-        container.innerHTML = `<div class="col-span-full text-center text-red-500 py-8">Supabase 未成功连接，请检查 config.js。</div>`;
-        return;
-      }
-
-      let query = supabaseClient.from('plans').select('*');
-
-      if (housingFilter !== 'all') {
-        query = query.or(`housing_type.eq.${housingFilter},housing_type.eq.all`);
-      }
-
-      if (appFilter !== 'all') {
-        query = query.or(`application_type.eq.${appFilter},application_type.eq.all,application_type.eq.new_and_transfer`);
-      }
-
-      const { data: plans, error } = await query;
-
-      if (error || !plans || plans.length === 0) {
-        container.innerHTML = `<div class="col-span-full text-center text-gray-400 py-12">暂无符合该筛选条件的配套。</div>`;
-        return;
-      }
-
-      container.innerHTML = plans.map(plan => {
-        const dl = formatSpeed(plan.download_speed);
-        const ul = formatSpeed(plan.upload_speed);
-        const waMsg = encodeURIComponent(plan.whatsapp_ref || `Hi Netbijak, I am interested in ${plan.name} (RM${plan.promo_price}/m)`);
-        const waUrl = `https://wa.me/60123456789?text=${waMsg}`; // 替换为你的真实 WhatsApp 号码
-
-        return `
-          <div class="bg-white rounded-2xl shadow-md hover:shadow-xl transition border border-gray-100 flex flex-col justify-between overflow-hidden">
-            ${plan.tagline ? `<div class="bg-red-500 text-white text-xs font-bold px-3 py-1 text-center uppercase tracking-wide">${plan.tagline}</div>` : ''}
-
-            <div class="p-6">
-              <div class="flex justify-between items-start mb-4">
-                <div>
-                  <span class="inline-block bg-blue-100 text-blue-700 font-bold text-xs px-2.5 py-0.5 rounded mb-1">${plan.provider}</span>
-                  <h3 class="text-xl font-bold text-gray-900">${plan.name}</h3>
-                </div>
-              </div>
-
-              <div class="my-6 p-4 bg-blue-50 rounded-xl flex justify-between items-center">
-                <div>
-                  <div class="text-xs text-gray-500 uppercase font-semibold" data-i18n="speed">下载网速</div>
-                  <div class="text-2xl font-black text-blue-600">${dl.number} <span class="text-sm font-bold text-blue-800">${dl.unit}</span></div>
-                  ${ul.number !== '-' ? `<div class="text-xs text-gray-400">↑ ${ul.number} ${ul.unit}</div>` : ''}
-                </div>
-                <div class="text-right">
-                  ${plan.original_price ? `<div class="text-xs text-gray-400 line-through">RM ${plan.original_price}</div>` : ''}
-                  <div class="text-3xl font-extrabold text-gray-900">RM ${plan.promo_price}</div>
-                  <div class="text-xs text-gray-500">/<span data-i18n="mth">月</span></div>
-                </div>
-              </div>
-
-              <div class="space-y-2 text-sm text-gray-600 mb-6">
-                ${plan.features ? plan.features.split(',').map(f => `<div class="flex items-center gap-2"><span class="text-green-500 font-bold">✓</span> ${f.trim()}</div>`).join('') : ''}
-              </div>
-            </div>
-
-            <div class="p-6 pt-0 space-y-2 mt-auto">
-              <a href="plan-detail.html?id=${plan.id}" class="block w-full text-center bg-gray-100 hover:bg-gray-200 text-gray-800 font-bold py-2.5 rounded-xl text-sm transition" data-i18n="btn_view_detail">
-                查看详情
-              </a>
-              <a href="${waUrl}" target="_blank" class="block w-full text-center bg-green-500 hover:bg-green-600 text-white font-bold py-3.5 rounded-xl shadow-lg transition flex items-center justify-center gap-2">
-                <span>💬</span> <span data-i18n="btn_apply">立即申请 (WhatsApp)</span>
-              </a>
-            </div>
-          </div>
-        `;
-      }).join('');
-
-      updatePageLanguage();
-    }
-  </script>
+  <script src="app.js"></script>
 </body>
 </html>
