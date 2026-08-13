@@ -17,6 +17,26 @@
     </div>
 
     <section class="section-card">
+      <h2 id="usage-title"></h2>
+      <div class="property-grid">
+        <button id="btn-usage-home" class="property-btn active">
+          <div class="property-icon">🏠</div>
+          <div>
+            <div class="property-name" id="usage-home-name"></div>
+            <div class="property-desc" id="usage-home-desc"></div>
+          </div>
+        </button>
+        <button id="btn-usage-business" class="property-btn">
+          <div class="property-icon">💼</div>
+          <div>
+            <div class="property-name" id="usage-business-name"></div>
+            <div class="property-desc" id="usage-business-desc"></div>
+          </div>
+        </button>
+      </div>
+    </section>
+
+    <section class="section-card">
       <h2 id="property-title"></h2>
       <p class="section-sub" id="property-sub"></p>
       <div class="property-grid">
@@ -72,6 +92,11 @@
     document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("home-title").textContent = t("home_title");
       document.getElementById("home-subtitle").textContent = t("home_subtitle");
+      document.getElementById("usage-title").textContent = t("section_usage_title");
+      document.getElementById("usage-home-name").textContent = t("usage_home");
+      document.getElementById("usage-home-desc").textContent = t("usage_home_desc");
+      document.getElementById("usage-business-name").textContent = t("usage_business");
+      document.getElementById("usage-business-desc").textContent = t("usage_business_desc");
       document.getElementById("property-title").textContent = t("section_property_title");
       document.getElementById("property-sub").textContent = t("section_property_sub");
       document.getElementById("property-landed-name").textContent = t("property_landed");

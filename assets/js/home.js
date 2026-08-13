@@ -2,16 +2,31 @@
 
 const WHATSAPP_NUMBER = "60123456789"; // ⚠️ 改成你的真实WhatsApp Business号码
 
+let selectedUsageType = "home"; // "home" 或 "business"
 let selectedPropertyType = "highrise";
 let selectedUserRange = { min: 2, max: 4 };
 
 function initHomePage() {
+  const usageHomeBtn = document.getElementById("btn-usage-home");
+  const usageBusinessBtn = document.getElementById("btn-usage-business");
   const landedBtn = document.getElementById("btn-landed");
   const highriseBtn = document.getElementById("btn-highrise");
   const userSelect = document.getElementById("user-select");
   const compareBtn = document.getElementById("btn-compare");
 
   if (!landedBtn) return; // 不是首页就不执行
+
+  usageHomeBtn.addEventListener("click", () => {
+    selectedUsageType = "home";
+    usageHomeBtn.classList.add("active");
+    usageBusinessBtn.classList.remove("active");
+  });
+
+  usageBusinessBtn.addEventListener("click", () => {
+    selectedUsageType = "business";
+    usageBusinessBtn.classList.add("active");
+    usageHomeBtn.classList.remove("active");
+  });
 
   landedBtn.addEventListener("click", () => {
     selectedPropertyType = "landed";
@@ -59,15 +74,28 @@ async function runComparison() {
 
   const housingColumn = selectedPropertyType === "landed" ? "supports_landed" : "supports_highrise";
 
-  // 第1步：找出支持这个住宅类型的运营商
-  const { data: providers, error: providerError } = await supabaseClient
+  // 第1步：找出符合条件的运营商（住宅类型 + Home/Business 分类）
+  let providerQuery = supabaseClient
     .from("providers")
     .select("*")
     .eq("is_active", true)
     .eq(housingColumn, true);
 
-  if (providerError || !providers || providers.length === 0) {
+  const { data: allProviders, error: providerError } = await providerQuery;
+
+  if (providerError || !allProviders) {
     resultsGrid.innerHTML = `<p>${t("no_results")}</p>`;
+    return;
+  }
+
+  // 用 slug 判断是不是 Business 类别（slug 含 "-business"）
+  const providers = allProviders.filter((p) => {
+    const isBusiness = p.slug.includes("-business");
+    return selectedUsageType === "business" ? isBusiness : !isBusiness;
+  });
+
+  if (providers.length === 0) {
+    resultsGrid.innerHTML = `<p style="color:#64748b;padding:2rem;text-align:center">${t("no_results")}</p>`;
     return;
   }
 

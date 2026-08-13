@@ -11,6 +11,12 @@ const translations = {
     home_title: "Find Your Perfect Broadband Plan",
     home_subtitle: "Compare Unifi, Maxis, CelcomDigi, TIME, Yes & U Mobile in seconds.",
 
+    section_usage_title: "What Type of Plan Are You Looking For?",
+    usage_home: "Home",
+    usage_home_desc: "For residential use",
+    usage_business: "Business",
+    usage_business_desc: "For office / commercial use",
+
     section_property_title: "Select Your Home Type",
     section_property_sub: "Some providers are only available for certain home types.",
     property_landed: "Landed",
@@ -51,6 +57,12 @@ const translations = {
     home_title: "找到最适合你的宽频配套",
     home_subtitle: "几秒钟比较 Unifi、Maxis、CelcomDigi、TIME、Yes 及 U Mobile。",
 
+    section_usage_title: "您在寻找哪种类型的配套？",
+    usage_home: "家用",
+    usage_home_desc: "适用于住宅用途",
+    usage_business: "商用",
+    usage_business_desc: "适用于办公室 / 商业用途",
+
     section_property_title: "选择您的住宅类型",
     section_property_sub: "部分运营商仅适用于特定住宅类型。",
     property_landed: "排屋",
@@ -90,6 +102,12 @@ const translations = {
 
     home_title: "Cari Pelan Jalur Lebar Terbaik Anda",
     home_subtitle: "Bandingkan Unifi, Maxis, CelcomDigi, TIME, Yes & U Mobile dalam saat.",
+
+    section_usage_title: "Jenis Pelan Apa Yang Anda Cari?",
+    usage_home: "Rumah",
+    usage_home_desc: "Untuk kegunaan kediaman",
+    usage_business: "Perniagaan",
+    usage_business_desc: "Untuk kegunaan pejabat / komersial",
 
     section_property_title: "Pilih Jenis Rumah Anda",
     section_property_sub: "Sesetengah pembekal hanya tersedia untuk jenis rumah tertentu.",
