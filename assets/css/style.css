@@ -1,0 +1,72 @@
+:root {
+  --unifi: #FF6600;
+  --maxis: #00A651;
+  --time: #E6007E;
+  --celcomdigi: #0066B3;
+  --umobile: #FF8200;
+  --yes: #7B2D8E;
+  --bg: #f0f4f8;
+  --card: #ffffff;
+  --text: #1e293b;
+  --muted: #64748b;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  line-height: 1.5;
+}
+
+/* ===== 导航栏 ===== */
+.navbar {
+  position: sticky; top: 0; z-index: 50;
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding: 0 1rem;
+}
+.navbar-inner {
+  max-width: 72rem; margin: 0 auto;
+  display: flex; align-items: center; justify-content: space-between;
+  height: 60px;
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 10px;
+  color: #fff; font-weight: 800; font-size: 1.05rem; text-decoration: none;
+}
+.nav-logo-icon {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: linear-gradient(135deg, #14b8a6, #0ea5e9);
+  display: flex; align-items: center; justify-content: center; font-size: 18px;
+}
+.nav-links { display: flex; gap: 1.5rem; }
+.nav-links a {
+  color: #94a3b8; text-decoration: none; font-size: 0.875rem; font-weight: 500;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: #fff; }
+
+.lang-switcher { display: flex; gap: 8px; }
+.lang-switcher a {
+  color: #94a3b8; text-decoration: none; font-size: 0.8rem; font-weight: 600;
+  padding: 4px 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15);
+}
+.lang-switcher a.active { background: #14b8a6; color: #fff; border-color: #14b8a6; }
+
+/* ===== Footer ===== */
+footer {
+  text-align: center; padding: 2rem 1rem;
+  border-top: 1px solid #e2e8f0; color: var(--muted); font-size: 0.85rem;
+  background: #fff; margin-top: 3rem;
+}
+
+/* ===== 通用容器 ===== */
+.main { max-width: 72rem; margin: 0 auto; padding: 2rem 1rem 4rem; }
+
+@media (max-width: 640px) {
+  .nav-links { display: none; }
+}

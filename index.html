@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>NetBijak.com</title>
+  <script>
+    const browserLang = navigator.language || navigator.userLanguage;
+    let target = "/en/";
+    if (browserLang.startsWith("zh")) target = "/zh/";
+    else if (browserLang.startsWith("ms")) target = "/ms/";
+    window.location.href = target;
+  </script>
+</head>
+<body>
+  <p>Redirecting... 正在跳转... Mengalihkan...</p>
+</body>
+</html>
