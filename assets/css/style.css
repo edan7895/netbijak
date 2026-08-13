@@ -92,9 +92,7 @@ footer {
 .main { max-width: 72rem; margin: 0 auto; padding: 2rem 1rem 4rem; }
 
 /* ===== Hero / Home 标题 ===== */
-.home-hero {
-  text-align: center; padding: 1rem 0 2.5rem;
-}
+.home-hero { text-align: center; padding: 1rem 0 2.5rem; }
 .home-hero h1 {
   font-size: clamp(1.75rem, 4vw, 2.5rem);
   font-weight: 900; color: var(--text); margin-bottom: 0.5rem;
@@ -158,7 +156,7 @@ footer {
 }
 .btn-primary:hover { background: #1e293b; }
 
-/* ===== 比较结果 ===== */
+/* ===== 比较结果卡片 ===== */
 .hidden { display: none !important; }
 .results-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
 .result-card {
@@ -196,6 +194,83 @@ footer {
   color: #fff; border-radius: 10px; text-decoration: none;
   font-weight: 700; font-size: 0.85rem;
 }
+.wa-btn-large { padding: 15px; font-size: 1rem; margin-top: 1.25rem; }
+
+/* ===== ISP 总览页 ===== */
+.provider-hero { text-align: center; padding: 1rem 0 1.5rem; }
+.provider-hero h1 { font-size: clamp(1.75rem, 4vw, 2.25rem); font-weight: 900; }
+
+.tabs-bar {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  margin-bottom: 1.5rem; padding-bottom: 1rem;
+  border-bottom: 2px solid #e2e8f0;
+}
+.tab-btn {
+  padding: 10px 20px; border-radius: 10px; border: 1.5px solid #e2e8f0;
+  background: #fff; color: var(--muted); font-weight: 600; font-size: 0.875rem;
+  cursor: pointer; transition: all 0.2s;
+}
+.tab-btn.active { background: #0f172a; color: #fff; border-color: #0f172a; }
+
+.provider-plans-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 1.25rem;
+}
+.plan-card-link { text-decoration: none; color: inherit; }
+.plan-mini-card {
+  background: #fff; border-radius: 16px; overflow: hidden;
+  border: 2px solid #e2e8f0; transition: transform 0.2s, box-shadow 0.2s;
+}
+.plan-mini-card:hover { transform: translateY(-4px); box-shadow: 0 14px 28px rgba(15,23,42,0.1); }
+.plan-card-banner img { width: 100%; display: block; }
+.plan-mini-body { padding: 1.1rem; }
+.plan-mini-name { font-weight: 700; font-size: 0.95rem; }
+.plan-mini-tagline { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+.plan-mini-price { font-size: 1.6rem; font-weight: 900; margin: 0.5rem 0; }
+.plan-mini-price small { font-size: 0.75rem; font-weight: 400; color: var(--muted); }
+.plan-mini-speed { display: flex; gap: 1rem; font-size: 0.8rem; color: #334155; font-weight: 600; }
+
+/* ===== 配套详情页 ===== */
+.detail-breadcrumb { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; }
+.detail-breadcrumb a { color: var(--muted); }
+.detail-banner { margin-bottom: 1.5rem; border-radius: 16px; overflow: hidden; }
+.detail-banner img { width: 100%; display: block; }
+.detail-header {
+  background: #fff; border-radius: 20px; overflow: hidden;
+  border: 2px solid #e2e8f0; margin-bottom: 1.5rem;
+}
+.detail-header-body { padding: 2rem; }
+.detail-provider-tag { font-weight: 800; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.04em; }
+.detail-plan-name { font-size: clamp(1.5rem, 3.5vw, 2rem); font-weight: 900; margin: 0.4rem 0; }
+.detail-tagline { color: var(--muted); margin-bottom: 1rem; }
+.detail-price { font-size: 2.5rem; font-weight: 900; margin-bottom: 1.5rem; }
+.detail-price small { font-size: 0.9rem; font-weight: 400; color: var(--muted); }
+.detail-original-price {
+  font-size: 1rem; color: #94a3b8; text-decoration: line-through; margin-left: 10px; font-weight: 500;
+}
+.detail-speed-row { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
+.detail-speed-box {
+  background: #f8fafc; border-radius: 12px; padding: 12px 20px; flex: 1; min-width: 120px;
+}
+.detail-speed-label { display: block; font-size: 0.75rem; color: var(--muted); text-transform: uppercase; }
+.detail-speed-value { display: block; font-size: 1.15rem; font-weight: 800; margin-top: 4px; }
+
+.detail-section {
+  background: #fff; border-radius: 16px; padding: 1.75rem;
+  border: 1px solid #e2e8f0; margin-bottom: 1.5rem;
+}
+.detail-section h2 { font-size: 1.05rem; font-weight: 800; margin-bottom: 1rem; }
+.detail-features-list { list-style: none; }
+.detail-features-list li {
+  padding: 10px 0; border-bottom: 1px solid #f1f5f9; font-size: 0.9rem;
+}
+.detail-features-list li:before { content: "✓ "; color: #14b8a6; font-weight: 800; }
+
+.detail-articles-list { display: flex; flex-direction: column; gap: 10px; }
+.detail-article-link {
+  display: flex; align-items: center; gap: 12px; padding: 10px;
+  border-radius: 10px; border: 1px solid #e2e8f0; text-decoration: none; color: var(--text);
+}
+.detail-article-link img { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; }
 
 @media (max-width: 640px) {
   .lang-switcher-desktop { display: none; }

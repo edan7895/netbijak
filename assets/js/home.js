@@ -2,9 +2,9 @@
 
 const WHATSAPP_NUMBER = "60123456789"; // ⚠️ 改成你的真实WhatsApp Business号码
 
-let selectedUsageType = "home"; // "home" 或 "business"
+let selectedUsageType = "home";
 let selectedPropertyType = "highrise";
-let selectedAppType = "new"; // "new" / "transfer" / "upgrade" / "existing"
+let selectedAppType = "new";
 let selectedUserRange = { min: 2, max: 4 };
 
 function initHomePage() {
@@ -16,7 +16,7 @@ function initHomePage() {
   const userSelect = document.getElementById("user-select");
   const compareBtn = document.getElementById("btn-compare");
 
-  if (!landedBtn) return; // 不是首页就不执行
+  if (!landedBtn) return;
 
   usageHomeBtn.addEventListener("click", () => {
     selectedUsageType = "home";
@@ -54,7 +54,6 @@ function initHomePage() {
   compareBtn.addEventListener("click", runComparison);
 }
 
-// 从配套的 recommended_for 文字（例如 "2-4 users/devices"）解析出数字范围
 function parseUserRange(text) {
   if (!text) return { min: 0, max: 999 };
   const match = text.match(/(\d+)\s*-\s*(\d+)/);
@@ -69,7 +68,6 @@ function rangesOverlap(a, b) {
   return a.min <= b.max && b.min <= a.max;
 }
 
-// 判断一个 application_type 文字属于哪个大分类
 function matchesAppType(applicationType, category) {
   const text = (applicationType || "").toLowerCase();
   const hasNew = text.includes("new");
@@ -94,7 +92,6 @@ async function runComparison() {
 
   const housingColumn = selectedPropertyType === "landed" ? "supports_landed" : "supports_highrise";
 
-  // 第1步：找出符合条件的运营商（住宅类型 + Home/Business 分类）
   const { data: allProviders, error: providerError } = await supabaseClient
     .from("providers")
     .select("*")
@@ -119,7 +116,6 @@ async function runComparison() {
   const providerIds = providers.map((p) => p.id);
   const now = new Date().toISOString();
 
-  // 第2步：找出符合预算、已发布、在发布时间范围内的配套
   const { data: plans, error: planError } = await supabaseClient
     .from("plans")
     .select("*, providers(*)")
@@ -135,7 +131,6 @@ async function runComparison() {
     return;
   }
 
-  // 第3步：用人数范围 + 申请类型 再过滤一次
   const filtered = (plans || []).filter((plan) => {
     const planRange = parseUserRange(plan.recommended_for);
     const userMatch = rangesOverlap(planRange, selectedUserRange);
@@ -167,7 +162,7 @@ function buildResultCard(plan, isBest) {
 
   const waMsg = plan.whatsapp_ref || `Hi NetBijak, I'm interested in ${plan.name}`;
   const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waMsg)}`;
-  const detailLink = `${providerSlug}/${plan.slug}/`;
+  const detailLink = `${providerSlug}/plan/?slug=${plan.slug}`;
 
   return `
     <div class="result-card" style="border-color:${color}">
