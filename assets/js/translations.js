@@ -7,6 +7,38 @@ const translations = {
     site_name: "NetBijak",
     footer_text: "Compare Malaysia's best broadband plans.",
     footer_rights: "All rights reserved.",
+
+    home_title: "Find Your Perfect Broadband Plan",
+    home_subtitle: "Compare Unifi, Maxis, CelcomDigi, TIME, Yes & U Mobile in seconds.",
+
+    section_property_title: "Select Your Home Type",
+    section_property_sub: "Some providers are only available for certain home types.",
+    property_landed: "Landed",
+    property_landed_desc: "Terrace / Bungalow / Semi-D",
+    property_highrise: "High-Rise",
+    property_highrise_desc: "Condo / Apartment / Serviced Residence",
+
+    section_users_title: "How Many Users / Devices?",
+    users_1_2: "1 - 2 users",
+    users_2_4: "2 - 4 users",
+    users_4_6: "4 - 6 users",
+    users_6_8: "6 - 8 users",
+    users_8_10: "8 - 10+ users",
+
+    section_budget_title: "Monthly Budget (RM)",
+    budget_placeholder: "e.g. 150",
+
+    btn_compare: "Compare Plans",
+
+    results_title: "Recommended Plans",
+    results_sub: "Sorted by price, lowest first",
+    no_results: "No plans match your criteria. Try increasing your budget.",
+    best_badge: "Lowest Price",
+    apply_whatsapp: "Apply Via WhatsApp",
+    view_details: "View Details",
+    per_month: "/month",
+    contract_label: "Contract",
+    months_label: "months",
   },
   zh: {
     nav_home: "首页",
@@ -15,6 +47,38 @@ const translations = {
     site_name: "NetBijak",
     footer_text: "比较马来西亚最优质的宽频配套。",
     footer_rights: "版权所有。",
+
+    home_title: "找到最适合你的宽频配套",
+    home_subtitle: "几秒钟比较 Unifi、Maxis、CelcomDigi、TIME、Yes 及 U Mobile。",
+
+    section_property_title: "选择您的住宅类型",
+    section_property_sub: "部分运营商仅适用于特定住宅类型。",
+    property_landed: "排屋",
+    property_landed_desc: "排屋 / 独立式 / 半独立",
+    property_highrise: "高楼公寓",
+    property_highrise_desc: "Condo / 公寓 / 服务式住宅",
+
+    section_users_title: "使用人数 / 设备数量",
+    users_1_2: "1 - 2 人",
+    users_2_4: "2 - 4 人",
+    users_4_6: "4 - 6 人",
+    users_6_8: "6 - 8 人",
+    users_8_10: "8 - 10+ 人",
+
+    section_budget_title: "每月预算 (RM)",
+    budget_placeholder: "例如 150",
+
+    btn_compare: "开始比较",
+
+    results_title: "推荐配套",
+    results_sub: "按价格由低到高排序",
+    no_results: "没有符合条件的配套，请尝试提高预算。",
+    best_badge: "最低价",
+    apply_whatsapp: "WhatsApp 申请",
+    view_details: "查看详情",
+    per_month: "/月",
+    contract_label: "合约",
+    months_label: "个月",
   },
   ms: {
     nav_home: "Laman Utama",
@@ -23,13 +87,45 @@ const translations = {
     site_name: "NetBijak",
     footer_text: "Bandingkan pelan jalur lebar terbaik di Malaysia.",
     footer_rights: "Hak cipta terpelihara.",
+
+    home_title: "Cari Pelan Jalur Lebar Terbaik Anda",
+    home_subtitle: "Bandingkan Unifi, Maxis, CelcomDigi, TIME, Yes & U Mobile dalam saat.",
+
+    section_property_title: "Pilih Jenis Rumah Anda",
+    section_property_sub: "Sesetengah pembekal hanya tersedia untuk jenis rumah tertentu.",
+    property_landed: "Rumah Berpagar",
+    property_landed_desc: "Teres / Banglo / Semi-D",
+    property_highrise: "Rumah Tinggi",
+    property_highrise_desc: "Kondominium / Pangsapuri",
+
+    section_users_title: "Bilangan Pengguna / Peranti",
+    users_1_2: "1 - 2 pengguna",
+    users_2_4: "2 - 4 pengguna",
+    users_4_6: "4 - 6 pengguna",
+    users_6_8: "6 - 8 pengguna",
+    users_8_10: "8 - 10+ pengguna",
+
+    section_budget_title: "Bajet Bulanan (RM)",
+    budget_placeholder: "cth. 150",
+
+    btn_compare: "Bandingkan Pelan",
+
+    results_title: "Pelan Disyorkan",
+    results_sub: "Disusun mengikut harga, terendah dahulu",
+    no_results: "Tiada pelan sepadan dengan kriteria anda. Cuba tingkatkan bajet.",
+    best_badge: "Harga Terendah",
+    apply_whatsapp: "Mohon Melalui WhatsApp",
+    view_details: "Lihat Butiran",
+    per_month: "/bulan",
+    contract_label: "Kontrak",
+    months_label: "bulan",
   },
 };
 
 function getCurrentLang() {
   const path = window.location.pathname;
-  if (path.startsWith("/zh/")) return "zh";
-  if (path.startsWith("/ms/")) return "ms";
+  if (path.includes("/zh/")) return "zh";
+  if (path.includes("/ms/")) return "ms";
   return "en";
 }
 

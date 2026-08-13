@@ -11,7 +11,55 @@
   <div id="site-header"></div>
 
   <main class="main">
-    <h1>首页内容将在 Part 2 加入</h1>
+    <div class="home-hero">
+      <h1 id="home-title"></h1>
+      <p id="home-subtitle"></p>
+    </div>
+
+    <section class="section-card">
+      <h2 id="property-title"></h2>
+      <p class="section-sub" id="property-sub"></p>
+      <div class="property-grid">
+        <button id="btn-landed" class="property-btn">
+          <div class="property-icon">🏡</div>
+          <div>
+            <div class="property-name" id="property-landed-name"></div>
+            <div class="property-desc" id="property-landed-desc"></div>
+          </div>
+        </button>
+        <button id="btn-highrise" class="property-btn active">
+          <div class="property-icon">🏢</div>
+          <div>
+            <div class="property-name" id="property-highrise-name"></div>
+            <div class="property-desc" id="property-highrise-desc"></div>
+          </div>
+        </button>
+      </div>
+    </section>
+
+    <section class="section-card">
+      <div class="form-row">
+        <label id="users-title"></label>
+        <select id="user-select">
+          <option value="1-2">1 - 2</option>
+          <option value="2-4" selected>2 - 4</option>
+          <option value="4-6">4 - 6</option>
+          <option value="6-8">6 - 8</option>
+          <option value="8-10">8 - 10+</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label id="budget-title"></label>
+        <input type="number" id="budget-input" placeholder="150" />
+      </div>
+      <button id="btn-compare" class="btn-primary"></button>
+    </section>
+
+    <section id="results-section" class="section-card hidden">
+      <h2 id="results-title"></h2>
+      <p class="section-sub" id="results-sub"></p>
+      <div id="results-grid" class="results-grid"></div>
+    </section>
   </main>
 
   <footer id="site-footer"></footer>
@@ -19,5 +67,24 @@
   <script src="../assets/js/supabase-client.js"></script>
   <script src="../assets/js/translations.js"></script>
   <script src="../assets/js/site.js"></script>
+  <script src="../assets/js/home.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("home-title").textContent = t("home_title");
+      document.getElementById("home-subtitle").textContent = t("home_subtitle");
+      document.getElementById("property-title").textContent = t("section_property_title");
+      document.getElementById("property-sub").textContent = t("section_property_sub");
+      document.getElementById("property-landed-name").textContent = t("property_landed");
+      document.getElementById("property-landed-desc").textContent = t("property_landed_desc");
+      document.getElementById("property-highrise-name").textContent = t("property_highrise");
+      document.getElementById("property-highrise-desc").textContent = t("property_highrise_desc");
+      document.getElementById("users-title").textContent = t("section_users_title");
+      document.getElementById("budget-title").textContent = t("section_budget_title");
+      document.getElementById("budget-input").placeholder = t("budget_placeholder");
+      document.getElementById("btn-compare").textContent = t("btn_compare");
+      document.getElementById("results-title").textContent = t("results_title");
+      document.getElementById("results-sub").textContent = t("results_sub");
+    });
+  </script>
 </body>
 </html>
