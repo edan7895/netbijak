@@ -5,9 +5,9 @@
   <title>NetBijak.com</title>
   <script>
     const browserLang = navigator.language || navigator.userLanguage;
-    let target = "/en/";
-    if (browserLang.startsWith("zh")) target = "/zh/";
-    else if (browserLang.startsWith("ms")) target = "/ms/";
+    let target = "en/";
+    if (browserLang.startsWith("zh")) target = "zh/";
+    else if (browserLang.startsWith("ms")) target = "ms/";
     window.location.href = target;
   </script>
 </head>
