@@ -24,6 +24,12 @@ const translations = {
     property_highrise: "High-Rise",
     property_highrise_desc: "Condo / Apartment / Serviced Residence",
 
+    section_apptype_title: "Application Type",
+    apptype_new: "New Application",
+    apptype_transfer: "Transfer",
+    apptype_upgrade: "Upgrade",
+    apptype_existing: "Existing Customer / Special Offer",
+
     section_users_title: "How Many Users / Devices?",
     users_1_2: "1 - 2 users",
     users_2_4: "2 - 4 users",
@@ -70,6 +76,12 @@ const translations = {
     property_highrise: "高楼公寓",
     property_highrise_desc: "Condo / 公寓 / 服务式住宅",
 
+    section_apptype_title: "申请类型",
+    apptype_new: "新申请",
+    apptype_transfer: "转台",
+    apptype_upgrade: "升级",
+    apptype_existing: "现有客户 / 特别优惠",
+
     section_users_title: "使用人数 / 设备数量",
     users_1_2: "1 - 2 人",
     users_2_4: "2 - 4 人",
@@ -115,6 +127,12 @@ const translations = {
     property_landed_desc: "Teres / Banglo / Semi-D",
     property_highrise: "Rumah Tinggi",
     property_highrise_desc: "Kondominium / Pangsapuri",
+
+    section_apptype_title: "Jenis Permohonan",
+    apptype_new: "Permohonan Baharu",
+    apptype_transfer: "Pindahan",
+    apptype_upgrade: "Naik Taraf",
+    apptype_existing: "Pelanggan Sedia Ada / Tawaran Istimewa",
 
     section_users_title: "Bilangan Pengguna / Peranti",
     users_1_2: "1 - 2 pengguna",

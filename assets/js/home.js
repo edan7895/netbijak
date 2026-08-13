@@ -4,6 +4,7 @@ const WHATSAPP_NUMBER = "60123456789"; // ⚠️ 改成你的真实WhatsApp Busi
 
 let selectedUsageType = "home"; // "home" 或 "business"
 let selectedPropertyType = "highrise";
+let selectedAppType = "new"; // "new" / "transfer" / "upgrade" / "existing"
 let selectedUserRange = { min: 2, max: 4 };
 
 function initHomePage() {
@@ -11,6 +12,7 @@ function initHomePage() {
   const usageBusinessBtn = document.getElementById("btn-usage-business");
   const landedBtn = document.getElementById("btn-landed");
   const highriseBtn = document.getElementById("btn-highrise");
+  const appTypeSelect = document.getElementById("apptype-select");
   const userSelect = document.getElementById("user-select");
   const compareBtn = document.getElementById("btn-compare");
 
@@ -40,6 +42,10 @@ function initHomePage() {
     landedBtn.classList.remove("active");
   });
 
+  appTypeSelect.addEventListener("change", (e) => {
+    selectedAppType = e.target.value;
+  });
+
   userSelect.addEventListener("change", (e) => {
     const [min, max] = e.target.value.split("-").map(Number);
     selectedUserRange = { min, max: max || 999 };
@@ -63,6 +69,20 @@ function rangesOverlap(a, b) {
   return a.min <= b.max && b.min <= a.max;
 }
 
+// 判断一个 application_type 文字属于哪个大分类
+function matchesAppType(applicationType, category) {
+  const text = (applicationType || "").toLowerCase();
+  const hasNew = text.includes("new");
+  const hasTransfer = text.includes("transfer");
+  const hasUpgrade = text.includes("upgrade");
+
+  if (category === "new") return hasNew;
+  if (category === "transfer") return hasTransfer;
+  if (category === "upgrade") return hasUpgrade;
+  if (category === "existing") return !hasNew && !hasTransfer && !hasUpgrade;
+  return true;
+}
+
 async function runComparison() {
   const resultsSection = document.getElementById("results-section");
   const resultsGrid = document.getElementById("results-grid");
@@ -75,20 +95,17 @@ async function runComparison() {
   const housingColumn = selectedPropertyType === "landed" ? "supports_landed" : "supports_highrise";
 
   // 第1步：找出符合条件的运营商（住宅类型 + Home/Business 分类）
-  let providerQuery = supabaseClient
+  const { data: allProviders, error: providerError } = await supabaseClient
     .from("providers")
     .select("*")
     .eq("is_active", true)
     .eq(housingColumn, true);
-
-  const { data: allProviders, error: providerError } = await providerQuery;
 
   if (providerError || !allProviders) {
     resultsGrid.innerHTML = `<p>${t("no_results")}</p>`;
     return;
   }
 
-  // 用 slug 判断是不是 Business 类别（slug 含 "-business"）
   const providers = allProviders.filter((p) => {
     const isBusiness = p.slug.includes("-business");
     return selectedUsageType === "business" ? isBusiness : !isBusiness;
@@ -118,10 +135,12 @@ async function runComparison() {
     return;
   }
 
-  // 第3步：用人数范围再过滤一次（前端处理，因为资料库里是文字格式）
+  // 第3步：用人数范围 + 申请类型 再过滤一次
   const filtered = (plans || []).filter((plan) => {
     const planRange = parseUserRange(plan.recommended_for);
-    return rangesOverlap(planRange, selectedUserRange);
+    const userMatch = rangesOverlap(planRange, selectedUserRange);
+    const appTypeMatch = matchesAppType(plan.new_and_transfer, selectedAppType);
+    return userMatch && appTypeMatch;
   });
 
   renderResults(filtered);
