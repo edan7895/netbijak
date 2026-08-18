@@ -60,6 +60,11 @@ const translations = {
     per_month: "/month",
     contract_label: "Contract",
     months_label: "months",
+
+    speedtest_title: "Test Your Internet Speed",
+    speedtest_subtitle: "Check your current download, upload speed and ping in seconds.",
+    speedtest_cta: "Not happy with your speed? Compare better plans below.",
+    speedtest_cta_btn: "Compare Broadband Plans",
   },
   zh: {
     nav_home: "首页",
@@ -121,6 +126,11 @@ const translations = {
     per_month: "/月",
     contract_label: "合约",
     months_label: "个月",
+
+    speedtest_title: "测试您的网速",
+    speedtest_subtitle: "几秒钟内检查您目前的下载、上传速度及延迟。",
+    speedtest_cta: "对网速不满意？立即比较更好的配套。",
+    speedtest_cta_btn: "比较宽频配套",
   },
   ms: {
     nav_home: "Laman Utama",
@@ -182,6 +192,11 @@ const translations = {
     per_month: "/bulan",
     contract_label: "Kontrak",
     months_label: "bulan",
+
+    speedtest_title: "Uji Kelajuan Internet Anda",
+    speedtest_subtitle: "Semak kelajuan muat turun, muat naik dan ping semasa anda dalam beberapa saat.",
+    speedtest_cta: "Tidak berpuas hati dengan kelajuan anda? Bandingkan pelan yang lebih baik di bawah.",
+    speedtest_cta_btn: "Bandingkan Pelan Jalur Lebar",
   },
 };
 

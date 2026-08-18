@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ujian Kelajuan Internet Percuma | NetBijak.com</title>
+  <meta name="description" content="Uji kelajuan muat turun, muat naik dan ping internet anda secara percuma. Bandingkan pelan jalur lebar Malaysia jika tidak berpuas hati." />
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="main">
+    <div class="speedtest-hero">
+      <h1 id="st-title"></h1>
+      <p id="st-subtitle"></p>
+    </div>
+
+    <div class="speedtest-widget-wrap">
+      <div id="speedtest-widget" style="width:100%"></div>
+      <script src="https://www.speedtest.net/api/js/embed.js?type=widget" data-language="ms"></script>
+    </div>
+
+    <div class="speedtest-cta">
+      <p id="st-cta"></p>
+      <a href="../" class="btn-primary" id="st-cta-btn"></a>
+    </div>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="../../assets/js/translations.js"></script>
+  <script src="../../assets/js/site.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("st-title").textContent = t("speedtest_title");
+      document.getElementById("st-subtitle").textContent = t("speedtest_subtitle");
+      document.getElementById("st-cta").textContent = t("speedtest_cta");
+      document.getElementById("st-cta-btn").textContent = t("speedtest_cta_btn");
+    });
+  </script>
+</body>
+</html>
