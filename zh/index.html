@@ -17,6 +17,31 @@
     </div>
 
     <section class="section-card">
+      <div class="search-box-row">
+        <input type="text" id="search-input" />
+        <button id="search-btn" class="search-btn">🔍</button>
+      </div>
+      <div class="icon-nav-grid">
+        <button id="icon-nav-home" class="icon-nav-item">
+          <div class="icon-nav-circle">🏠</div>
+          <span id="icon-nav-home-label"></span>
+        </button>
+        <button id="icon-nav-business" class="icon-nav-item">
+          <div class="icon-nav-circle">💼</div>
+          <span id="icon-nav-business-label"></span>
+        </button>
+        <a href="speedtest/" class="icon-nav-item">
+          <div class="icon-nav-circle">⚡</div>
+          <span id="icon-nav-speedtest-label"></span>
+        </a>
+        <a href="blog/" class="icon-nav-item">
+          <div class="icon-nav-circle">📰</div>
+          <span id="icon-nav-blog-label"></span>
+        </a>
+      </div>
+    </section>
+
+    <section class="section-card" id="usage-section">
       <h2 id="usage-title"></h2>
       <div class="property-grid">
         <button id="btn-usage-home" class="property-btn active">
@@ -84,6 +109,11 @@
       <button id="btn-compare" class="btn-primary"></button>
     </section>
 
+    <section class="section-card">
+      <h2 id="browse-title"></h2>
+      <div id="provider-browse-grid" class="provider-browse-grid"></div>
+    </section>
+
     <section id="results-section" class="section-card hidden">
       <h2 id="results-title"></h2>
       <p class="section-sub" id="results-sub"></p>
@@ -101,6 +131,11 @@
     document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("home-title").textContent = t("home_title");
       document.getElementById("home-subtitle").textContent = t("home_subtitle");
+      document.getElementById("search-input").placeholder = t("search_placeholder");
+      document.getElementById("icon-nav-home-label").textContent = t("icon_broadband_home");
+      document.getElementById("icon-nav-business-label").textContent = t("icon_broadband_business");
+      document.getElementById("icon-nav-speedtest-label").textContent = t("icon_speedtest");
+      document.getElementById("icon-nav-blog-label").textContent = t("icon_articles");
       document.getElementById("usage-title").textContent = t("section_usage_title");
       document.getElementById("usage-home-name").textContent = t("usage_home");
       document.getElementById("usage-home-desc").textContent = t("usage_home_desc");
@@ -121,6 +156,7 @@
       document.getElementById("budget-title").textContent = t("section_budget_title");
       document.getElementById("budget-input").placeholder = t("budget_placeholder");
       document.getElementById("btn-compare").textContent = t("btn_compare");
+      document.getElementById("browse-title").textContent = t("browse_by_provider");
       document.getElementById("results-title").textContent = t("results_title");
       document.getElementById("results-sub").textContent = t("results_sub");
     });

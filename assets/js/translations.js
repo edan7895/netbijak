@@ -11,6 +11,13 @@ const translations = {
     home_title: "Find Your Perfect Broadband Plan",
     home_subtitle: "Compare Unifi, Maxis, CelcomDigi, TIME, Yes & U Mobile in seconds.",
 
+    search_placeholder: "Search plans, articles...",
+    icon_broadband_home: "Broadband (Home)",
+    icon_broadband_business: "Broadband (Business)",
+    icon_speedtest: "Speed Test",
+    icon_articles: "NetBijak Articles",
+    search_results_for: "Search results for",
+
     section_usage_title: "What Type of Plan Are You Looking For?",
     usage_home: "Home",
     usage_home_desc: "For residential use",
@@ -42,6 +49,8 @@ const translations = {
 
     btn_compare: "Compare Plans",
 
+    browse_by_provider: "Or Browse By Provider",
+
     results_title: "Recommended Plans",
     results_sub: "Sorted by price, lowest first",
     no_results: "No plans match your criteria. Try increasing your budget.",
@@ -62,6 +71,13 @@ const translations = {
 
     home_title: "找到最适合你的宽频配套",
     home_subtitle: "几秒钟比较 Unifi、Maxis、CelcomDigi、TIME、Yes 及 U Mobile。",
+
+    search_placeholder: "搜索配套、文章...",
+    icon_broadband_home: "宽频（家用）",
+    icon_broadband_business: "宽频（商用）",
+    icon_speedtest: "网速测试",
+    icon_articles: "NetBijak 文章",
+    search_results_for: "搜索结果：",
 
     section_usage_title: "您在寻找哪种类型的配套？",
     usage_home: "家用",
@@ -94,6 +110,8 @@ const translations = {
 
     btn_compare: "开始比较",
 
+    browse_by_provider: "或按运营商浏览",
+
     results_title: "推荐配套",
     results_sub: "按价格由低到高排序",
     no_results: "没有符合条件的配套，请尝试提高预算。",
@@ -114,6 +132,13 @@ const translations = {
 
     home_title: "Cari Pelan Jalur Lebar Terbaik Anda",
     home_subtitle: "Bandingkan Unifi, Maxis, CelcomDigi, TIME, Yes & U Mobile dalam saat.",
+
+    search_placeholder: "Cari pelan, artikel...",
+    icon_broadband_home: "Jalur Lebar (Rumah)",
+    icon_broadband_business: "Jalur Lebar (Perniagaan)",
+    icon_speedtest: "Ujian Kelajuan",
+    icon_articles: "Artikel NetBijak",
+    search_results_for: "Hasil carian untuk",
 
     section_usage_title: "Jenis Pelan Apa Yang Anda Cari?",
     usage_home: "Rumah",
@@ -145,6 +170,8 @@ const translations = {
     budget_placeholder: "cth. 150",
 
     btn_compare: "Bandingkan Pelan",
+
+    browse_by_provider: "Atau Layari Mengikut Pembekal",
 
     results_title: "Pelan Disyorkan",
     results_sub: "Disusun mengikut harga, terendah dahulu",

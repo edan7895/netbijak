@@ -21,7 +21,7 @@ body {
   line-height: 1.5;
 }
 
-/* ===== 导航栏 ===== */
+/* ===== 导航栏（汉堡左 / Logo中 / 语言右）===== */
 .navbar {
   position: sticky; top: 0; z-index: 50;
   background: rgba(15, 23, 42, 0.95);
@@ -31,13 +31,14 @@ body {
 }
 .navbar-inner {
   max-width: 72rem; margin: 0 auto;
-  display: flex; align-items: center; justify-content: space-between;
+  display: grid; grid-template-columns: auto 1fr auto;
+  align-items: center;
   height: 60px;
-  position: relative;
 }
 .nav-logo {
   display: flex; align-items: center; gap: 10px;
   color: #fff; font-weight: 800; font-size: 1.05rem; text-decoration: none;
+  justify-self: center;
 }
 .nav-logo-icon {
   width: 36px; height: 36px; border-radius: 10px;
@@ -45,14 +46,9 @@ body {
   display: flex; align-items: center; justify-content: center; font-size: 18px;
   flex-shrink: 0;
 }
-.nav-links { display: flex; align-items: center; gap: 1.5rem; }
-.nav-links a {
-  color: #94a3b8; text-decoration: none; font-size: 0.875rem; font-weight: 500;
-  transition: color 0.2s;
-}
-.nav-links a:hover { color: #fff; }
 
 .lang-switcher { display: flex; gap: 8px; }
+.lang-switcher-desktop { justify-self: end; }
 .lang-switcher a {
   color: #94a3b8; text-decoration: none; font-size: 0.8rem; font-weight: 600;
   padding: 4px 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15);
@@ -60,15 +56,16 @@ body {
 .lang-switcher a.active { background: #14b8a6; color: #fff; border-color: #14b8a6; }
 .lang-switcher-mobile { display: none; }
 
-/* ===== 汉堡按钮 ===== */
+/* ===== 汉堡按钮（一律显示）===== */
 .hamburger-btn {
-  display: none;
+  display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 5px;
   width: 32px; height: 32px;
   background: none; border: none; cursor: pointer;
   padding: 0;
+  justify-self: start;
 }
 .hamburger-btn span {
   display: block;
@@ -80,6 +77,34 @@ body {
 .hamburger-btn.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .hamburger-btn.open span:nth-child(2) { opacity: 0; }
 .hamburger-btn.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* ===== 下拉导航菜单 ===== */
+.nav-links {
+  position: absolute;
+  top: 60px; left: 0;
+  min-width: 220px;
+  background: rgba(15, 23, 42, 0.98);
+  display: flex; flex-direction: column; align-items: flex-start;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-radius: 0 0 14px 0;
+  z-index: 60;
+}
+.nav-links.open { max-height: 300px; }
+.nav-links a {
+  width: 100%;
+  padding: 14px 1.25rem;
+  color: #94a3b8; text-decoration: none; font-size: 0.875rem; font-weight: 500;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.nav-links a:hover { color: #fff; }
+
+@media (max-width: 640px) {
+  .lang-switcher-desktop { display: none; }
+  .lang-switcher-mobile { display: flex; padding: 14px 1.25rem; gap: 10px; }
+}
 
 /* ===== Footer ===== */
 footer {
@@ -110,7 +135,36 @@ footer {
 .section-card h2 { font-size: 1.1rem; font-weight: 800; margin-bottom: 0.25rem; }
 .section-card .section-sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.25rem; }
 
-/* ===== 住宅类型按钮 ===== */
+/* ===== 搜索框 + 图示导航 ===== */
+.search-box-row { display: flex; gap: 10px; margin-bottom: 1.5rem; }
+.search-box-row input {
+  flex: 1; padding: 12px 16px; border-radius: 12px;
+  border: 1.5px solid #cbd5e1; font-size: 0.95rem; outline: none;
+}
+.search-box-row input:focus { border-color: #14b8a6; box-shadow: 0 0 0 3px rgba(20,184,166,0.15); }
+.search-btn {
+  padding: 12px 22px; border-radius: 12px; border: none;
+  background: #0f172a; color: #fff; font-size: 1.05rem; cursor: pointer;
+}
+
+.icon-nav-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 1rem;
+}
+.icon-nav-item {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  padding: 1.25rem 0.75rem; border-radius: 16px; border: 1.5px solid #e2e8f0;
+  background: #fff; text-decoration: none; color: inherit; cursor: pointer;
+  font-family: inherit; transition: transform 0.2s, box-shadow 0.2s;
+}
+.icon-nav-item:hover { transform: translateY(-3px); box-shadow: 0 10px 22px rgba(15,23,42,0.08); }
+.icon-nav-circle {
+  width: 52px; height: 52px; border-radius: 50%;
+  background: #f0fdfa; display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+}
+.icon-nav-item span { font-size: 0.8rem; font-weight: 700; text-align: center; }
+
+/* ===== 住宅类型 / 使用类型按钮 ===== */
 .property-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 @media (max-width: 480px) { .property-grid { grid-template-columns: 1fr; } }
 .property-btn {
@@ -196,6 +250,20 @@ footer {
 }
 .wa-btn-large { padding: 15px; font-size: 1rem; margin-top: 1.25rem; }
 
+/* ===== 首页：按运营商浏览 ===== */
+.provider-browse-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 1rem;
+}
+.provider-browse-card {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.1rem 1.4rem; border-radius: 14px; border: 2px solid #e2e8f0;
+  background: #fff; text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.provider-browse-card:hover { transform: translateY(-3px); box-shadow: 0 10px 24px rgba(15,23,42,0.1); }
+.provider-browse-name { font-weight: 800; font-size: 1rem; }
+.provider-browse-arrow { color: #94a3b8; font-weight: 700; }
+
 /* ===== ISP 总览页 ===== */
 .provider-hero { text-align: center; padding: 1rem 0 1.5rem; }
 .provider-hero h1 { font-size: clamp(1.75rem, 4vw, 2.25rem); font-weight: 900; }
@@ -271,28 +339,3 @@ footer {
   border-radius: 10px; border: 1px solid #e2e8f0; text-decoration: none; color: var(--text);
 }
 .detail-article-link img { width: 60px; height: 60px; object-fit: cover; border-radius: 8px; }
-
-@media (max-width: 640px) {
-  .lang-switcher-desktop { display: none; }
-  .hamburger-btn { display: flex; }
-
-  .nav-links {
-    position: absolute;
-    top: 60px; left: 0; right: 0;
-    background: rgba(15, 23, 42, 0.98);
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
-  }
-  .nav-links.open { max-height: 300px; }
-  .nav-links a {
-    width: 100%;
-    padding: 14px 1rem;
-    border-bottom: 1px solid rgba(255,255,255,0.06);
-  }
-  .lang-switcher-mobile { display: flex; padding: 14px 1rem; gap: 10px; }
-}

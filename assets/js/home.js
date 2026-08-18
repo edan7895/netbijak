@@ -22,12 +22,14 @@ function initHomePage() {
     selectedUsageType = "home";
     usageHomeBtn.classList.add("active");
     usageBusinessBtn.classList.remove("active");
+    renderProviderGrid();
   });
 
   usageBusinessBtn.addEventListener("click", () => {
     selectedUsageType = "business";
     usageBusinessBtn.classList.add("active");
     usageHomeBtn.classList.remove("active");
+    renderProviderGrid();
   });
 
   landedBtn.addEventListener("click", () => {
@@ -52,6 +54,110 @@ function initHomePage() {
   });
 
   compareBtn.addEventListener("click", runComparison);
+
+  initIconNav();
+  renderProviderGrid();
+}
+
+// ===== 图示导航（Broadband Home / Business / Speed Test / Articles）=====
+function initIconNav() {
+  const iconHome = document.getElementById("icon-nav-home");
+  const iconBusiness = document.getElementById("icon-nav-business");
+  const searchBtn = document.getElementById("search-btn");
+  const searchInput = document.getElementById("search-input");
+
+  if (iconHome) {
+    iconHome.addEventListener("click", () => {
+      document.getElementById("btn-usage-home").click();
+      document.getElementById("usage-section").scrollIntoView({ behavior: "smooth" });
+    });
+  }
+  if (iconBusiness) {
+    iconBusiness.addEventListener("click", () => {
+      document.getElementById("btn-usage-business").click();
+      document.getElementById("usage-section").scrollIntoView({ behavior: "smooth" });
+    });
+  }
+  if (searchBtn) {
+    searchBtn.addEventListener("click", performSearch);
+  }
+  if (searchInput) {
+    searchInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") performSearch();
+    });
+  }
+}
+
+// ===== 关键字搜索（搜寻配套名称/promo文字）=====
+async function performSearch() {
+  const input = document.getElementById("search-input");
+  const keyword = input.value.trim();
+  if (!keyword) return;
+
+  const resultsSection = document.getElementById("results-section");
+  const resultsGrid = document.getElementById("results-grid");
+  const resultsTitleEl = document.getElementById("results-title");
+
+  resultsSection.classList.remove("hidden");
+  resultsTitleEl.textContent = `${t("search_results_for")} "${keyword}"`;
+  resultsGrid.innerHTML = `<p style="color:#64748b">Loading...</p>`;
+  resultsSection.scrollIntoView({ behavior: "smooth" });
+
+  const { data: plans, error } = await supabaseClient
+    .from("plans")
+    .select("*, providers(*)")
+    .eq("is_published", true)
+    .or(`name.ilike.%${keyword}%,tagline.ilike.%${keyword}%`)
+    .order("promo_price", { ascending: true })
+    .limit(24);
+
+  if (error || !plans || plans.length === 0) {
+    resultsGrid.innerHTML = `<p style="color:#64748b;padding:2rem;text-align:center">${t("no_results")}</p>`;
+    return;
+  }
+
+  const lowestPrice = Math.min(...plans.map((p) => p.promo_price));
+  resultsGrid.innerHTML = plans.map((plan) => buildResultCard(plan, plan.promo_price === lowestPrice)).join("");
+}
+
+// ===== 按运营商浏览区块 =====
+async function renderProviderGrid() {
+  const gridEl = document.getElementById("provider-browse-grid");
+  if (!gridEl) return;
+
+  gridEl.innerHTML = `<p style="color:#64748b">Loading...</p>`;
+
+  const { data: providers, error } = await supabaseClient
+    .from("providers")
+    .select("*")
+    .eq("is_active", true)
+    .order("sort_order", { ascending: true });
+
+  if (error || !providers) {
+    gridEl.innerHTML = "";
+    return;
+  }
+
+  const filtered = providers.filter((p) => {
+    const isBusiness = p.slug.includes("-business");
+    return selectedUsageType === "business" ? isBusiness : !isBusiness;
+  });
+
+  if (filtered.length === 0) {
+    gridEl.innerHTML = `<p style="color:#64748b">${t("no_results")}</p>`;
+    return;
+  }
+
+  gridEl.innerHTML = filtered
+    .map(
+      (p) => `
+    <a href="${p.slug}/" class="provider-browse-card" style="border-color:${p.color_hex}">
+      <span class="provider-browse-name" style="color:${p.color_hex}">${p.name}</span>
+      <span class="provider-browse-arrow">→</span>
+    </a>
+  `
+    )
+    .join("");
 }
 
 function parseUserRange(text) {
@@ -84,9 +190,11 @@ function matchesAppType(applicationType, category) {
 async function runComparison() {
   const resultsSection = document.getElementById("results-section");
   const resultsGrid = document.getElementById("results-grid");
+  const resultsTitleEl = document.getElementById("results-title");
   const budgetInput = document.getElementById("budget-input");
   const budget = parseFloat(budgetInput.value) || 9999;
 
+  resultsTitleEl.textContent = t("results_title");
   resultsSection.classList.remove("hidden");
   resultsGrid.innerHTML = `<p style="color:#64748b">Loading...</p>`;
 
