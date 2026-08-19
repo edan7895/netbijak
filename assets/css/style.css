@@ -24,10 +24,11 @@ body {
 /* ===== 导航栏（汉堡左 / Logo中 / 语言右）===== */
 .navbar {
   position: sticky; top: 0; z-index: 50;
-  background: rgba(15, 23, 42, 0.95);
+  background: rgba(255, 255, 255, 0.97);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border-bottom: 1px solid #e2e8f0;
   padding: 0 1rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
 }
 .navbar-inner {
   max-width: 72rem; margin: 0 auto;
@@ -47,8 +48,8 @@ body {
 .lang-switcher { display: flex; gap: 8px; }
 .lang-switcher-desktop { justify-self: end; }
 .lang-switcher a {
-  color: #94a3b8; text-decoration: none; font-size: 0.8rem; font-weight: 600;
-  padding: 4px 10px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.15);
+  color: #64748b; text-decoration: none; font-size: 0.8rem; font-weight: 600;
+  padding: 4px 10px; border-radius: 8px; border: 1px solid #e2e8f0;
 }
 .lang-switcher a.active { background: #14b8a6; color: #fff; border-color: #14b8a6; }
 .lang-switcher-mobile { display: none; }
@@ -67,7 +68,7 @@ body {
 .hamburger-btn span {
   display: block;
   width: 100%; height: 2px;
-  background: #fff;
+  background: #1e293b;
   border-radius: 2px;
   transition: transform 0.25s, opacity 0.25s;
 }
@@ -80,24 +81,25 @@ body {
   position: absolute;
   top: 60px; left: 0;
   min-width: 220px;
-  background: rgba(15, 23, 42, 0.98);
+  background: #ffffff;
   display: flex; flex-direction: column; align-items: flex-start;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.3s ease;
-  border-bottom: 1px solid rgba(255,255,255,0.08);
+  border: 1px solid #e2e8f0;
+  border-top: none;
   border-radius: 0 0 14px 0;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
   z-index: 60;
 }
 .nav-links.open { max-height: 300px; }
 .nav-links a {
   width: 100%;
   padding: 14px 1.25rem;
-  color: #94a3b8; text-decoration: none; font-size: 0.875rem; font-weight: 500;
-  border-bottom: 1px solid rgba(255,255,255,0.06);
+  color: #475569; text-decoration: none; font-size: 0.875rem; font-weight: 500;
+  border-bottom: 1px solid #f1f5f9;
 }
-.nav-links a:hover { color: #fff; }
-
+.nav-links a:hover { color: #0f172a; background: #f8fafc; }
 @media (max-width: 640px) {
   .lang-switcher-desktop { display: none; }
   .lang-switcher-mobile { display: flex; padding: 14px 1.25rem; gap: 10px; }
