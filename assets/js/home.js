@@ -1,6 +1,6 @@
 // NetBijak.com - Home 首页比较器逻辑
 
-const WHATSAPP_NUMBER = "60123456789"; // ⚠️ 改成你的真实WhatsApp Business号码
+const WHATSAPP_NUMBER = "60109316707"; // ⚠️ 改成你的真实WhatsApp Business号码
 
 let selectedUsageType = "home";
 let selectedPropertyType = "highrise";
