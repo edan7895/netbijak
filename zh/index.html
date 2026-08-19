@@ -6,6 +6,7 @@
   <title>NetBijak.com | 马来西亚宽频配套比较</title>
   <link rel="stylesheet" href="../assets/css/style.css" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>const ROOT_PATH = "../";</script>
 </head>
 <body>
   <div id="site-header"></div>
@@ -22,14 +23,14 @@
         <button id="search-btn" class="search-btn">🔍</button>
       </div>
       <div class="icon-nav-grid">
-        <button id="icon-nav-home" class="icon-nav-item">
+        <a href="broadband-home/" class="icon-nav-item">
           <div class="icon-nav-circle">🏠</div>
           <span id="icon-nav-home-label"></span>
-        </button>
-        <button id="icon-nav-business" class="icon-nav-item">
+        </a>
+        <a href="broadband-business/" class="icon-nav-item">
           <div class="icon-nav-circle">💼</div>
           <span id="icon-nav-business-label"></span>
-        </button>
+        </a>
         <a href="speedtest/" class="icon-nav-item">
           <div class="icon-nav-circle">⚡</div>
           <span id="icon-nav-speedtest-label"></span>
@@ -109,21 +110,20 @@
       <button id="btn-compare" class="btn-primary"></button>
     </section>
 
-    <section class="section-card">
-      <h2 id="browse-title"></h2>
-      <div id="provider-browse-grid" class="provider-browse-grid"></div>
-    </section>
-
     <section id="results-section" class="section-card hidden">
       <h2 id="results-title"></h2>
       <p class="section-sub" id="results-sub"></p>
       <div id="results-grid" class="results-grid"></div>
     </section>
+
+    <section class="section-card">
+      <h2 id="browse-title"></h2>
+      <div id="provider-browse-grid" class="provider-browse-grid"></div>
+    </section>
   </main>
 
   <footer id="site-footer"></footer>
 
-<script>const ROOT_PATH = "../";</script>
   <script src="../assets/js/supabase-client.js"></script>
   <script src="../assets/js/translations.js"></script>
   <script src="../assets/js/site.js"></script>

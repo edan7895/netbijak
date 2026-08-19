@@ -50,6 +50,8 @@ const translations = {
     btn_compare: "Compare Plans",
 
     browse_by_provider: "Or Browse By Provider",
+    browse_home_page_title: "Home Broadband Providers",
+    browse_business_page_title: "Business Broadband Providers",
 
     results_title: "Recommended Plans",
     results_sub: "Sorted by price, lowest first",
@@ -116,6 +118,8 @@ const translations = {
     btn_compare: "开始比较",
 
     browse_by_provider: "或按运营商浏览",
+    browse_home_page_title: "家用宽频运营商",
+    browse_business_page_title: "商用宽频运营商",
 
     results_title: "推荐配套",
     results_sub: "按价格由低到高排序",
@@ -182,6 +186,8 @@ const translations = {
     btn_compare: "Bandingkan Pelan",
 
     browse_by_provider: "Atau Layari Mengikut Pembekal",
+    browse_home_page_title: "Pembekal Jalur Lebar Rumah",
+    browse_business_page_title: "Pembekal Jalur Lebar Perniagaan",
 
     results_title: "Pelan Disyorkan",
     results_sub: "Disusun mengikut harga, terendah dahulu",

@@ -55,31 +55,14 @@ function initHomePage() {
 
   compareBtn.addEventListener("click", runComparison);
 
-  initIconNav();
+  initSearch();
   renderProviderGrid();
 }
 
-function initIconNav() {
-  const iconHome = document.getElementById("icon-nav-home");
-  const iconBusiness = document.getElementById("icon-nav-business");
+function initSearch() {
   const searchBtn = document.getElementById("search-btn");
   const searchInput = document.getElementById("search-input");
-
-  if (iconHome) {
-    iconHome.addEventListener("click", () => {
-      document.getElementById("btn-usage-home").click();
-      document.getElementById("usage-section").scrollIntoView({ behavior: "smooth" });
-    });
-  }
-  if (iconBusiness) {
-    iconBusiness.addEventListener("click", () => {
-      document.getElementById("btn-usage-business").click();
-      document.getElementById("usage-section").scrollIntoView({ behavior: "smooth" });
-    });
-  }
-  if (searchBtn) {
-    searchBtn.addEventListener("click", performSearch);
-  }
+  if (searchBtn) searchBtn.addEventListener("click", performSearch);
   if (searchInput) {
     searchInput.addEventListener("keydown", (e) => {
       if (e.key === "Enter") performSearch();
@@ -194,6 +177,7 @@ async function runComparison() {
   resultsTitleEl.textContent = t("results_title");
   resultsSection.classList.remove("hidden");
   resultsGrid.innerHTML = `<p style="color:#64748b">Loading...</p>`;
+  resultsSection.scrollIntoView({ behavior: "smooth" });
 
   const housingColumn = selectedPropertyType === "landed" ? "supports_landed" : "supports_highrise";
 
