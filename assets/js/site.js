@@ -11,10 +11,9 @@ function renderHeader() {
         <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu">
           <span></span><span></span><span></span>
         </button>
-        <a href="${root}${lang}/" class="nav-logo">
-          <div class="nav-logo-icon">📡</div>
-          ${t("site_name")}
-        </a>
+<a href="${root}${lang}/" class="nav-logo">
+  <img src="${root}assets/images/logo.png" alt="NetBijak" class="nav-logo-img" />
+</a>
         <div class="lang-switcher lang-switcher-desktop">
           <a href="${root}en/" class="${lang === "en" ? "active" : ""}">EN</a>
           <a href="${root}zh/" class="${lang === "zh" ? "active" : ""}">中文</a>
