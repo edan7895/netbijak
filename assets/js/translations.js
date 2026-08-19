@@ -8,8 +8,8 @@ const translations = {
     footer_text: "Compare Malaysia's best broadband plans.",
     footer_rights: "All rights reserved.",
 
-    home_title: "Find Your Perfect Broadband Plan",
-    home_subtitle: "Compare Unifi, Maxis, CelcomDigi, TIME, Yes & U Mobile in seconds.",
+home_title: "Compare Your Perfect Broadband Plan",
+home_subtitle: "Compare · Choose · Connect",
 
     search_placeholder: "Search plans, articles...",
     icon_broadband_home: "Broadband (Home)",
@@ -83,8 +83,8 @@ const translations = {
     footer_text: "比较马来西亚最优质的宽频配套。",
     footer_rights: "版权所有。",
 
-    home_title: "找到最适合你的宽频配套",
-    home_subtitle: "几秒钟比较 Unifi、Maxis、CelcomDigi、TIME、Yes 及 U Mobile。",
+home_title: "比较你的完美宽频配套",
+home_subtitle: "比较 · 选择 · 连接",
 
     search_placeholder: "搜索配套、文章...",
     icon_broadband_home: "宽频（家用）",
@@ -158,8 +158,8 @@ const translations = {
     footer_text: "Bandingkan pelan jalur lebar terbaik di Malaysia.",
     footer_rights: "Hak cipta terpelihara.",
 
-    home_title: "Cari Pelan Jalur Lebar Terbaik Anda",
-    home_subtitle: "Bandingkan Unifi, Maxis, CelcomDigi, TIME, Yes & U Mobile dalam saat.",
+home_title: "Bandingkan Pelan Jalur Lebar Sempurna Anda",
+home_subtitle: "Bandingkan · Pilih · Sambung",
 
     search_placeholder: "Cari pelan, artikel...",
     icon_broadband_home: "Jalur Lebar (Rumah)",
