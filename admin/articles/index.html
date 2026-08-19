@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Articles | NetBijak Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="../admin.css" />
+  <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+  <style>
+    .admin-page { max-width: 72rem; margin: 0 auto; padding: 2rem 1.5rem; }
+    .admin-page-topbar {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 1.5rem; color: #fff; flex-wrap: wrap; gap: 1rem;
+    }
+    .admin-page-topbar h1 { font-size: 1.3rem; font-weight: 800; }
+    .admin-back-link { color: #94a3b8; text-decoration: none; font-size: 0.85rem; }
+    .admin-filter-bar { display: flex; gap: 12px; margin-bottom: 1.25rem; flex-wrap: wrap; }
+    .admin-filter-bar select {
+      padding: 10px 14px; border-radius: 10px; border: none; font-size: 0.875rem;
+    }
+    .btn-new {
+      padding: 10px 20px; background: #14b8a6; color: #fff; border: none;
+      border-radius: 10px; font-weight: 700; font-size: 0.875rem; cursor: pointer;
+    }
+    .admin-table-wrap {
+      background: #fff; border-radius: 16px; overflow: hidden; overflow-x: auto;
+    }
+    table.admin-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    table.admin-table th {
+      background: #f8fafc; padding: 12px 16px; text-align: left; font-weight: 700; color: #475569;
+    }
+    table.admin-table td { padding: 12px 16px; border-top: 1px solid #f1f5f9; }
+    .btn-small {
+      padding: 6px 14px; background: #0f172a; color: #fff; border: none;
+      border-radius: 8px; font-size: 0.8rem; cursor: pointer;
+    }
+    .badge-published { background: #dcfce7; color: #166534; padding: 3px 10px; border-radius: 99px; font-size: 0.75rem; font-weight: 700; }
+    .badge-unpublished { background: #fee2e2; color: #991b1b; padding: 3px 10px; border-radius: 99px; font-size: 0.75rem; font-weight: 700; }
+    .lang-tag { background: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; }
+
+    #article-form-wrap {
+      background: #fff; border-radius: 16px; padding: 1.75rem; margin-bottom: 1.5rem;
+    }
+    #article-form-wrap h2 { margin-bottom: 1.25rem; font-size: 1.15rem; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 640px) { .form-grid { grid-template-columns: 1fr; } }
+    .form-field { margin-bottom: 1rem; }
+    .form-field.full-width { grid-column: 1 / -1; }
+    .form-field label {
+      display: block; font-size: 0.8rem; font-weight: 700; color: #475569; margin-bottom: 6px;
+    }
+    .form-field input, .form-field select, .form-field textarea {
+      width: 100%; padding: 10px 14px; border-radius: 8px; border: 1.5px solid #cbd5e1; font-size: 0.9rem;
+    }
+    .form-hint { font-size: 0.75rem; color: #94a3b8; margin-top: 4px; }
+    .form-checkbox-row { display: flex; align-items: center; gap: 8px; margin-bottom: 1rem; }
+    .form-actions { display: flex; gap: 10px; margin-top: 1.25rem; }
+    .btn-save {
+      padding: 12px 28px; background: #14b8a6; color: #fff; border: none;
+      border-radius: 10px; font-weight: 700; cursor: pointer;
+    }
+    .btn-cancel {
+      padding: 12px 28px; background: #f1f5f9; color: #334155; border: none;
+      border-radius: 10px; font-weight: 700; cursor: pointer;
+    }
+
+    /* ===== 编辑器区域 ===== */
+    .editor-toolbar-extra { display: flex; gap: 10px; margin-bottom: 10px; }
+    .btn-editor-tool {
+      padding: 8px 16px; background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1;
+      border-radius: 8px; font-size: 0.8rem; font-weight: 700; cursor: pointer;
+    }
+    .btn-editor-tool:hover { background: #e2e8f0; }
+    #quill-editor { min-height: 300px; background: #fff; font-size: 0.95rem; }
+    .ql-editor { min-height: 300px; }
+
+    /* ===== Modal（弹窗）===== */
+    .modal-overlay {
+      position: fixed; inset: 0; background: rgba(0,0,0,0.5);
+      display: flex; align-items: center; justify-content: center; z-index: 100;
+    }
+    .modal-box {
+      background: #fff; border-radius: 16px; padding: 1.75rem; width: 100%; max-width: 420px;
+    }
+    .modal-box h3 { margin-bottom: 1.25rem; font-size: 1.05rem; }
+    .modal-field { margin-bottom: 1rem; }
+    .modal-field label { display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 6px; color: #475569; }
+    .modal-field input, .modal-field select {
+      width: 100%; padding: 10px 14px; border-radius: 8px; border: 1.5px solid #cbd5e1; font-size: 0.9rem;
+    }
+    .modal-actions { display: flex; gap: 10px; margin-top: 1.25rem; }
+    .modal-actions button { flex: 1; padding: 11px; border-radius: 10px; border: none; font-weight: 700; cursor: pointer; }
+    .modal-btn-primary { background: #14b8a6; color: #fff; }
+    .modal-btn-secondary { background: #f1f5f9; color: #334155; }
+  </style>
+</head>
+<body>
+
+  <div class="admin-page">
+    <div class="admin-page-topbar">
+      <div>
+        <a href="../" class="admin-back-link">← Back to Admin</a>
+        <h1>Manage Articles</h1>
+      </div>
+      <div style="display:flex; align-items:center; gap:14px;">
+        <span class="admin-email-tag" id="admin-email-display"></span>
+        <button id="admin-logout-btn" class="admin-logout-btn">Sign Out</button>
+      </div>
+    </div>
+
+    <!-- 新增/编辑表单 -->
+    <div id="article-form-wrap" class="hidden">
+      <h2 id="article-form-title-label">New Article</h2>
+      <form id="article-form">
+        <div class="form-grid">
+          <div class="form-field full-width">
+            <label>Title</label>
+            <input type="text" id="form-article-title" required />
+          </div>
+          <div class="form-field">
+            <label>URL Slug (auto-generated, editable)</label>
+            <input type="text" id="form-article-slug" required />
+          </div>
+          <div class="form-field">
+            <label>Language</label>
+            <select id="form-article-language" required>
+              <option value="en">English</option>
+              <option value="zh">中文</option>
+              <option value="ms">Bahasa Malaysia</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label>Cover Image URL</label>
+            <input type="text" id="form-article-cover" />
+          </div>
+          <div class="form-field">
+            <label>Related Plan (optional)</label>
+            <select id="form-article-plan-id"></select>
+            <p class="form-hint">If selected, this article shows under that plan's detail page too.</p>
+          </div>
+          <div class="form-field">
+            <label>SEO Title</label>
+            <input type="text" id="form-article-seo-title" />
+          </div>
+          <div class="form-field">
+            <label>SEO Description</label>
+            <input type="text" id="form-article-seo-description" />
+          </div>
+          <div class="form-field">
+            <label>GEO Tag (e.g. "Kuala Lumpur")</label>
+            <input type="text" id="form-article-geo" />
+          </div>
+          <div class="form-field">
+            <label>Publish At (leave blank = immediately)</label>
+            <input type="datetime-local" id="form-article-publish-at" />
+          </div>
+        </div>
+
+        <div class="form-field full-width">
+          <label>Content</label>
+          <div class="editor-toolbar-extra">
+            <button type="button" id="btn-insert-banner" class="btn-editor-tool">🖼️ Insert Banner Image</button>
+            <button type="button" id="btn-insert-link" class="btn-editor-tool">🔗 Insert Link (select text first)</button>
+          </div>
+          <div id="quill-editor"></div>
+        </div>
+
+        <div class="form-checkbox-row" style="margin-top:1.25rem">
+          <input type="checkbox" id="form-article-is-published" />
+          <label for="form-article-is-published">Published (visible on website)</label>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-save">Save Article</button>
+          <button type="button" id="btn-cancel-article-form" class="btn-cancel">Cancel</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="admin-filter-bar">
+      <select id="filter-language">
+        <option value="">All Languages</option>
+        <option value="en">English</option>
+        <option value="zh">中文</option>
+        <option value="ms">Bahasa Malaysia</option>
+      </select>
+      <button id="btn-new-article" class="btn-new">+ New Article</button>
+    </div>
+
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Language</th>
+            <th>Created</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="articles-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Banner 插入弹窗 -->
+  <div id="banner-modal" class="modal-overlay hidden">
+    <div class="modal-box">
+      <h3>Insert Banner Image</h3>
+      <div class="modal-field">
+        <label>Image URL</label>
+        <input type="text" id="banner-modal-image" placeholder="https://..." />
+      </div>
+      <div class="modal-field">
+        <label>Link URL (optional — clicking the banner goes here)</label>
+        <input type="text" id="banner-modal-link" placeholder="https://... or leave blank" />
+      </div>
+      <div class="modal-actions">
+        <button type="button" id="banner-modal-insert" class="modal-btn-primary">Insert</button>
+        <button type="button" id="banner-modal-cancel" class="modal-btn-secondary">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 连结插入弹窗 -->
+  <div id="link-modal" class="modal-overlay hidden">
+    <div class="modal-box">
+      <h3>Insert Link</h3>
+      <div class="modal-field">
+        <label>Link To</label>
+        <select id="link-target-type">
+          <option value="external">External URL</option>
+          <option value="article">Another Article</option>
+          <option value="plan">A Broadband Plan</option>
+        </select>
+      </div>
+      <div class="modal-field" id="link-external-row">
+        <label>URL</label>
+        <input type="text" id="link-external-url" placeholder="https://..." />
+      </div>
+      <div class="modal-field hidden" id="link-article-row">
+        <label>Select Article</label>
+        <select id="link-article-select"></select>
+      </div>
+      <div class="modal-field hidden" id="link-plan-row">
+        <label>Select Plan</label>
+        <select id="link-plan-select"></select>
+      </div>
+      <div class="modal-actions">
+        <button type="button" id="link-modal-insert" class="modal-btn-primary">Insert Link</button>
+        <button type="button" id="link-modal-cancel" class="modal-btn-secondary">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../assets/js/supabase-client.js"></script>
+  <script src="../../assets/js/admin-auth.js"></script>
+  <script src="../../assets/js/admin-articles.js"></script>
+</body>
+</html>
