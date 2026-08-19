@@ -3,6 +3,7 @@ function renderHeader() {
   const lang = getCurrentLang();
   const header = document.getElementById("site-header");
   if (!header) return;
+  const root = typeof ROOT_PATH !== "undefined" ? ROOT_PATH : "../";
 
   header.innerHTML = `
     <nav class="navbar">
@@ -10,24 +11,24 @@ function renderHeader() {
         <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu">
           <span></span><span></span><span></span>
         </button>
-        <a href="./" class="nav-logo">
+        <a href="${root}${lang}/" class="nav-logo">
           <div class="nav-logo-icon">📡</div>
           ${t("site_name")}
         </a>
         <div class="lang-switcher lang-switcher-desktop">
-          <a href="../en/" class="${lang === "en" ? "active" : ""}">EN</a>
-          <a href="../zh/" class="${lang === "zh" ? "active" : ""}">中文</a>
-          <a href="../ms/" class="${lang === "ms" ? "active" : ""}">BM</a>
+          <a href="${root}en/" class="${lang === "en" ? "active" : ""}">EN</a>
+          <a href="${root}zh/" class="${lang === "zh" ? "active" : ""}">中文</a>
+          <a href="${root}ms/" class="${lang === "ms" ? "active" : ""}">BM</a>
         </div>
       </div>
       <div class="nav-links" id="nav-links">
-        <a href="./">${t("nav_home")}</a>
-        <a href="speedtest/">${t("nav_speedtest")}</a>
-        <a href="blog/">${t("nav_blog")}</a>
+        <a href="${root}${lang}/">${t("nav_home")}</a>
+        <a href="${root}${lang}/speedtest/">${t("nav_speedtest")}</a>
+        <a href="${root}${lang}/blog/">${t("nav_blog")}</a>
         <div class="lang-switcher lang-switcher-mobile">
-          <a href="../en/" class="${lang === "en" ? "active" : ""}">EN</a>
-          <a href="../zh/" class="${lang === "zh" ? "active" : ""}">中文</a>
-          <a href="../ms/" class="${lang === "ms" ? "active" : ""}">BM</a>
+          <a href="${root}en/" class="${lang === "en" ? "active" : ""}">EN</a>
+          <a href="${root}zh/" class="${lang === "zh" ? "active" : ""}">中文</a>
+          <a href="${root}ms/" class="${lang === "ms" ? "active" : ""}">BM</a>
         </div>
       </div>
     </nav>

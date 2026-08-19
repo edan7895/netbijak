@@ -59,7 +59,6 @@ function initHomePage() {
   renderProviderGrid();
 }
 
-// ===== 图示导航（Broadband Home / Business / Speed Test / Articles）=====
 function initIconNav() {
   const iconHome = document.getElementById("icon-nav-home");
   const iconBusiness = document.getElementById("icon-nav-business");
@@ -88,7 +87,6 @@ function initIconNav() {
   }
 }
 
-// ===== 关键字搜索（搜寻配套名称/promo文字）=====
 async function performSearch() {
   const input = document.getElementById("search-input");
   const keyword = input.value.trim();
@@ -120,7 +118,6 @@ async function performSearch() {
   resultsGrid.innerHTML = plans.map((plan) => buildResultCard(plan, plan.promo_price === lowestPrice)).join("");
 }
 
-// ===== 按运营商浏览区块 =====
 async function renderProviderGrid() {
   const gridEl = document.getElementById("provider-browse-grid");
   if (!gridEl) return;
@@ -151,7 +148,7 @@ async function renderProviderGrid() {
   gridEl.innerHTML = filtered
     .map(
       (p) => `
-    <a href="${p.slug}/" class="provider-browse-card" style="border-color:${p.color_hex}">
+    <a href="../${p.slug}/" class="provider-browse-card" style="border-color:${p.color_hex}">
       <span class="provider-browse-name" style="color:${p.color_hex}">${p.name}</span>
       <span class="provider-browse-arrow">→</span>
     </a>
@@ -270,7 +267,7 @@ function buildResultCard(plan, isBest) {
 
   const waMsg = plan.whatsapp_ref || `Hi NetBijak, I'm interested in ${plan.name}`;
   const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waMsg)}`;
-  const detailLink = `${providerSlug}/plan/?slug=${plan.slug}`;
+  const detailLink = `../${providerSlug}/plan/?slug=${plan.slug}`;
 
   return `
     <div class="result-card" style="border-color:${color}">
