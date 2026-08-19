@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin | NetBijak.com</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="admin.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+
+  <!-- 登入画面 -->
+  <div id="admin-login-section" class="admin-login-wrap hidden">
+    <div class="admin-login-card">
+      <h1>NetBijak Admin</h1>
+      <p class="admin-subtitle">Sign in to manage your site</p>
+      <div id="admin-login-error" class="admin-error-msg hidden"></div>
+      <form id="admin-login-form">
+        <div class="admin-form-row">
+          <label>Email</label>
+          <input type="email" id="admin-email" required />
+        </div>
+        <div class="admin-form-row">
+          <label>Password</label>
+          <input type="password" id="admin-password" required />
+        </div>
+        <button type="submit" class="admin-login-btn">Sign In</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 登入后的后台首页 -->
+  <div id="admin-dashboard-section" class="admin-dashboard hidden">
+    <div class="admin-topbar">
+      <h1>NetBijak Admin</h1>
+      <div class="admin-topbar-right">
+        <span class="admin-email-tag" id="admin-email-display"></span>
+        <button id="admin-logout-btn" class="admin-logout-btn">Sign Out</button>
+      </div>
+    </div>
+
+    <div class="admin-menu-grid">
+      <a href="plans/" class="admin-menu-card">
+        <div class="admin-menu-icon">📦</div>
+        <div class="admin-menu-title">Plans</div>
+        <div class="admin-menu-desc">Manage broadband plans & pricing</div>
+      </a>
+      <a href="articles/" class="admin-menu-card">
+        <div class="admin-menu-icon">📝</div>
+        <div class="admin-menu-title">Articles</div>
+        <div class="admin-menu-desc">Write and publish blog posts</div>
+      </a>
+      <a href="customers/" class="admin-menu-card">
+        <div class="admin-menu-icon">👥</div>
+        <div class="admin-menu-title">Customers</div>
+        <div class="admin-menu-desc">Track contracts & renewal reminders</div>
+      </a>
+    </div>
+  </div>
+
+  <script src="../assets/js/supabase-client.js"></script>
+  <script src="../assets/js/admin-auth.js"></script>
+</body>
+</html>
