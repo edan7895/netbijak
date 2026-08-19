@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog | NetBijak.com</title>
+  <meta name="description" content="Tip, panduan dan berita mengenai jalur lebar di Malaysia." />
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>const ROOT_PATH = "../../";</script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="main">
+    <div class="blog-hero">
+      <h1 id="blog-title"></h1>
+      <p id="blog-subtitle"></p>
+    </div>
+
+    <div id="blog-grid" class="blog-grid">
+      <p style="color:#64748b">Loading...</p>
+    </div>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="../../assets/js/supabase-client.js"></script>
+  <script src="../../assets/js/translations.js"></script>
+  <script src="../../assets/js/site.js"></script>
+  <script src="../../assets/js/blog-list.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("blog-title").textContent = t("blog_title");
+      document.getElementById("blog-subtitle").textContent = t("blog_subtitle");
+    });
+  </script>
+</body>
+</html>

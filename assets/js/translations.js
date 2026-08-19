@@ -67,6 +67,13 @@ const translations = {
     speedtest_subtitle: "Check your current download, upload speed and ping in seconds.",
     speedtest_cta: "Not happy with your speed? Compare better plans below.",
     speedtest_cta_btn: "Compare Broadband Plans",
+
+    blog_title: "NetBijak Articles",
+    blog_subtitle: "Tips, guides and news about broadband in Malaysia.",
+    no_articles: "No articles available yet. Check back soon!",
+    read_more: "Read More",
+    back_to_blog: "← Back to Blog",
+    article_not_found: "Article not found.",
   },
   zh: {
     nav_home: "首页",
@@ -135,6 +142,13 @@ const translations = {
     speedtest_subtitle: "几秒钟内检查您目前的下载、上传速度及延迟。",
     speedtest_cta: "对网速不满意？立即比较更好的配套。",
     speedtest_cta_btn: "比较宽频配套",
+
+    blog_title: "NetBijak 文章",
+    blog_subtitle: "关于马来西亚宽频的贴士、指南与新闻。",
+    no_articles: "暂无文章，敬请期待！",
+    read_more: "阅读更多",
+    back_to_blog: "← 返回部落格",
+    article_not_found: "找不到文章。",
   },
   ms: {
     nav_home: "Laman Utama",
@@ -203,6 +217,13 @@ const translations = {
     speedtest_subtitle: "Semak kelajuan muat turun, muat naik dan ping semasa anda dalam beberapa saat.",
     speedtest_cta: "Tidak berpuas hati dengan kelajuan anda? Bandingkan pelan yang lebih baik di bawah.",
     speedtest_cta_btn: "Bandingkan Pelan Jalur Lebar",
+
+    blog_title: "Artikel NetBijak",
+    blog_subtitle: "Tip, panduan dan berita mengenai jalur lebar di Malaysia.",
+    no_articles: "Belum ada artikel. Sila semak semula kelak!",
+    read_more: "Baca Lagi",
+    back_to_blog: "← Kembali ke Blog",
+    article_not_found: "Artikel tidak dijumpai.",
   },
 };
 
