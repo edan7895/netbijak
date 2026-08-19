@@ -11,9 +11,9 @@ function renderHeader() {
         <button class="hamburger-btn" id="hamburger-btn" aria-label="Menu">
           <span></span><span></span><span></span>
         </button>
-<a href="${root}${lang}/" class="nav-logo">
-  <img src="${root}assets/images/logo.png" alt="NetBijak" class="nav-logo-img" />
-</a>
+        <a href="${root}${lang}/" class="nav-logo">
+          <img src="${root}assets/images/logo.png" alt="NetBijak" class="nav-logo-img" />
+        </a>
         <div class="lang-switcher lang-switcher-desktop">
           <a href="${root}en/" class="${lang === "en" ? "active" : ""}">EN</a>
           <a href="${root}zh/" class="${lang === "zh" ? "active" : ""}">中文</a>
@@ -22,6 +22,9 @@ function renderHeader() {
       </div>
       <div class="nav-links" id="nav-links">
         <a href="${root}${lang}/">${t("nav_home")}</a>
+        <a href="${root}${lang}/broadband-home/">${t("nav_broadband_home")}</a>
+        <a href="${root}${lang}/broadband-business/">${t("nav_broadband_business")}</a>
+        <a href="${root}${lang}/compare/">${t("nav_compare")}</a>
         <a href="${root}${lang}/speedtest/">${t("nav_speedtest")}</a>
         <a href="${root}${lang}/blog/">${t("nav_blog")}</a>
         <div class="lang-switcher lang-switcher-mobile">

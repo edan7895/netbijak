@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>比较宽频配套 | NetBijak.com</title>
+  <meta name="description" content="并排比较 Unifi、Maxis、CelcomDigi、TIME、Yes 及 U Mobile 宽频配套。" />
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script>const ROOT_PATH = "../../";</script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="main">
+    <div class="compare-hero">
+      <h1 id="compare-title"></h1>
+      <p id="compare-subtitle"></p>
+    </div>
+
+    <div class="section-card">
+      <div id="compare-slots-wrap" class="compare-slots-wrap"></div>
+      <button type="button" id="btn-add-slot" class="btn-add-slot"></button>
+      <button type="button" id="btn-compare-go" class="btn-compare-go"></button>
+    </div>
+
+    <div id="compare-result-wrap"></div>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="../../assets/js/supabase-client.js"></script>
+  <script src="../../assets/js/translations.js"></script>
+  <script src="../../assets/js/site.js"></script>
+  <script src="../../assets/js/compare.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("compare-title").textContent = t("compare_title");
+      document.getElementById("compare-subtitle").textContent = t("compare_subtitle");
+      document.getElementById("btn-add-slot").textContent = t("compare_btn_add");
+      document.getElementById("btn-compare-go").textContent = t("compare_btn_go");
+    });
+  </script>
+</body>
+</html>
