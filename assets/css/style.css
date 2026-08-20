@@ -130,16 +130,17 @@ footer {
 }
 .home-hero p { color: var(--muted); font-size: 1.05rem; }
 
-/* ===== 通用卡片区块 ===== */
+/* ===== 通用卡片区块（深色科技感）===== */
 .section-card {
-  background: var(--card); border-radius: 20px;
-  box-shadow: 0 4px 24px rgba(15,23,42,0.06), 0 1px 3px rgba(15,23,42,0.05);
-  border: 1px solid rgba(226,232,240,0.8);
+  background: linear-gradient(145deg, #0f172a, #1e293b);
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(15,23,42,0.25);
+  border: none;
   padding: 1.75rem; margin-bottom: 1.5rem;
 }
 @media (min-width: 768px) { .section-card { padding: 2rem 2.25rem; } }
-.section-card h2 { font-size: 1.1rem; font-weight: 800; margin-bottom: 0.25rem; }
-.section-card .section-sub { font-size: 0.85rem; color: var(--muted); margin-bottom: 1.25rem; }
+.section-card h2 { font-size: 1.1rem; font-weight: 800; margin-bottom: 0.25rem; color: #fff; }
+.section-card .section-sub { font-size: 0.85rem; color: #94a3b8; margin-bottom: 1.25rem; }
 
 /* ===== 搜索框 + 图示导航 ===== */
 .search-box-row { display: flex; gap: 10px; margin-bottom: 1.5rem; }
@@ -634,3 +635,64 @@ table.compare-table tbody tr:nth-child(odd) .compare-row-label { background: #ee
   border-color: rgba(20,184,166,0.5);
 }
 .search-nav-dark-card .icon-nav-item span { color: #e2e8f0; }
+
+
+/* ===== section-card 深色化后，内部元素配色调整 ===== */
+.search-box-row input {
+  background: rgba(15,23,42,0.6); color: #e2e8f0;
+  border: 1.5px solid rgba(148,163,184,0.3);
+}
+.search-box-row input::placeholder { color: #94a3b8; }
+
+.icon-nav-item {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(20,184,166,0.25);
+}
+.icon-nav-item:hover {
+  background: rgba(255,255,255,0.08);
+  border-color: rgba(20,184,166,0.5);
+}
+.icon-nav-item span { color: #e2e8f0; }
+
+.property-btn {
+  background: rgba(255,255,255,0.05);
+  border: 2px solid rgba(148,163,184,0.25);
+  color: #e2e8f0;
+}
+.property-btn:hover { border-color: #14b8a6; }
+.property-btn.active {
+  border-color: #14b8a6;
+  background: rgba(20,184,166,0.12);
+}
+.property-icon { background: rgba(255,255,255,0.08); }
+.property-name { color: #fff; }
+.property-desc { color: #94a3b8; }
+
+.form-row label { color: #94a3b8; }
+.form-row select,
+.form-row input {
+  background: rgba(15,23,42,0.6); color: #e2e8f0;
+  border: 1.5px solid rgba(148,163,184,0.3);
+}
+.form-row select option { background: #0f172a; color: #e2e8f0; }
+
+.provider-browse-card {
+  background: rgba(255,255,255,0.05);
+  border: 2px solid rgba(148,163,184,0.25);
+}
+.provider-browse-card:hover { border-color: rgba(20,184,166,0.5); }
+
+.tabs-bar { border-bottom: 2px solid rgba(148,163,184,0.2); }
+.tab-btn {
+  background: rgba(255,255,255,0.05); color: #94a3b8;
+  border: 1.5px solid rgba(148,163,184,0.25);
+}
+
+.results-grid .result-card,
+.provider-plans-grid .plan-mini-card,
+.blog-grid .blog-card {
+  background: #fff;
+}
+
+.detail-features-list li { color: #e2e8f0; border-bottom: 1px solid rgba(148,163,184,0.15); }
+.detail-article-link { color: #e2e8f0; border: 1px solid rgba(148,163,184,0.25); }
