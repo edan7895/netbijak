@@ -724,3 +724,31 @@ table.compare-table tbody tr:nth-child(odd) .compare-row-label { background: #ee
   display: block; height: 28px; width: auto; max-width: 100px; object-fit: contain; margin: 0 auto 6px;
   filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff) drop-shadow(0 0 2px #fff);
 }
+
+
+
+/* ===== 首页 FAQ 区块 ===== */
+.faq-list { display: flex; flex-direction: column; gap: 10px; }
+.faq-item {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(148,163,184,0.2);
+  border-radius: 14px; overflow: hidden;
+  transition: border-color 0.2s;
+}
+.faq-item.open { border-color: rgba(20,184,166,0.5); }
+.faq-question {
+  width: 100%; display: flex; justify-content: space-between; align-items: center;
+  padding: 1.1rem 1.4rem; background: none; border: none; cursor: pointer;
+  text-align: left; font-weight: 700; font-size: 0.95rem; color: #e2e8f0;
+}
+.faq-toggle-icon {
+  flex-shrink: 0; margin-left: 1rem; font-size: 1.3rem; font-weight: 400;
+  color: #5eead4; transition: transform 0.25s;
+}
+.faq-item.open .faq-toggle-icon { transform: rotate(45deg); }
+.faq-answer {
+  max-height: 0; overflow: hidden; transition: max-height 0.3s ease;
+  padding: 0 1.4rem;
+}
+.faq-item.open .faq-answer { max-height: 300px; padding-bottom: 1.25rem; }
+.faq-answer p { font-size: 0.88rem; line-height: 1.7; color: #94a3b8; }
