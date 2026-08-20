@@ -1,6 +1,6 @@
 // NetBijak.com - Home 首页逻辑（搜索 + 按运营商浏览）
 
-const WHATSAPP_NUMBER = "60109316707"; // ⚠️ 改成你的真实WhatsApp Business号码
+const WHATSAPP_NUMBER = "60178835110"; // ⚠️ 改成你的真实WhatsApp Business号码
 
 function initHomePage() {
   const searchBtn = document.getElementById("search-btn");

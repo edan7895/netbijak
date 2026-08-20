@@ -1,6 +1,6 @@
 // NetBijak.com - Find Your Plan 页面逻辑
 
-const WHATSAPP_NUMBER_FYP = "60109316707"; // ⚠️ 改成你的真实WhatsApp Business号码
+const WHATSAPP_NUMBER_FYP = "60178835110"; // ⚠️ 改成你的真实WhatsApp Business号码
 
 let selectedUsageType = "home";
 let selectedPropertyType = "highrise";

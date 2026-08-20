@@ -1,6 +1,6 @@
 // NetBijak.com - 配套详情页逻辑
 
-const WHATSAPP_NUMBER_DETAIL = "60123456789"; // ⚠️ 改成你的真实WhatsApp Business号码
+const WHATSAPP_NUMBER_DETAIL = "60178835110"; // ⚠️ 改成你的真实WhatsApp Business号码
 
 function getSlugFromUrl() {
   const params = new URLSearchParams(window.location.search);

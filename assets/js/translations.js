@@ -119,6 +119,43 @@ const translations = {
     faq_a7: "For online gaming and 4K streaming, look for broadband plans with higher download speeds (300Mbps and above) and low latency for the smoothest experience. Fibre broadband plans from providers like Unifi, Maxis, CelcomDigi and TIME generally offer more stable performance than 5G wireless options for these use cases.",
     faq_q8: "How can I find the best broadband plan for my needs?",
     faq_a8: "Use our free \"Find My Plan\" tool on NetBijak — just tell us your home type (landed or high-rise), how many users you have, and your monthly budget, and we'll instantly match you with the best broadband plans available in Malaysia.",
+
+    bh_faq_title: "Home Fibre Broadband — Frequently Asked Questions",
+    bh_faq_subtitle: "Everything you need to know before choosing a home fibre plan in Malaysia.",
+    bh_faq_q1: "What is home fibre broadband?",
+    bh_faq_a1: "Home fibre broadband uses fibre-optic cables to deliver internet directly to your home, offering significantly faster and more stable speeds than traditional copper (ADSL/VDSL) or wireless connections. Because fibre carries data as light signals, it handles high-speed downloads, 4K streaming, video calls and multiple connected devices far better than older technologies, with minimal slowdown even during peak hours.",
+    bh_faq_q2: "Which home fibre broadband providers are available in Malaysia?",
+    bh_faq_a2_intro: "NetBijak lets you compare all major home fibre broadband providers in Malaysia, including:",
+    bh_faq_a2_outro: "As new providers join Malaysia's broadband market, this list updates automatically.",
+    bh_faq_q3: "How much does home fibre broadband cost in Malaysia?",
+    bh_faq_a3: "Home fibre plans in Malaysia typically vary depending on speed, provider and ongoing promotions. Because prices and promotional offers change frequently, use our Compare Plans or Find My Plan tools to see up-to-date pricing from every provider side by side.",
+    bh_faq_q4: "What internet speed do I need for my home?",
+    bh_faq_table_household: "Household",
+    bh_faq_table_speed: "Suggested Speed",
+    bh_faq_row1_house: "1-2 people",
+    bh_faq_row1_speed: "100-300Mbps",
+    bh_faq_row2_house: "3-4 people",
+    bh_faq_row2_speed: "300-500Mbps",
+    bh_faq_row3_house: "5+ people",
+    bh_faq_row3_speed: "500Mbps-1Gbps",
+    bh_faq_a4_cta_text: "Not sure? Try",
+    bh_faq_a4_cta_link: "Find My Plan",
+    bh_faq_q5: "Is 500Mbps enough for a family?",
+    bh_faq_a5: "For most Malaysian households, 500Mbps is more than enough — even with several people simultaneously streaming Netflix or YouTube, gaming online, making video calls, and working from home. Unless you have a very large household with many heavy users at once, 500Mbps typically leaves plenty of headroom for everyday use.",
+    bh_faq_q6: "What's the difference between 100Mbps, 300Mbps, 500Mbps and 1Gbps?",
+    bh_faq_a6: "Mbps measures your maximum internet speed — it isn't the same as WiFi coverage around your home. Higher speeds help most when many devices are active at once; if you live alone or have few devices, 100Mbps already covers most needs comfortably. A faster plan also won't automatically fix a weak WiFi signal in far rooms — that usually needs a mesh WiFi system regardless of your plan speed.",
+    bh_faq_q7: "Can I get fibre broadband in a condo or high-rise?",
+    bh_faq_a7: "Fibre availability depends on your building and the provider's network. High-rise residents should confirm availability with the provider before applying.",
+    bh_faq_q8: "How do I choose the best home broadband plan?",
+    bh_faq_a8_intro: "The best way is to compare providers based on your specific needs — use",
+    bh_faq_a8_link1: "Find My Plan",
+    bh_faq_a8_mid: "to get matched based on your home type, household size and budget, or use",
+    bh_faq_a8_link2: "Compare Plans",
+    bh_faq_a8_outro: "to see selected plans side-by-side.",
+
+    bh_article_title: "How to Choose the Best Home Fibre Broadband in Malaysia",
+    bh_article_desc: "Our complete buying guide — speed, household size, usage, home type, value and contract terms explained.",
+    bh_article_cta: "Read the Full Guide →",
   },
   zh: {
     nav_home: "首页",
@@ -239,6 +276,43 @@ const translations = {
     faq_a7: "对于网络游戏与4K串流，建议选择下载速度较高（300Mbps以上）且延迟较低的宽频配套，以获得最流畅的体验。Unifi、Maxis、CelcomDigi 及 TIME 等运营商的光纤宽频配套，通常比5G无线宽频提供更稳定的表现。",
     faq_q8: "如何找到最适合我的宽频配套？",
     faq_a8: "使用 NetBijak 免费的「为我找配套」工具——只需告诉我们您的住宅类型（排屋或高楼）、使用人数及每月预算，我们就会立即为您配对马来西亚最佳的宽频配套。",
+
+    bh_faq_title: "家用光纤宽频 — 常见问题",
+    bh_faq_subtitle: "在马来西亚选择家用光纤配套前，您需要知道的一切。",
+    bh_faq_q1: "什么是家用光纤宽频？",
+    bh_faq_a1: "家用光纤宽频使用光纤电缆将网络直接传送到您家中，比传统铜线（ADSL/VDSL）或无线网络提供明显更快、更稳定的速度。由于光纤以光信号传输数据，在处理高速下载、4K串流、视讯通话及多设备连接时表现远胜旧式技术，即使在高峰时段也几乎不会卡顿。",
+    bh_faq_q2: "马来西亚有哪些家用光纤宽频运营商？",
+    bh_faq_a2_intro: "NetBijak 让您比较马来西亚所有主要家用光纤宽频运营商，包括：",
+    bh_faq_a2_outro: "随着马来西亚宽频市场有新运营商加入，此列表会自动更新。",
+    bh_faq_q3: "马来西亚家用光纤宽频的价格是多少？",
+    bh_faq_a3: "马来西亚的家用光纤配套价格通常因速度、运营商及促销优惠而异。由于价格及促销经常变动，请使用我们的「比较配套」或「为我找配套」工具，即时查看各运营商的最新价格。",
+    bh_faq_q4: "我的家庭需要多快的网速？",
+    bh_faq_table_household: "家庭人数",
+    bh_faq_table_speed: "建议速度",
+    bh_faq_row1_house: "1-2人",
+    bh_faq_row1_speed: "100-300Mbps",
+    bh_faq_row2_house: "3-4人",
+    bh_faq_row2_speed: "300-500Mbps",
+    bh_faq_row3_house: "5人以上",
+    bh_faq_row3_speed: "500Mbps-1Gbps",
+    bh_faq_a4_cta_text: "不确定？试试",
+    bh_faq_a4_cta_link: "为我找配套",
+    bh_faq_q5: "500Mbps 对一个家庭来说足够吗？",
+    bh_faq_a5: "对大多数马来西亚家庭而言，500Mbps 已绰绰有余——即使多人同时观看Netflix或YouTube、网络游戏、视讯通话及居家办公。除非您家中人数众多且同时有大量重度使用者，否则500Mbps通常能应付日常使用并留有余裕。",
+    bh_faq_q6: "100Mbps、300Mbps、500Mbps 和 1Gbps 有什么区别？",
+    bh_faq_a6: "Mbps 衡量的是您的最高网络速度——这跟家中WiFi覆盖范围是两回事。当多个设备同时使用时，较高速度帮助最大；如果您独居或设备较少，100Mbps 已能舒适应付大部分需求。速度更快的配套也不会自动解决远处房间WiFi信号弱的问题——那通常需要Mesh WiFi系统，与配套速度无关。",
+    bh_faq_q7: "公寓或高楼住宅可以安装光纤宽频吗？",
+    bh_faq_a7: "光纤宽频的可用性取决于您所在的大楼及运营商的网络覆盖。高楼住宅居民在申请前，应先向运营商确认可用性。",
+    bh_faq_q8: "我该如何选择最佳的家用宽频配套？",
+    bh_faq_a8_intro: "最好的方法是根据您的实际需求比较各运营商——使用",
+    bh_faq_a8_link1: "为我找配套",
+    bh_faq_a8_mid: "根据您的住宅类型、家庭人数及预算为您配对；或使用",
+    bh_faq_a8_link2: "比较配套",
+    bh_faq_a8_outro: "并排查看您选定的配套。",
+
+    bh_article_title: "如何在马来西亚选择最佳的家用光纤宽频",
+    bh_article_desc: "我们的完整选购指南——速度、家庭人数、使用习惯、住宅类型、性价比及合约条款详解。",
+    bh_article_cta: "阅读完整指南 →",
   },
   ms: {
     nav_home: "Laman Utama",
@@ -359,17 +433,15 @@ const translations = {
     faq_a7: "Untuk permainan dalam talian dan penstriman 4K, cari pelan jalur lebar dengan kelajuan muat turun lebih tinggi (300Mbps ke atas) dan kependaman rendah untuk pengalaman paling lancar. Pelan jalur lebar gentian optik daripada pembekal seperti Unifi, Maxis, CelcomDigi dan TIME biasanya menawarkan prestasi lebih stabil berbanding pilihan wayarles 5G untuk kegunaan ini.",
     faq_q8: "Bagaimana saya boleh mencari pelan jalur lebar terbaik untuk keperluan saya?",
     faq_a8: "Gunakan alat \"Cari Pelan Saya\" percuma di NetBijak — hanya beritahu kami jenis rumah anda (berpagar atau tinggi), bilangan pengguna, dan bajet bulanan anda, dan kami akan segera memadankan anda dengan pelan jalur lebar terbaik yang tersedia di Malaysia.",
-  },
-};
 
-function getCurrentLang() {
-  const path = window.location.pathname;
-  if (path.includes("/zh/")) return "zh";
-  if (path.includes("/ms/")) return "ms";
-  return "en";
-}
-
-function t(key) {
-  const lang = getCurrentLang();
-  return translations[lang][key] || key;
-}
+    bh_faq_title: "Jalur Lebar Gentian Optik Rumah — Soalan Lazim",
+    bh_faq_subtitle: "Semua yang anda perlu tahu sebelum memilih pelan gentian optik rumah di Malaysia.",
+    bh_faq_q1: "Apakah itu jalur lebar gentian optik rumah?",
+    bh_faq_a1: "Jalur lebar gentian optik rumah menggunakan kabel gentian optik untuk menghantar internet terus ke rumah anda, menawarkan kelajuan yang jauh lebih pantas dan stabil berbanding sambungan kuprum tradisional (ADSL/VDSL) atau wayarles. Oleh kerana gentian optik membawa data sebagai isyarat cahaya, ia mengendalikan muat turun berkelajuan tinggi, penstriman 4K, panggilan video dan berbilang peranti bersambung jauh lebih baik berbanding teknologi lama, dengan kelembapan minimum walaupun pada waktu puncak.",
+    bh_faq_q2: "Pembekal jalur lebar gentian optik rumah mana yang tersedia di Malaysia?",
+    bh_faq_a2_intro: "NetBijak membolehkan anda membandingkan semua pembekal jalur lebar gentian optik rumah utama di Malaysia, termasuk:",
+    bh_faq_a2_outro: "Apabila pembekal baharu menyertai pasaran jalur lebar Malaysia, senarai ini akan dikemas kini secara automatik.",
+    bh_faq_q3: "Berapakah kos jalur lebar gentian optik rumah di Malaysia?",
+    bh_faq_a3: "Pelan gentian optik rumah di Malaysia biasanya berbeza bergantung kepada kelajuan, pembekal dan promosi semasa. Oleh kerana harga dan tawaran promosi kerap berubah, gunakan alat Bandingkan Pelan atau Cari Pelan Saya kami untuk melihat harga terkini daripada setiap pembekal secara bersebelahan.",
+    bh_faq_q4: "Kelajuan internet apa yang saya perlukan untuk rumah saya?",
+    bh_faq

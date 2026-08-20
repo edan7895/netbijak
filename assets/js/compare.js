@@ -1,6 +1,6 @@
 // NetBijak.com - Compare 比较页逻辑
 
-const WHATSAPP_NUMBER_COMPARE = "60123456789"; // ⚠️ 改成你的真实WhatsApp号码
+const WHATSAPP_NUMBER_COMPARE = "60178835110"; // ⚠️ 改成你的真实WhatsApp号码
 
 let compareSlotCount = 0;
 let allProvidersCompare = [];
