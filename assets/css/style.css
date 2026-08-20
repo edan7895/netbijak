@@ -694,8 +694,8 @@ table.compare-table tbody tr:nth-child(odd) .compare-row-label { background: #ee
   background: #fff;
 }
 
-.detail-features-list li { color: #e2e8f0; border-bottom: 1px solid rgba(148,163,184,0.15); }
-.detail-article-link { color: #e2e8f0; border: 1px solid rgba(148,163,184,0.25); }
+.detail-features-list li { color: var(--text); border-bottom: 1px solid #f1f5f9; }
+.detail-article-link { color: var(--text); border: 1px solid #e2e8f0; }
 
 
 /* ===== ISP Logo 显示样式 ===== */
