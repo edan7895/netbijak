@@ -110,9 +110,15 @@ async function runCompareTable() {
 function renderCompareTable(plans) {
   const resultWrap = document.getElementById("compare-result-wrap");
 
-  const headerCells = plans
-    .map((p) => `<th style="color:${p.providers ? p.providers.color_hex : "#0f172a"}">${p.providers ? p.providers.name : p.provider}<br><span class="compare-th-plan">${p.name}</span></th>`)
-    .join("");
+const headerCells = plans
+  .map((p) => {
+    const logoUrl = p.providers ? p.providers.logo_url : "";
+    return `<th style="color:${p.providers ? p.providers.color_hex : "#0f172a"}">
+      ${logoUrl ? `<img src="${ROOT_PATH}${logoUrl.replace(/^\//, "")}" alt="${p.providers ? p.providers.name : p.provider}" class="compare-th-logo" />` : ""}
+      ${p.providers ? p.providers.name : p.provider}<br><span class="compare-th-plan">${p.name}</span>
+    </th>`;
+  })
+  .join("");
 
   const priceCells = plans.map((p) => `<td class="compare-price-cell">RM${p.promo_price}${t("per_month")}</td>`).join("");
   const downloadCells = plans.map((p) => `<td>${p.download_speed || "-"}</td>`).join("");

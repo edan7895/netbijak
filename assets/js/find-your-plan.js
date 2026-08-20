@@ -160,6 +160,7 @@ function buildResultCard(plan, isBest) {
   const color = provider ? provider.color_hex : "#14b8a6";
   const providerName = provider ? provider.name : plan.provider;
   const providerSlug = provider ? provider.slug : "";
+  const logoUrl = provider ? provider.logo_url : "";
 
   const waMsg = plan.whatsapp_ref || `Hi NetBijak, I'm interested in ${plan.name}`;
   const waLink = `https://wa.me/${WHATSAPP_NUMBER_FYP}?text=${encodeURIComponent(waMsg)}`;
@@ -171,6 +172,7 @@ function buildResultCard(plan, isBest) {
       <div style="height:5px;background:${color}"></div>
       <div class="result-card-body">
         <div class="result-card-header">
+          ${logoUrl ? `<img src="${ROOT_PATH}${logoUrl.replace(/^\//, "")}" alt="${providerName}" class="provider-logo-img" />` : ""}
           <span class="result-provider-name" style="color:${color}">${providerName}</span>
         </div>
         <div class="result-plan-name">${plan.name}</div>

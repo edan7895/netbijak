@@ -1,6 +1,6 @@
 // NetBijak.com - 配套详情页逻辑
 
-const WHATSAPP_NUMBER_DETAIL = "60109316707"; // ⚠️ 改成你的真实WhatsApp Business号码
+const WHATSAPP_NUMBER_DETAIL = "60123456789"; // ⚠️ 改成你的真实WhatsApp Business号码
 
 function getSlugFromUrl() {
   const params = new URLSearchParams(window.location.search);
@@ -28,6 +28,7 @@ async function loadPlanDetail() {
 
   const provider = plan.providers;
   const color = provider ? provider.color_hex : "#14b8a6";
+  const logoUrl = provider ? provider.logo_url : "";
 
   document.title = plan.seo_title || `${plan.name} | NetBijak.com`;
   const metaDesc = document.querySelector('meta[name="description"]');
@@ -65,7 +66,10 @@ async function loadPlanDetail() {
     <div class="detail-header" style="border-color:${color}">
       <div style="height:6px;background:${color}"></div>
       <div class="detail-header-body">
-        <span class="detail-provider-tag" style="color:${color}">${provider ? provider.name : plan.provider}</span>
+        <div class="detail-provider-header">
+          ${logoUrl ? `<img src="${ROOT_PATH}${logoUrl.replace(/^\//, "")}" alt="${provider ? provider.name : plan.provider}" class="detail-provider-logo" />` : ""}
+          <span class="detail-provider-tag" style="color:${color}">${provider ? provider.name : plan.provider}</span>
+        </div>
         <h1 class="detail-plan-name">${plan.name}</h1>
         ${plan.tagline ? `<p class="detail-tagline">${plan.tagline}</p>` : ""}
         <div class="detail-price" style="color:${color}">

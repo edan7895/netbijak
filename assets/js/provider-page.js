@@ -34,11 +34,12 @@ async function loadProviderPage() {
   }
 
   currentProviderData = provider;
-  nameEl.textContent = provider.name;
   document.title = `${provider.name} Broadband Plans | NetBijak.com`;
 
-  // 套用运营商品牌色到标题
-  nameEl.style.color = provider.color_hex;
+  nameEl.innerHTML = `
+    ${provider.logo_url ? `<img src="${ROOT_PATH}${provider.logo_url.replace(/^\//, "")}" alt="${provider.name}" class="provider-hero-logo" />` : ""}
+    <span style="color:${provider.color_hex}">${provider.name}</span>
+  `;
 
   const now = new Date().toISOString();
   const { data: plans, error: planError } = await supabaseClient
@@ -103,7 +104,7 @@ function renderPlansForTab(tab) {
   const filtered = allPlansForProvider.filter((p) => matchesAppType(p.new_and_transfer, tab));
 
   if (filtered.length === 0) {
-    gridEl.innerHTML = `<p style="color:#64748b;padding:2rem;text-align:center">${t("no_results")}</p>`;
+    gridEl.innerHTML = `<p style="color:#94a3b8;padding:2rem;text-align:center">${t("no_results")}</p>`;
     return;
   }
 
