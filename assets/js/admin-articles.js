@@ -1,6 +1,11 @@
 // NetBijak.com - Admin 文章管理逻辑（含Quill所见即所得编辑器）
 
 let editingArticleId = null;
+function convertLocalToISOString(datetimeLocalValue) {
+  if (!datetimeLocalValue) return null;
+  const localDate = new Date(datetimeLocalValue);
+  return localDate.toISOString();
+}
 let quillEditor = null;
 let allPlansCache = [];
 let allArticlesCache = [];
@@ -167,7 +172,7 @@ async function saveArticle(e) {
     geo_tag: document.getElementById("form-article-geo").value,
     plan_id: document.getElementById("form-article-plan-id").value || null,
     is_published: document.getElementById("form-article-is-published").checked,
-    publish_at: document.getElementById("form-article-publish-at").value || null,
+publish_at: convertLocalToISOString(document.getElementById("form-article-publish-at").value),
   };
 
   let result;
