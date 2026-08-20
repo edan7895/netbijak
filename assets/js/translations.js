@@ -444,4 +444,43 @@ const translations = {
     bh_faq_q3: "Berapakah kos jalur lebar gentian optik rumah di Malaysia?",
     bh_faq_a3: "Pelan gentian optik rumah di Malaysia biasanya berbeza bergantung kepada kelajuan, pembekal dan promosi semasa. Oleh kerana harga dan tawaran promosi kerap berubah, gunakan alat Bandingkan Pelan atau Cari Pelan Saya kami untuk melihat harga terkini daripada setiap pembekal secara bersebelahan.",
     bh_faq_q4: "Kelajuan internet apa yang saya perlukan untuk rumah saya?",
-    bh_faq
+    bh_faq_table_household: "Isi Rumah",
+    bh_faq_table_speed: "Kelajuan Dicadangkan",
+    bh_faq_row1_house: "1-2 orang",
+    bh_faq_row1_speed: "100-300Mbps",
+    bh_faq_row2_house: "3-4 orang",
+    bh_faq_row2_speed: "300-500Mbps",
+    bh_faq_row3_house: "5+ orang",
+    bh_faq_row3_speed: "500Mbps-1Gbps",
+    bh_faq_a4_cta_text: "Tidak pasti? Cuba",
+    bh_faq_a4_cta_link: "Cari Pelan Saya",
+    bh_faq_q5: "Adakah 500Mbps mencukupi untuk sebuah keluarga?",
+    bh_faq_a5: "Bagi kebanyakan isi rumah di Malaysia, 500Mbps lebih daripada mencukupi — walaupun beberapa orang menonton Netflix atau YouTube, bermain permainan dalam talian, membuat panggilan video dan bekerja dari rumah pada masa yang sama. Melainkan anda mempunyai isi rumah yang sangat besar dengan ramai pengguna berat serentak, 500Mbps biasanya memberikan ruang yang mencukupi untuk kegunaan harian.",
+    bh_faq_q6: "Apakah perbezaan antara 100Mbps, 300Mbps, 500Mbps dan 1Gbps?",
+    bh_faq_a6: "Mbps mengukur kelajuan internet maksimum anda — ia berbeza daripada liputan WiFi di sekitar rumah anda. Kelajuan lebih tinggi membantu paling banyak apabila banyak peranti aktif serentak; jika anda tinggal bersendirian atau mempunyai sedikit peranti, 100Mbps sudah mencukupi untuk kebanyakan keperluan. Pelan lebih pantas juga tidak akan secara automatik membetulkan isyarat WiFi lemah di bilik jauh — itu biasanya memerlukan sistem Mesh WiFi tanpa mengira kelajuan pelan anda.",
+    bh_faq_q7: "Bolehkah saya mendapatkan jalur lebar gentian optik di kondominium atau rumah tinggi?",
+    bh_faq_a7: "Ketersediaan gentian optik bergantung kepada bangunan anda dan rangkaian pembekal. Penduduk rumah tinggi harus mengesahkan ketersediaan dengan pembekal sebelum memohon.",
+    bh_faq_q8: "Bagaimana saya memilih pelan jalur lebar rumah yang terbaik?",
+    bh_faq_a8_intro: "Cara terbaik ialah membandingkan pembekal berdasarkan keperluan khusus anda — gunakan",
+    bh_faq_a8_link1: "Cari Pelan Saya",
+    bh_faq_a8_mid: "untuk dipadankan berdasarkan jenis rumah, saiz isi rumah dan bajet anda, atau gunakan",
+    bh_faq_a8_link2: "Bandingkan Pelan",
+    bh_faq_a8_outro: "untuk melihat pelan pilihan anda bersebelahan.",
+
+    bh_article_title: "Cara Memilih Jalur Lebar Gentian Optik Rumah Terbaik di Malaysia",
+    bh_article_desc: "Panduan pembelian lengkap kami — kelajuan, saiz isi rumah, penggunaan, jenis rumah, nilai dan terma kontrak dijelaskan.",
+    bh_article_cta: "Baca Panduan Penuh →",
+  },
+};
+
+function getCurrentLang() {
+  const path = window.location.pathname;
+  if (path.includes("/zh/")) return "zh";
+  if (path.includes("/ms/")) return "ms";
+  return "en";
+}
+
+function t(key) {
+  const lang = getCurrentLang();
+  return translations[lang][key] || key;
+}
