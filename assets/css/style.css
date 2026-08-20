@@ -702,15 +702,25 @@ table.compare-table tbody tr:nth-child(odd) .compare-row-label { background: #ee
 .provider-logo-img {
   height: 24px; width: auto; max-width: 90px; object-fit: contain;
   display: inline-block; vertical-align: middle; margin-right: 8px;
+  filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff) drop-shadow(0 0 2px #fff);
 }
 .provider-browse-info { display: flex; align-items: center; }
 .result-card-header { display: flex; align-items: center; }
 
 .provider-hero { display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap; }
-.provider-hero-logo { height: 48px; width: auto; max-width: 160px; object-fit: contain; }
+.provider-hero-logo {
+  height: 48px; width: auto; max-width: 160px; object-fit: contain;
+  filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff) drop-shadow(0 0 2px #fff);
+}
 #provider-name { display: flex; align-items: center; gap: 12px; justify-content: center; }
 
 .detail-provider-header { display: flex; align-items: center; gap: 10px; margin-bottom: 4px; }
-.detail-provider-logo { height: 32px; width: auto; max-width: 120px; object-fit: contain; }
+.detail-provider-logo {
+  height: 32px; width: auto; max-width: 120px; object-fit: contain;
+  filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff) drop-shadow(0 0 2px #fff);
+}
 
-.compare-th-logo { display: block; height: 28px; width: auto; max-width: 100px; object-fit: contain; margin: 0 auto 6px; }
+.compare-th-logo {
+  display: block; height: 28px; width: auto; max-width: 100px; object-fit: contain; margin: 0 auto 6px;
+  filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff) drop-shadow(0 0 2px #fff);
+}
