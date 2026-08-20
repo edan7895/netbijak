@@ -7,6 +7,7 @@ const translations = {
     nav_compare: "Compare Plans",
     nav_broadband_home: "Broadband (Home)",
     nav_broadband_business: "Broadband (Business)",
+    nav_find_plan: "Find My Plan",
     site_name: "NetBijak",
     footer_text: "Compare Malaysia's best broadband plans.",
     footer_rights: "All rights reserved.",
@@ -20,7 +21,11 @@ const translations = {
     icon_speedtest: "Speed Test",
     icon_articles: "NetBijak Articles",
     icon_compare: "Compare Plans",
+    icon_find_plan: "Find My Plan",
     search_results_for: "Search results for",
+
+    findplan_title: "Find Your Perfect Plan",
+    findplan_subtitle: "Tell us what you need, and we'll match you with the best plans.",
 
     section_usage_title: "What Type of Plan Are You Looking For?",
     usage_home: "Home",
@@ -103,6 +108,7 @@ const translations = {
     nav_compare: "比较配套",
     nav_broadband_home: "宽频（家用）",
     nav_broadband_business: "宽频（商用）",
+    nav_find_plan: "为我找配套",
     site_name: "NetBijak",
     footer_text: "比较马来西亚最优质的宽频配套。",
     footer_rights: "版权所有。",
@@ -116,7 +122,11 @@ const translations = {
     icon_speedtest: "网速测试",
     icon_articles: "NetBijak 文章",
     icon_compare: "比较配套",
+    icon_find_plan: "为我找配套",
     search_results_for: "搜索结果：",
+
+    findplan_title: "找到最适合你的配套",
+    findplan_subtitle: "告诉我们你的需求，我们帮你配对最佳配套。",
 
     section_usage_title: "您在寻找哪种类型的配套？",
     usage_home: "家用",
@@ -199,6 +209,7 @@ const translations = {
     nav_compare: "Bandingkan Pelan",
     nav_broadband_home: "Jalur Lebar (Rumah)",
     nav_broadband_business: "Jalur Lebar (Perniagaan)",
+    nav_find_plan: "Cari Pelan Saya",
     site_name: "NetBijak",
     footer_text: "Bandingkan pelan jalur lebar terbaik di Malaysia.",
     footer_rights: "Hak cipta terpelihara.",
@@ -212,7 +223,11 @@ const translations = {
     icon_speedtest: "Ujian Kelajuan",
     icon_articles: "Artikel NetBijak",
     icon_compare: "Bandingkan Pelan",
+    icon_find_plan: "Cari Pelan Saya",
     search_results_for: "Hasil carian untuk",
+
+    findplan_title: "Cari Pelan Sempurna Anda",
+    findplan_subtitle: "Beritahu kami keperluan anda, dan kami akan padankan pelan terbaik.",
 
     section_usage_title: "Jenis Pelan Apa Yang Anda Cari?",
     usage_home: "Rumah",

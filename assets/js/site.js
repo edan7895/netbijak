@@ -24,6 +24,7 @@ function renderHeader() {
         <a href="${root}${lang}/">${t("nav_home")}</a>
         <a href="${root}${lang}/broadband-home/">${t("nav_broadband_home")}</a>
         <a href="${root}${lang}/broadband-business/">${t("nav_broadband_business")}</a>
+        <a href="${root}${lang}/find-your-plan/">${t("nav_find_plan")}</a>
         <a href="${root}${lang}/compare/">${t("nav_compare")}</a>
         <a href="${root}${lang}/speedtest/">${t("nav_speedtest")}</a>
         <a href="${root}${lang}/blog/">${t("nav_blog")}</a>
