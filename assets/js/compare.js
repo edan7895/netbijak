@@ -6,6 +6,19 @@ let compareSlotCount = 0;
 let allProvidersCompare = [];
 const MAX_SLOTS = 4;
 
+function matchesAppTypeCompare(applicationType, category) {
+  const text = (applicationType || "").toLowerCase();
+  const hasNew = text.includes("new");
+  const hasTransfer = text.includes("transfer");
+  const hasUpgrade = text.includes("upgrade");
+
+  if (category === "new") return hasNew;
+  if (category === "transfer") return hasTransfer;
+  if (category === "upgrade") return hasUpgrade;
+  if (category === "existing") return !hasNew && !hasTransfer && !hasUpgrade;
+  return true;
+}
+
 async function initComparePage() {
   const { data: providers } = await supabaseClient
     .from("providers")
@@ -43,6 +56,13 @@ function addCompareSlot() {
       <span>Plan ${slotId}</span>
       ${slotId > 2 ? `<button type="button" class="btn-remove-slot" onclick="removeCompareSlot(${slotId})">${t("compare_btn_remove")}</button>` : ""}
     </div>
+    <label>${t("section_apptype_title")}</label>
+    <select id="slot-apptype-${slotId}" onchange="updatePlanOptions(${slotId})">
+      <option value="new">${t("apptype_new")}</option>
+      <option value="transfer">${t("apptype_transfer")}</option>
+      <option value="upgrade">${t("apptype_upgrade")}</option>
+      <option value="existing">${t("apptype_existing")}</option>
+    </select>
     <label>${t("compare_select_provider")}</label>
     <select id="slot-provider-${slotId}" onchange="updatePlanOptions(${slotId})">
       ${providerOptions}
@@ -61,18 +81,21 @@ function removeCompareSlot(slotId) {
 
 async function updatePlanOptions(slotId) {
   const providerId = document.getElementById(`slot-provider-${slotId}`).value;
+  const appType = document.getElementById(`slot-apptype-${slotId}`).value;
   const planSelect = document.getElementById(`slot-plan-${slotId}`);
 
   const { data: plans } = await supabaseClient
     .from("plans")
-    .select("id, name, promo_price")
+    .select("id, name, promo_price, new_and_transfer")
     .eq("provider_id", providerId)
     .eq("is_published", true)
     .order("promo_price", { ascending: true });
 
+  const filtered = (plans || []).filter((p) => matchesAppTypeCompare(p.new_and_transfer, appType));
+
   planSelect.innerHTML =
     `<option value="">${t("compare_select_placeholder")}</option>` +
-    (plans || []).map((p) => `<option value="${p.id}">${p.name} — RM${p.promo_price}</option>`).join("");
+    filtered.map((p) => `<option value="${p.id}">${p.name} — RM${p.promo_price}</option>`).join("");
 }
 
 async function runCompareTable() {
