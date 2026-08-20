@@ -8,7 +8,7 @@ async function loadBrowsePage() {
   titleEl.textContent = USAGE_TYPE === "business" ? t("browse_business_page_title") : t("browse_home_page_title");
   document.title = titleEl.textContent + " | NetBijak.com";
 
-  gridEl.innerHTML = `<p style="color:#64748b">Loading...</p>`;
+  gridEl.innerHTML = `<p style="color:#94a3b8">Loading...</p>`;
 
   const { data: providers, error } = await supabaseClient
     .from("providers")
@@ -27,7 +27,7 @@ async function loadBrowsePage() {
   });
 
   if (filtered.length === 0) {
-    gridEl.innerHTML = `<p style="color:#64748b">${t("no_results")}</p>`;
+    gridEl.innerHTML = `<p style="color:#94a3b8">${t("no_results")}</p>`;
     return;
   }
 
@@ -35,7 +35,10 @@ async function loadBrowsePage() {
     .map(
       (p) => `
     <a href="${ROOT_PATH}${p.slug}/" class="provider-browse-card" style="border-color:${p.color_hex}">
-      <span class="provider-browse-name" style="color:${p.color_hex}">${p.name}</span>
+      <span class="provider-browse-info">
+        ${p.logo_url ? `<img src="${ROOT_PATH}${p.logo_url.replace(/^\//, "")}" alt="${p.name}" class="provider-logo-img" />` : ""}
+        <span class="provider-browse-name" style="color:${p.color_hex}">${p.name}</span>
+      </span>
       <span class="provider-browse-arrow">→</span>
     </a>
   `

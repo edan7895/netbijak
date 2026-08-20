@@ -1,6 +1,6 @@
 // NetBijak.com - Compare 比较页逻辑
 
-const WHATSAPP_NUMBER_COMPARE = "60109316707"; // ⚠️ 改成你的真实WhatsApp号码
+const WHATSAPP_NUMBER_COMPARE = "60123456789"; // ⚠️ 改成你的真实WhatsApp号码
 
 let compareSlotCount = 0;
 let allProvidersCompare = [];
@@ -93,7 +93,7 @@ async function runCompareTable() {
 
   const { data: plans, error } = await supabaseClient
     .from("plans")
-    .select("*, providers(name, color_hex, slug)")
+    .select("*, providers(*)")
     .in("id", selectedPlanIds);
 
   if (error || !plans || plans.length === 0) {
@@ -101,7 +101,6 @@ async function runCompareTable() {
     return;
   }
 
-  // 保持用户选择的顺序
   const orderedPlans = selectedPlanIds.map((id) => plans.find((p) => p.id == id)).filter(Boolean);
 
   renderCompareTable(orderedPlans);
@@ -110,15 +109,17 @@ async function runCompareTable() {
 function renderCompareTable(plans) {
   const resultWrap = document.getElementById("compare-result-wrap");
 
-const headerCells = plans
-  .map((p) => {
-    const logoUrl = p.providers ? p.providers.logo_url : "";
-    return `<th style="color:${p.providers ? p.providers.color_hex : "#0f172a"}">
-      ${logoUrl ? `<img src="${ROOT_PATH}${logoUrl.replace(/^\//, "")}" alt="${p.providers ? p.providers.name : p.provider}" class="compare-th-logo" />` : ""}
-      ${p.providers ? p.providers.name : p.provider}<br><span class="compare-th-plan">${p.name}</span>
-    </th>`;
-  })
-  .join("");
+  const headerCells = plans
+    .map((p) => {
+      const logoUrl = p.providers ? p.providers.logo_url : "";
+      const providerName = p.providers ? p.providers.name : p.provider;
+      const color = p.providers ? p.providers.color_hex : "#0f172a";
+      return `<th style="color:${color}">
+        ${logoUrl ? `<img src="${ROOT_PATH}${logoUrl.replace(/^\//, "")}" alt="${providerName}" class="compare-th-logo" />` : ""}
+        ${providerName}<br><span class="compare-th-plan">${p.name}</span>
+      </th>`;
+    })
+    .join("");
 
   const priceCells = plans.map((p) => `<td class="compare-price-cell">RM${p.promo_price}${t("per_month")}</td>`).join("");
   const downloadCells = plans.map((p) => `<td>${p.download_speed || "-"}</td>`).join("");
