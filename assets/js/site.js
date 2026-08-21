@@ -8,11 +8,22 @@ function setFavicon() {
   document.head.appendChild(link);
 }
 
+function getPathAfterLang() {
+  // 取得目前网址里，语言代码(en/zh/ms)之后的部分
+  const path = window.location.pathname;
+  const match = path.match(/\/(en|zh|ms)(\/.*)?$/);
+  if (match && match[2]) {
+    return match[2].startsWith("/") ? match[2].slice(1) : match[2];
+  }
+  return "";
+}
+
 function renderHeader() {
   const lang = getCurrentLang();
   const header = document.getElementById("site-header");
   if (!header) return;
   const root = typeof ROOT_PATH !== "undefined" ? ROOT_PATH : "../";
+  const restOfPath = getPathAfterLang();
 
   header.innerHTML = `
     <nav class="navbar">
@@ -24,9 +35,9 @@ function renderHeader() {
           <img src="${root}assets/images/logo.png" alt="NetBijak" class="nav-logo-img" />
         </a>
         <div class="lang-switcher lang-switcher-desktop">
-          <a href="${root}en/" class="${lang === "en" ? "active" : ""}">EN</a>
-          <a href="${root}zh/" class="${lang === "zh" ? "active" : ""}">中文</a>
-          <a href="${root}ms/" class="${lang === "ms" ? "active" : ""}">BM</a>
+          <a href="${root}en/${restOfPath}" class="${lang === "en" ? "active" : ""}">EN</a>
+          <a href="${root}zh/${restOfPath}" class="${lang === "zh" ? "active" : ""}">中文</a>
+          <a href="${root}ms/${restOfPath}" class="${lang === "ms" ? "active" : ""}">BM</a>
         </div>
       </div>
       <div class="nav-links" id="nav-links">
@@ -38,9 +49,9 @@ function renderHeader() {
         <a href="${root}${lang}/speedtest/">${t("nav_speedtest")}</a>
         <a href="${root}${lang}/blog/">${t("nav_blog")}</a>
         <div class="lang-switcher lang-switcher-mobile">
-          <a href="${root}en/" class="${lang === "en" ? "active" : ""}">EN</a>
-          <a href="${root}zh/" class="${lang === "zh" ? "active" : ""}">中文</a>
-          <a href="${root}ms/" class="${lang === "ms" ? "active" : ""}">BM</a>
+          <a href="${root}en/${restOfPath}" class="${lang === "en" ? "active" : ""}">EN</a>
+          <a href="${root}zh/${restOfPath}" class="${lang === "zh" ? "active" : ""}">中文</a>
+          <a href="${root}ms/${restOfPath}" class="${lang === "ms" ? "active" : ""}">BM</a>
         </div>
       </div>
     </nav>
