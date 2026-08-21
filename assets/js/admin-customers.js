@@ -1,6 +1,6 @@
 // NetBijak.com - Admin 顾客管理逻辑
 
-const WHATSAPP_NUMBER_ADMIN = "60109316707"; // ⚠️ 改成你的真实WhatsApp Business号码（发提醒用）
+const WHATSAPP_NUMBER_ADMIN = "60178835110"; // ⚠️ 改成你的真实WhatsApp Business号码（发提醒用）
 
 let editingCustomerId = null;
 let allPlansForCustomerForm = [];
