@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <url>
+    <loc>https://netbijak.com/en/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://netbijak.com/en/" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/" />
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://netbijak.com/zh/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://netbijak.com/en/" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/" />
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://netbijak.com/ms/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://netbijak.com/en/" />
+    <xhtml:link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/" />
+    <xhtml:link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/" />
+    <priority>1.0</priority>
+  </url>
+
+  <url><loc>https://netbijak.com/en/find-your-plan/</loc><priority>0.9</priority></url>
+  <url><loc>https://netbijak.com/zh/find-your-plan/</loc><priority>0.9</priority></url>
+  <url><loc>https://netbijak.com/ms/find-your-plan/</loc><priority>0.9</priority></url>
+
+  <url><loc>https://netbijak.com/en/compare/</loc><priority>0.9</priority></url>
+  <url><loc>https://netbijak.com/zh/compare/</loc><priority>0.9</priority></url>
+  <url><loc>https://netbijak.com/ms/compare/</loc><priority>0.9</priority></url>
+
+  <url><loc>https://netbijak.com/en/broadband-home/</loc><priority>0.9</priority></url>
+  <url><loc>https://netbijak.com/zh/broadband-home/</loc><priority>0.9</priority></url>
+  <url><loc>https://netbijak.com/ms/broadband-home/</loc><priority>0.9</priority></url>
+
+  <url><loc>https://netbijak.com/en/broadband-business/</loc><priority>0.8</priority></url>
+  <url><loc>https://netbijak.com/zh/broadband-business/</loc><priority>0.8</priority></url>
+  <url><loc>https://netbijak.com/ms/broadband-business/</loc><priority>0.8</priority></url>
+
+  <url><loc>https://netbijak.com/en/speedtest/</loc><priority>0.7</priority></url>
+  <url><loc>https://netbijak.com/zh/speedtest/</loc><priority>0.7</priority></url>
+  <url><loc>https://netbijak.com/ms/speedtest/</loc><priority>0.7</priority></url>
+
+  <url><loc>https://netbijak.com/en/blog/</loc><priority>0.7</priority></url>
+  <url><loc>https://netbijak.com/zh/blog/</loc><priority>0.7</priority></url>
+  <url><loc>https://netbijak.com/ms/blog/</loc><priority>0.7</priority></url>
+
+  <url><loc>https://netbijak.com/unifi/</loc><priority>0.8</priority></url>
+  <url><loc>https://netbijak.com/maxis/</loc><priority>0.8</priority></url>
+  <url><loc>https://netbijak.com/celcomdigi/</loc><priority>0.8</priority></url>
+  <url><loc>https://netbijak.com/time/</loc><priority>0.8</priority></url>
+  <url><loc>https://netbijak.com/yes/</loc><priority>0.8</priority></url>
+  <url><loc>https://netbijak.com/umobile/</loc><priority>0.8</priority></url>
+  <url><loc>https://netbijak.com/unifi-business/</loc><priority>0.7</priority></url>
+  <url><loc>https://netbijak.com/maxis-business/</loc><priority>0.7</priority></url>
+  <url><loc>https://netbijak.com/time-business/</loc><priority>0.7</priority></url>
+
+</urlset>
