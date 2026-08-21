@@ -1,4 +1,13 @@
 // NetBijak.com - 全站 Header / Footer 渲染
+
+function setFavicon() {
+  const link = document.createElement("link");
+  link.rel = "icon";
+  link.type = "image/png";
+  link.href = "/assets/images/favicon.png";
+  document.head.appendChild(link);
+}
+
 function renderHeader() {
   const lang = getCurrentLang();
   const header = document.getElementById("site-header");
@@ -57,6 +66,7 @@ function renderFooter() {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
+  setFavicon();
   renderHeader();
   renderFooter();
 });
