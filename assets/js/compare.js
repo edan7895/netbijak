@@ -1,6 +1,6 @@
 // NetBijak.com - Compare 比较页逻辑
 
-const WHATSAPP_NUMBER_COMPARE = "60178835110"; // ⚠️ 改成你的真实WhatsApp号码
+const WHATSAPP_NUMBER_COMPARE = "60178835110";
 
 let compareSlotCount = 0;
 let allProvidersCompare = [];
@@ -35,6 +35,8 @@ async function initComparePage() {
     if (compareSlotCount < MAX_SLOTS) addCompareSlot();
   });
   document.getElementById("btn-compare-go").addEventListener("click", runCompareTable);
+
+  loadCompareContent();
 }
 
 function addCompareSlot() {
@@ -174,6 +176,93 @@ function renderCompareTable(plans) {
       </table>
     </div>
   `;
+}
+
+// ===== 文章 + FAQ 区块 =====
+async function loadCompareContent() {
+  const contentWrap = document.getElementById("cp-content-wrap");
+  if (!contentWrap) return;
+
+  const lang = getCurrentLang();
+
+  const { data: article } = await supabaseClient
+    .from("articles")
+    .select("*")
+    .eq("slug", `compare-plans-buying-guide-${lang}`)
+    .eq("is_published", true)
+    .maybeSingle();
+
+  const articleHtml = article
+    ? `
+    <article class="bh-article-full" id="buying-guide">
+      <h2 class="bh-article-full-title">${article.title}</h2>
+      <div class="bh-article-full-content">${article.content || ""}</div>
+    </article>
+  `
+    : "";
+
+  contentWrap.innerHTML = `
+    ${articleHtml}
+
+    <section class="section-card">
+      <h2>${t("cp_faq_title")}</h2>
+      <p class="section-sub">${t("cp_faq_subtitle")}</p>
+      <div id="cp-faq-list" class="faq-list"></div>
+    </section>
+  `;
+
+  buildCompareFAQ();
+}
+
+function buildCompareFAQ() {
+  const faqList = document.getElementById("cp-faq-list");
+  if (!faqList) return;
+
+  const lang = getCurrentLang();
+
+  const items = [
+    { q: t("cp_faq_q1"), a: `<p>${t("cp_faq_a1")}</p>` },
+    { q: t("cp_faq_q2"), a: `<p>${t("cp_faq_a2")}</p>` },
+    { q: t("cp_faq_q3"), a: `<p>${t("cp_faq_a3")}</p>` },
+    { q: t("cp_faq_q4"), a: `<p>${t("cp_faq_a4")}</p>` },
+    { q: t("cp_faq_q5"), a: `<p>${t("cp_faq_a5")}</p>` },
+    {
+      q: t("cp_faq_q6"),
+      a: `<p>${t("cp_faq_a6_intro")}</p><p style="margin-top:10px">
+        <a href="${ROOT_PATH}${lang}/broadband-home/" class="faq-inline-link">${t("cp_faq_a6_link1")}</a>
+        &nbsp;/&nbsp;
+        <a href="${ROOT_PATH}${lang}/broadband-business/" class="faq-inline-link">${t("cp_faq_a6_link2")}</a>
+      </p>`,
+    },
+    { q: t("cp_faq_q7"), a: `<p>${t("cp_faq_a7")}</p>` },
+    {
+      q: t("cp_faq_q8"),
+      a: `<p>${t("cp_faq_a8_intro")} <a href="${ROOT_PATH}${lang}/find-your-plan/" class="faq-inline-link">${t("cp_faq_a8_link")}</a> ${t("cp_faq_a8_outro")}</p>`,
+    },
+  ];
+
+  faqList.innerHTML = items
+    .map(
+      (item, i) => `
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="${i}">
+        <span>${item.q}</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer">${item.a}</div>
+    </div>
+  `
+    )
+    .join("");
+
+  faqList.querySelectorAll(".faq-question").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const item = btn.closest(".faq-item");
+      const isOpen = item.classList.contains("open");
+      faqList.querySelectorAll(".faq-item").forEach((el) => el.classList.remove("open"));
+      if (!isOpen) item.classList.add("open");
+    });
+  });
 }
 
 document.addEventListener("DOMContentLoaded", initComparePage);
