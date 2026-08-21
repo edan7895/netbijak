@@ -32,8 +32,7 @@ async function loadBroadbandHomeContent() {
   const { data: article } = await supabaseClient
     .from("articles")
     .select("*")
-    .eq("slug", "home-fibre-broadband-buying-guide")
-    .eq("language", lang)
+    .eq("slug", `home-fibre-broadband-buying-guide-${lang}`)
     .eq("is_published", true)
     .maybeSingle();
 
