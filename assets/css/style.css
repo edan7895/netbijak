@@ -775,3 +775,22 @@ table.compare-table tbody tr:nth-child(odd) .compare-row-label { background: #ee
 .faq-table th { color: #5eead4; font-weight: 700; text-transform: uppercase; font-size: 0.75rem; }
 .faq-table td { color: #e2e8f0; }
 .faq-inline-link { color: #5eead4; font-weight: 700; text-decoration: underline; }
+
+/* ===== Broadband Home 页面：文章全文嵌入样式 ===== */
+.bh-article-full {
+  background: #fff; border-radius: 20px; padding: 2rem;
+  margin-bottom: 1.5rem; border: 1px solid #e2e8f0;
+}
+.bh-article-full-title {
+  font-size: clamp(1.4rem, 3vw, 1.9rem); font-weight: 900;
+  margin-bottom: 1.5rem; color: var(--text);
+}
+.bh-article-full-content { font-size: 1rem; line-height: 1.8; color: #334155; }
+.bh-article-full-content p { margin-bottom: 1.25rem; }
+.bh-article-full-content h2 {
+  font-size: 1.25rem; font-weight: 800; margin: 1.75rem 0 0.75rem; color: var(--text);
+}
+.bh-article-full-content h3 { font-size: 1.05rem; font-weight: 700; margin: 1.25rem 0 0.5rem; }
+.bh-article-full-content ul, .bh-article-full-content ol { margin: 0 0 1.25rem 1.5rem; }
+.bh-article-full-content li { margin-bottom: 0.5rem; }
+.bh-article-full-content img { max-width: 100%; border-radius: 12px; margin: 1rem 0; }
