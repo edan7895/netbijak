@@ -26,6 +26,26 @@ const translations = {
 
     findplan_title: "Find Your Perfect Plan",
     findplan_subtitle: "Tell us what you need, and we'll match you with the best plans.",
+    fyp_faq_title: "Find My Plan — Frequently Asked Questions",
+    fyp_faq_subtitle: "Everything you need to know about how Find My Plan works.",
+    fyp_faq_q1: "What is Find My Plan?",
+    fyp_faq_a1: "Find My Plan is a free tool that helps you find suitable broadband plans based on your home type, household size, internet usage and monthly budget.",
+    fyp_faq_q2: "How does Find My Plan recommend a broadband plan?",
+    fyp_faq_a2: "NetBijak compares the information you provide — home type, users, usage and budget — with available broadband plans, and presents plans that best match your preferences.",
+    fyp_faq_q3: "What information do I need to provide?",
+    fyp_faq_a3: "Just answer a few simple questions: Home or Business, Landed or High-Rise, Number of users, Internet usage, Preferred speed, and Monthly budget.",
+    fyp_faq_q4: "How many people use your internet?",
+    fyp_faq_a4: "More users usually means more devices and simultaneous activities, which can increase bandwidth requirements. It's one of the key factors we use to narrow down suitable plans for you.",
+    fyp_faq_q5: "What internet speed should I choose?",
+    fyp_faq_a5: "As a general guide: 100Mbps suits light users or small households, 300Mbps suits a typical household, 500Mbps suits multiple users or heavier usage, and 1Gbps+ suits heavy users with many devices. The right speed should also match your actual usage, not just household size.",
+    fyp_faq_q6: "Does Find My Plan guarantee that a broadband plan is available at my address?",
+    fyp_faq_a6: "No. Find My Plan provides recommendations based on your preferences and the information available on NetBijak. Actual fibre availability depends on the provider and your location. Please confirm availability with the provider before applying.",
+    fyp_faq_q7: "Is Find My Plan free?",
+    fyp_faq_a7: "Yes. Find My Plan is free to use.",
+    fyp_faq_q8: "Why should I use Find My Plan instead of comparing plans myself?",
+    fyp_faq_a8: "Comparing dozens of plans can be time-consuming. Find My Plan narrows down the options based on your needs, making it easier to start your comparison.",
+
+    fyp_article_title: "How to Choose the Right Broadband Plan for Your Home in Malaysia",
 
     section_usage_title: "What Type of Plan Are You Looking For?",
     usage_home: "Home",
@@ -56,7 +76,7 @@ const translations = {
     section_budget_title: "Monthly Budget (RM)",
     budget_placeholder: "e.g. 150",
 
-    btn_compare: "Compare Plans",
+    btn_compare: "Find My Plan",
 
     browse_by_provider: "Or Browse By Provider",
     browse_home_page_title: "Home Broadband Providers",
@@ -232,6 +252,26 @@ const translations = {
 
     findplan_title: "找到最适合你的配套",
     findplan_subtitle: "告诉我们你的需求，我们帮你配对最佳配套。",
+    fyp_faq_title: "为我找配套 — 常见问题",
+    fyp_faq_subtitle: "关于「为我找配套」如何运作的所有资讯。",
+    fyp_faq_q1: "什么是「为我找配套」？",
+    fyp_faq_a1: "「为我找配套」是一个免费工具，根据您的住宅类型、家庭人数、网络使用习惯及每月预算，帮您找到合适的宽频配套。",
+    fyp_faq_q2: "「为我找配套」是如何推荐宽频配套的？",
+    fyp_faq_a2: "NetBijak 会将您提供的资讯——住宅类型、使用人数、使用习惯及预算——与现有的宽频配套进行比对，并呈现最符合您偏好的配套。",
+    fyp_faq_q3: "我需要提供哪些资讯？",
+    fyp_faq_a3: "只需回答几个简单问题：家用或商用、排屋或高楼、使用人数、网络用途、偏好速度，以及每月预算。",
+    fyp_faq_q4: "使用网络的人数有什么重要性？",
+    fyp_faq_a4: "使用人数越多，通常代表设备及同时进行的活动也越多，可能会增加所需的带宽。这是我们用来为您筛选合适配套的关键因素之一。",
+    fyp_faq_q5: "我应该选择哪种网速？",
+    fyp_faq_a5: "一般参考：100Mbps适合轻度用户或小家庭，300Mbps适合一般家庭日常使用，500Mbps适合多人使用或较重度需求，1Gbps以上则适合重度用户及大量设备。合适的速度也应符合您实际的使用习惯，而不只是看家庭人数。",
+    fyp_faq_q6: "「为我找配套」能保证我的地址一定有宽频覆盖吗？",
+    fyp_faq_a6: "不能。「为我找配套」是根据您提供的偏好，以及NetBijak平台上现有的资讯提供推荐。实际光纤覆盖情况取决于运营商及您的所在位置，申请前请务必向运营商确认可用性。",
+    fyp_faq_q7: "「为我找配套」是免费的吗？",
+    fyp_faq_a7: "是的，「为我找配套」完全免费使用。",
+    fyp_faq_q8: "为什么我应该使用「为我找配套」，而不是自己比较配套？",
+    fyp_faq_a8: "自行比较数十个配套可能相当耗时。「为我找配套」会根据您的需求缩小选择范围，让您更容易开始比较。",
+
+    fyp_article_title: "如何在马来西亚为您的家庭选择合适的宽频配套",
 
     section_usage_title: "您在寻找哪种类型的配套？",
     usage_home: "家用",
@@ -262,7 +302,7 @@ const translations = {
     section_budget_title: "每月预算 (RM)",
     budget_placeholder: "例如 150",
 
-    btn_compare: "开始比较",
+    btn_compare: "为我找配套",
 
     browse_by_provider: "或按运营商浏览",
     browse_home_page_title: "家用宽频运营商",
@@ -438,6 +478,26 @@ const translations = {
 
     findplan_title: "Cari Pelan Sempurna Anda",
     findplan_subtitle: "Beritahu kami keperluan anda, dan kami akan padankan pelan terbaik.",
+    fyp_faq_title: "Cari Pelan Saya — Soalan Lazim",
+    fyp_faq_subtitle: "Semua yang anda perlu tahu tentang cara Cari Pelan Saya berfungsi.",
+    fyp_faq_q1: "Apakah itu Cari Pelan Saya?",
+    fyp_faq_a1: "Cari Pelan Saya ialah alat percuma yang membantu anda mencari pelan jalur lebar yang sesuai berdasarkan jenis rumah, saiz isi rumah, penggunaan internet dan bajet bulanan anda.",
+    fyp_faq_q2: "Bagaimana Cari Pelan Saya mengesyorkan pelan jalur lebar?",
+    fyp_faq_a2: "NetBijak membandingkan maklumat yang anda berikan — jenis rumah, pengguna, penggunaan dan bajet — dengan pelan jalur lebar yang tersedia, dan mempersembahkan pelan yang paling sesuai dengan keutamaan anda.",
+    fyp_faq_q3: "Maklumat apa yang perlu saya berikan?",
+    fyp_faq_a3: "Hanya jawab beberapa soalan mudah: Rumah atau Perniagaan, Berpagar atau Rumah Tinggi, Bilangan pengguna, Penggunaan internet, Kelajuan pilihan, dan Bajet bulanan.",
+    fyp_faq_q4: "Berapa ramai orang menggunakan internet anda?",
+    fyp_faq_a4: "Lebih ramai pengguna biasanya bermakna lebih banyak peranti dan aktiviti serentak, yang boleh meningkatkan keperluan bandwidth. Ini adalah salah satu faktor utama yang kami gunakan untuk menapis pelan yang sesuai untuk anda.",
+    fyp_faq_q5: "Kelajuan internet apa yang perlu saya pilih?",
+    fyp_faq_a5: "Sebagai panduan umum: 100Mbps sesuai untuk pengguna ringan atau isi rumah kecil, 300Mbps sesuai untuk penggunaan keluarga harian, 500Mbps sesuai untuk berbilang pengguna atau penggunaan lebih berat, dan 1Gbps+ sesuai untuk pengguna berat dengan banyak peranti. Kelajuan yang sesuai juga harus sepadan dengan penggunaan sebenar anda, bukan sekadar saiz isi rumah.",
+    fyp_faq_q6: "Adakah Cari Pelan Saya menjamin pelan jalur lebar tersedia di alamat saya?",
+    fyp_faq_a6: "Tidak. Cari Pelan Saya memberikan cadangan berdasarkan keutamaan anda dan maklumat yang tersedia di NetBijak. Ketersediaan gentian optik sebenar bergantung kepada pembekal dan lokasi anda. Sila sahkan ketersediaan dengan pembekal sebelum memohon.",
+    fyp_faq_q7: "Adakah Cari Pelan Saya percuma?",
+    fyp_faq_a7: "Ya. Cari Pelan Saya percuma untuk digunakan.",
+    fyp_faq_q8: "Mengapa saya harus menggunakan Cari Pelan Saya berbanding membandingkan pelan sendiri?",
+    fyp_faq_a8: "Membandingkan berpuluh-puluh pelan boleh mengambil masa. Cari Pelan Saya menapis pilihan berdasarkan keperluan anda, memudahkan anda memulakan perbandingan.",
+
+    fyp_article_title: "Cara Memilih Pelan Jalur Lebar Yang Sesuai Untuk Rumah Anda di Malaysia",
 
     section_usage_title: "Jenis Pelan Apa Yang Anda Cari?",
     usage_home: "Rumah",
@@ -468,7 +528,7 @@ const translations = {
     section_budget_title: "Bajet Bulanan (RM)",
     budget_placeholder: "cth. 150",
 
-    btn_compare: "Bandingkan Pelan",
+    btn_compare: "Cari Pelan Saya",
 
     browse_by_provider: "Atau Layari Mengikut Pembekal",
     browse_home_page_title: "Pembekal Jalur Lebar Rumah",

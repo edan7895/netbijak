@@ -1,6 +1,6 @@
 // NetBijak.com - Find Your Plan 页面逻辑
 
-const WHATSAPP_NUMBER_FYP = "60178835110"; // ⚠️ 改成你的真实WhatsApp Business号码
+const WHATSAPP_NUMBER_FYP = "60178835110";
 
 let selectedUsageType = "home";
 let selectedPropertyType = "highrise";
@@ -52,6 +52,8 @@ function initFindYourPlanPage() {
   });
 
   compareBtn.addEventListener("click", runComparison);
+
+  loadFindYourPlanContent();
 }
 
 function parseUserRange(text) {
@@ -192,6 +194,73 @@ function buildResultCard(plan, isBest) {
       </div>
     </div>
   `;
+}
+
+// ===== 文章 + FAQ 区块 =====
+async function loadFindYourPlanContent() {
+  const contentWrap = document.getElementById("fyp-content-wrap");
+  if (!contentWrap) return;
+
+  const lang = getCurrentLang();
+
+  const { data: article } = await supabaseClient
+    .from("articles")
+    .select("*")
+    .eq("slug", `find-my-plan-buying-guide-${lang}`)
+    .eq("is_published", true)
+    .maybeSingle();
+
+  const articleHtml = article
+    ? `
+    <article class="bh-article-full" id="buying-guide">
+      <h2 class="bh-article-full-title">${article.title}</h2>
+      <div class="bh-article-full-content">${article.content || ""}</div>
+    </article>
+  `
+    : "";
+
+  contentWrap.innerHTML = `
+    ${articleHtml}
+
+    <section class="section-card">
+      <h2>${t("fyp_faq_title")}</h2>
+      <p class="section-sub">${t("fyp_faq_subtitle")}</p>
+      <div id="fyp-faq-list" class="faq-list"></div>
+    </section>
+  `;
+
+  buildFindYourPlanFAQ();
+}
+
+function buildFindYourPlanFAQ() {
+  const faqList = document.getElementById("fyp-faq-list");
+  if (!faqList) return;
+
+  const questionKeys = ["fyp_faq_q1", "fyp_faq_q2", "fyp_faq_q3", "fyp_faq_q4", "fyp_faq_q5", "fyp_faq_q6", "fyp_faq_q7", "fyp_faq_q8"];
+  const answerKeys = ["fyp_faq_a1", "fyp_faq_a2", "fyp_faq_a3", "fyp_faq_a4", "fyp_faq_a5", "fyp_faq_a6", "fyp_faq_a7", "fyp_faq_a8"];
+
+  faqList.innerHTML = questionKeys
+    .map(
+      (qKey, i) => `
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="${i}">
+        <span>${t(qKey)}</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>${t(answerKeys[i])}</p></div>
+    </div>
+  `
+    )
+    .join("");
+
+  faqList.querySelectorAll(".faq-question").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const item = btn.closest(".faq-item");
+      const isOpen = item.classList.contains("open");
+      faqList.querySelectorAll(".faq-item").forEach((el) => el.classList.remove("open"));
+      if (!isOpen) item.classList.add("open");
+    });
+  });
 }
 
 document.addEventListener("DOMContentLoaded", initFindYourPlanPage);
