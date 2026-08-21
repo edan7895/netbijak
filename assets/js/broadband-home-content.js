@@ -38,13 +38,10 @@ async function loadBroadbandHomeContent() {
 
   const articleHtml = article
     ? `
-    <a href="${ROOT_PATH}${lang}/blog/post/?slug=${article.slug}" class="bh-article-card">
-      <div class="bh-article-card-body">
-        <div class="bh-article-card-title">${t("bh_article_title")}</div>
-        <p class="bh-article-card-desc">${t("bh_article_desc")}</p>
-        <span class="bh-article-card-cta">${t("bh_article_cta")}</span>
-      </div>
-    </a>
+    <article class="bh-article-full" id="buying-guide">
+      <h2 class="bh-article-full-title">${article.title}</h2>
+      <div class="bh-article-full-content">${article.content || ""}</div>
+    </article>
   `
     : "";
 
