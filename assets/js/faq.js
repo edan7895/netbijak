@@ -1,4 +1,4 @@
-// NetBijak.com - 首页 FAQ 手风琴逻辑
+// NetBijak.com - 首页 FAQ 手风琴逻辑 + SEO强化
 
 function initFAQ() {
   const faqList = document.getElementById("faq-list");
@@ -33,10 +33,19 @@ function initFAQ() {
       if (!isOpen) item.classList.add("open");
     });
   });
+
+  injectFAQSchema("faq-list");
 }
 
 document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("faq-title") && (document.getElementById("faq-title").textContent = t("faq_title"));
   document.getElementById("faq-subtitle") && (document.getElementById("faq-subtitle").textContent = t("faq_subtitle"));
+
+  setSEOMeta({
+    title: t("home_title") + " | NetBijak.com",
+    description: t("home_subtitle") + " " + t("faq_subtitle"),
+    url: window.location.href,
+  });
+
   initFAQ();
 });
