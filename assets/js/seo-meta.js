@@ -15,6 +15,8 @@ function setSEOMeta({ title, description, url, image }) {
   const ogImage = image || "https://netbijak.com/assets/images/logo.png";
 
   ensureMeta("name", "description", description);
+  ensureMeta("name", "geo.region", "MY");
+  ensureMeta("name", "geo.placename", "Malaysia");
   ensureMeta("property", "og:title", title);
   ensureMeta("property", "og:description", description);
   ensureMeta("property", "og:type", "website");
