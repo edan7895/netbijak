@@ -1,0 +1,42 @@
+name: Generate Dynamic Sitemap
+
+on:
+  schedule:
+    # 时间是UTC，马来西亚是UTC+8，所以要减8小时
+    # 马来西亚 00:00 = UTC 16:00 (前一天)
+    - cron: '0 16 * * *'
+    # 马来西亚 08:00 = UTC 00:00
+    - cron: '0 0 * * *'
+    # 马来西亚 16:00 = UTC 08:00
+    - cron: '0 8 * * *'
+  workflow_dispatch:
+    # 这个是让你能在GitHub网页上手动按按钮触发的开关
+
+jobs:
+  build-sitemap:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install dependencies
+        run: npm install @supabase/supabase-js
+
+      - name: Generate sitemap
+        run: node scripts/generate-sitemap.js
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+
+      - name: Commit and push if changed
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add sitemap-dynamic.xml
+          git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update dynamic sitemap"
+          git push
