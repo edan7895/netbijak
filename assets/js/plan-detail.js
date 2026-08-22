@@ -1,6 +1,6 @@
 // NetBijak.com - 配套详情页逻辑
 
-const WHATSAPP_NUMBER_DETAIL = "60178835110"; // ⚠️ 改成你的真实WhatsApp Business号码
+const WHATSAPP_NUMBER_DETAIL = "60178835110";
 
 function getSlugFromUrl() {
   const params = new URLSearchParams(window.location.search);
@@ -30,9 +30,11 @@ async function loadPlanDetail() {
   const color = provider ? provider.color_hex : "#14b8a6";
   const logoUrl = provider ? provider.logo_url : "";
 
-  document.title = plan.seo_title || `${plan.name} | NetBijak.com`;
-  const metaDesc = document.querySelector('meta[name="description"]');
-  if (metaDesc) metaDesc.setAttribute("content", plan.seo_description || plan.tagline || plan.name);
+  setSEOMeta({
+    title: plan.seo_title || `${plan.name} | NetBijak.com`,
+    description: plan.seo_description || plan.tagline || plan.name,
+    url: window.location.href,
+  });
 
   const activeBanner = (plan.plan_banners || []).find((b) => {
     if (!b.is_active) return false;

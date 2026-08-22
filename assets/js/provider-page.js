@@ -34,7 +34,12 @@ async function loadProviderPage() {
   }
 
   currentProviderData = provider;
-  document.title = `${provider.name} Broadband Plans | NetBijak.com`;
+
+  setSEOMeta({
+    title: `${provider.name} Broadband Plans | NetBijak.com`,
+    description: `Compare all ${provider.name} broadband plans in Malaysia.`,
+    url: window.location.href,
+  });
 
   nameEl.innerHTML = `
     ${provider.logo_url ? `<img src="${ROOT_PATH}${provider.logo_url.replace(/^\//, "")}" alt="${provider.name}" class="provider-hero-logo" />` : ""}

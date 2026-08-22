@@ -5,6 +5,13 @@ async function loadBlogList() {
   if (!gridEl) return;
 
   const lang = getCurrentLang();
+
+  setSEOMeta({
+    title: t("blog_title") + " | NetBijak.com",
+    description: t("blog_subtitle"),
+    url: window.location.href,
+  });
+
   const now = new Date().toISOString();
 
   const { data: articles, error } = await supabaseClient
@@ -16,7 +23,7 @@ async function loadBlogList() {
     .order("created_at", { ascending: false });
 
   if (error || !articles || articles.length === 0) {
-    gridEl.innerHTML = `<p style="color:#64748b;padding:2rem;text-align:center">${t("no_articles")}</p>`;
+    gridEl.innerHTML = `<p style="color:#94a3b8;padding:2rem;text-align:center">${t("no_articles")}</p>`;
     return;
   }
 
