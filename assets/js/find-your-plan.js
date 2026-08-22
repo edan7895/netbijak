@@ -18,6 +18,12 @@ function initFindYourPlanPage() {
 
   if (!landedBtn) return;
 
+  setSEOMeta({
+    title: t("findplan_title") + " | NetBijak.com",
+    description: t("findplan_subtitle"),
+    url: window.location.href,
+  });
+
   usageHomeBtn.addEventListener("click", () => {
     selectedUsageType = "home";
     usageHomeBtn.classList.add("active");
@@ -261,6 +267,9 @@ function buildFindYourPlanFAQ() {
       if (!isOpen) item.classList.add("open");
     });
   });
+
+  injectFAQSchema("fyp-faq-list");
+
 }
 
 document.addEventListener("DOMContentLoaded", initFindYourPlanPage);

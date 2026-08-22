@@ -28,6 +28,12 @@ async function loadBroadbandHomeContent() {
 
   const lang = getCurrentLang();
 
+  setSEOMeta({
+    title: t("browse_home_page_title") + " | NetBijak.com",
+    description: t("bh_faq_subtitle"),
+    url: window.location.href,
+  });
+
   // 尝试找到固定 slug 的 Buying Guide 文章
   const { data: article } = await supabaseClient
     .from("articles")
@@ -114,6 +120,8 @@ function buildBroadbandHomeFAQ(providerNamesStr) {
       if (!isOpen) item.classList.add("open");
     });
   });
+
+  injectFAQSchema("bh-faq-list");
 }
 
 document.addEventListener("DOMContentLoaded", loadBroadbandHomeContent);

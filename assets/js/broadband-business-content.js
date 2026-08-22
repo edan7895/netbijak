@@ -6,6 +6,12 @@ async function loadBroadbandBusinessContent() {
 
   const lang = getCurrentLang();
 
+  setSEOMeta({
+    title: t("browse_business_page_title") + " | NetBijak.com",
+    description: t("bb_faq_subtitle"),
+    url: window.location.href,
+  });
+
   const { data: article } = await supabaseClient
     .from("articles")
     .select("*")
@@ -110,6 +116,8 @@ function buildBroadbandBusinessFAQ() {
       if (!isOpen) item.classList.add("open");
     });
   });
+
+  injectFAQSchema("bb-faq-list");
 }
 
 document.addEventListener("DOMContentLoaded", loadBroadbandBusinessContent);

@@ -20,6 +20,12 @@ function matchesAppTypeCompare(applicationType, category) {
 }
 
 async function initComparePage() {
+  setSEOMeta({
+    title: t("compare_title") + " | NetBijak.com",
+    description: t("compare_subtitle"),
+    url: window.location.href,
+  });
+
   const { data: providers } = await supabaseClient
     .from("providers")
     .select("*")
@@ -263,6 +269,8 @@ function buildCompareFAQ() {
       if (!isOpen) item.classList.add("open");
     });
   });
+
+  injectFAQSchema("cp-faq-list");
 }
 
 document.addEventListener("DOMContentLoaded", initComparePage);
