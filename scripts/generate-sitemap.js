@@ -1,43 +1,42 @@
 // NetBijak.com - 自动产生动态Sitemap（配套 + 文章）
-const { createClient } = require('@supabase/supabase-js');
 const fs = require('fs');
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
 
-const supabase = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
 const SITE_URL = 'https://netbijak.com';
 const LANGS = ['en', 'zh', 'ms'];
 
-async function generateSitemap() {
-  console.log('Fetching plans and providers...');
-
-  const { data: plans, error: plansError } = await supabase
-    .from('plans')
-    .select('slug, provider_id, providers(slug)')
-    .eq('is_published', true);
-
-  if (plansError) {
-    console.error('Error fetching plans:', plansError);
-    process.exit(1);
+async function fetchFromSupabase(table, query) {
+  const url = `${SUPABASE_URL}/rest/v1/${table}?${query}`;
+  const res = await fetch(url, {
+    headers: {
+      apikey: SUPABASE_ANON_KEY,
+      Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+    },
+  });
+  if (!res.ok) {
+    const text = await res.text();
+    throw new Error(`Supabase fetch failed for ${table}: ${res.status} ${text}`);
   }
+  return res.json();
+}
+
+async function generateSitemap() {
+  console.log('Fetching plans...');
+  const plans = await fetchFromSupabase(
+    'plans',
+    'select=slug,providers(slug)&is_published=eq.true'
+  );
 
   console.log('Fetching articles...');
-
-  const { data: articles, error: articlesError } = await supabase
-    .from('articles')
-    .select('slug, language')
-    .eq('is_published', true);
-
-  if (articlesError) {
-    console.error('Error fetching articles:', articlesError);
-    process.exit(1);
-  }
+  const articles = await fetchFromSupabase(
+    'articles',
+    'select=slug,language&is_published=eq.true'
+  );
 
   let urls = [];
 
-  // 配套详情页（不分语言，因为这些是共用网址）
   (plans || []).forEach((plan) => {
     if (plan.providers && plan.providers.slug && plan.slug) {
       urls.push(
@@ -46,7 +45,6 @@ async function generateSitemap() {
     }
   });
 
-  // 文章详情页（每篇文章依照它的language栏位，放进对应语言的blog资料夹网址）
   (articles || []).forEach((article) => {
     if (article.slug && article.language && LANGS.includes(article.language)) {
       urls.push(
@@ -65,4 +63,7 @@ ${urls.join('\n')}
   console.log(`Sitemap generated with ${urls.length} URLs.`);
 }
 
-generateSitemap();
+generateSitemap().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
