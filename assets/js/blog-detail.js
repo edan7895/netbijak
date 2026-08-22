@@ -24,9 +24,13 @@ async function loadBlogDetail() {
     return;
   }
 
-  document.title = article.seo_title || `${article.title} | NetBijak.com`;
-  const metaDesc = document.querySelector('meta[name="description"]');
-  if (metaDesc) metaDesc.setAttribute("content", article.seo_description || "");
+  setSEOMeta({
+    title: article.seo_title || `${article.title} | NetBijak.com`,
+    description: article.seo_description || "",
+    url: window.location.href,
+    image: article.cover_image_url || undefined,
+  });
+  setGeoMeta(article.geo_tag);
 
   const dateStr = new Date(article.created_at).toLocaleDateString();
 
