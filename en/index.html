@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>NetBijak.com | Compare Malaysia Broadband Plans</title>
   <link rel="stylesheet" href="../assets/css/style.css" />
-<script src="../assets/js/seo-meta.js"></script>
+  <script src="../assets/js/seo-meta.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script>const ROOT_PATH = "../";</script>
 </head>
@@ -51,6 +51,18 @@
       </div>
     </section>
 
+    <section class="section-card" id="latest-articles-section">
+      <div class="latest-articles-header">
+        <h2 id="latest-articles-title" style="margin-bottom:0"></h2>
+        <div class="latest-articles-controls">
+          <button type="button" id="latest-articles-prev" class="btn-scroll">‹</button>
+          <button type="button" id="latest-articles-next" class="btn-scroll">›</button>
+          <a href="blog/" id="latest-articles-all" class="latest-articles-all-link"></a>
+        </div>
+      </div>
+      <div id="latest-articles-track" class="latest-articles-track"></div>
+    </section>
+
     <section class="section-card">
       <h2 id="browse-title"></h2>
       <div id="provider-browse-grid" class="provider-browse-grid"></div>
@@ -61,12 +73,6 @@
       <p class="section-sub" id="results-sub"></p>
       <div id="results-grid" class="results-grid"></div>
     </section>
-
-    <section class="section-card">
-      <h2 id="faq-title"></h2>
-      <p class="section-sub" id="faq-subtitle"></p>
-      <div id="faq-list" class="faq-list"></div>
-    </section>
   </main>
 
   <footer id="site-footer"></footer>
@@ -75,7 +81,6 @@
   <script src="../assets/js/translations.js"></script>
   <script src="../assets/js/site.js"></script>
   <script src="../assets/js/home.js"></script>
-<script src="../assets/js/faq.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("home-title").textContent = t("home_title");
@@ -88,6 +93,8 @@
       document.getElementById("icon-nav-speedtest-label").textContent = t("icon_speedtest");
       document.getElementById("icon-nav-blog-label").textContent = t("icon_articles");
       document.getElementById("browse-title").textContent = t("browse_by_provider");
+      document.getElementById("latest-articles-title").textContent = t("latest_articles_title");
+      document.getElementById("latest-articles-all").textContent = t("latest_articles_all");
       document.getElementById("results-title").textContent = t("results_title");
       document.getElementById("results-sub").textContent = t("results_sub");
     });
