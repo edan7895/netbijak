@@ -47,10 +47,10 @@ async function loadBlogDetail() {
 
   if (faqs.length > 0) {
     faqHtml = `
-      <div class="detail-section" id="article-faq-section">
+      <section class="section-card" id="article-faq-section">
         <h2>Frequently Asked Questions</h2>
         <div id="article-faq-list" class="faq-list"></div>
-      </div>
+      </section>
     `;
   }
 
