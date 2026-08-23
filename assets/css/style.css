@@ -794,3 +794,18 @@ table.compare-table tbody tr:nth-child(odd) .compare-row-label { background: #ee
 .bh-article-full-content ul, .bh-article-full-content ol { margin: 0 0 1.25rem 1.5rem; }
 .bh-article-full-content li { margin-bottom: 0.5rem; }
 .bh-article-full-content img { max-width: 100%; border-radius: 12px; margin: 1rem 0; }
+
+
+/* ===== Blog 文章类型标签 ===== */
+.blog-card-img-wrap { position: relative; }
+.blog-card-type-badge {
+  position: absolute; top: 10px; left: 10px;
+  background: rgba(15,23,42,0.85); color: #5eead4;
+  font-size: 0.7rem; font-weight: 800; padding: 4px 10px; border-radius: 99px;
+  text-transform: uppercase; letter-spacing: 0.04em;
+}
+.blog-type-tag {
+  display: inline-block; margin-bottom: 10px;
+  background: #f0fdfa; color: #0d9488; font-size: 0.75rem; font-weight: 800;
+  padding: 4px 12px; border-radius: 99px; text-transform: uppercase; letter-spacing: 0.04em;
+}
