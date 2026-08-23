@@ -35,11 +35,13 @@
     table.admin-table td { padding: 12px 16px; border-top: 1px solid #f1f5f9; }
     .btn-small {
       padding: 6px 14px; background: #0f172a; color: #fff; border: none;
-      border-radius: 8px; font-size: 0.8rem; cursor: pointer;
+      border-radius: 8px; font-size: 0.8rem; cursor: pointer; margin-right: 6px;
     }
+    .btn-delete { background: #dc2626; }
     .badge-published { background: #dcfce7; color: #166534; padding: 3px 10px; border-radius: 99px; font-size: 0.75rem; font-weight: 700; }
     .badge-unpublished { background: #fee2e2; color: #991b1b; padding: 3px 10px; border-radius: 99px; font-size: 0.75rem; font-weight: 700; }
     .lang-tag { background: #e0f2fe; color: #0369a1; padding: 2px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; }
+    .type-tag { background: #fef3c7; color: #92400e; padding: 2px 8px; border-radius: 6px; font-size: 0.75rem; font-weight: 700; }
 
     #article-form-wrap {
       background: #fff; border-radius: 16px; padding: 1.75rem; margin-bottom: 1.5rem;
@@ -67,8 +69,7 @@
       border-radius: 10px; font-weight: 700; cursor: pointer;
     }
 
-    /* ===== 编辑器区域 ===== */
-    .editor-toolbar-extra { display: flex; gap: 10px; margin-bottom: 10px; }
+    .editor-toolbar-extra { display: flex; gap: 10px; margin-bottom: 10px; flex-wrap: wrap; }
     .btn-editor-tool {
       padding: 8px 16px; background: #f1f5f9; color: #334155; border: 1px solid #cbd5e1;
       border-radius: 8px; font-size: 0.8rem; font-weight: 700; cursor: pointer;
@@ -77,7 +78,6 @@
     #quill-editor { min-height: 300px; background: #fff; font-size: 0.95rem; }
     .ql-editor { min-height: 300px; }
 
-    /* ===== Modal（弹窗）===== */
     .modal-overlay {
       position: fixed; inset: 0; background: rgba(0,0,0,0.5);
       display: flex; align-items: center; justify-content: center; z-index: 100;
@@ -88,13 +88,32 @@
     .modal-box h3 { margin-bottom: 1.25rem; font-size: 1.05rem; }
     .modal-field { margin-bottom: 1rem; }
     .modal-field label { display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 6px; color: #475569; }
-    .modal-field input, .modal-field select {
+    .modal-field input, .modal-field select, .modal-field textarea {
       width: 100%; padding: 10px 14px; border-radius: 8px; border: 1.5px solid #cbd5e1; font-size: 0.9rem;
     }
     .modal-actions { display: flex; gap: 10px; margin-top: 1.25rem; }
     .modal-actions button { flex: 1; padding: 11px; border-radius: 10px; border: none; font-weight: 700; cursor: pointer; }
     .modal-btn-primary { background: #14b8a6; color: #fff; }
     .modal-btn-secondary { background: #f1f5f9; color: #334155; }
+
+    .faq-section { margin-top: 1.5rem; border-top: 2px solid #f1f5f9; padding-top: 1.25rem; }
+    .faq-section h3 { font-size: 1rem; margin-bottom: 0.5rem; }
+    .faq-edit-row {
+      background: #f8fafc; border-radius: 10px; padding: 12px; margin-bottom: 10px;
+      display: grid; grid-template-columns: 1fr; gap: 8px;
+    }
+    .faq-edit-row input, .faq-edit-row textarea {
+      padding: 8px 12px; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 0.85rem;
+    }
+    .faq-edit-row textarea { min-height: 60px; resize: vertical; }
+    .btn-remove-faq {
+      justify-self: start; padding: 6px 14px; background: #fee2e2; color: #991b1b;
+      border: none; border-radius: 6px; font-size: 0.75rem; cursor: pointer;
+    }
+    .btn-add-faq {
+      padding: 8px 16px; background: #e0f2fe; color: #0369a1; border: none;
+      border-radius: 8px; font-size: 0.8rem; font-weight: 700; cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -111,7 +130,6 @@
       </div>
     </div>
 
-    <!-- 新增/编辑表单 -->
     <div id="article-form-wrap" class="hidden">
       <h2 id="article-form-title-label">New Article</h2>
       <form id="article-form">
@@ -130,6 +148,13 @@
               <option value="en">English</option>
               <option value="zh">中文</option>
               <option value="ms">Bahasa Malaysia</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label>Type</label>
+            <select id="form-article-type" required>
+              <option value="article">Article</option>
+              <option value="news">News</option>
             </select>
           </div>
           <div class="form-field">
@@ -164,8 +189,16 @@
           <div class="editor-toolbar-extra">
             <button type="button" id="btn-insert-banner" class="btn-editor-tool">🖼️ Insert Banner Image</button>
             <button type="button" id="btn-insert-link" class="btn-editor-tool">🔗 Insert Link (select text first)</button>
+            <button type="button" id="btn-insert-whatsapp" class="btn-editor-tool">💬 Insert WhatsApp Button</button>
           </div>
           <div id="quill-editor"></div>
+        </div>
+
+        <div class="faq-section">
+          <h3>FAQ (optional — leave empty to skip)</h3>
+          <p class="form-hint" style="margin-bottom:10px">Adding FAQs here will automatically display a FAQ section on the article page with FAQ Schema for SEO.</p>
+          <div id="faq-rows-wrap"></div>
+          <button type="button" id="btn-add-faq-row" class="btn-add-faq">+ Add FAQ</button>
         </div>
 
         <div class="form-checkbox-row" style="margin-top:1.25rem">
@@ -196,6 +229,7 @@
           <tr>
             <th>Title</th>
             <th>Language</th>
+            <th>Type</th>
             <th>Created</th>
             <th>Status</th>
             <th></th>
@@ -206,7 +240,6 @@
     </div>
   </div>
 
-  <!-- Banner 插入弹窗 -->
   <div id="banner-modal" class="modal-overlay hidden">
     <div class="modal-box">
       <h3>Insert Banner Image</h3>
@@ -215,7 +248,7 @@
         <input type="text" id="banner-modal-image" placeholder="https://..." />
       </div>
       <div class="modal-field">
-        <label>Link URL (optional — clicking the banner goes here)</label>
+        <label>Link URL (optional)</label>
         <input type="text" id="banner-modal-link" placeholder="https://... or leave blank" />
       </div>
       <div class="modal-actions">
@@ -225,7 +258,6 @@
     </div>
   </div>
 
-  <!-- 连结插入弹窗 -->
   <div id="link-modal" class="modal-overlay hidden">
     <div class="modal-box">
       <h3>Insert Link</h3>
@@ -252,6 +284,24 @@
       <div class="modal-actions">
         <button type="button" id="link-modal-insert" class="modal-btn-primary">Insert Link</button>
         <button type="button" id="link-modal-cancel" class="modal-btn-secondary">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="whatsapp-modal" class="modal-overlay hidden">
+    <div class="modal-box">
+      <h3>Insert WhatsApp Button</h3>
+      <div class="modal-field">
+        <label>Button Text</label>
+        <input type="text" id="whatsapp-modal-text" placeholder="e.g. Apply via NetBijak" />
+      </div>
+      <div class="modal-field">
+        <label>WhatsApp Message</label>
+        <textarea id="whatsapp-modal-message" placeholder="Hi NetBijak, I'm interested..."></textarea>
+      </div>
+      <div class="modal-actions">
+        <button type="button" id="whatsapp-modal-insert" class="modal-btn-primary">Insert</button>
+        <button type="button" id="whatsapp-modal-cancel" class="modal-btn-secondary">Cancel</button>
       </div>
     </div>
   </div>
