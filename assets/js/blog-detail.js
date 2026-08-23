@@ -33,14 +33,70 @@ async function loadBlogDetail() {
   setGeoMeta(article.geo_tag);
 
   const dateStr = new Date(article.created_at).toLocaleDateString();
+  const typeLabel = article.article_type === "news" ? "News" : "Article";
+
+  let faqHtml = "";
+  let faqs = [];
+  if (article.faq_data) {
+    try {
+      faqs = JSON.parse(article.faq_data);
+    } catch (e) {
+      faqs = [];
+    }
+  }
+
+  if (faqs.length > 0) {
+    faqHtml = `
+      <div class="detail-section" id="article-faq-section">
+        <h2>Frequently Asked Questions</h2>
+        <div id="article-faq-list" class="faq-list"></div>
+      </div>
+    `;
+  }
 
   container.innerHTML = `
     <a href="../" class="blog-back-link">${t("back_to_blog")}</a>
+    <span class="blog-type-tag">${typeLabel}</span>
     ${article.cover_image_url ? `<img src="${article.cover_image_url}" alt="${article.title}" class="blog-detail-cover" />` : ""}
     <div class="blog-detail-date">${dateStr}${article.geo_tag ? ` · ${article.geo_tag}` : ""}</div>
     <h1 class="blog-detail-title">${article.title}</h1>
     <div class="blog-detail-content">${article.content || ""}</div>
+    ${faqHtml}
   `;
+
+  if (faqs.length > 0) {
+    renderArticleFAQ(faqs);
+  }
+}
+
+function renderArticleFAQ(faqs) {
+  const faqList = document.getElementById("article-faq-list");
+  if (!faqList) return;
+
+  faqList.innerHTML = faqs
+    .map(
+      (item, i) => `
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="${i}">
+        <span>${item.q}</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>${item.a}</p></div>
+    </div>
+  `
+    )
+    .join("");
+
+  faqList.querySelectorAll(".faq-question").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const item = btn.closest(".faq-item");
+      const isOpen = item.classList.contains("open");
+      faqList.querySelectorAll(".faq-item").forEach((el) => el.classList.remove("open"));
+      if (!isOpen) item.classList.add("open");
+    });
+  });
+
+  injectFAQSchema("article-faq-list");
 }
 
 document.addEventListener("DOMContentLoaded", loadBlogDetail);

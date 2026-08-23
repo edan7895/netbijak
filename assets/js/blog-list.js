@@ -33,10 +33,14 @@ async function loadBlogList() {
 function buildBlogCard(article) {
   const dateStr = new Date(article.created_at).toLocaleDateString();
   const excerpt = (article.content || "").replace(/<[^>]*>/g, "").slice(0, 120);
+  const typeLabel = article.article_type === "news" ? "News" : "Article";
 
   return `
     <a href="post/?slug=${article.slug}" class="blog-card">
-      ${article.cover_image_url ? `<img src="${article.cover_image_url}" alt="${article.title}" class="blog-card-img" />` : `<div class="blog-card-img blog-card-img-placeholder">📰</div>`}
+      <div class="blog-card-img-wrap">
+        ${article.cover_image_url ? `<img src="${article.cover_image_url}" alt="${article.title}" class="blog-card-img" />` : `<div class="blog-card-img blog-card-img-placeholder">📰</div>`}
+        <span class="blog-card-type-badge">${typeLabel}</span>
+      </div>
       <div class="blog-card-body">
         <div class="blog-card-date">${dateStr}</div>
         <div class="blog-card-title">${article.title}</div>
