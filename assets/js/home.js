@@ -1,6 +1,6 @@
-// NetBijak.com - Home 首页逻辑（搜索 + 按运营商浏览）
+// NetBijak.com - Home 首页逻辑（搜索 + 按运营商浏览 + 最新文章）
 
-const WHATSAPP_NUMBER = "60178835110"; // ⚠️ 改成你的真实WhatsApp Business号码
+const WHATSAPP_NUMBER = "60178835110";
 
 function initHomePage() {
   const searchBtn = document.getElementById("search-btn");
@@ -13,6 +13,7 @@ function initHomePage() {
   });
 
   renderProviderGrid();
+  renderLatestArticles();
 }
 
 async function performSearch() {
@@ -83,6 +84,64 @@ async function renderProviderGrid() {
   `
     )
     .join("");
+}
+
+// ===== 最新文章横向轮播 =====
+async function renderLatestArticles() {
+  const trackEl = document.getElementById("latest-articles-track");
+  const sectionEl = document.getElementById("latest-articles-section");
+  if (!trackEl) return;
+
+  const lang = getCurrentLang();
+  const now = new Date().toISOString();
+
+  const { data: articles, error } = await supabaseClient
+    .from("articles")
+    .select("*")
+    .eq("language", lang)
+    .eq("is_published", true)
+    .or(`publish_at.is.null,publish_at.lte.${now}`)
+    .order("created_at", { ascending: false })
+    .limit(8);
+
+  if (error || !articles || articles.length === 0) {
+    if (sectionEl) sectionEl.classList.add("hidden");
+    return;
+  }
+
+  trackEl.innerHTML = articles.map((a) => buildArticleMiniCard(a)).join("");
+
+  const prevBtn = document.getElementById("latest-articles-prev");
+  const nextBtn = document.getElementById("latest-articles-next");
+  if (prevBtn && nextBtn) {
+    prevBtn.addEventListener("click", () => {
+      trackEl.scrollBy({ left: -280, behavior: "smooth" });
+    });
+    nextBtn.addEventListener("click", () => {
+      trackEl.scrollBy({ left: 280, behavior: "smooth" });
+    });
+  }
+}
+
+function buildArticleMiniCard(article) {
+  const dateStr = new Date(article.created_at).toLocaleDateString();
+  const excerpt = (article.content || "").replace(/<[^>]*>/g, "").slice(0, 80);
+  const typeLabel = article.article_type === "news" ? "News" : "Article";
+  const lang = getCurrentLang();
+
+  return `
+    <a href="blog/post/?slug=${article.slug}" class="latest-article-card">
+      <div class="latest-article-img-wrap">
+        ${article.cover_image_url ? `<img src="${article.cover_image_url}" alt="${article.title}" />` : `<div class="latest-article-placeholder">📰</div>`}
+        <span class="latest-article-badge">${typeLabel}</span>
+      </div>
+      <div class="latest-article-body">
+        <div class="latest-article-date">${dateStr}</div>
+        <div class="latest-article-title">${article.title}</div>
+        <p class="latest-article-excerpt">${excerpt}${excerpt.length >= 80 ? "..." : ""}</p>
+      </div>
+    </a>
+  `;
 }
 
 function buildResultCard(plan, isBest) {
