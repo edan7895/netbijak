@@ -1,4 +1,4 @@
-// NetBijak.com - Home 首页逻辑（搜索 + 按运营商浏览 + 最新文章）
+// NetBijak.com - Home 首页逻辑（读取静态JSON，不再问Supabase）
 
 const WHATSAPP_NUMBER = "60178835110";
 
@@ -18,7 +18,7 @@ function initHomePage() {
 
 async function performSearch() {
   const input = document.getElementById("search-input");
-  const keyword = input.value.trim();
+  const keyword = input.value.trim().toLowerCase();
   if (!keyword) return;
 
   const resultsSection = document.getElementById("results-section");
@@ -30,21 +30,25 @@ async function performSearch() {
   resultsGrid.innerHTML = `<p style="color:#94a3b8">Loading...</p>`;
   resultsSection.scrollIntoView({ behavior: "smooth" });
 
-  const { data: plans, error } = await supabaseClient
-    .from("plans")
-    .select("*, providers(*)")
-    .eq("is_published", true)
-    .or(`name.ilike.%${keyword}%,tagline.ilike.%${keyword}%`)
-    .order("promo_price", { ascending: true })
-    .limit(24);
+  const allPlans = await fetchStaticData("plans");
 
-  if (error || !plans || plans.length === 0) {
+  const matched = allPlans
+    .filter((p) => isPlanCurrentlyPublished(p))
+    .filter((p) => {
+      const name = (p.name || "").toLowerCase();
+      const tagline = (p.tagline || "").toLowerCase();
+      return name.includes(keyword) || tagline.includes(keyword);
+    })
+    .sort((a, b) => a.promo_price - b.promo_price)
+    .slice(0, 24);
+
+  if (matched.length === 0) {
     resultsGrid.innerHTML = `<p style="color:#94a3b8;padding:2rem;text-align:center">${t("no_results")}</p>`;
     return;
   }
 
-  const lowestPrice = Math.min(...plans.map((p) => p.promo_price));
-  resultsGrid.innerHTML = plans.map((plan) => buildResultCard(plan, plan.promo_price === lowestPrice)).join("");
+  const lowestPrice = Math.min(...matched.map((p) => p.promo_price));
+  resultsGrid.innerHTML = matched.map((plan) => buildResultCard(plan, plan.promo_price === lowestPrice)).join("");
 }
 
 async function renderProviderGrid() {
@@ -53,18 +57,8 @@ async function renderProviderGrid() {
 
   gridEl.innerHTML = `<p style="color:#94a3b8">Loading...</p>`;
 
-  const { data: providers, error } = await supabaseClient
-    .from("providers")
-    .select("*")
-    .eq("is_active", true)
-    .order("sort_order", { ascending: true });
-
-  if (error || !providers) {
-    gridEl.innerHTML = "";
-    return;
-  }
-
-  const filtered = providers.filter((p) => !p.slug.includes("-business"));
+  const allProviders = await fetchStaticData("providers");
+  const filtered = allProviders.filter((p) => p.is_active && !p.slug.includes("-business"));
 
   if (filtered.length === 0) {
     gridEl.innerHTML = `<p style="color:#94a3b8">${t("no_results")}</p>`;
@@ -93,23 +87,19 @@ async function renderLatestArticles() {
   if (!trackEl) return;
 
   const lang = getCurrentLang();
-  const now = new Date().toISOString();
+  const allArticles = await fetchStaticData("articles");
 
-  const { data: articles, error } = await supabaseClient
-    .from("articles")
-    .select("*")
-    .eq("language", lang)
-    .eq("is_published", true)
-    .or(`publish_at.is.null,publish_at.lte.${now}`)
-    .order("created_at", { ascending: false })
-    .limit(8);
+  const filtered = allArticles
+    .filter((a) => a.language === lang && isArticleCurrentlyPublished(a))
+    .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+    .slice(0, 8);
 
-  if (error || !articles || articles.length === 0) {
+  if (filtered.length === 0) {
     if (sectionEl) sectionEl.classList.add("hidden");
     return;
   }
 
-  trackEl.innerHTML = articles.map((a) => buildArticleMiniCard(a)).join("");
+  trackEl.innerHTML = filtered.map((a) => buildArticleMiniCard(a)).join("");
 
   const prevBtn = document.getElementById("latest-articles-prev");
   const nextBtn = document.getElementById("latest-articles-next");
@@ -127,7 +117,6 @@ function buildArticleMiniCard(article) {
   const dateStr = new Date(article.created_at).toLocaleDateString();
   const excerpt = (article.content || "").replace(/<[^>]*>/g, "").slice(0, 80);
   const typeLabel = article.article_type === "news" ? "News" : "Article";
-  const lang = getCurrentLang();
 
   return `
     <a href="blog/post/?slug=${article.slug}" class="latest-article-card">
