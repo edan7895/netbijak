@@ -5,6 +5,7 @@ const WHATSAPP_NUMBER_FYP = "60178835110";
 let selectedUsageType = "home";
 let selectedPropertyType = "highrise";
 let selectedAppType = "new";
+let selectedConnType = "all";
 let selectedUserRange = { min: 2, max: 4 };
 
 function initFindYourPlanPage() {
@@ -13,16 +14,11 @@ function initFindYourPlanPage() {
   const landedBtn = document.getElementById("btn-landed");
   const highriseBtn = document.getElementById("btn-highrise");
   const appTypeSelect = document.getElementById("apptype-select");
+  const connTypeSelect = document.getElementById("conntype-select");
   const userSelect = document.getElementById("user-select");
   const compareBtn = document.getElementById("btn-compare");
 
   if (!landedBtn) return;
-
-  setSEOMeta({
-    title: t("findplan_title") + " | NetBijak.com",
-    description: t("findplan_subtitle"),
-    url: window.location.href,
-  });
 
   usageHomeBtn.addEventListener("click", () => {
     selectedUsageType = "home";
@@ -52,12 +48,22 @@ function initFindYourPlanPage() {
     selectedAppType = e.target.value;
   });
 
+  connTypeSelect.addEventListener("change", (e) => {
+    selectedConnType = e.target.value;
+  });
+
   userSelect.addEventListener("change", (e) => {
     const [min, max] = e.target.value.split("-").map(Number);
     selectedUserRange = { min, max: max || 999 };
   });
 
   compareBtn.addEventListener("click", runComparison);
+
+  setSEOMeta({
+    title: t("findplan_title") + " | NetBijak.com",
+    description: t("findplan_subtitle"),
+    url: window.location.href,
+  });
 
   loadFindYourPlanContent();
 }
@@ -101,11 +107,17 @@ async function runComparison() {
 
   const housingColumn = selectedPropertyType === "landed" ? "supports_landed" : "supports_highrise";
 
-  const { data: allProviders, error: providerError } = await supabaseClient
+  let providerQuery = supabaseClient
     .from("providers")
     .select("*")
     .eq("is_active", true)
     .eq(housingColumn, true);
+
+  if (selectedConnType !== "all") {
+    providerQuery = providerQuery.eq("connection_type", selectedConnType);
+  }
+
+  const { data: allProviders, error: providerError } = await providerQuery;
 
   if (providerError || !allProviders) {
     resultsGrid.innerHTML = `<p>${t("no_results")}</p>`;
@@ -269,7 +281,6 @@ function buildFindYourPlanFAQ() {
   });
 
   injectFAQSchema("fyp-faq-list");
-
 }
 
 document.addEventListener("DOMContentLoaded", initFindYourPlanPage);

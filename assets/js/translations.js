@@ -253,6 +253,11 @@ const translations = {
     cp_faq_a8_outro: "to get recommendations based on your needs and budget.",
 
     cp_article_title: "How to Compare Broadband Plans in Malaysia",
+
+    section_conntype_title: "Connection Type",
+    conntype_fibre: "Fibre",
+    conntype_wireless: "5G Wireless",
+    conntype_all: "Any",
   },
   zh: {
     nav_home: "首页",
@@ -507,6 +512,11 @@ const translations = {
     cp_faq_a8_outro: "根据您的需求及预算获得推荐。",
 
     cp_article_title: "如何在马来西亚比较宽频配套",
+
+    section_conntype_title: "连线类型",
+    conntype_fibre: "光纤",
+    conntype_wireless: "5G无线",
+    conntype_all: "不限",
   },
   ms: {
     nav_home: "Laman Utama",
@@ -761,6 +771,11 @@ const translations = {
     cp_faq_a8_outro: "untuk mendapatkan cadangan berdasarkan keperluan dan bajet anda.",
 
     cp_article_title: "Cara Membandingkan Pelan Jalur Lebar di Malaysia",
+
+    section_conntype_title: "Jenis Sambungan",
+    conntype_fibre: "Gentian Optik",
+    conntype_wireless: "Wayarles 5G",
+    conntype_all: "Semua",
   },
 };
 
