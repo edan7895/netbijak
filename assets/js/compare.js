@@ -1,9 +1,10 @@
-// NetBijak.com - Compare 比较页逻辑
+// NetBijak.com - Compare 比较页逻辑（读取静态JSON）
 
 const WHATSAPP_NUMBER_COMPARE = "60178835110";
 
 let compareSlotCount = 0;
 let allProvidersCompare = [];
+let allPlansCompare = [];
 const MAX_SLOTS = 4;
 
 function matchesAppTypeCompare(applicationType, category) {
@@ -26,13 +27,8 @@ async function initComparePage() {
     url: window.location.href,
   });
 
-  const { data: providers } = await supabaseClient
-    .from("providers")
-    .select("*")
-    .eq("is_active", true)
-    .order("sort_order", { ascending: true });
-
-  allProvidersCompare = providers || [];
+  allProvidersCompare = (await fetchStaticData("providers")).filter((p) => p.is_active);
+  allPlansCompare = (await fetchStaticData("plans")).filter((p) => isPlanCurrentlyPublished(p));
 
   addCompareSlot();
   addCompareSlot();
@@ -56,6 +52,7 @@ function addCompareSlot() {
   slotEl.id = `slot-${slotId}`;
 
   const providerOptions = allProvidersCompare
+    .sort((a, b) => a.sort_order - b.sort_order)
     .map((p) => `<option value="${p.id}">${p.name}</option>`)
     .join("");
 
@@ -87,26 +84,22 @@ function removeCompareSlot(slotId) {
   if (el) el.remove();
 }
 
-async function updatePlanOptions(slotId) {
-  const providerId = document.getElementById(`slot-provider-${slotId}`).value;
+function updatePlanOptions(slotId) {
+  const providerId = parseInt(document.getElementById(`slot-provider-${slotId}`).value, 10);
   const appType = document.getElementById(`slot-apptype-${slotId}`).value;
   const planSelect = document.getElementById(`slot-plan-${slotId}`);
 
-  const { data: plans } = await supabaseClient
-    .from("plans")
-    .select("id, name, promo_price, new_and_transfer")
-    .eq("provider_id", providerId)
-    .eq("is_published", true)
-    .order("promo_price", { ascending: true });
-
-  const filtered = (plans || []).filter((p) => matchesAppTypeCompare(p.new_and_transfer, appType));
+  const filtered = allPlansCompare
+    .filter((p) => p.provider_id === providerId)
+    .filter((p) => matchesAppTypeCompare(p.new_and_transfer, appType))
+    .sort((a, b) => a.promo_price - b.promo_price);
 
   planSelect.innerHTML =
     `<option value="">${t("compare_select_placeholder")}</option>` +
     filtered.map((p) => `<option value="${p.id}">${p.name} — RM${p.promo_price}</option>`).join("");
 }
 
-async function runCompareTable() {
+function runCompareTable() {
   const resultWrap = document.getElementById("compare-result-wrap");
   const selectedPlanIds = [];
 
@@ -114,7 +107,7 @@ async function runCompareTable() {
     const slotEl = document.getElementById(`slot-${i}`);
     if (!slotEl) continue;
     const planId = document.getElementById(`slot-plan-${i}`).value;
-    if (planId) selectedPlanIds.push(planId);
+    if (planId) selectedPlanIds.push(parseInt(planId, 10));
   }
 
   if (selectedPlanIds.length < 2) {
@@ -122,17 +115,12 @@ async function runCompareTable() {
     return;
   }
 
-  const { data: plans, error } = await supabaseClient
-    .from("plans")
-    .select("*, providers(*)")
-    .in("id", selectedPlanIds);
+  const orderedPlans = selectedPlanIds.map((id) => allPlansCompare.find((p) => p.id === id)).filter(Boolean);
 
-  if (error || !plans || plans.length === 0) {
+  if (orderedPlans.length === 0) {
     resultWrap.innerHTML = `<p class="compare-empty-msg">${t("compare_empty")}</p>`;
     return;
   }
-
-  const orderedPlans = selectedPlanIds.map((id) => plans.find((p) => p.id == id)).filter(Boolean);
 
   renderCompareTable(orderedPlans);
 }
@@ -190,13 +178,10 @@ async function loadCompareContent() {
   if (!contentWrap) return;
 
   const lang = getCurrentLang();
-
-  const { data: article } = await supabaseClient
-    .from("articles")
-    .select("*")
-    .eq("slug", `compare-plans-buying-guide-${lang}`)
-    .eq("is_published", true)
-    .maybeSingle();
+  const allArticles = await fetchStaticData("articles");
+  const article = allArticles.find(
+    (a) => a.slug === `compare-plans-buying-guide-${lang}` && isArticleCurrentlyPublished(a)
+  );
 
   const articleHtml = article
     ? `

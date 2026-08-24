@@ -1,32 +1,15 @@
-// NetBijak.com - Broadband (Home) 页面：FAQ + 文章推荐区块（仅在 USAGE_TYPE === "home" 时载入）
+// NetBijak.com - Broadband (Home) 页面：ISP卡片 + FAQ + 文章（读取静态JSON）
 
 async function loadBroadbandHomeContent() {
+  const gridEl = document.getElementById("browse-page-grid");
+  const titleEl = document.getElementById("browse-page-title");
   const contentWrap = document.getElementById("bh-content-wrap");
-  if (!contentWrap || typeof USAGE_TYPE === "undefined" || USAGE_TYPE !== "home") return;
-
-  // 抓取 Home 类运营商名单（排除 Business）
-  const { data: providers } = await supabaseClient
-    .from("providers")
-    .select("name")
-    .eq("is_active", true)
-    .order("sort_order", { ascending: true });
-
-  const homeProviderNames = (providers || [])
-    .filter((p) => true)
-    .map((p) => p.name);
-
-  const { data: allProviders } = await supabaseClient
-    .from("providers")
-    .select("name, slug")
-    .eq("is_active", true)
-    .order("sort_order", { ascending: true });
-
-  const homeNames = (allProviders || [])
-    .filter((p) => !p.slug.includes("-business"))
-    .map((p) => p.name)
-    .join(", ");
+  if (!gridEl || typeof USAGE_TYPE === "undefined") return;
 
   const lang = getCurrentLang();
+
+  titleEl.textContent = t("browse_home_page_title");
+  document.title = titleEl.textContent + " | NetBijak.com";
 
   setSEOMeta({
     title: t("browse_home_page_title") + " | NetBijak.com",
@@ -34,13 +17,36 @@ async function loadBroadbandHomeContent() {
     url: window.location.href,
   });
 
-  // 尝试找到固定 slug 的 Buying Guide 文章
-  const { data: article } = await supabaseClient
-    .from("articles")
-    .select("*")
-    .eq("slug", `home-fibre-broadband-buying-guide-${lang}`)
-    .eq("is_published", true)
-    .maybeSingle();
+  const allProviders = await fetchStaticData("providers");
+  const filtered = allProviders.filter((p) => {
+    const isBusiness = p.slug.includes("-business");
+    return p.is_active && !isBusiness;
+  });
+
+  if (filtered.length === 0) {
+    gridEl.innerHTML = `<p style="color:#94a3b8">${t("no_results")}</p>`;
+  } else {
+    gridEl.innerHTML = filtered
+      .map(
+        (p) => `
+      <a href="${ROOT_PATH}${p.slug}/" class="provider-browse-card" style="border-color:${p.color_hex}">
+        <span class="provider-browse-info">
+          ${p.logo_url ? `<img src="${ROOT_PATH}${p.logo_url.replace(/^\//, "")}" alt="${p.name}" class="provider-logo-img" />` : ""}
+          <span class="provider-browse-name" style="color:${p.color_hex}">${p.name}</span>
+        </span>
+        <span class="provider-browse-arrow">→</span>
+      </a>
+    `
+      )
+      .join("");
+  }
+
+  const homeNames = filtered.map((p) => p.name).join(", ");
+
+  const allArticles = await fetchStaticData("articles");
+  const article = allArticles.find(
+    (a) => a.slug === `home-fibre-broadband-buying-guide-${lang}` && isArticleCurrentlyPublished(a)
+  );
 
   const articleHtml = article
     ? `
