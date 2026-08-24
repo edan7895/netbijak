@@ -71,6 +71,14 @@
         </select>
       </div>
       <div class="form-row">
+        <label id="conntype-title"></label>
+        <select id="conntype-select">
+          <option value="all" selected id="conntype-opt-all"></option>
+          <option value="fibre" id="conntype-opt-fibre"></option>
+          <option value="wireless" id="conntype-opt-wireless"></option>
+        </select>
+      </div>
+      <div class="form-row">
         <label id="users-title"></label>
         <select id="user-select">
           <option value="1-2">1 - 2</option>
@@ -122,6 +130,10 @@
       document.getElementById("apptype-opt-transfer").textContent = t("apptype_transfer");
       document.getElementById("apptype-opt-upgrade").textContent = t("apptype_upgrade");
       document.getElementById("apptype-opt-existing").textContent = t("apptype_existing");
+      document.getElementById("conntype-title").textContent = t("section_conntype_title");
+      document.getElementById("conntype-opt-all").textContent = t("conntype_all");
+      document.getElementById("conntype-opt-fibre").textContent = t("conntype_fibre");
+      document.getElementById("conntype-opt-wireless").textContent = t("conntype_wireless");
       document.getElementById("users-title").textContent = t("section_users_title");
       document.getElementById("budget-title").textContent = t("section_budget_title");
       document.getElementById("budget-input").placeholder = t("budget_placeholder");
