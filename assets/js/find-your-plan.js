@@ -1,4 +1,4 @@
-// NetBijak.com - Find Your Plan 页面逻辑
+// NetBijak.com - Find Your Plan 页面逻辑（读取静态JSON）
 
 const WHATSAPP_NUMBER_FYP = "60178835110";
 
@@ -107,24 +107,15 @@ async function runComparison() {
 
   const housingColumn = selectedPropertyType === "landed" ? "supports_landed" : "supports_highrise";
 
-  let providerQuery = supabaseClient
-    .from("providers")
-    .select("*")
-    .eq("is_active", true)
-    .eq(housingColumn, true);
+  const allProviders = await fetchStaticData("providers");
+
+  let providers = allProviders.filter((p) => p.is_active && p[housingColumn] === true);
 
   if (selectedConnType !== "all") {
-    providerQuery = providerQuery.eq("connection_type", selectedConnType);
+    providers = providers.filter((p) => p.connection_type === selectedConnType);
   }
 
-  const { data: allProviders, error: providerError } = await providerQuery;
-
-  if (providerError || !allProviders) {
-    resultsGrid.innerHTML = `<p>${t("no_results")}</p>`;
-    return;
-  }
-
-  const providers = allProviders.filter((p) => {
+  providers = providers.filter((p) => {
     const isBusiness = p.slug.includes("-business");
     return selectedUsageType === "business" ? isBusiness : !isBusiness;
   });
@@ -135,29 +126,19 @@ async function runComparison() {
   }
 
   const providerIds = providers.map((p) => p.id);
-  const now = new Date().toISOString();
+  const allPlans = await fetchStaticData("plans");
 
-  const { data: plans, error: planError } = await supabaseClient
-    .from("plans")
-    .select("*, providers(*)")
-    .in("provider_id", providerIds)
-    .eq("is_published", true)
-    .lte("promo_price", budget)
-    .or(`publish_at.is.null,publish_at.lte.${now}`)
-    .or(`unpublish_at.is.null,unpublish_at.gte.${now}`)
-    .order("promo_price", { ascending: true });
-
-  if (planError) {
-    resultsGrid.innerHTML = `<p>${t("no_results")}</p>`;
-    return;
-  }
-
-  const filtered = (plans || []).filter((plan) => {
-    const planRange = parseUserRange(plan.recommended_for);
-    const userMatch = rangesOverlap(planRange, selectedUserRange);
-    const appTypeMatch = matchesAppType(plan.new_and_transfer, selectedAppType);
-    return userMatch && appTypeMatch;
-  });
+  const filtered = allPlans
+    .filter((plan) => providerIds.includes(plan.provider_id))
+    .filter((plan) => isPlanCurrentlyPublished(plan))
+    .filter((plan) => plan.promo_price <= budget)
+    .filter((plan) => {
+      const planRange = parseUserRange(plan.recommended_for);
+      const userMatch = rangesOverlap(planRange, selectedUserRange);
+      const appTypeMatch = matchesAppType(plan.new_and_transfer, selectedAppType);
+      return userMatch && appTypeMatch;
+    })
+    .sort((a, b) => a.promo_price - b.promo_price);
 
   renderResults(filtered);
 }
@@ -220,13 +201,10 @@ async function loadFindYourPlanContent() {
   if (!contentWrap) return;
 
   const lang = getCurrentLang();
-
-  const { data: article } = await supabaseClient
-    .from("articles")
-    .select("*")
-    .eq("slug", `find-my-plan-buying-guide-${lang}`)
-    .eq("is_published", true)
-    .maybeSingle();
+  const allArticles = await fetchStaticData("articles");
+  const article = allArticles.find(
+    (a) => a.slug === `find-my-plan-buying-guide-${lang}` && isArticleCurrentlyPublished(a)
+  );
 
   const articleHtml = article
     ? `

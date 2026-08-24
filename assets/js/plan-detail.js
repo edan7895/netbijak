@@ -1,4 +1,4 @@
-// NetBijak.com - 配套详情页逻辑
+// NetBijak.com - 配套详情页逻辑（读取静态JSON）
 
 const WHATSAPP_NUMBER_DETAIL = "60178835110";
 
@@ -15,13 +15,10 @@ async function loadPlanDetail() {
     return;
   }
 
-  const { data: plan, error } = await supabaseClient
-    .from("plans")
-    .select("*, providers(*), plan_banners(*)")
-    .eq("slug", slug)
-    .single();
+  const allPlans = await fetchStaticData("plans");
+  const plan = allPlans.find((p) => p.slug === slug);
 
-  if (error || !plan) {
+  if (!plan) {
     container.innerHTML = `<p>Plan not found.</p>`;
     return;
   }
@@ -115,15 +112,14 @@ async function loadPlanDetail() {
 
 async function loadRelatedArticles(planId) {
   const lang = getCurrentLang();
-  const { data: articles } = await supabaseClient
-    .from("articles")
-    .select("*")
-    .eq("plan_id", planId)
-    .eq("is_published", true)
-    .eq("language", lang);
+  const allArticles = await fetchStaticData("articles");
+
+  const articles = allArticles.filter(
+    (a) => a.plan_id === planId && a.language === lang && isArticleCurrentlyPublished(a)
+  );
 
   const section = document.getElementById("detail-articles-section");
-  if (!section || !articles || articles.length === 0) return;
+  if (!section || articles.length === 0) return;
 
   section.innerHTML = `
     <div class="detail-section">

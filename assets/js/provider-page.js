@@ -1,4 +1,4 @@
-// NetBijak.com - ISP 总览页逻辑（New / Transfer / Upgrade / Existing 分Tab）
+// NetBijak.com - ISP 总览页逻辑（读取静态JSON）
 
 let currentTab = "new";
 let allPlansForProvider = [];
@@ -22,13 +22,10 @@ async function loadProviderPage() {
   const gridEl = document.getElementById("provider-plans-grid");
   if (!nameEl || typeof PROVIDER_SLUG === "undefined") return;
 
-  const { data: provider, error: providerError } = await supabaseClient
-    .from("providers")
-    .select("*")
-    .eq("slug", PROVIDER_SLUG)
-    .single();
+  const allProviders = await fetchStaticData("providers");
+  const provider = allProviders.find((p) => p.slug === PROVIDER_SLUG);
 
-  if (providerError || !provider) {
+  if (!provider) {
     nameEl.textContent = "Provider not found";
     return;
   }
@@ -46,20 +43,11 @@ async function loadProviderPage() {
     <span style="color:${provider.color_hex}">${provider.name}</span>
   `;
 
-  const now = new Date().toISOString();
-  const { data: plans, error: planError } = await supabaseClient
-    .from("plans")
-    .select("*, plan_banners(*)")
-    .eq("provider_id", provider.id)
-    .eq("is_published", true)
-    .or(`publish_at.is.null,publish_at.lte.${now}`)
-    .or(`unpublish_at.is.null,unpublish_at.gte.${now}`)
-    .order("promo_price", { ascending: true });
-
-  if (planError || !plans) {
-    gridEl.innerHTML = `<p>${t("no_results")}</p>`;
-    return;
-  }
+  const allPlans = await fetchStaticData("plans");
+  const plans = allPlans
+    .filter((p) => p.provider_id === provider.id)
+    .filter((p) => isPlanCurrentlyPublished(p))
+    .sort((a, b) => a.promo_price - b.promo_price);
 
   allPlansForProvider = plans;
   buildTabs(plans);
