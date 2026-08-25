@@ -1,0 +1,28 @@
+{
+  "redirects": [
+    {
+      "source": "/:provider/plan",
+      "has": [
+        {
+          "type": "query",
+          "key": "slug",
+          "value": "(?<slug>.*)"
+        }
+      ],
+      "destination": "/:provider/:slug/",
+      "permanent": true
+    },
+    {
+      "source": "/:lang/blog/post",
+      "has": [
+        {
+          "type": "query",
+          "key": "slug",
+          "value": "(?<slug>.*)"
+        }
+      ],
+      "destination": "/:lang/blog/:slug/",
+      "permanent": true
+    }
+  ]
+}
