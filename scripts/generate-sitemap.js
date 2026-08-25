@@ -1,4 +1,4 @@
-// NetBijak.com - 自动产生动态Sitemap（配套 + 文章）
+// NetBijak.com - 自动产生动态Sitemap（配套 + 文章，使用干净网址格式）
 const fs = require('fs');
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
@@ -22,33 +22,50 @@ async function fetchFromSupabase(table, query) {
   return res.json();
 }
 
+function isPlanCurrentlyPublished(plan) {
+  const now = new Date();
+  if (plan.publish_at && new Date(plan.publish_at) > now) return false;
+  if (plan.unpublish_at && new Date(plan.unpublish_at) < now) return false;
+  return true;
+}
+
+function isArticleCurrentlyPublished(article) {
+  const now = new Date();
+  if (article.publish_at && new Date(article.publish_at) > now) return false;
+  return true;
+}
+
 async function generateSitemap() {
   console.log('Fetching plans...');
   const plans = await fetchFromSupabase(
     'plans',
-    'select=slug,providers(slug)&is_published=eq.true'
+    'select=slug,publish_at,unpublish_at,providers(slug)&is_published=eq.true'
   );
 
   console.log('Fetching articles...');
   const articles = await fetchFromSupabase(
     'articles',
-    'select=slug,language&is_published=eq.true'
+    'select=slug,language,publish_at&is_published=eq.true'
   );
 
   let urls = [];
 
+  // 配套详情页（干净网址：/provider-slug/plan-slug/）
   (plans || []).forEach((plan) => {
+    if (!isPlanCurrentlyPublished(plan)) return;
     if (plan.providers && plan.providers.slug && plan.slug) {
       urls.push(
-        `  <url><loc>${SITE_URL}/${plan.providers.slug}/plan/?slug=${plan.slug}</loc><priority>0.6</priority></url>`
+        `  <url><loc>${SITE_URL}/${plan.providers.slug}/${plan.slug}/</loc><priority>0.6</priority></url>`
       );
     }
   });
 
+  // 文章详情页（干净网址：/lang/blog/article-slug/）
   (articles || []).forEach((article) => {
+    if (!isArticleCurrentlyPublished(article)) return;
     if (article.slug && article.language && LANGS.includes(article.language)) {
       urls.push(
-        `  <url><loc>${SITE_URL}/${article.language}/blog/post/?slug=${article.slug}</loc><priority>0.6</priority></url>`
+        `  <url><loc>${SITE_URL}/${article.language}/blog/${article.slug}/</loc><priority>0.6</priority></url>`
       );
     }
   });
