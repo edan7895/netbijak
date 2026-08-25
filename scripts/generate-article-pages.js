@@ -1,0 +1,168 @@
+// NetBijak.com - 为每篇文章产生独立的静态HTML页面（含完整内容 + FAQ Schema，SEO友好）
+const fs = require('fs');
+const path = require('path');
+
+const SUPABASE_URL = process.env.SUPABASE_URL;
+const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
+
+async function fetchFromSupabase(table, query) {
+  const url = `${SUPABASE_URL}/rest/v1/${table}?${query}`;
+  const res = await fetch(url, {
+    headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}` },
+  });
+  if (!res.ok) throw new Error(`Fetch failed for ${table}: ${res.status} ${await res.text()}`);
+  return res.json();
+}
+
+function isArticleCurrentlyPublished(article) {
+  const now = new Date();
+  if (article.publish_at && new Date(article.publish_at) > now) return false;
+  return true;
+}
+
+function escapeHtml(str) {
+  if (!str) return "";
+  return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+function buildFAQSchemaScript(faqs) {
+  if (!faqs || faqs.length === 0) return "";
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
+  return `<script type="application/ld+json">${JSON.stringify(schema)}</script>`;
+}
+
+function buildFAQHtml(faqs) {
+  if (!faqs || faqs.length === 0) return "";
+  const items = faqs
+    .map(
+      (f, i) => `
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="${i}">
+        <span>${escapeHtml(f.q)}</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>${escapeHtml(f.a)}</p></div>
+    </div>`
+    )
+    .join("");
+
+  return `
+    <section class="section-card" id="article-faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div id="article-faq-list" class="faq-list">${items}</div>
+    </section>`;
+}
+
+function buildArticlePageHtml(article) {
+  const title = article.seo_title || `${article.title} | NetBijak.com`;
+  const description = article.seo_description || "";
+  const pageUrl = `https://netbijak.com/${article.language}/blog/${article.slug}/`;
+  const ogImage = article.cover_image_url || "https://netbijak.com/assets/images/logo.png";
+
+  const dateStr = new Date(article.created_at).toLocaleDateString();
+  const typeLabel = article.article_type === "news" ? "News" : "Article";
+
+  let faqs = [];
+  if (article.faq_data) {
+    try {
+      faqs = JSON.parse(article.faq_data);
+    } catch (e) {
+      faqs = [];
+    }
+  }
+
+  const geoTag = article.geo_tag
+    ? `<meta name="geo.placename" content="${escapeHtml(article.geo_tag)}" />`
+    : `<meta name="geo.placename" content="Malaysia" />`;
+
+  const backLabels = { en: "← Back to Blog", zh: "← 返回部落格", ms: "← Kembali ke Blog" };
+  const backLabel = backLabels[article.language] || backLabels.en;
+
+  return `<!DOCTYPE html>
+<html lang="${article.language}">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>${escapeHtml(title)}</title>
+  <meta name="description" content="${escapeHtml(description)}" />
+  <meta name="geo.region" content="MY" />
+  ${geoTag}
+  <meta property="og:title" content="${escapeHtml(title)}" />
+  <meta property="og:description" content="${escapeHtml(description)}" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="${escapeHtml(ogImage)}" />
+  <meta property="og:url" content="${pageUrl}" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="${pageUrl}" />
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  ${buildFAQSchemaScript(faqs)}
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="main">
+    <div id="blog-detail-container">
+      <a href="/${article.language}/blog/" class="blog-back-link">${backLabel}</a>
+      <span class="blog-type-tag">${typeLabel}</span>
+      ${article.cover_image_url ? `<img src="${escapeHtml(article.cover_image_url)}" alt="${escapeHtml(article.title)}" class="blog-detail-cover" />` : ""}
+      <div class="blog-detail-date">${dateStr}${article.geo_tag ? ` · ${escapeHtml(article.geo_tag)}` : ""}</div>
+      <h1 class="blog-detail-title">${escapeHtml(article.title)}</h1>
+      <div class="blog-detail-content">${article.content || ""}</div>
+      ${buildFAQHtml(faqs)}
+    </div>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script>const ROOT_PATH = "/";</script>
+  <script src="/assets/js/translations.js"></script>
+  <script src="/assets/js/site.js"></script>
+  ${faqs.length > 0 ? `<script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("#article-faq-list .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#article-faq-list .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
+    });
+  </script>` : ""}
+</body>
+</html>`;
+}
+
+async function generateArticlePages() {
+  console.log('Fetching articles...');
+  const articles = await fetchFromSupabase('articles', 'select=*&is_published=eq.true');
+
+  let count = 0;
+  for (const article of articles) {
+    if (!isArticleCurrentlyPublished(article)) continue;
+    if (!article.language || !article.slug) continue;
+
+    const dir = path.join(article.language, 'blog', article.slug);
+    fs.mkdirSync(dir, { recursive: true });
+
+    const html = buildArticlePageHtml(article);
+    fs.writeFileSync(path.join(dir, 'index.html'), html);
+    count++;
+  }
+
+  console.log(`Generated ${count} article pages.`);
+}
+
+generateArticlePages().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
