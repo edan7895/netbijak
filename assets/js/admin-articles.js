@@ -324,11 +324,11 @@ function insertLinkIntoEditor() {
     }
   } else if (type === "article") {
     const slug = document.getElementById("link-article-select").value;
-    url = `/${lang}/blog/post/?slug=${slug}`;
+    url = `/${lang}/blog/${slug}/`;
   } else if (type === "plan") {
     const val = document.getElementById("link-plan-select").value;
     const [providerSlug, planSlug] = val.split("|");
-    url = `/${providerSlug}/plan/?slug=${planSlug}`;
+    url = `/${providerSlug}/${planSlug}/`;
   }
 
   quillEditor.formatText(range.index, range.length, "link", url);

@@ -106,7 +106,7 @@ function renderPlansForTab(tab) {
 
 function buildProviderPlanCard(plan) {
   const color = currentProviderData.color_hex;
-  const detailLink = `plan/?slug=${plan.slug}`;
+  const detailLink = `${plan.slug}/`;
 
   const activeBanner = (plan.plan_banners || []).find((b) => {
     if (!b.is_active) return false;

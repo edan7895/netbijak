@@ -165,7 +165,7 @@ function buildResultCard(plan, isBest) {
 
   const waMsg = plan.whatsapp_ref || `Hi NetBijak, I'm interested in ${plan.name}`;
   const waLink = `https://wa.me/${WHATSAPP_NUMBER_FYP}?text=${encodeURIComponent(waMsg)}`;
-  const detailLink = `${ROOT_PATH}${providerSlug}/plan/?slug=${plan.slug}`;
+  const detailLink = `${ROOT_PATH}${providerSlug}/${plan.slug}/`;
 
   return `
     <div class="result-card" style="border-color:${color}">

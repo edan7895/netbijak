@@ -119,7 +119,7 @@ function buildArticleMiniCard(article) {
   const typeLabel = article.article_type === "news" ? "News" : "Article";
 
   return `
-    <a href="blog/post/?slug=${article.slug}" class="latest-article-card">
+    <a href="blog/${article.slug}/" class="latest-article-card">
       <div class="latest-article-img-wrap">
         ${article.cover_image_url ? `<img src="${article.cover_image_url}" alt="${article.title}" />` : `<div class="latest-article-placeholder">📰</div>`}
         <span class="latest-article-badge">${typeLabel}</span>
@@ -142,7 +142,7 @@ function buildResultCard(plan, isBest) {
 
   const waMsg = plan.whatsapp_ref || `Hi NetBijak, I'm interested in ${plan.name}`;
   const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waMsg)}`;
-  const detailLink = `../${providerSlug}/plan/?slug=${plan.slug}`;
+  const detailLink = `../${providerSlug}/${plan.slug}/`;
 
   return `
     <div class="result-card" style="border-color:${color}">

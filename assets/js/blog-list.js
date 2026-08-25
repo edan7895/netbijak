@@ -32,7 +32,7 @@ function buildBlogCard(article) {
   const typeLabel = article.article_type === "news" ? "News" : "Article";
 
   return `
-    <a href="post/?slug=${article.slug}" class="blog-card">
+    <a href="${article.slug}/" class="blog-card">
       <div class="blog-card-img-wrap">
         ${article.cover_image_url ? `<img src="${article.cover_image_url}" alt="${article.title}" class="blog-card-img" />` : `<div class="blog-card-img blog-card-img-placeholder">📰</div>`}
         <span class="blog-card-type-badge">${typeLabel}</span>

@@ -128,7 +128,7 @@ async function loadRelatedArticles(planId) {
         ${articles
           .map(
             (a) => `
-          <a href="../../blog/?slug=${a.slug}" class="detail-article-link">
+          <a href="/${lang}/blog/${a.slug}/" class="detail-article-link">
             ${a.cover_image_url ? `<img src="${a.cover_image_url}" alt="${a.title}" />` : ""}
             <span>${a.title}</span>
           </a>
