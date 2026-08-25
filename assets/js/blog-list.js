@@ -1,4 +1,4 @@
-// NetBijak.com - Blog 列表页逻辑
+// NetBijak.com - Blog 列表页逻辑（读取静态JSON）
 
 async function loadBlogList() {
   const gridEl = document.getElementById("blog-grid");
@@ -12,17 +12,13 @@ async function loadBlogList() {
     url: window.location.href,
   });
 
-  const now = new Date().toISOString();
+  const allArticles = await fetchStaticData("articles");
 
-  const { data: articles, error } = await supabaseClient
-    .from("articles")
-    .select("*")
-    .eq("language", lang)
-    .eq("is_published", true)
-    .or(`publish_at.is.null,publish_at.lte.${now}`)
-    .order("created_at", { ascending: false });
+  const articles = allArticles
+    .filter((a) => a.language === lang && isArticleCurrentlyPublished(a))
+    .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
 
-  if (error || !articles || articles.length === 0) {
+  if (articles.length === 0) {
     gridEl.innerHTML = `<p style="color:#94a3b8;padding:2rem;text-align:center">${t("no_articles")}</p>`;
     return;
   }

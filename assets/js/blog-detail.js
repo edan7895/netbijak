@@ -1,4 +1,4 @@
-// NetBijak.com - Blog 文章详情页逻辑
+// NetBijak.com - Blog 文章详情页逻辑（读取静态JSON）
 
 function getSlugFromUrlBlog() {
   const params = new URLSearchParams(window.location.search);
@@ -13,13 +13,10 @@ async function loadBlogDetail() {
     return;
   }
 
-  const { data: article, error } = await supabaseClient
-    .from("articles")
-    .select("*")
-    .eq("slug", slug)
-    .single();
+  const allArticles = await fetchStaticData("articles");
+  const article = allArticles.find((a) => a.slug === slug);
 
-  if (error || !article) {
+  if (!article) {
     container.innerHTML = `<p>${t("article_not_found")}</p>`;
     return;
   }
