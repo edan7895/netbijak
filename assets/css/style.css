@@ -96,7 +96,7 @@ body {
   box-shadow: 0 8px 20px rgba(0,0,0,0.08);
   z-index: 60;
 }
-.nav-links.open { max-height: 340px; }
+.nav-links.open { max-height: 600px; }
 .nav-links a {
   width: 100%;
   padding: 14px 1.25rem;
@@ -104,9 +104,9 @@ body {
   border-bottom: 1px solid #f1f5f9;
 }
 .nav-links a:hover { color: #0f172a; background: #f0fdfa; }
-
 @media (max-width: 640px) {
   .lang-switcher-desktop { display: none; }
+  .hamburger-btn { display: flex; }
   .lang-switcher-mobile { display: flex; padding: 14px 1.25rem; gap: 10px; }
 }
 
