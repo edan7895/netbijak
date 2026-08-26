@@ -1,12 +1,11 @@
-// NetBijak.com - Admin 文章管理逻辑（含Quill编辑器 + Banner + Link + FAQ + WhatsApp按钮 + 表格）
+// NetBijak.com - Admin 文章管理逻辑（Quill + Better-Table + Banner + Link + FAQ + WhatsApp + CTA按钮）
 
 let editingArticleId = null;
 let quillEditor = null;
+let betterTableModule = null;
 let allPlansCache = [];
 let allArticlesCache = [];
 let faqRowCount = 0;
-let tableRows = 3;
-let tableCols = 2;
 
 async function initAdminArticlesPage() {
   const session = await checkAdminAuth();
@@ -30,6 +29,7 @@ async function initAdminArticlesPage() {
   document.getElementById("btn-insert-link").addEventListener("click", openLinkModal);
   document.getElementById("btn-insert-whatsapp").addEventListener("click", openWhatsAppModal);
   document.getElementById("btn-insert-table").addEventListener("click", openTableModal);
+  document.getElementById("btn-insert-cta").addEventListener("click", openCtaModal);
   document.getElementById("btn-add-faq-row").addEventListener("click", () => addFAQRow());
 
   document.getElementById("banner-modal-insert").addEventListener("click", insertBannerIntoEditor);
@@ -42,13 +42,17 @@ async function initAdminArticlesPage() {
   document.getElementById("whatsapp-modal-insert").addEventListener("click", insertWhatsAppIntoEditor);
   document.getElementById("whatsapp-modal-cancel").addEventListener("click", closeWhatsAppModal);
 
-  document.getElementById("table-modal-rows").addEventListener("change", rebuildTableGrid);
-  document.getElementById("table-modal-cols").addEventListener("change", rebuildTableGrid);
   document.getElementById("table-modal-insert").addEventListener("click", insertTableIntoEditor);
   document.getElementById("table-modal-cancel").addEventListener("click", closeTableModal);
+
+  document.getElementById("cta-modal-insert").addEventListener("click", insertCtaIntoEditor);
+  document.getElementById("cta-modal-cancel").addEventListener("click", closeCtaModal);
+  document.getElementById("cta-modal-type").addEventListener("change", updateCtaPreviewText);
 }
 
 function initQuillEditor() {
+  Quill.register({ "modules/better-table": QuillBetterTable }, true);
+
   quillEditor = new Quill("#quill-editor", {
     theme: "snow",
     modules: {
@@ -59,9 +63,29 @@ function initQuillEditor() {
         ["link", "image"],
         ["clean"],
       ],
+      table: false,
+      "better-table": {
+        operationMenu: {
+          items: {
+            unmergeCells: { text: "Split cell" },
+          },
+        },
+      },
+      keyboard: {
+        bindings: QuillBetterTable.keyboardBindings,
+      },
     },
     placeholder: "Write your article here...",
   });
+
+  betterTableModule = quillEditor.getModule("better-table");
+}
+
+function setEditorContent(html) {
+  quillEditor.setText("");
+  if (html) {
+    quillEditor.clipboard.dangerouslyPasteHTML(html);
+  }
 }
 
 async function loadPlanOptions() {
@@ -171,7 +195,7 @@ async function openArticleForm(articleId) {
   document.getElementById("article-form-title-label").textContent = articleId ? "Edit Article" : "New Article";
   document.getElementById("article-form").reset();
   document.getElementById("form-article-slug").dataset.manuallyEdited = "";
-  quillEditor.root.innerHTML = "";
+  setEditorContent("");
   document.getElementById("faq-rows-wrap").innerHTML = "";
   faqRowCount = 0;
 
@@ -184,7 +208,7 @@ async function openArticleForm(articleId) {
       document.getElementById("form-article-language").value = article.language || "en";
       document.getElementById("form-article-type").value = article.article_type || "article";
       document.getElementById("form-article-translation-key").value = article.translation_key || "";
-      quillEditor.root.innerHTML = article.content || "";
+      setEditorContent(article.content || "");
       document.getElementById("form-article-cover").value = article.cover_image_url || "";
       document.getElementById("form-article-seo-title").value = article.seo_title || "";
       document.getElementById("form-article-seo-description").value = article.seo_description || "";
@@ -379,67 +403,68 @@ function insertWhatsAppIntoEditor() {
   const waNumber = "60178835110";
   const waLink = `https://wa.me/${waNumber}?text=${encodeURIComponent(msg)}`;
 
+  const waIconSvg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="white" style="vertical-align:middle;margin-right:8px"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>`;
+
   const range = quillEditor.getSelection(true);
-  const btnHtml = `<p><a href="${waLink}" target="_blank" style="display:inline-block;padding:12px 28px;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;border-radius:10px;font-weight:700;text-decoration:none">${btnText}</a></p>`;
+  const btnHtml = `<p><a href="${waLink}" target="_blank" style="display:inline-flex;align-items:center;padding:12px 28px;background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;border-radius:10px;font-weight:700;text-decoration:none">${waIconSvg}${btnText}</a></p>`;
   quillEditor.clipboard.dangerouslyPasteHTML(range.index, btnHtml);
   closeWhatsAppModal();
 }
 
-// ===== 表格插入功能 =====
+// ===== 表格插入功能（quill-better-table） =====
 function openTableModal() {
-  tableRows = 3;
-  tableCols = 2;
   document.getElementById("table-modal-rows").value = 3;
   document.getElementById("table-modal-cols").value = 2;
-  document.getElementById("table-modal-header").checked = true;
-  rebuildTableGrid();
   document.getElementById("table-modal").classList.remove("hidden");
 }
 function closeTableModal() {
   document.getElementById("table-modal").classList.add("hidden");
 }
-function rebuildTableGrid() {
-  tableRows = Math.max(1, Math.min(20, parseInt(document.getElementById("table-modal-rows").value, 10) || 1));
-  tableCols = Math.max(1, Math.min(10, parseInt(document.getElementById("table-modal-cols").value, 10) || 1));
-
-  const gridWrap = document.getElementById("table-modal-grid");
-  let html = "";
-  for (let r = 0; r < tableRows; r++) {
-    html += `<div class="table-modal-row">`;
-    for (let c = 0; c < tableCols; c++) {
-      html += `<input type="text" class="table-modal-cell" data-row="${r}" data-col="${c}" placeholder="${r === 0 ? "Header " + (c + 1) : "Row " + r + " Col " + (c + 1)}" />`;
-    }
-    html += `</div>`;
-  }
-  gridWrap.innerHTML = html;
-}
 function insertTableIntoEditor() {
-  const hasHeader = document.getElementById("table-modal-header").checked;
-  const cells = document.querySelectorAll("#table-modal-grid .table-modal-cell");
+  const rows = Math.max(1, Math.min(20, parseInt(document.getElementById("table-modal-rows").value, 10) || 3));
+  const cols = Math.max(1, Math.min(10, parseInt(document.getElementById("table-modal-cols").value, 10) || 2));
 
-  const grid = [];
-  for (let r = 0; r < tableRows; r++) grid.push(new Array(tableCols).fill(""));
-  cells.forEach((cell) => {
-    const r = parseInt(cell.dataset.row, 10);
-    const c = parseInt(cell.dataset.col, 10);
-    grid[r][c] = cell.value.trim();
-  });
+  quillEditor.focus();
+  betterTableModule.insertTable(rows, cols);
+  closeTableModal();
+}
 
-  let tableHtml = "<table>";
-  grid.forEach((row, rIndex) => {
-    const isHeaderRow = hasHeader && rIndex === 0;
-    const tag = isHeaderRow ? "th" : "td";
-    tableHtml += "<tr>";
-    row.forEach((cellText) => {
-      tableHtml += `<${tag}>${cellText}</${tag}>`;
-    });
-    tableHtml += "</tr>";
-  });
-  tableHtml += "</table><p><br></p>";
+// ===== Find My Plan / Compare CTA 按钮插入功能 =====
+const CTA_TEXTS = {
+  find: { en: "Find My Plan →", zh: "为我找配套 →", ms: "Cari Pelan Saya →" },
+  compare: { en: "Compare Plans →", zh: "比较配套 →", ms: "Bandingkan Pelan →" },
+};
+const CTA_PATHS = {
+  find: "find-your-plan",
+  compare: "compare",
+};
+
+function openCtaModal() {
+  document.getElementById("cta-modal-type").value = "find";
+  updateCtaPreviewText();
+  document.getElementById("cta-modal").classList.remove("hidden");
+}
+function closeCtaModal() {
+  document.getElementById("cta-modal").classList.add("hidden");
+}
+function updateCtaPreviewText() {
+  const type = document.getElementById("cta-modal-type").value;
+  const lang = document.getElementById("form-article-language").value || "en";
+  document.getElementById("cta-modal-preview-text").value = CTA_TEXTS[type][lang] || CTA_TEXTS[type].en;
+}
+function insertCtaIntoEditor() {
+  const type = document.getElementById("cta-modal-type").value;
+  const lang = document.getElementById("form-article-language").value || "en";
+  const customText = document.getElementById("cta-modal-preview-text").value.trim();
+  const btnText = customText || CTA_TEXTS[type][lang] || CTA_TEXTS[type].en;
+  const url = `/${lang}/${CTA_PATHS[type]}/`;
+
+  const icon = type === "find" ? "🎯" : "⚖️";
 
   const range = quillEditor.getSelection(true);
-  quillEditor.clipboard.dangerouslyPasteHTML(range.index, tableHtml);
-  closeTableModal();
+  const btnHtml = `<p style="text-align:center"><a href="${url}" style="display:inline-flex;align-items:center;gap:10px;padding:14px 32px;background:linear-gradient(135deg,#0f172a,#0ea5e9,#14b8a6);color:#fff;border-radius:14px;font-weight:800;text-decoration:none;font-size:1rem"><span style="font-size:1.2rem">${icon}</span>${btnText}</a></p>`;
+  quillEditor.clipboard.dangerouslyPasteHTML(range.index, btnHtml);
+  closeCtaModal();
 }
 
 document.addEventListener("DOMContentLoaded", initAdminArticlesPage);
