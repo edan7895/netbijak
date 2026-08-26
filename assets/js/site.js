@@ -54,6 +54,7 @@ function renderHeader() {
         <a href="${root}${lang}/compare/">${t("nav_compare")}</a>
         <a href="${root}${lang}/speedtest/">${t("nav_speedtest")}</a>
         <a href="${root}${lang}/blog/">${t("nav_blog")}</a>
+        <a href="${root}${lang}/about-us/">${t("nav_about")}</a>
         <div class="lang-switcher lang-switcher-mobile">
           <a href="${langLink("en")}" class="${lang === "en" ? "active" : ""}">EN</a>
           <a href="${langLink("zh")}" class="${lang === "zh" ? "active" : ""}">中文</a>
