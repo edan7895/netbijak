@@ -16,7 +16,7 @@ async function loadBlogList() {
 
   const articles = allArticles
     .filter((a) => a.language === lang && isArticleCurrentlyPublished(a))
-    .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+    .sort((a, b) => new Date(b.publish_at || b.created_at) - new Date(a.publish_at || a.created_at));
 
   if (articles.length === 0) {
     gridEl.innerHTML = `<p style="color:#94a3b8;padding:2rem;text-align:center">${t("no_articles")}</p>`;
@@ -27,7 +27,7 @@ async function loadBlogList() {
 }
 
 function buildBlogCard(article) {
-  const dateStr = new Date(article.created_at).toLocaleDateString();
+  const dateStr = new Date(article.publish_at || article.created_at).toLocaleDateString();
   const excerpt = (article.content || "").replace(/<[^>]*>/g, "").slice(0, 120);
   const typeLabel = article.article_type === "news" ? "News" : "Article";
 

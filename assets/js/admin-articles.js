@@ -81,7 +81,7 @@ async function loadArticlesList() {
 
   const language = document.getElementById("filter-language").value;
 
-  let query = supabaseClient.from("articles").select("*").order("created_at", { ascending: false });
+  let query = supabaseClient.from("articles").select("*");
   if (language) query = query.eq("language", language);
 
   const { data: articles, error } = await query;
@@ -91,17 +91,37 @@ async function loadArticlesList() {
     return;
   }
 
-  tbody.innerHTML = articles
+  // 按 publish_at（没有的话用 created_at）由新到旧排序
+  const sorted = articles.sort((a, b) => {
+    const dateA = new Date(a.publish_at || a.created_at);
+    const dateB = new Date(b.publish_at || b.created_at);
+    return dateB - dateA;
+  });
+
+  tbody.innerHTML = sorted
     .map((a) => {
-      const dateStr = new Date(a.created_at).toLocaleDateString();
+      const displayDate = a.publish_at || a.created_at;
+      const dateStr = new Date(displayDate).toLocaleDateString();
       const typeLabel = a.article_type === "news" ? "News" : "Article";
+
+      const now = new Date();
+      const isScheduled = a.is_published && a.publish_at && new Date(a.publish_at) > now;
+      let statusBadge;
+      if (!a.is_published) {
+        statusBadge = '<span class="badge-unpublished">Draft</span>';
+      } else if (isScheduled) {
+        statusBadge = '<span class="badge-scheduled">Scheduled</span>';
+      } else {
+        statusBadge = '<span class="badge-published">Published</span>';
+      }
+
       return `
       <tr>
         <td>${a.title}</td>
         <td><span class="lang-tag">${(a.language || "-").toUpperCase()}</span></td>
         <td><span class="type-tag">${typeLabel}</span></td>
         <td>${dateStr}</td>
-        <td>${a.is_published ? '<span class="badge-published">Published</span>' : '<span class="badge-unpublished">Draft</span>'}</td>
+        <td>${statusBadge}</td>
         <td>
           <button class="btn-small" onclick="openArticleForm(${a.id})">Edit</button>
           <button class="btn-small btn-delete" onclick="deleteArticle(${a.id}, '${(a.title || "").replace(/'/g, "\\'")}')">Delete</button>
