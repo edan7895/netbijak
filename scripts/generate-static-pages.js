@@ -43,6 +43,21 @@ function inject(html, marker, content) {
   return html.replace(re, `<!--SSG:${marker}-->${content}<!--/SSG:${marker}-->`);
 }
 
+function injectItemListSchema(html, providers, lang) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": providers.map((p, i) => ({
+      "@type": "ListItem",
+      "position": i + 1,
+      "name": p.name,
+      "url": `https://netbijak.com/${p.slug}/`,
+    })),
+  };
+  const script = `<script type="application/ld+json">${JSON.stringify(schema)}</script>`;
+  return html.replace("</head>", `  ${script}\n</head>`);
+}
+
 function writeIfExists(filePath, html) {
   if (!fs.existsSync(filePath)) { console.log(`  Skip (not found): ${filePath}`); return; }
   fs.writeFileSync(filePath, html);
@@ -181,6 +196,7 @@ async function run() {
       html = inject(html, "providers", homeProviders.map((p) => providerCardHtml(p, "../../")).join(""));
       const article = articles.find((a) => a.slug === `home-fibre-broadband-buying-guide-${lang}`);
       html = inject(html, "content", articleFullHtml(article));
+      html = injectItemListSchema(html, homeProviders, lang);
       writeIfExists(homeFile, html);
     }
 
@@ -191,6 +207,7 @@ async function run() {
       html = inject(html, "providers", bizProviders.map((p) => providerCardHtml(p, "../../")).join(""));
       const article = articles.find((a) => a.slug === `business-broadband-buying-guide-${lang}`);
       html = inject(html, "content", articleFullHtml(article));
+      html = injectItemListSchema(html, bizProviders, lang);
       writeIfExists(bizFile, html);
     }
   }
