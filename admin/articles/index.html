@@ -7,8 +7,11 @@
   <meta name="robots" content="noindex, nofollow" />
   <link rel="stylesheet" href="../admin.css" />
   <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/quill-better-table@1.2.10/dist/quill-better-table.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/quill-delta@5/dist/Delta.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/quill-better-table@1.2.10/dist/quill-better-table.js"></script>
   <style>
     .admin-page { max-width: 72rem; margin: 0 auto; padding: 2rem 1.5rem; }
     .admin-page-topbar {
@@ -88,7 +91,6 @@
       background: #fff; border-radius: 16px; padding: 1.75rem; width: 100%; max-width: 420px;
       max-height: 90vh; overflow-y: auto;
     }
-    .modal-box.modal-box-wide { max-width: 700px; }
     .modal-box h3 { margin-bottom: 1.25rem; font-size: 1.05rem; }
     .modal-field { margin-bottom: 1rem; }
     .modal-field label { display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 6px; color: #475569; }
@@ -119,13 +121,11 @@
       border-radius: 8px; font-size: 0.8rem; font-weight: 700; cursor: pointer;
     }
 
-    .table-modal-size-row { display: flex; gap: 1rem; margin-bottom: 1rem; }
+    .table-modal-size-row { display: flex; gap: 1rem; }
     .table-modal-size-row .modal-field { flex: 1; margin-bottom: 0; }
-    #table-modal-grid { max-height: 320px; overflow-y: auto; margin-bottom: 1rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px; }
-    .table-modal-row { display: flex; gap: 6px; margin-bottom: 6px; }
-    .table-modal-cell {
-      flex: 1; padding: 7px 10px; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 0.8rem; min-width: 0;
-    }
+
+    /* Better-Table 编辑器内样式微调 */
+    .qlbt-toolbar-view { z-index: 50; }
   </style>
 </head>
 <body>
@@ -172,7 +172,7 @@
           <div class="form-field">
             <label>Translation Group (optional)</label>
             <input type="text" id="form-article-translation-key" placeholder="e.g. 5g-pros-cons-2026" />
-            <p class="form-hint">Give the same value to all language versions of the same article, so Google knows they're translations of each other.</p>
+            <p class="form-hint">Give the same value to all language versions of the same article.</p>
           </div>
           <div class="form-field">
             <label>Cover Image URL</label>
@@ -181,7 +181,6 @@
           <div class="form-field">
             <label>Related Plan (optional)</label>
             <select id="form-article-plan-id"></select>
-            <p class="form-hint">If selected, this article shows under that plan's detail page too.</p>
           </div>
           <div class="form-field">
             <label>SEO Title</label>
@@ -208,13 +207,14 @@
             <button type="button" id="btn-insert-link" class="btn-editor-tool">🔗 Insert Link (select text first)</button>
             <button type="button" id="btn-insert-whatsapp" class="btn-editor-tool">💬 Insert WhatsApp Button</button>
             <button type="button" id="btn-insert-table" class="btn-editor-tool">📊 Insert Table</button>
+            <button type="button" id="btn-insert-cta" class="btn-editor-tool">🎯 Insert Find Plan / Compare Button</button>
           </div>
           <div id="quill-editor"></div>
         </div>
 
         <div class="faq-section">
           <h3>FAQ (optional — leave empty to skip)</h3>
-          <p class="form-hint" style="margin-bottom:10px">Adding FAQs here will automatically display a FAQ section on the article page with FAQ Schema for SEO.</p>
+          <p class="form-hint" style="margin-bottom:10px">Adding FAQs here will automatically display a FAQ section with FAQ Schema for SEO.</p>
           <div id="faq-rows-wrap"></div>
           <button type="button" id="btn-add-faq-row" class="btn-add-faq">+ Add FAQ</button>
         </div>
@@ -325,8 +325,9 @@
   </div>
 
   <div id="table-modal" class="modal-overlay hidden">
-    <div class="modal-box modal-box-wide">
+    <div class="modal-box">
       <h3>Insert Table</h3>
+      <p class="form-hint" style="margin-bottom:1rem">After inserting, click into a cell — a toolbar will appear letting you add/delete rows and columns, resize, and merge cells.</p>
       <div class="table-modal-size-row">
         <div class="modal-field">
           <label>Rows</label>
@@ -337,14 +338,31 @@
           <input type="number" id="table-modal-cols" min="1" max="10" value="2" />
         </div>
       </div>
-      <div class="modal-field" style="display:flex; align-items:center; gap:8px;">
-        <input type="checkbox" id="table-modal-header" checked style="width:auto" />
-        <label style="margin:0" for="table-modal-header">First row is header</label>
-      </div>
-      <div id="table-modal-grid"></div>
       <div class="modal-actions">
         <button type="button" id="table-modal-insert" class="modal-btn-primary">Insert Table</button>
         <button type="button" id="table-modal-cancel" class="modal-btn-secondary">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="cta-modal" class="modal-overlay hidden">
+    <div class="modal-box">
+      <h3>Insert Find Plan / Compare Button</h3>
+      <div class="modal-field">
+        <label>Button Type</label>
+        <select id="cta-modal-type">
+          <option value="find">🎯 Find My Plan</option>
+          <option value="compare">⚖️ Compare Plans</option>
+        </select>
+      </div>
+      <div class="modal-field">
+        <label>Button Text (auto-filled based on article's language, editable)</label>
+        <input type="text" id="cta-modal-preview-text" />
+      </div>
+      <p class="form-hint" style="margin-bottom:1rem">The button will automatically link to the correct language version (e.g. English article → /en/find-your-plan/, Malay article → /ms/find-your-plan/).</p>
+      <div class="modal-actions">
+        <button type="button" id="cta-modal-insert" class="modal-btn-primary">Insert Button</button>
+        <button type="button" id="cta-modal-cancel" class="modal-btn-secondary">Cancel</button>
       </div>
     </div>
   </div>
