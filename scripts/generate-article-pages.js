@@ -124,17 +124,17 @@ function buildRelatedArticlesHtml(currentArticle, allArticles) {
 
   const cardsHtml = related
     .map((a) => {
-      const excerpt = (a.content || "").replace(/<[^>]*>/g, "").slice(0, 80);
+      const excerpt = (a.content || "").replace(/<[^>]*>/g, "").slice(0, 100);
       const typeLabel = a.article_type === "news" ? "News" : "Article";
       const img = a.cover_image_url
-        ? `<img src="${escapeHtml(a.cover_image_url)}" alt="${escapeHtml(a.title)}" />`
-        : `<div class="latest-article-placeholder">📰</div>`;
-      return `<a href="/${a.language}/blog/${a.slug}/" class="latest-article-card">
-        <div class="latest-article-img-wrap">${img}<span class="latest-article-badge">${typeLabel}</span></div>
-        <div class="latest-article-body">
-          <div class="latest-article-date">${new Date(a.created_at).toLocaleDateString()}</div>
-          <div class="latest-article-title">${escapeHtml(a.title)}</div>
-          <p class="latest-article-excerpt">${escapeHtml(excerpt)}...</p>
+        ? `<img src="${escapeHtml(a.cover_image_url)}" alt="${escapeHtml(a.title)}" class="blog-card-img" />`
+        : `<div class="blog-card-img blog-card-img-placeholder">📰</div>`;
+      return `<a href="/${a.language}/blog/${a.slug}/" class="blog-card">
+        <div class="blog-card-img-wrap">${img}<span class="blog-card-type-badge">${typeLabel}</span></div>
+        <div class="blog-card-body">
+          <div class="blog-card-date">${new Date(a.created_at).toLocaleDateString()}</div>
+          <div class="blog-card-title">${escapeHtml(a.title)}</div>
+          <p class="blog-card-excerpt">${escapeHtml(excerpt)}...</p>
         </div></a>`;
     })
     .join("");
@@ -145,7 +145,7 @@ function buildRelatedArticlesHtml(currentArticle, allArticles) {
   return `
     <section class="section-card" style="margin-top:1.5rem">
       <h2>${sectionTitle}</h2>
-      <div class="latest-articles-track" style="overflow-x:visible;flex-wrap:wrap">${cardsHtml}</div>
+      <div class="blog-grid">${cardsHtml}</div>
     </section>`;
 }
 
