@@ -112,11 +112,11 @@ function buildRelatedArticlesHtml(currentArticle, allArticles) {
 
   const sameType = sameLangOthers
     .filter((a) => a.article_type === currentArticle.article_type)
-    .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+    .sort((a, b) => new Date(b.publish_at || b.created_at) - new Date(a.publish_at || a.created_at));
 
   const otherType = sameLangOthers
     .filter((a) => a.article_type !== currentArticle.article_type)
-    .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+    .sort((a, b) => new Date(b.publish_at || b.created_at) - new Date(a.publish_at || a.created_at));
 
   const related = [...sameType, ...otherType].slice(0, 6);
 
@@ -132,7 +132,7 @@ function buildRelatedArticlesHtml(currentArticle, allArticles) {
       return `<a href="/${a.language}/blog/${a.slug}/" class="blog-card">
         <div class="blog-card-img-wrap">${img}<span class="blog-card-type-badge">${typeLabel}</span></div>
         <div class="blog-card-body">
-          <div class="blog-card-date">${new Date(a.created_at).toLocaleDateString()}</div>
+         <div class="blog-card-date">${new Date(a.publish_at || a.created_at).toLocaleDateString()}</div>
           <div class="blog-card-title">${escapeHtml(a.title)}</div>
           <p class="blog-card-excerpt">${escapeHtml(excerpt)}...</p>
         </div></a>`;
@@ -155,7 +155,8 @@ function buildArticlePageHtml(article, translations, allArticles) {
   const pageUrl = `https://netbijak.com/${article.language}/blog/${article.slug}/`;
   const ogImage = article.cover_image_url || "https://netbijak.com/assets/images/logo.png";
 
-  const dateStr = new Date(article.created_at).toLocaleDateString();
+  const displayDate = article.publish_at || article.created_at;
+  const dateStr = new Date(displayDate).toLocaleDateString();
   const typeLabel = article.article_type === "news" ? "News" : "Article";
 
   let faqs = [];
