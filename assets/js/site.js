@@ -1,5 +1,4 @@
 // NetBijak.com - 全站 Header / Footer 渲染
-
 function setFavicon() {
   const link = document.createElement("link");
   link.rel = "icon";
@@ -9,7 +8,6 @@ function setFavicon() {
 }
 
 function getPathAfterLang() {
-  // 取得目前网址里，语言代码(en/zh/ms)之后的部分
   const path = window.location.pathname;
   const match = path.match(/\/(en|zh|ms)(\/.*)?$/);
   if (match && match[2]) {
