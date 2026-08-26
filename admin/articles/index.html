@@ -82,10 +82,13 @@
     .modal-overlay {
       position: fixed; inset: 0; background: rgba(0,0,0,0.5);
       display: flex; align-items: center; justify-content: center; z-index: 100;
+      padding: 1rem; overflow-y: auto;
     }
     .modal-box {
       background: #fff; border-radius: 16px; padding: 1.75rem; width: 100%; max-width: 420px;
+      max-height: 90vh; overflow-y: auto;
     }
+    .modal-box.modal-box-wide { max-width: 700px; }
     .modal-box h3 { margin-bottom: 1.25rem; font-size: 1.05rem; }
     .modal-field { margin-bottom: 1rem; }
     .modal-field label { display: block; font-size: 0.8rem; font-weight: 700; margin-bottom: 6px; color: #475569; }
@@ -114,6 +117,14 @@
     .btn-add-faq {
       padding: 8px 16px; background: #e0f2fe; color: #0369a1; border: none;
       border-radius: 8px; font-size: 0.8rem; font-weight: 700; cursor: pointer;
+    }
+
+    .table-modal-size-row { display: flex; gap: 1rem; margin-bottom: 1rem; }
+    .table-modal-size-row .modal-field { flex: 1; margin-bottom: 0; }
+    #table-modal-grid { max-height: 320px; overflow-y: auto; margin-bottom: 1rem; border: 1px solid #e2e8f0; border-radius: 8px; padding: 10px; }
+    .table-modal-row { display: flex; gap: 6px; margin-bottom: 6px; }
+    .table-modal-cell {
+      flex: 1; padding: 7px 10px; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 0.8rem; min-width: 0;
     }
   </style>
 </head>
@@ -152,16 +163,16 @@
             </select>
           </div>
           <div class="form-field">
-            <label>Translation Group (optional)</label>
-            <input type="text" id="form-article-translation-key" placeholder="e.g. 5g-pros-cons-2026" />
-            <p class="form-hint">Give the same value to all language versions of the same article, so Google knows they're translations of each other.</p>
-          </div>
-          <div class="form-field">
             <label>Type</label>
             <select id="form-article-type" required>
               <option value="article">Article</option>
               <option value="news">News</option>
             </select>
+          </div>
+          <div class="form-field">
+            <label>Translation Group (optional)</label>
+            <input type="text" id="form-article-translation-key" placeholder="e.g. 5g-pros-cons-2026" />
+            <p class="form-hint">Give the same value to all language versions of the same article, so Google knows they're translations of each other.</p>
           </div>
           <div class="form-field">
             <label>Cover Image URL</label>
@@ -196,6 +207,7 @@
             <button type="button" id="btn-insert-banner" class="btn-editor-tool">🖼️ Insert Banner Image</button>
             <button type="button" id="btn-insert-link" class="btn-editor-tool">🔗 Insert Link (select text first)</button>
             <button type="button" id="btn-insert-whatsapp" class="btn-editor-tool">💬 Insert WhatsApp Button</button>
+            <button type="button" id="btn-insert-table" class="btn-editor-tool">📊 Insert Table</button>
           </div>
           <div id="quill-editor"></div>
         </div>
@@ -236,7 +248,7 @@
             <th>Title</th>
             <th>Language</th>
             <th>Type</th>
-            <th>Created</th>
+            <th>Date</th>
             <th>Status</th>
             <th></th>
           </tr>
@@ -308,6 +320,31 @@
       <div class="modal-actions">
         <button type="button" id="whatsapp-modal-insert" class="modal-btn-primary">Insert</button>
         <button type="button" id="whatsapp-modal-cancel" class="modal-btn-secondary">Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <div id="table-modal" class="modal-overlay hidden">
+    <div class="modal-box modal-box-wide">
+      <h3>Insert Table</h3>
+      <div class="table-modal-size-row">
+        <div class="modal-field">
+          <label>Rows</label>
+          <input type="number" id="table-modal-rows" min="1" max="20" value="3" />
+        </div>
+        <div class="modal-field">
+          <label>Columns</label>
+          <input type="number" id="table-modal-cols" min="1" max="10" value="2" />
+        </div>
+      </div>
+      <div class="modal-field" style="display:flex; align-items:center; gap:8px;">
+        <input type="checkbox" id="table-modal-header" checked style="width:auto" />
+        <label style="margin:0" for="table-modal-header">First row is header</label>
+      </div>
+      <div id="table-modal-grid"></div>
+      <div class="modal-actions">
+        <button type="button" id="table-modal-insert" class="modal-btn-primary">Insert Table</button>
+        <button type="button" id="table-modal-cancel" class="modal-btn-secondary">Cancel</button>
       </div>
     </div>
   </div>
