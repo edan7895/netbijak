@@ -118,7 +118,11 @@ footer {
   max-width: 72rem; margin: 0 auto; padding: 3rem 1.5rem 2rem;
   display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 2rem;
 }
-.footer-col-brand .footer-logo-img { height: 44px; width: auto; margin-bottom: 0.75rem; }
+.footer-col-brand .footer-logo-img {
+  height: 44px; width: auto; max-width: 200px; margin-bottom: 0.75rem;
+  object-fit: contain; display: block;
+  filter: drop-shadow(0 0 1px #fff) drop-shadow(0 0 1px #fff) drop-shadow(0 0 2px #fff);
+}
 .footer-tagline { font-size: 0.85rem; color: #94a3b8; line-height: 1.6; max-width: 220px; }
 .footer-col-title {
   color: #fff; font-size: 0.85rem; font-weight: 800; margin-bottom: 1rem;
