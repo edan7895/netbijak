@@ -156,6 +156,7 @@ async function openArticleForm(articleId) {
       document.getElementById("form-article-slug").dataset.manuallyEdited = "true";
       document.getElementById("form-article-language").value = article.language || "en";
       document.getElementById("form-article-type").value = article.article_type || "article";
+      document.getElementById("form-article-translation-key").value = article.translation_key || "";
       quillEditor.root.innerHTML = article.content || "";
       document.getElementById("form-article-cover").value = article.cover_image_url || "";
       document.getElementById("form-article-seo-title").value = article.seo_title || "";
@@ -221,6 +222,7 @@ async function saveArticle(e) {
     slug: document.getElementById("form-article-slug").value,
     language: document.getElementById("form-article-language").value,
     article_type: document.getElementById("form-article-type").value,
+    translation_key: document.getElementById("form-article-translation-key").value || null,
     content: quillEditor.root.innerHTML,
     cover_image_url: document.getElementById("form-article-cover").value,
     seo_title: document.getElementById("form-article-seo-title").value,
