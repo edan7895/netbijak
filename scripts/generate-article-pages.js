@@ -61,7 +61,7 @@ function buildFAQHtml(faqs) {
     </section>`;
 }
 
-function buildArticlePageHtml(article) {
+function buildArticlePageHtml(article, translations) {
   const title = article.seo_title || `${article.title} | NetBijak.com`;
   const description = article.seo_description || "";
   const pageUrl = `https://netbijak.com/${article.language}/blog/${article.slug}/`;
@@ -86,6 +86,16 @@ function buildArticlePageHtml(article) {
   const backLabels = { en: "← Back to Blog", zh: "← 返回部落格", ms: "← Kembali ke Blog" };
   const backLabel = backLabels[article.language] || backLabels.en;
 
+  // ===== Hreflang 标签 =====
+  let hreflangHtml = "";
+  if (translations && translations.length > 1) {
+    hreflangHtml = translations
+      .map((t) => `<link rel="alternate" hreflang="${t.language}" href="https://netbijak.com/${t.language}/blog/${t.slug}/" />`)
+      .join("\n  ");
+    const defaultVersion = translations.find((t) => t.language === "en") || translations[0];
+    hreflangHtml += `\n  <link rel="alternate" hreflang="x-default" href="https://netbijak.com/${defaultVersion.language}/blog/${defaultVersion.slug}/" />`;
+  }
+
   return `<!DOCTYPE html>
 <html lang="${article.language}">
 <head>
@@ -102,6 +112,7 @@ function buildArticlePageHtml(article) {
   <meta property="og:url" content="${pageUrl}" />
   <meta name="twitter:card" content="summary_large_image" />
   <link rel="canonical" href="${pageUrl}" />
+  ${hreflangHtml}
   <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
   <link rel="stylesheet" href="/assets/css/style.css" />
   ${buildFAQSchemaScript(faqs)}
@@ -145,16 +156,27 @@ function buildArticlePageHtml(article) {
 async function generateArticlePages() {
   console.log('Fetching articles...');
   const articles = await fetchFromSupabase('articles', 'select=*&is_published=eq.true');
+  const publishedArticles = articles.filter(isArticleCurrentlyPublished);
+
+  // 依照 translation_key 分组，找出同一篇文章的不同语言版本
+  const groups = {};
+  publishedArticles.forEach((a) => {
+    const key = a.translation_key || `__single__${a.id}`;
+    if (!groups[key]) groups[key] = [];
+    groups[key].push({ language: a.language, slug: a.slug });
+  });
 
   let count = 0;
-  for (const article of articles) {
-    if (!isArticleCurrentlyPublished(article)) continue;
+  for (const article of publishedArticles) {
     if (!article.language || !article.slug) continue;
+
+    const key = article.translation_key || `__single__${article.id}`;
+    const translations = groups[key];
 
     const dir = path.join(article.language, 'blog', article.slug);
     fs.mkdirSync(dir, { recursive: true });
 
-    const html = buildArticlePageHtml(article);
+    const html = buildArticlePageHtml(article, translations);
     fs.writeFileSync(path.join(dir, 'index.html'), html);
     count++;
   }
