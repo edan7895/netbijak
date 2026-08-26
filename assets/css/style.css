@@ -918,3 +918,13 @@ table.compare-table tbody tr:nth-child(odd) .compare-row-label { background: #ee
 .blog-detail-content tr:nth-child(even) {
   background: #f8fafc;
 }
+
+
+/* ===== 法律条款页面（Privacy Policy / Terms & Conditions）===== */
+.legal-content h2 {
+  color: #fff; font-size: 1.1rem; font-weight: 800; margin: 1.75rem 0 0.75rem;
+}
+.legal-content h2:first-child { margin-top: 0; }
+.legal-content p {
+  color: #e2e8f0; line-height: 1.8; margin-bottom: 1rem; font-size: 0.95rem;
+}
