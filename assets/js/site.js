@@ -24,6 +24,14 @@ function renderHeader() {
   if (!header) return;
   const root = typeof ROOT_PATH !== "undefined" ? ROOT_PATH : "../";
   const restOfPath = getPathAfterLang();
+  const hasPageTranslations = typeof PAGE_TRANSLATIONS !== "undefined" && PAGE_TRANSLATIONS !== null;
+
+  function langLink(targetLang) {
+    if (hasPageTranslations && PAGE_TRANSLATIONS[targetLang]) {
+      return PAGE_TRANSLATIONS[targetLang];
+    }
+    return `${root}${targetLang}/${restOfPath}`;
+  }
 
   header.innerHTML = `
     <nav class="navbar">
@@ -35,9 +43,9 @@ function renderHeader() {
           <img src="${root}assets/images/logo.png" alt="NetBijak" class="nav-logo-img" />
         </a>
         <div class="lang-switcher lang-switcher-desktop">
-          <a href="${root}en/${restOfPath}" class="${lang === "en" ? "active" : ""}">EN</a>
-          <a href="${root}zh/${restOfPath}" class="${lang === "zh" ? "active" : ""}">中文</a>
-          <a href="${root}ms/${restOfPath}" class="${lang === "ms" ? "active" : ""}">BM</a>
+          <a href="${langLink("en")}" class="${lang === "en" ? "active" : ""}">EN</a>
+          <a href="${langLink("zh")}" class="${lang === "zh" ? "active" : ""}">中文</a>
+          <a href="${langLink("ms")}" class="${lang === "ms" ? "active" : ""}">BM</a>
         </div>
       </div>
       <div class="nav-links" id="nav-links">
@@ -49,9 +57,9 @@ function renderHeader() {
         <a href="${root}${lang}/speedtest/">${t("nav_speedtest")}</a>
         <a href="${root}${lang}/blog/">${t("nav_blog")}</a>
         <div class="lang-switcher lang-switcher-mobile">
-          <a href="${root}en/${restOfPath}" class="${lang === "en" ? "active" : ""}">EN</a>
-          <a href="${root}zh/${restOfPath}" class="${lang === "zh" ? "active" : ""}">中文</a>
-          <a href="${root}ms/${restOfPath}" class="${lang === "ms" ? "active" : ""}">BM</a>
+          <a href="${langLink("en")}" class="${lang === "en" ? "active" : ""}">EN</a>
+          <a href="${langLink("zh")}" class="${lang === "zh" ? "active" : ""}">中文</a>
+          <a href="${langLink("ms")}" class="${lang === "ms" ? "active" : ""}">BM</a>
         </div>
       </div>
     </nav>
