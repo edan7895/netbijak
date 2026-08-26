@@ -1,11 +1,12 @@
-// NetBijak.com - Admin 文章管理逻辑（Quill + Better-Table + Banner + Link + FAQ + WhatsApp + CTA按钮）
+// NetBijak.com - Admin 文章管理逻辑（Quill + Banner + Link + FAQ + WhatsApp + CTA按钮 + 表格）
 
 let editingArticleId = null;
 let quillEditor = null;
-let betterTableModule = null;
 let allPlansCache = [];
 let allArticlesCache = [];
 let faqRowCount = 0;
+let tableRows = 3;
+let tableCols = 2;
 
 async function initAdminArticlesPage() {
   const session = await checkAdminAuth();
@@ -42,6 +43,8 @@ async function initAdminArticlesPage() {
   document.getElementById("whatsapp-modal-insert").addEventListener("click", insertWhatsAppIntoEditor);
   document.getElementById("whatsapp-modal-cancel").addEventListener("click", closeWhatsAppModal);
 
+  document.getElementById("table-modal-rows").addEventListener("change", rebuildTableGrid);
+  document.getElementById("table-modal-cols").addEventListener("change", rebuildTableGrid);
   document.getElementById("table-modal-insert").addEventListener("click", insertTableIntoEditor);
   document.getElementById("table-modal-cancel").addEventListener("click", closeTableModal);
 
@@ -51,8 +54,6 @@ async function initAdminArticlesPage() {
 }
 
 function initQuillEditor() {
-  Quill.register({ "modules/better-table": QuillBetterTable }, true);
-
   quillEditor = new Quill("#quill-editor", {
     theme: "snow",
     modules: {
@@ -63,29 +64,13 @@ function initQuillEditor() {
         ["link", "image"],
         ["clean"],
       ],
-      table: false,
-      "better-table": {
-        operationMenu: {
-          items: {
-            unmergeCells: { text: "Split cell" },
-          },
-        },
-      },
-      keyboard: {
-        bindings: QuillBetterTable.keyboardBindings,
-      },
     },
     placeholder: "Write your article here...",
   });
-
-  betterTableModule = quillEditor.getModule("better-table");
 }
 
 function setEditorContent(html) {
-  quillEditor.setText("");
-  if (html) {
-    quillEditor.clipboard.dangerouslyPasteHTML(html);
-  }
+  quillEditor.root.innerHTML = html || "";
 }
 
 async function loadPlanOptions() {
@@ -411,21 +396,60 @@ function insertWhatsAppIntoEditor() {
   closeWhatsAppModal();
 }
 
-// ===== 表格插入功能（quill-better-table） =====
+// ===== 表格插入功能（手动填格子内容，保证格式正确） =====
 function openTableModal() {
+  tableRows = 3;
+  tableCols = 2;
   document.getElementById("table-modal-rows").value = 3;
   document.getElementById("table-modal-cols").value = 2;
+  document.getElementById("table-modal-header").checked = true;
+  rebuildTableGrid();
   document.getElementById("table-modal").classList.remove("hidden");
 }
 function closeTableModal() {
   document.getElementById("table-modal").classList.add("hidden");
 }
-function insertTableIntoEditor() {
-  const rows = Math.max(1, Math.min(20, parseInt(document.getElementById("table-modal-rows").value, 10) || 3));
-  const cols = Math.max(1, Math.min(10, parseInt(document.getElementById("table-modal-cols").value, 10) || 2));
+function rebuildTableGrid() {
+  tableRows = Math.max(1, Math.min(20, parseInt(document.getElementById("table-modal-rows").value, 10) || 1));
+  tableCols = Math.max(1, Math.min(10, parseInt(document.getElementById("table-modal-cols").value, 10) || 1));
 
-  quillEditor.focus();
-  betterTableModule.insertTable(rows, cols);
+  const gridWrap = document.getElementById("table-modal-grid");
+  let html = "";
+  for (let r = 0; r < tableRows; r++) {
+    html += `<div class="table-modal-row">`;
+    for (let c = 0; c < tableCols; c++) {
+      html += `<input type="text" class="table-modal-cell" data-row="${r}" data-col="${c}" placeholder="${r === 0 ? "Header " + (c + 1) : "Row " + r + " Col " + (c + 1)}" />`;
+    }
+    html += `</div>`;
+  }
+  gridWrap.innerHTML = html;
+}
+function insertTableIntoEditor() {
+  const hasHeader = document.getElementById("table-modal-header").checked;
+  const cells = document.querySelectorAll("#table-modal-grid .table-modal-cell");
+
+  const grid = [];
+  for (let r = 0; r < tableRows; r++) grid.push(new Array(tableCols).fill(""));
+  cells.forEach((cell) => {
+    const r = parseInt(cell.dataset.row, 10);
+    const c = parseInt(cell.dataset.col, 10);
+    grid[r][c] = cell.value.trim();
+  });
+
+  let tableHtml = "<table>";
+  grid.forEach((row, rIndex) => {
+    const isHeaderRow = hasHeader && rIndex === 0;
+    const tag = isHeaderRow ? "th" : "td";
+    tableHtml += "<tr>";
+    row.forEach((cellText) => {
+      tableHtml += `<${tag}>${cellText}</${tag}>`;
+    });
+    tableHtml += "</tr>";
+  });
+  tableHtml += "</table><p><br></p>";
+
+  const range = quillEditor.getSelection(true);
+  quillEditor.clipboard.dangerouslyPasteHTML(range.index, tableHtml);
   closeTableModal();
 }
 
