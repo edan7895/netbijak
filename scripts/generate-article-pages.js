@@ -25,15 +25,31 @@ function escapeHtml(str) {
   return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
-// ===== 把文章内文里的外部连结自动加上 nofollow =====
+// ===== 清除网址里的追踪参数（utm_source等，常见于AI工具贴出的连结） =====
+function cleanTrackingParams(href) {
+  try {
+    const url = new URL(href);
+    const paramsToStrip = ["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content", "ref", "ref_src"];
+    paramsToStrip.forEach((param) => url.searchParams.delete(param));
+    let cleaned = url.toString();
+    cleaned = cleaned.replace(/\?$/, "");
+    return cleaned;
+  } catch (e) {
+    return href;
+  }
+}
+
+// ===== 把文章内文里的外部连结自动加上 nofollow，并清除追踪参数 =====
 function addNofollowToExternalLinks(html) {
   if (!html) return html;
-  return html.replace(/<a\s+([^>]*?)href="([^"]*)"([^>]*)>/gi, (match, before, href, after) => {
-    const isInternal = href.startsWith("/") || href.includes("netbijak.com") || href.startsWith("#");
+  return html.replace(/<a\s+([^>]*?)href="([^"]*)"([^>]*)>/gi, (match, before, hrefRaw, after) => {
+    const isInternal = hrefRaw.startsWith("/") || hrefRaw.includes("netbijak.com") || hrefRaw.startsWith("#");
+
     if (isInternal) {
-      return `<a ${before}href="${href}"${after}>`;
+      return `<a ${before}href="${hrefRaw}"${after}>`;
     }
-    // 外部连结：加上 rel="nofollow noopener"，并确保 target="_blank"
+
+    const href = cleanTrackingParams(hrefRaw);
     const hasTarget = /target=/.test(before + after);
     const hasRel = /rel=/.test(before + after);
     let attrs = `${before}href="${href}"${after}`;
