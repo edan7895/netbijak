@@ -866,3 +866,26 @@ table.compare-table tbody tr:nth-child(odd) .compare-row-label { background: #ee
 @media (max-width: 640px) {
   .latest-article-card { flex: 0 0 220px; }
 }
+
+
+/* ===== 文章内文表格样式（Quill/贴上内容用） ===== */
+.blog-detail-content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1.25rem 0;
+  font-size: 0.9rem;
+}
+.blog-detail-content th,
+.blog-detail-content td {
+  border: 1px solid #e2e8f0;
+  padding: 10px 14px;
+  text-align: left;
+}
+.blog-detail-content th {
+  background: #f8fafc;
+  font-weight: 700;
+  color: var(--text);
+}
+.blog-detail-content tr:nth-child(even) {
+  background: #f8fafc;
+}
