@@ -187,6 +187,16 @@ function buildArticlePageHtml(article, translations, allArticles) {
   const processedContent = addNofollowToExternalLinks(article.content);
   const relatedHtml = buildRelatedArticlesHtml(article, allArticles);
 
+  // 建立这篇文章的语言对照表，给导航栏语言切换按钮使用
+  let translationMapJson = "{}";
+  if (translations && translations.length > 0) {
+    const map = {};
+    translations.forEach((t) => {
+      map[t.language] = `/${t.language}/blog/${t.slug}/`;
+    });
+    translationMapJson = JSON.stringify(map);
+  }
+
   return `<!DOCTYPE html>
 <html lang="${article.language}">
 <head>
@@ -226,7 +236,7 @@ function buildArticlePageHtml(article, translations, allArticles) {
 
   <footer id="site-footer"></footer>
 
-  <script>const ROOT_PATH = "/";</script>
+  <script>const ROOT_PATH = "/"; const PAGE_TRANSLATIONS = ${translationMapJson};</script>
   <script src="/assets/js/translations.js"></script>
   <script src="/assets/js/site.js"></script>
   ${faqs.length > 0 ? `<script>
