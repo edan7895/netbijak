@@ -1,4 +1,4 @@
-// NetBijak.com - 为每篇文章产生独立的静态HTML页面（含完整内容 + FAQ Schema，SEO友好）
+// NetBijak.com - 为每篇文章产生独立的静态HTML页面（含完整内容 + FAQ Schema + Hreflang + nofollow外链 + 相关文章）
 const fs = require('fs');
 const path = require('path');
 
@@ -23,6 +23,33 @@ function isArticleCurrentlyPublished(article) {
 function escapeHtml(str) {
   if (!str) return "";
   return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+// ===== 把文章内文里的外部连结自动加上 nofollow =====
+function addNofollowToExternalLinks(html) {
+  if (!html) return html;
+  return html.replace(/<a\s+([^>]*?)href="([^"]*)"([^>]*)>/gi, (match, before, href, after) => {
+    const isInternal = href.startsWith("/") || href.includes("netbijak.com") || href.startsWith("#");
+    if (isInternal) {
+      return `<a ${before}href="${href}"${after}>`;
+    }
+    // 外部连结：加上 rel="nofollow noopener"，并确保 target="_blank"
+    const hasTarget = /target=/.test(before + after);
+    const hasRel = /rel=/.test(before + after);
+    let attrs = `${before}href="${href}"${after}`;
+    if (!hasTarget) attrs += ` target="_blank"`;
+    if (hasRel) {
+      attrs = attrs.replace(/rel="([^"]*)"/, (relMatch, relValue) => {
+        const relSet = new Set(relValue.split(/\s+/).filter(Boolean));
+        relSet.add("nofollow");
+        relSet.add("noopener");
+        return `rel="${Array.from(relSet).join(" ")}"`;
+      });
+    } else {
+      attrs += ` rel="nofollow noopener"`;
+    }
+    return `<a ${attrs}>`;
+  });
 }
 
 function buildFAQSchemaScript(faqs) {
@@ -61,7 +88,52 @@ function buildFAQHtml(faqs) {
     </section>`;
 }
 
-function buildArticlePageHtml(article, translations) {
+// ===== 相关文章推荐（6篇） =====
+function buildRelatedArticlesHtml(currentArticle, allArticles) {
+  const sameLangOthers = allArticles.filter(
+    (a) => a.id !== currentArticle.id && a.language === currentArticle.language
+  );
+
+  const sameType = sameLangOthers
+    .filter((a) => a.article_type === currentArticle.article_type)
+    .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+
+  const otherType = sameLangOthers
+    .filter((a) => a.article_type !== currentArticle.article_type)
+    .sort((a, b) => new Date(b.created_at) - new Date(a.created_at));
+
+  const related = [...sameType, ...otherType].slice(0, 6);
+
+  if (related.length === 0) return "";
+
+  const cardsHtml = related
+    .map((a) => {
+      const excerpt = (a.content || "").replace(/<[^>]*>/g, "").slice(0, 80);
+      const typeLabel = a.article_type === "news" ? "News" : "Article";
+      const img = a.cover_image_url
+        ? `<img src="${escapeHtml(a.cover_image_url)}" alt="${escapeHtml(a.title)}" />`
+        : `<div class="latest-article-placeholder">📰</div>`;
+      return `<a href="/${a.language}/blog/${a.slug}/" class="latest-article-card">
+        <div class="latest-article-img-wrap">${img}<span class="latest-article-badge">${typeLabel}</span></div>
+        <div class="latest-article-body">
+          <div class="latest-article-date">${new Date(a.created_at).toLocaleDateString()}</div>
+          <div class="latest-article-title">${escapeHtml(a.title)}</div>
+          <p class="latest-article-excerpt">${escapeHtml(excerpt)}...</p>
+        </div></a>`;
+    })
+    .join("");
+
+  const sectionTitles = { en: "Related Articles", zh: "相关文章", ms: "Artikel Berkaitan" };
+  const sectionTitle = sectionTitles[currentArticle.language] || sectionTitles.en;
+
+  return `
+    <section class="section-card" style="margin-top:1.5rem">
+      <h2>${sectionTitle}</h2>
+      <div class="latest-articles-track" style="overflow-x:visible;flex-wrap:wrap">${cardsHtml}</div>
+    </section>`;
+}
+
+function buildArticlePageHtml(article, translations, allArticles) {
   const title = article.seo_title || `${article.title} | NetBijak.com`;
   const description = article.seo_description || "";
   const pageUrl = `https://netbijak.com/${article.language}/blog/${article.slug}/`;
@@ -86,7 +158,6 @@ function buildArticlePageHtml(article, translations) {
   const backLabels = { en: "← Back to Blog", zh: "← 返回部落格", ms: "← Kembali ke Blog" };
   const backLabel = backLabels[article.language] || backLabels.en;
 
-  // ===== Hreflang 标签 =====
   let hreflangHtml = "";
   if (translations && translations.length > 1) {
     hreflangHtml = translations
@@ -95,6 +166,9 @@ function buildArticlePageHtml(article, translations) {
     const defaultVersion = translations.find((t) => t.language === "en") || translations[0];
     hreflangHtml += `\n  <link rel="alternate" hreflang="x-default" href="https://netbijak.com/${defaultVersion.language}/blog/${defaultVersion.slug}/" />`;
   }
+
+  const processedContent = addNofollowToExternalLinks(article.content);
+  const relatedHtml = buildRelatedArticlesHtml(article, allArticles);
 
   return `<!DOCTYPE html>
 <html lang="${article.language}">
@@ -127,9 +201,10 @@ function buildArticlePageHtml(article, translations) {
       ${article.cover_image_url ? `<img src="${escapeHtml(article.cover_image_url)}" alt="${escapeHtml(article.title)}" class="blog-detail-cover" />` : ""}
       <div class="blog-detail-date">${dateStr}${article.geo_tag ? ` · ${escapeHtml(article.geo_tag)}` : ""}</div>
       <h1 class="blog-detail-title">${escapeHtml(article.title)}</h1>
-      <div class="blog-detail-content">${article.content || ""}</div>
+      <div class="blog-detail-content">${processedContent || ""}</div>
       ${buildFAQHtml(faqs)}
     </div>
+    ${relatedHtml}
   </main>
 
   <footer id="site-footer"></footer>
@@ -158,7 +233,6 @@ async function generateArticlePages() {
   const articles = await fetchFromSupabase('articles', 'select=*&is_published=eq.true');
   const publishedArticles = articles.filter(isArticleCurrentlyPublished);
 
-  // 依照 translation_key 分组，找出同一篇文章的不同语言版本
   const groups = {};
   publishedArticles.forEach((a) => {
     const key = a.translation_key || `__single__${a.id}`;
@@ -176,7 +250,7 @@ async function generateArticlePages() {
     const dir = path.join(article.language, 'blog', article.slug);
     fs.mkdirSync(dir, { recursive: true });
 
-    const html = buildArticlePageHtml(article, translations);
+    const html = buildArticlePageHtml(article, translations, publishedArticles);
     fs.writeFileSync(path.join(dir, 'index.html'), html);
     count++;
   }
