@@ -134,13 +134,13 @@ async function run() {
     const providersHtml = homeProviders.map((p) => providerCardHtml(p, "../")).join("");
     html = inject(html, "providers", providersHtml);
 
-    const latestArticles = articles.filter((a) => a.language === lang).sort((a, b) => new Date(b.created_at) - new Date(a.created_at)).slice(0, 8);
+    const latestArticles = articles.filter((a) => a.language === lang).sort((a, b) => new Date(b.publish_at || b.created_at) - new Date(a.publish_at || a.created_at)).slice(0, 8);
     const articlesHtml = latestArticles.map((a) => {
       const excerpt = (a.content || "").replace(/<[^>]*>/g, "").slice(0, 80);
       const typeLabel = a.article_type === "news" ? "News" : "Article";
       const img = a.cover_image_url ? `<img src="${esc(a.cover_image_url)}" alt="${esc(a.title)}" />` : `<div class="latest-article-placeholder">📰</div>`;
       return `<a href="blog/${a.slug}/" class="latest-article-card"><div class="latest-article-img-wrap">${img}<span class="latest-article-badge">${typeLabel}</span></div>
-        <div class="latest-article-body"><div class="latest-article-date">${new Date(a.created_at).toLocaleDateString()}</div><div class="latest-article-title">${esc(a.title)}</div><p class="latest-article-excerpt">${esc(excerpt)}...</p></div></a>`;
+        <div class="latest-article-body"><div class="latest-article-date">${new Date(a.publish_at || a.created_at).toLocaleDateString()}</div><div class="latest-article-title">${esc(a.title)}</div><p class="latest-article-excerpt">${esc(excerpt)}...</p></div></a>`;
     }).join("");
     html = inject(html, "articles", articlesHtml);
 
