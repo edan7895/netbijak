@@ -112,9 +112,34 @@ body {
 
 /* ===== Footer ===== */
 footer {
-  text-align: center; padding: 2rem 1rem;
-  border-top: 1px solid #e2e8f0; color: var(--muted); font-size: 0.85rem;
-  background: #fff; margin-top: 3rem;
+  background: #0f172a; margin-top: 3rem; color: #94a3b8;
+}
+.footer-inner {
+  max-width: 72rem; margin: 0 auto; padding: 3rem 1.5rem 2rem;
+  display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 2rem;
+}
+.footer-col-brand .footer-logo-img { height: 44px; width: auto; margin-bottom: 0.75rem; }
+.footer-tagline { font-size: 0.85rem; color: #94a3b8; line-height: 1.6; max-width: 220px; }
+.footer-col-title {
+  color: #fff; font-size: 0.85rem; font-weight: 800; margin-bottom: 1rem;
+  text-transform: uppercase; letter-spacing: 0.05em;
+}
+.footer-col { display: flex; flex-direction: column; gap: 10px; }
+.footer-col a {
+  color: #94a3b8; text-decoration: none; font-size: 0.85rem; transition: color 0.2s;
+}
+.footer-col a:hover { color: #5eead4; }
+.footer-social-link { display: flex; align-items: center; gap: 8px; }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08); padding: 1.25rem 1.5rem;
+  text-align: center; font-size: 0.8rem; color: #64748b;
+}
+
+@media (max-width: 768px) {
+  .footer-inner { grid-template-columns: 1fr 1fr; gap: 1.75rem; }
+}
+@media (max-width: 480px) {
+  .footer-inner { grid-template-columns: 1fr; }
 }
 
 /* ===== 通用容器 ===== */
