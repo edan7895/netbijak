@@ -8,6 +8,12 @@ let faqRowCount = 0;
 let tableRows = 3;
 let tableCols = 2;
 
+function convertLocalToISOString(datetimeLocalValue) {
+  if (!datetimeLocalValue) return null;
+  const localDate = new Date(datetimeLocalValue);
+  return localDate.toISOString();
+}
+
 async function initAdminArticlesPage() {
   const session = await checkAdminAuth();
   if (!session) {
@@ -266,7 +272,11 @@ async function saveArticle(e) {
     geo_tag: document.getElementById("form-article-geo").value,
     plan_id: document.getElementById("form-article-plan-id").value || null,
     is_published: document.getElementById("form-article-is-published").checked,
-    publish_at: document.getElementById("form-article-publish-at").value || null,
+    publish_at: document.getElementById("form-article-is-published").checked
+      ? (document.getElementById("form-article-publish-at").value
+          ? convertLocalToISOString(document.getElementById("form-article-publish-at").value)
+          : new Date().toISOString())
+      : null,
     faq_data: collectFAQData(),
   };
 
