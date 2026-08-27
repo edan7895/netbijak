@@ -10,8 +10,9 @@ let tableCols = 2;
 
 function convertLocalToISOString(datetimeLocalValue) {
   if (!datetimeLocalValue) return null;
-  const localDate = new Date(datetimeLocalValue);
-  return localDate.toISOString();
+  // datetimeLocalValue 格式类似 "2026-09-04T14:00"，视为马来西亚时间 (UTC+8)
+  // 直接拼接 +08:00 时区信息，不依赖浏览器/装置本身的时区设定
+  return new Date(datetimeLocalValue + ":00+08:00").toISOString();
 }
 
 async function initAdminArticlesPage() {
