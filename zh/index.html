@@ -3,59 +3,135 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>隐私政策 | NetBijak.com</title>
-  <meta name="description" content="了解 NetBijak 如何依据马来西亚个人资料保护法（PDPA）收集、使用及保护您的信息。" />
-  <link rel="canonical" href="https://netbijak.com/zh/privacy-policy/" />
-  <link rel="alternate" hreflang="en" href="https://netbijak.com/en/privacy-policy/" />
-  <link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/privacy-policy/" />
-  <link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/privacy-policy/" />
-  <link rel="alternate" hreflang="x-default" href="https://netbijak.com/en/privacy-policy/" />
-  <meta name="geo.region" content="MY" />
-  <meta name="geo.placename" content="Malaysia" />
-  <meta property="og:title" content="隐私政策 | NetBijak.com" />
-  <meta property="og:description" content="了解 NetBijak 如何收集、使用及保护您的信息。" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://netbijak.com/assets/images/logo.png" />
-  <meta property="og:url" content="https://netbijak.com/zh/privacy-policy/" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="robots" content="noindex, follow" />
-  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
-  <link rel="stylesheet" href="../../assets/css/style.css" />
+  <title>NetBijak.com | 马来西亚宽频配套比较</title>
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="canonical" href="https://netbijak.com/zh/" />
+  <link rel="alternate" hreflang="en" href="https://netbijak.com/en/" />
+  <link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/" />
+  <link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/" />
+  <link rel="alternate" hreflang="x-default" href="https://netbijak.com/en/" />
+  <script src="../assets/js/seo-meta.js"></script>
+  <script>const ROOT_PATH = "../";</script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "NetBijak",
+    "url": "https://netbijak.com/",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://netbijak.com/en/blog/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "NetBijak",
+    "url": "https://netbijak.com/",
+    "logo": "https://netbijak.com/assets/images/logo.png",
+    "description": "Malaysia's broadband comparison platform."
+  }
+  </script>
 </head>
 <body>
   <div id="site-header"></div>
 
   <main class="main">
     <div class="home-hero">
-      <h1>隐私政策</h1>
+      <h1 id="home-title"></h1>
+      <p id="home-subtitle"></p>
     </div>
 
     <section class="section-card">
-      <div class="legal-content">
-        <h2>1. 概述</h2>
-        <p>NetBijak（"我们"）重视您的隐私权。本隐私政策旨在说明我们在您访问本网站时如何收集、使用和保护您的个人信息。我们严格遵守马来西亚《2010年个人资料保护法》（PDPA）。</p>
-
-        <h2>2. 我们收集的信息</h2>
-        <p><strong>日志与分析数据：</strong>我们通过 Google Analytics 等工具收集标准的浏览器访问数据（如 IP 地址、浏览器类型、浏览页面及停留时间），用于优化网站体验。</p>
-        <p><strong>Cookie 技术：</strong>我们使用必要的 Cookie 来改善网站导航并分析流量来源。</p>
-        <p><strong>直接联系信息：</strong>当您通过电子邮件或 WhatsApp 主动联系我们时，我们会保留您提供的联系方式以回复您的问询。</p>
-
-        <h2>3. 第三方及电信运营商链接</h2>
-        <p>本站包含指向第三方网站（如 TM、Maxis、Time、CelcomDigi 等）的外链。我们不对这些外部网站的隐私条款或内容承担法律责任。</p>
-
-        <h2>4. 数据安全</h2>
-        <p>我们采用行业标准的安全措施，防止您的个人数据遭遇未经授权的调阅、泄露或修改。</p>
-
-        <h2>5. 联系方式</h2>
-        <p>如有隐私相关疑问，欢迎透过 WhatsApp 联系我们：<a href="https://wa.me/60178835110?text=Hi%20NetBijak%2C%20%E6%88%91%E6%9C%89%E9%9A%90%E7%A7%81%E7%9B%B8%E5%85%B3%E9%97%AE%E9%A2%98%E3%80%82" target="_blank" class="faq-inline-link">透过 WhatsApp 联系我们</a>。</p>
+      <div class="search-box-row">
+        <input type="text" id="search-input" />
+        <button id="search-btn" class="search-btn">🔍</button>
       </div>
+      <div class="icon-nav-grid">
+        <a href="broadband-home/" class="icon-nav-item">
+          <div class="icon-nav-circle">🏠</div>
+          <span id="icon-nav-home-label"></span>
+        </a>
+        <a href="broadband-business/" class="icon-nav-item">
+          <div class="icon-nav-circle">💼</div>
+          <span id="icon-nav-business-label"></span>
+        </a>
+        <a href="find-your-plan/" class="icon-nav-item">
+          <div class="icon-nav-circle">🎯</div>
+          <span id="icon-nav-findplan-label"></span>
+        </a>
+        <a href="compare/" class="icon-nav-item">
+          <div class="icon-nav-circle">⚖️</div>
+          <span id="icon-nav-compare-label"></span>
+        </a>
+        <a href="speedtest/" class="icon-nav-item">
+          <div class="icon-nav-circle">⚡</div>
+          <span id="icon-nav-speedtest-label"></span>
+        </a>
+        <a href="blog/" class="icon-nav-item">
+          <div class="icon-nav-circle">📰</div>
+          <span id="icon-nav-blog-label"></span>
+        </a>
+      </div>
+    </section>
+
+    <section class="section-card" id="latest-articles-section">
+      <div class="latest-articles-header">
+        <h2 id="latest-articles-title" style="margin-bottom:0"></h2>
+        <div class="latest-articles-controls">
+          <button type="button" id="latest-articles-prev" class="btn-scroll">‹</button>
+          <button type="button" id="latest-articles-next" class="btn-scroll">›</button>
+          <a href="blog/" id="latest-articles-all" class="latest-articles-all-link"></a>
+        </div>
+      </div>
+<div id="latest-articles-track" class="latest-articles-track"><!--SSG:articles--><!--/SSG:articles--></div>
+    </section>
+
+    <section class="section-card">
+      <h2 id="browse-title"></h2>
+<div id="provider-browse-grid" class="provider-browse-grid"><!--SSG:providers--><!--/SSG:providers--></div>
+    </section>
+
+    <section class="section-card">
+      <h2 id="faq-title"></h2>
+      <p class="section-sub" id="faq-subtitle"></p>
+<div id="faq-list" class="faq-list"><!--SSG:homefaq--><!--/SSG:homefaq--></div>
+    </section>
+
+    <section id="results-section" class="section-card hidden">
+      <h2 id="results-title"></h2>
+      <p class="section-sub" id="results-sub"></p>
+      <div id="results-grid" class="results-grid"></div>
     </section>
   </main>
 
   <footer id="site-footer"></footer>
 
-  <script>const ROOT_PATH = "../../";</script>
-  <script src="../../assets/js/translations.js"></script>
-  <script src="../../assets/js/site.js"></script>
+<script src="../assets/js/static-data.js"></script>
+  <script src="../assets/js/translations.js"></script>
+  <script src="../assets/js/site.js"></script>
+  <script src="../assets/js/home.js"></script>
+  <script src="../assets/js/faq.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("home-title").textContent = t("home_title");
+      document.getElementById("home-subtitle").textContent = t("home_subtitle");
+      document.getElementById("search-input").placeholder = t("search_placeholder");
+      document.getElementById("icon-nav-home-label").textContent = t("icon_broadband_home");
+      document.getElementById("icon-nav-business-label").textContent = t("icon_broadband_business");
+      document.getElementById("icon-nav-findplan-label").textContent = t("icon_find_plan");
+      document.getElementById("icon-nav-compare-label").textContent = t("icon_compare");
+      document.getElementById("icon-nav-speedtest-label").textContent = t("icon_speedtest");
+      document.getElementById("icon-nav-blog-label").textContent = t("icon_articles");
+      document.getElementById("latest-articles-title").textContent = t("latest_articles_title");
+      document.getElementById("latest-articles-all").textContent = t("latest_articles_all");
+      document.getElementById("browse-title").textContent = t("browse_by_provider");
+      document.getElementById("results-title").textContent = t("results_title");
+      document.getElementById("results-sub").textContent = t("results_sub");
+    });
+  </script>
 </body>
 </html>
