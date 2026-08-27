@@ -47,6 +47,10 @@
   <url><loc>https://netbijak.com/zh/blog/</loc><priority>0.7</priority></url>
   <url><loc>https://netbijak.com/ms/blog/</loc><priority>0.7</priority></url>
 
+  <url><loc>https://netbijak.com/en/about-us/</loc><priority>0.6</priority></url>
+  <url><loc>https://netbijak.com/zh/about-us/</loc><priority>0.6</priority></url>
+  <url><loc>https://netbijak.com/ms/about-us/</loc><priority>0.6</priority></url>
+
   <url><loc>https://netbijak.com/unifi/</loc><priority>0.8</priority></url>
   <url><loc>https://netbijak.com/maxis/</loc><priority>0.8</priority></url>
   <url><loc>https://netbijak.com/celcomdigi/</loc><priority>0.8</priority></url>
