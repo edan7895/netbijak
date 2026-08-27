@@ -84,5 +84,27 @@
   <script src="/assets/js/translations.js"></script>
   <script src="/assets/js/site.js"></script>
   
+
+  <div id="mascot-widget" class="mascot-widget">
+    <button type="button" class="mascot-close-btn" id="mascot-close-btn" aria-label="Close">✕</button>
+    <a href="https://wa.me/60178835110?text=Hi%20NetBijak%2C%20I'm%20reading%20%22%E5%A6%82%E4%BD%95%E5%9C%A8%E9%A9%AC%E6%9D%A5%E8%A5%BF%E4%BA%9A%E4%B8%BA%E6%82%A8%E7%9A%84%E5%AE%B6%E5%BA%AD%E9%80%89%E6%8B%A9%E5%90%88%E9%80%82%E7%9A%84%E5%AE%BD%E9%A2%91%E9%85%8D%E5%A5%97%22%20and%20have%20a%20question." target="_blank" class="mascot-avatar-link">
+      <img src="/assets/images/mascot.png" alt="NetBijak Assistant" class="mascot-avatar-img" />
+      <span class="mascot-bubble">有问题吗？</span>
+    </a>
+  </div>
+  <script>
+    (function() {
+      var storageKey = "mascot-closed-find-my-plan-buying-guide-zh";
+      var widget = document.getElementById("mascot-widget");
+      var closeBtn = document.getElementById("mascot-close-btn");
+      if (sessionStorage.getItem(storageKey)) {
+        widget.style.display = "none";
+      }
+      closeBtn.addEventListener("click", function() {
+        widget.style.display = "none";
+        sessionStorage.setItem(storageKey, "1");
+      });
+    })();
+  </script>
 </body>
 </html>

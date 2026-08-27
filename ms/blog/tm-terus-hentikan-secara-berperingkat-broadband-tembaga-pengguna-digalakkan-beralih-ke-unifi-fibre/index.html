@@ -127,5 +127,27 @@
       });
     });
   </script>
+
+  <div id="mascot-widget" class="mascot-widget">
+    <button type="button" class="mascot-close-btn" id="mascot-close-btn" aria-label="Close">✕</button>
+    <a href="https://wa.me/60178835110?text=Hi%20NetBijak%2C%20I'm%20reading%20%22TM%20Terus%20Hentikan%20Secara%20Berperingkat%20Broadband%20Tembaga%3A%20Pengguna%20Digalakkan%20Beralih%20ke%20Unifi%20Fibre%22%20and%20have%20a%20question." target="_blank" class="mascot-avatar-link">
+      <img src="/assets/images/mascot.png" alt="NetBijak Assistant" class="mascot-avatar-img" />
+      <span class="mascot-bubble">Ada soalan?</span>
+    </a>
+  </div>
+  <script>
+    (function() {
+      var storageKey = "mascot-closed-tm-terus-hentikan-secara-berperingkat-broadband-tembaga-pengguna-digalakkan-beralih-ke-unifi-fibre";
+      var widget = document.getElementById("mascot-widget");
+      var closeBtn = document.getElementById("mascot-close-btn");
+      if (sessionStorage.getItem(storageKey)) {
+        widget.style.display = "none";
+      }
+      closeBtn.addEventListener("click", function() {
+        widget.style.display = "none";
+        sessionStorage.setItem(storageKey, "1");
+      });
+    })();
+  </script>
 </body>
 </html>

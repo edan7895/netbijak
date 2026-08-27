@@ -127,5 +127,27 @@
       });
     });
   </script>
+
+  <div id="mascot-widget" class="mascot-widget">
+    <button type="button" class="mascot-close-btn" id="mascot-close-btn" aria-label="Close">✕</button>
+    <a href="https://wa.me/60178835110?text=Hi%20NetBijak%2C%20I'm%20reading%20%22TM%20%E6%8C%81%E7%BB%AD%E6%B7%98%E6%B1%B0%E9%93%9C%E7%BA%BF%E5%AE%BD%E9%A2%91%EF%BC%9A%E6%97%A7%E7%BD%91%E7%BB%9C%E7%94%A8%E6%88%B7%E5%8F%AF%E5%8D%87%E7%BA%A7%20Unifi%20Fibre%EF%BC%8CWiFi%20%E4%BD%93%E9%AA%8C%E6%88%96%E5%B0%86%E6%9B%B4%E7%A8%B3%E5%AE%9A%22%20and%20have%20a%20question." target="_blank" class="mascot-avatar-link">
+      <img src="/assets/images/mascot.png" alt="NetBijak Assistant" class="mascot-avatar-img" />
+      <span class="mascot-bubble">有问题吗？</span>
+    </a>
+  </div>
+  <script>
+    (function() {
+      var storageKey = "mascot-closed-tm-unifi-fibrewifi-streamyx";
+      var widget = document.getElementById("mascot-widget");
+      var closeBtn = document.getElementById("mascot-close-btn");
+      if (sessionStorage.getItem(storageKey)) {
+        widget.style.display = "none";
+      }
+      closeBtn.addEventListener("click", function() {
+        widget.style.display = "none";
+        sessionStorage.setItem(storageKey, "1");
+      });
+    })();
+  </script>
 </body>
 </html>

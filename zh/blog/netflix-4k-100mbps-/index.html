@@ -148,5 +148,27 @@
       });
     });
   </script>
+
+  <div id="mascot-widget" class="mascot-widget">
+    <button type="button" class="mascot-close-btn" id="mascot-close-btn" aria-label="Close">✕</button>
+    <a href="https://wa.me/60178835110?text=Hi%20NetBijak%2C%20I'm%20reading%20%22Netflix%204K%20%E9%9C%80%E8%A6%81%E5%A4%9A%E5%BF%AB%E7%9A%84%E5%AE%BD%E5%B8%A6%EF%BC%9F100Mbps%20%E5%A4%9F%E4%B8%8D%E5%A4%9F%EF%BC%9F%22%20and%20have%20a%20question." target="_blank" class="mascot-avatar-link">
+      <img src="/assets/images/mascot.png" alt="NetBijak Assistant" class="mascot-avatar-img" />
+      <span class="mascot-bubble">有问题吗？</span>
+    </a>
+  </div>
+  <script>
+    (function() {
+      var storageKey = "mascot-closed-netflix-4k-100mbps-";
+      var widget = document.getElementById("mascot-widget");
+      var closeBtn = document.getElementById("mascot-close-btn");
+      if (sessionStorage.getItem(storageKey)) {
+        widget.style.display = "none";
+      }
+      closeBtn.addEventListener("click", function() {
+        widget.style.display = "none";
+        sessionStorage.setItem(storageKey, "1");
+      });
+    })();
+  </script>
 </body>
 </html>

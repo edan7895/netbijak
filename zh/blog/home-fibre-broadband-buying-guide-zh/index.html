@@ -84,5 +84,27 @@
   <script src="/assets/js/translations.js"></script>
   <script src="/assets/js/site.js"></script>
   
+
+  <div id="mascot-widget" class="mascot-widget">
+    <button type="button" class="mascot-close-btn" id="mascot-close-btn" aria-label="Close">✕</button>
+    <a href="https://wa.me/60178835110?text=Hi%20NetBijak%2C%20I'm%20reading%20%22%E5%A6%82%E4%BD%95%E5%9C%A8%E9%A9%AC%E6%9D%A5%E8%A5%BF%E4%BA%9A%E9%80%89%E6%8B%A9%E6%9C%80%E4%BD%B3%E7%9A%84%E5%AE%B6%E7%94%A8%E5%85%89%E7%BA%A4%E5%AE%BD%E9%A2%91%22%20and%20have%20a%20question." target="_blank" class="mascot-avatar-link">
+      <img src="/assets/images/mascot.png" alt="NetBijak Assistant" class="mascot-avatar-img" />
+      <span class="mascot-bubble">有问题吗？</span>
+    </a>
+  </div>
+  <script>
+    (function() {
+      var storageKey = "mascot-closed-home-fibre-broadband-buying-guide-zh";
+      var widget = document.getElementById("mascot-widget");
+      var closeBtn = document.getElementById("mascot-close-btn");
+      if (sessionStorage.getItem(storageKey)) {
+        widget.style.display = "none";
+      }
+      closeBtn.addEventListener("click", function() {
+        widget.style.display = "none";
+        sessionStorage.setItem(storageKey, "1");
+      });
+    })();
+  </script>
 </body>
 </html>
