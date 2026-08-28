@@ -155,7 +155,8 @@ async function run() {
       const typeLabel = a.article_type === "news" ? "News" : "Article";
       const img = a.cover_image_url ? `<img src="${esc(a.cover_image_url)}" alt="${esc(a.title)}" />` : `<div class="latest-article-placeholder">📰</div>`;
       return `<a href="blog/${a.slug}/" class="latest-article-card"><div class="latest-article-img-wrap">${img}<span class="latest-article-badge">${typeLabel}</span></div>
-        <div class="latest-article-body"><div class="latest-article-date">${new Date(a.publish_at || a.created_at).toLocaleDateString()}</div><div class="latest-article-title">${esc(a.title)}</div><p class="latest-article-excerpt">${esc(excerpt)}...</p></div></a>`;
+                <div class="latest-article-body"><div class="latest-article-date">${new Date(a.publish_at || a.created_at).toLocaleDateString("en-MY", { timeZone: "Asia/Kuala_Lumpur" })}</div>
+                <div class="latest-article-title">${esc(a.title)}</div><p class="latest-article-excerpt">${esc(excerpt)}...</p></div></a>`;
     }).join("");
     html = inject(html, "articles", articlesHtml);
 

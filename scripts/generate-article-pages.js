@@ -132,7 +132,7 @@ function buildRelatedArticlesHtml(currentArticle, allArticles) {
       return `<a href="/${a.language}/blog/${a.slug}/" class="blog-card">
         <div class="blog-card-img-wrap">${img}<span class="blog-card-type-badge">${typeLabel}</span></div>
         <div class="blog-card-body">
-         <div class="blog-card-date">${new Date(a.publish_at || a.created_at).toLocaleDateString()}</div>
+        <div class="blog-card-date">${new Date(a.publish_at || a.created_at).toLocaleDateString("en-MY", { timeZone: "Asia/Kuala_Lumpur" })}</div>
           <div class="blog-card-title">${escapeHtml(a.title)}</div>
           <p class="blog-card-excerpt">${escapeHtml(excerpt)}...</p>
         </div></a>`;
@@ -156,7 +156,7 @@ function buildArticlePageHtml(article, translations, allArticles) {
   const ogImage = article.cover_image_url || "https://netbijak.com/assets/images/logo.png";
 
   const displayDate = article.publish_at || article.created_at;
-  const dateStr = new Date(displayDate).toLocaleDateString();
+  const dateStr = new Date(displayDate).toLocaleDateString("en-MY", { timeZone: "Asia/Kuala_Lumpur" });
   const typeLabel = article.article_type === "news" ? "News" : "Article";
 
   let faqs = [];
