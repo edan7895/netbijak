@@ -124,7 +124,7 @@ async function loadArticlesList() {
   tbody.innerHTML = sorted
     .map((a) => {
       const displayDate = a.publish_at || a.created_at;
-      const dateStr = new Date(displayDate).toLocaleDateString();
+      const dateStr = new Date(displayDate).toLocaleDateString("en-MY", { timeZone: "Asia/Kuala_Lumpur" });
       const typeLabel = a.article_type === "news" ? "News" : "Article";
 
       const now = new Date();

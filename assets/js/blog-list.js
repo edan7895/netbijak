@@ -26,7 +26,7 @@ async function loadBlogList() {
 }
 
 function buildBlogCard(article) {
-  const dateStr = new Date(article.publish_at || article.created_at).toLocaleDateString();
+    const dateStr = new Date(article.publish_at || article.created_at).toLocaleDateString("en-MY", { timeZone: "Asia/Kuala_Lumpur" });
   const excerpt = (article.content || "").replace(/<[^>]*>/g, "").slice(0, 120);
   const typeLabel = article.article_type === "news" ? "News" : "Article";
 
