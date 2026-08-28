@@ -90,8 +90,8 @@ async function renderLatestArticles() {
   const allArticles = await fetchStaticData("articles");
 
   const filtered = allArticles
-    .filter((a) => a.language === lang && isArticleCurrentlyPublished(a))
-    .sort((a, b) => new Date(b.created_at) - new Date(a.created_at))
+    .filter((a) => a.language === lang)
+    .sort((a, b) => new Date(b.publish_at || b.created_at) - new Date(a.publish_at || a.created_at))
     .slice(0, 8);
 
   if (filtered.length === 0) {

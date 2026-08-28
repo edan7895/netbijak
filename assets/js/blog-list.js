@@ -15,9 +15,8 @@ async function loadBlogList() {
   const allArticles = await fetchStaticData("articles");
 
   const articles = allArticles
-    .filter((a) => a.language === lang && isArticleCurrentlyPublished(a))
+    .filter((a) => a.language === lang)
     .sort((a, b) => new Date(b.publish_at || b.created_at) - new Date(a.publish_at || a.created_at));
-
   if (articles.length === 0) {
     gridEl.innerHTML = `<p style="color:#94a3b8;padding:2rem;text-align:center">${t("no_articles")}</p>`;
     return;
