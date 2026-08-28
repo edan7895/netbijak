@@ -1,6 +1,5 @@
 // NetBijak.com - 抓取Supabase资料，产生静态JSON（给前台读取用）
 const fs = require('fs');
-
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
 
@@ -19,6 +18,19 @@ async function fetchFromSupabase(table, query) {
   return res.json();
 }
 
+function isPlanCurrentlyPublished(plan) {
+  const now = new Date();
+  if (plan.publish_at && new Date(plan.publish_at) > now) return false;
+  if (plan.unpublish_at && new Date(plan.unpublish_at) < now) return false;
+  return true;
+}
+
+function isArticleCurrentlyPublished(article) {
+  const now = new Date();
+  if (article.publish_at && new Date(article.publish_at) > now) return false;
+  return true;
+}
+
 async function generateData() {
   if (!fs.existsSync('data')) fs.mkdirSync('data');
 
@@ -28,20 +40,22 @@ async function generateData() {
   console.log(`  ${providers.length} providers saved.`);
 
   console.log('Fetching plans...');
-  const plans = await fetchFromSupabase(
+  const plansRaw = await fetchFromSupabase(
     'plans',
     'select=*,providers(id,name,slug,color_hex,logo_url,connection_type,supports_landed,supports_highrise),plan_banners(*)&is_published=eq.true&order=promo_price.asc'
   );
+  const plans = plansRaw.filter(isPlanCurrentlyPublished);
   fs.writeFileSync('data/plans.json', JSON.stringify(plans, null, 0));
-  console.log(`  ${plans.length} plans saved.`);
+  console.log(`  ${plans.length} plans saved (filtered from ${plansRaw.length}).`);
 
   console.log('Fetching articles...');
-  const articles = await fetchFromSupabase(
+  const articlesRaw = await fetchFromSupabase(
     'articles',
     'select=*&is_published=eq.true&order=created_at.desc'
   );
+  const articles = articlesRaw.filter(isArticleCurrentlyPublished);
   fs.writeFileSync('data/articles.json', JSON.stringify(articles, null, 0));
-  console.log(`  ${articles.length} articles saved.`);
+  console.log(`  ${articles.length} articles saved (filtered from ${articlesRaw.length}).`);
 
   const meta = { generated_at: new Date().toISOString() };
   fs.writeFileSync('data/meta.json', JSON.stringify(meta));
