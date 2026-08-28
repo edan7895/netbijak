@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Melaka 淘汰 Microwave 是什么？Fibre Backhaul 有什么作用？</title>
+  <meta name="description" content="马六甲计划在五年内逐步淘汰电讯 Microwave Transmission，改用高容量光纤。了解 Fibre Backhaul 如何连接手机塔，以及这对网络稳定性和容量有什么影响。" />
+  <meta name="geo.region" content="MY" />
+  <meta name="geo.placename" content="Malaysia" />
+  <meta property="og:title" content="Melaka 淘汰 Microwave 是什么？Fibre Backhaul 有什么作用？" />
+  <meta property="og:description" content="马六甲计划在五年内逐步淘汰电讯 Microwave Transmission，改用高容量光纤。了解 Fibre Backhaul 如何连接手机塔，以及这对网络稳定性和容量有什么影响。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://netbijak.com/assets/images/logo.png" />
+  <meta property="og:url" content="https://netbijak.com/zh/blog/melakano-microwave-policy-telco-tower-microwave-fibre/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://netbijak.com/zh/blog/melakano-microwave-policy-telco-tower-microwave-fibre/" />
+  <link rel="alternate" hreflang="en" href="https://netbijak.com/en/blog/melakas-no-microwave-policy-why-telcos-are-replacing-microwave-backhaul-with-fibre/" />
+  <link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/blog/melakano-microwave-policy-telco-tower-microwave-fibre/" />
+  <link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/blog/melaka-no-microwave-policy-mengapa-telco-beralih-daripada-microwave-kepada-fibre/" />
+  <link rel="alternate" hreflang="x-default" href="https://netbijak.com/en/blog/melakas-no-microwave-policy-why-telcos-are-replacing-microwave-backhaul-with-fibre/" />
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"什么是 Telecommunications Microwave Transmission？","acceptedAnswer":{"@type":"Answer","text":"它是利用无线电波，在不同 Telecommunications Sites 之间传输数据的一种技术，也经常用于 Mobile Backhaul。"}},{"@type":"Question","name":"什么是 Fibre Backhaul？","acceptedAnswer":{"@type":"Answer","text":"Fibre Backhaul 是使用 Optical Fibre，把 Mobile Tower 或 Access Site 连接到 Telco 更大的 Network，最终连接到 Internet。"}},{"@type":"Question","name":"为什么 Melaka 要逐步淘汰 Microwave？","acceptedAnswer":{"@type":"Answer","text":"Melaka 希望通过 High-Capacity Optical Fibre 提升 Telecommunications Network 的 Capacity 和 Stability，并提出五年内逐步淘汰 Microwave Transmission 的 No Microwave Policy。"}},{"@type":"Question","name":"Melaka 这个 Fibre Project 投资多少钱？","acceptedAnswer":{"@type":"Answer","text":"Bernama 报道，Maxis 将投资约 RM30 million，与 MICTH 合作连接 151 座 Telecommunications Towers，并铺设约 200km Fibre。项目预计需要七年。"}},{"@type":"Question","name":"Fibre Backhaul 会让 5G 更快吗？","acceptedAnswer":{"@type":"Answer","text":"它可以增加 Backhaul Capacity，并减少潜在 Bottleneck，但最终 5G Speed 还取决于 Spectrum、Radio Capacity、Congestion、Device 和其他 Network Factors。"}},{"@type":"Question","name":"Microwave 是不是已经过时？","acceptedAnswer":{"@type":"Answer","text":"不是。Microwave 仍然是重要的 Backhaul Technology，特别适合 Fibre 难以部署或者需要快速建设的地区。"}},{"@type":"Question","name":"Melaka 这个 Project 会升级我家的 Home Fibre 吗？","acceptedAnswer":{"@type":"Answer","text":"不是直接升级。这个项目主要针对 Telecommunications Towers 和 Mobile Network Backhaul，并不是直接把 Fibre 拉到消费者家里。"}},{"@type":"Question","name":"为什么 Mobile Backhaul 会影响消费者？","acceptedAnswer":{"@type":"Answer","text":"因为 Backhaul 负责把 Tower 连接到更大的 Network。如果 Backhaul Capacity 无法跟上 Data Traffic，就可能成为 Mobile Network Performance 的 Bottleneck。"}},{"@type":"Question","name":"Fibre 一定比 Microwave 好吗？","acceptedAnswer":{"@type":"Answer","text":"不一定。Fibre 通常能够提供很高的 Capacity，而 Microwave 的优势是部署速度快、灵活，并且在部分地点不需要进行 Fibre Construction。最终取决于地点、容量、成本和建设条件。"}},{"@type":"Question","name":"Melaka 的 “Digital Highway” 是什么意思？","acceptedAnswer":{"@type":"Answer","text":"它指的是通过 High-Capacity Fibre Network，把 Melaka 州内的 Telecommunications Infrastructure 更好地连接起来，而不是建设真正的“Internet Highway”。"}}]}</script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="main">
+    <div id="blog-detail-container">
+      <a href="/zh/blog/" class="blog-back-link">← 返回部落格</a>
+      <span class="blog-type-tag">News</span>
+      
+      <div class="blog-detail-date">28/08/2026</div>
+      <h1 class="blog-detail-title">Melaka「No Microwave Policy」是什么？为什么 Telco 正在把 Tower 从 Microwave 转向 Fibre？</h1>
+      <div class="blog-detail-content"><h2>Melaka 为什么要逐步淘汰 Microwave？</h2><p>马六甲正在推动更加以 Fibre 为基础的 Telecommunications Infrastructure。</p><p>2026 年 8 月 27 日，《The Star》报道，Melaka 计划在未来 <strong>五年内实施 No Microwave Policy</strong>，逐步淘汰 Microwave 作为电讯传输方式，并通过高容量 Optical Fibre 提升电讯网络的容量和稳定性。(<a href="https://www.thestar.com.my/news/nation/2026/08/27/melaka-telcos-to-phase-out-microwave-transmission-within-five-years" rel="noopener noreferrer nofollow" target="_blank">The Star</a>)</p><p>同一天，Bernama 报道了一个更具体的 Fibreisation Project：</p><blockquote><strong>Maxis 投资约 RM30 million，与 Melaka ICT Holdings（MICTH）合作，为 151 座 Telecommunications Towers 铺设约 200 公里 Fibre-Optic Network。</strong></blockquote><p>Bernama 报道这个项目预计需要 <strong>七年</strong>完成。(<a href="https://www.bernama.com/en/general/news.php?id=2599722" rel="noopener noreferrer nofollow" target="_blank">Bernama</a>)</p><p>这里要特别注意：</p><blockquote><strong>五年 = Melaka 的 No Microwave Policy 方向</strong></blockquote><blockquote><strong>七年 = MICTH-Maxis 这个具体 Fibreisation Project 的预计时间</strong></blockquote><p>两者不是完全相同的时间表。</p><p><br></p><h1>什么是 Telecom Microwave Transmission？</h1><p>这里的 Microwave 和家里的：</p><blockquote>Microwave Oven</blockquote><p>完全没有关系。</p><p>Telecommunications 中的 <strong>Microwave Transmission</strong>，是利用无线电波，在不同 Telecommunications Sites 之间传输数据。</p><p>一个简单的 Mobile Network 可以理解为：</p><p><strong>手机</strong></p><p>↓</p><p><strong>4G / 5G Tower</strong></p><p>↓</p><p><strong>Backhaul</strong></p><p>↓</p><p><strong>Telco Core Network</strong></p><p>↓</p><p><strong>Internet</strong></p><p>其中：</p><blockquote><strong>Tower 到 Telco Network 的这一段，就是 Backhaul。</strong></blockquote><p>GSMA 将 Mobile Backhaul 定义为连接 Mobile Base Station 与运营商其他网络以及 Internet 的链路，并指出 Backhaul Capacity 会直接影响用户最终可以获得的网络表现。(<a href="https://www.gsma.com/connectivity-for-good/spectrum/great-backhaul/" rel="noopener noreferrer nofollow" target="_blank">GSMA</a>)</p><p>Microwave 就是其中一种 Backhaul 技术。</p><p>也就是说，不一定需要在两个 Tower 之间铺设实体光纤，也可以用两个方向性的 Microwave Antennas 进行 Wireless Link。</p><p><br></p><h1>为什么 Telco 以前会大量使用 Microwave？</h1><p>因为 Microwave 有一个很明显的优势：</p><blockquote><strong>不需要像 Fibre 那样挖路、铺 Duct。</strong></blockquote><p>GSMA 指出，Microwave Backhaul 长期被广泛使用的重要原因之一，就是它可以比较快速地部署，而且不需要进行 Fibre 所需要的 Trenching 和 Ducting。(<a href="https://www.gsma.com/solutions-and-impact/technologies/networks/gsma_resources/mobile-backhaul-an-overview/" rel="noopener noreferrer nofollow" target="_blank">GSMA</a>)</p><p>尤其是在：</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>地形复杂</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>偏远地区</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>道路不方便</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Fibre 铺设成本高</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>需要快速部署 Tower</li></ol><p>的地方，Microwave 仍然很实用。</p><p>所以：</p><blockquote><strong>Microwave 并不是一个已经完全过时的技术。</strong></blockquote><p>MCMC 的 National 5G Task Force Report 也把 Microwave 列为解决真实 5G Deployment 问题的有效方案，并指出它具有部署速度快、灵活等优势。(<a href="https://www.mcmc.gov.my/skmmgovmy/media/General/pdf/The-National-5G-Task-Force-Report.pdf" rel="noopener noreferrer nofollow" target="_blank">MCMC National 5G Task Force Report</a>)</p><p><br></p><h1>那为什么 Melaka 现在想改成 Fibre？</h1><p>最重要的原因之一是：</p><blockquote><strong>Capacity。</strong></blockquote><p>随着 4G 和 5G 使用量不断增加，越来越多 Data Traffic 需要经过 Mobile Network。</p><p>即使 Tower 本身有足够的 Radio Capacity，Tower 后面的 Backhaul 也必须有足够容量。</p><p>GSMA 明确指出，如果 Mobile Base Station 与用户之间的无线连接很快，但 Base Station 后面的 Backhaul 无法跟上 Traffic Demand，那么最终用户仍然无法充分获得网络能力。(<a href="https://www.gsma.com/connectivity-for-good/spectrum/great-backhaul/" rel="noopener noreferrer nofollow" target="_blank">GSMA</a>)</p><p>Fibre 的优势就是：</p><blockquote><strong>能够提供非常高的传输容量。</strong></blockquote><p>GSMA 将 Fibre 描述为 Mobile Network 中重要的 Wired Backhaul Technology，并强调它本身拥有很大的 Bandwidth Capacity，同时还有进一步扩展的空间。(<a href="https://www.gsma.com/solutions-and-impact/technologies/networks/gsma_resources/mobile-backhaul-an-overview/" rel="noopener noreferrer nofollow" target="_blank">GSMA</a>)</p><p><br></p><h1>什么是 Fibre Backhaul？</h1><p>Fibre Backhaul 简单来说，就是：</p><blockquote><strong>用 Optical Fibre 把 Mobile Tower 连接到 Telco 的更大网络。</strong></blockquote><p>原本可能是：</p><p><strong>Tower → Microwave → Network</strong></p><p>未来可以变成：</p><p><strong>Tower → Fibre → Network</strong></p><p>这里一个非常重要的概念是：</p><blockquote><strong>手机本身还是通过无线方式连接 4G / 5G Tower。</strong></blockquote><p>改变的是：</p><blockquote><strong>Tower 后面的 Network Connection。</strong></blockquote><p>所以 Melaka 并不是把：</p><blockquote><strong>Mobile Network 全部变成 Fibre。</strong></blockquote><p>而是增加：</p><blockquote><strong>Fibreisation of Telecommunications Towers / Backhaul</strong></blockquote><p>Bernama 报道，这次 MICTH-Maxis Project 会用约 200km Fibre Network 连接 151 座 Telecommunications Towers。(<a href="https://www.bernama.com/en/general/news.php?id=2599722" rel="noopener noreferrer nofollow" target="_blank">Bernama</a>)</p><p><br></p><h1>Fibre Backhaul 会让手机自动变快吗？</h1><p><strong>不一定。</strong></p><p>这是消费者特别容易误解的地方。</p><p>改善 Backhaul 确实可以：</p><blockquote>增加 Network Capacity</blockquote><p>以及：</p><blockquote>减少某些 Network Bottleneck</blockquote><p>但手机最终得到多少速度，还会受到：</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Mobile Signal</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Spectrum</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Tower Capacity</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Network Congestion</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Device Capability</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>User 数量</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Distance</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Routing</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Server</li></ol><p>等因素影响。</p><p>所以不能简单说：</p><blockquote><strong>“Microwave 换 Fibre，所以所有人的 5G 都会变快。”</strong></blockquote><p>更准确的说法是：</p><blockquote><strong>Fibre Backhaul 为 Mobile Network 提供更高的后端容量，让网络更有能力应付不断增长的 Traffic。</strong></blockquote><p><br></p><h1>这和 Home Broadband 有关系吗？</h1><p><strong>有关系，但不是直接升级你家的 Fibre。</strong></p><p>这次 Melaka Project 主要针对的是：</p><blockquote><strong>Mobile Telecommunications Infrastructure</strong></blockquote><p>而不是：</p><blockquote><strong>Home Fibre Access Network</strong></blockquote><p>家庭 Broadband 大概是：</p><p><strong>Home Router</strong></p><p>↓</p><p><strong>Fibre Access Network</strong></p><p>↓</p><p><strong>ISP Network</strong></p><p>↓</p><p><strong>Internet</strong></p><p>手机网络则是：</p><p><strong>Phone</strong></p><p>↓</p><p><strong>4G / 5G Tower</strong></p><p>↓</p><p><strong>Backhaul</strong></p><p>↓</p><p><strong>Telco Network</strong></p><p>↓</p><p><strong>Internet</strong></p><p>两者虽然不同，但最终都依赖：</p><blockquote><strong>High-Capacity Network Infrastructure</strong></blockquote><p>所以这则新闻对于 Broadband 消费者仍然有意义。</p><p>它让我们看到：</p><blockquote><strong>Fibre 不只是用来接入家庭，也越来越多被用来连接 Telco 自己的网络基础设施。</strong></blockquote><p><br></p><h1>为什么 Fibre Backhaul 对 5G 特别重要？</h1><p>5G Network 可以产生非常大量的 Data Traffic。</p><p>MCMC 的 National 5G Task Force Report 就研究了 Fibre 和 Microwave 两种 Backhaul Solution，并显示不同 5G Deployment Scenario 对 Backhaul Capacity 的需求可以明显提高。(<a href="https://www.mcmc.gov.my/skmmgovmy/media/General/pdf/The-National-5G-Task-Force-Report.pdf" rel="noopener noreferrer nofollow" target="_blank">MCMC</a>)</p><p>但 MCMC 同时也指出：</p><p><strong>Fibre：</strong></p><p>高容量</p><p><strong>Microwave：</strong></p><p>部署较快、更加灵活</p><p>所以不能简单解释为：</p><blockquote><strong>Microwave 不好，Fibre 好。</strong></blockquote><p>真正的问题是：</p><blockquote><strong>这个地点需要多少 Capacity？铺 Fibre 是否经济？Terrain 是否允许？部署速度是否重要？</strong></blockquote><p>Melaka 的政策反映的是：</p><blockquote><strong>在适合的地方，希望更多 Tower 使用高容量 Fibre。</strong></blockquote><p><br></p><h1>Melaka 目前到底会做什么？</h1><p>根据 Bernama：</p><p>**投资：**约 RM30 million</p><p>**Fibre：**约 200 km</p><p>**Telecommunications Towers：**151 座</p><p>**合作：**MICTH + Maxis</p><p>**预计时间：**7 年</p><p>(<a href="https://www.bernama.com/en/general/news.php?id=2599722" rel="noopener noreferrer nofollow" target="_blank">Bernama</a>)</p><p>RTM 进一步报道，完成后，MICTH Tower 的 Fibre Connectivity 比例预计从约 <strong>40% 提高到 80%</strong>。RTM 同时报道，截至当时 Melaka 人口密集地区的 4G Coverage 已接近 100%，5G Coverage 则为 89.9%。(<a href="https://berita.rtm.gov.my/nasional/senarai-berita-nasional/senarai-artikel/melaka-wujudkan-lebuh-raya-digital-tingkat-kelajuan-perkhidmatan-internet/" rel="noopener noreferrer nofollow" target="_blank">RTM</a>)</p><p>MICTH 自己的网站则说明，它是 Melaka State Government-linked Company，同时也是 Licensed Network Facilities Provider，负责 Melaka 的 Digital Connectivity 和 Telecommunications Infrastructure。(<a href="https://www.micth.com/about-us-2/" rel="noopener noreferrer nofollow" target="_blank">MICTH</a>)</p><p><br></p><h1>什么是 Melaka 的 “Digital Highway”？</h1><p>Melaka 政府把这项计划形容为：</p><blockquote><strong>Digital Highway</strong></blockquote><p>这里不是说真的会有一条：</p><blockquote>“Internet Highway”</blockquote><p>而是指：</p><blockquote><strong>利用高容量 Fibre Network 把不同 Telecommunications Infrastructure 连接起来。</strong></blockquote><p>Melaka Chief Minister 表示，这项合作将加强 Digital Connectivity Infrastructure，并支持 Technology-driven Economic Growth。(<a href="https://www.bernama.com/en/general/news.php?id=2599722" rel="noopener noreferrer nofollow" target="_blank">Bernama</a>)</p><p>RTM 也报道，该计划的目标包括提升 Internet Speed、Capacity 和 Stability，并与 <strong>Smart Melaka Blueprint 2035</strong> 的方向一致。(<a href="https://berita.rtm.gov.my/nasional/senarai-berita-nasional/senarai-artikel/melaka-wujudkan-lebuh-raya-digital-tingkat-kelajuan-perkhidmatan-internet/" rel="noopener noreferrer nofollow" target="_blank">RTM</a>)</p><p><br></p><h1>Fibre Backhaul 有什么优势？</h1><h2>更高 Capacity</h2><p>Fibre 最大的优势之一就是能够传输非常大量的数据。</p><p>GSMA 指出 Fibre 本身拥有很高的 Bandwidth Capacity，并且可以通过 Wavelength Division Multiplexing 等技术进一步提高 Fibre 的整体 Capacity。(<a href="https://www.gsma.com/solutions-and-impact/technologies/networks/gsma_resources/mobile-backhaul-an-overview/" rel="noopener noreferrer nofollow" target="_blank">GSMA</a>)</p><p><br></p><h2>更适合未来升级</h2><p>随着 Mobile Data Usage 增加，Tower 后面的 Network 也必须跟着升级。</p><p>Fibre 可以成为长期的 High-Capacity Infrastructure。</p><p>这并不代表每个用户今天就会突然获得更快速度，而是：</p><blockquote><strong>网络有更大的空间面对未来的 Data Demand。</strong></blockquote><p><br></p><h2>更适合高流量 5G 地区</h2><p>人口密集、商业活动多的区域可能产生大量 Mobile Traffic。</p><p>Fibre 可以提供足够的 Backhaul Capacity，减少 Tower 后方成为 Bottleneck 的可能性。</p><p>MCMC 的 5G Task Force Report 也针对不同 5G Scenario 研究了 Fibre 和 High-Capacity Microwave Backhaul。(<a href="https://www.mcmc.gov.my/skmmgovmy/media/General/pdf/The-National-5G-Task-Force-Report.pdf" rel="noopener noreferrer nofollow" target="_blank">MCMC</a>)</p><p><br></p><h2>在 Fibre 容易铺设的地方减少对 Wireless Backhaul 的依赖</h2><p>Microwave 在 Fibre 很难铺设的地方仍然有价值。</p><p>但如果某个地点：</p><blockquote><strong>Fibre 可以经济地部署</strong></blockquote><p>那么 Fibre 通常能够提供更大的长期 Capacity。</p><p>这也是 Melaka 目前的方向。</p><p><br></p><h1>这是不是代表 Microwave 全球都要消失？</h1><p><strong>不是。</strong></p><p>这个区别非常重要。</p><p>Microwave 目前仍然是全球 Mobile Backhaul 的重要技术。</p><p>GSMA 的资料显示，Microwave 仍然广泛用于 Mobile Backhaul，其中一个原因就是：</p><blockquote><strong>部署快速，而且不需要挖 Fibre Trench。</strong> (<a href="https://www.gsma.com/solutions-and-impact/technologies/networks/gsma_resources/mobile-backhaul-an-overview/" rel="noopener noreferrer nofollow" target="_blank">GSMA</a>)</blockquote><p>MCMC 的 National 5G Task Force Report 也同样认可 Microwave 在快速部署、Terrain 和成本方面的实际价值。(<a href="https://www.mcmc.gov.my/skmmgovmy/media/General/pdf/The-National-5G-Task-Force-Report.pdf" rel="noopener noreferrer nofollow" target="_blank">MCMC</a>)</p><p>所以 Melaka 的政策应该理解成：</p><blockquote><strong>Melaka 自己的 Telecommunications Infrastructure Strategy</strong></blockquote><p>而不是：</p><blockquote><strong>“Microwave 已经被全球淘汰。”</strong></blockquote><p>某些偏远地区或 Fibre 建设成本很高的地点，Microwave 未来仍然可能是更实际的选择。</p><p><br></p><h1>这会不会让 Melaka 的 Internet 变快？</h1><p><strong>有可能改善 Network Capacity 和整体 Network Performance，但不能保证每个人的 Speed 都会增加某一个固定 Mbps。</strong></p><p>因为用户实际体验还受到：</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Network Congestion</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Radio Capacity</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Coverage</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Device</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Spectrum</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Backhaul</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Internet Routing</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Server</li></ol><p>影响。</p><p>Melaka 政府确实将这项计划定位为提高 <strong>Speed、Capacity 和 Stability</strong>，但消费者不应该把它理解成：</p><blockquote><strong>“每个 Melaka 用户一定会增加 X Mbps。”</strong> (<a href="https://berita.rtm.gov.my/nasional/senarai-berita-nasional/senarai-artikel/melaka-wujudkan-lebuh-raya-digital-tingkat-kelajuan-perkhidmatan-internet/" rel="noopener noreferrer nofollow" target="_blank">RTM</a>)</blockquote><p><br></p><h1>为什么 Broadband 用户应该关心？</h1><p>因为我们平时比较 Broadband 时，很容易只看到：</p><blockquote><strong>100Mbps vs 300Mbps vs 1Gbps</strong></blockquote><p>但一个 Internet Connection 背后还有一整套 Infrastructure：</p><p><strong>Access Network</strong></p><p>↓</p><p><strong>Backhaul</strong></p><p>↓</p><p><strong>Core Network</strong></p><p>↓</p><p><strong>Internet</strong></p><p>如果其中一个部分成为 Bottleneck，最终用户体验就可能受到影响。</p><p>Melaka 这次的 Fibreisation Project 就是一个很好的例子：</p><blockquote><strong>Telco 不只是升级消费者看到的“Plan”，同时也需要升级消费者看不到的网络基础设施。</strong></blockquote><p><br></p><h1>NetBijak's Take</h1><p>Melaka 将更多 Telecommunications Towers 从 Microwave Backhaul 转向 Fibre，是一个很值得关注的 Network Infrastructure Upgrade。</p><p>但是 NetBijak 不认为消费者应该把这则新闻理解成：</p><blockquote><strong>“Microwave 已经过时，Fibre 会自动让所有人的 Internet 变快。”</strong></blockquote><p>事情没有这么简单。</p><p>Microwave 仍然有自己的价值，特别是在 Fibre 很难铺设、建设成本很高，或者需要快速部署的地点。</p><p>Melaka 现在做的事情更具体：</p><blockquote><strong>在适合 Fibre 部署的地方，让更多 Telecommunications Towers 使用 High-Capacity Fibre，从而提升整个 Mobile Network 的 Backhaul Capacity。</strong></blockquote><p>这次 MICTH-Maxis Project 涉及约 <strong>151 座 Tower、200km Fibre 和 RM30 million Investment</strong>，而 Melaka 更大的 No Microwave Policy 则提出五年内逐步淘汰 Microwave Transmission 的方向。(<a href="https://www.bernama.com/en/general/news.php?id=2599722" rel="noopener noreferrer nofollow" target="_blank">Bernama</a>) (<a href="https://www.thestar.com.my/news/nation/2026/08/27/melaka-telcos-to-phase-out-microwave-transmission-within-five-years" rel="noopener noreferrer nofollow" target="_blank">The Star</a>)</p><p>对于消费者来说，最值得记住的是：</p><blockquote><strong>Mobile Network 好不好，不只是看手机上的 4G 或 5G 信号，也要看 Tower 后面的 Network。</strong></blockquote><p>随着 4G 和 5G 的 Data Usage 持续增加，High-Capacity Backhaul 会变得越来越重要。</p><p>而这也说明了一件事：</p><blockquote><strong>Fibre 不只是连接家庭的技术，也正在成为连接整个 Connectivity Infrastructure 的基础。</strong></blockquote><p class="ql-align-center"><strong style="color: rgb(255, 255, 255); background-color: initial;"><a href="/zh/find-your-plan/" rel="noopener noreferrer" target="_blank">🎯为我找配套 →</a></strong></p><p><br></p></div>
+      
+    <section class="section-card" id="article-faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div id="article-faq-list" class="faq-list">
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="0">
+        <span>什么是 Telecommunications Microwave Transmission？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>它是利用无线电波，在不同 Telecommunications Sites 之间传输数据的一种技术，也经常用于 Mobile Backhaul。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="1">
+        <span>什么是 Fibre Backhaul？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Fibre Backhaul 是使用 Optical Fibre，把 Mobile Tower 或 Access Site 连接到 Telco 更大的 Network，最终连接到 Internet。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="2">
+        <span>为什么 Melaka 要逐步淘汰 Microwave？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Melaka 希望通过 High-Capacity Optical Fibre 提升 Telecommunications Network 的 Capacity 和 Stability，并提出五年内逐步淘汰 Microwave Transmission 的 No Microwave Policy。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="3">
+        <span>Melaka 这个 Fibre Project 投资多少钱？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Bernama 报道，Maxis 将投资约 RM30 million，与 MICTH 合作连接 151 座 Telecommunications Towers，并铺设约 200km Fibre。项目预计需要七年。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="4">
+        <span>Fibre Backhaul 会让 5G 更快吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>它可以增加 Backhaul Capacity，并减少潜在 Bottleneck，但最终 5G Speed 还取决于 Spectrum、Radio Capacity、Congestion、Device 和其他 Network Factors。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="5">
+        <span>Microwave 是不是已经过时？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>不是。Microwave 仍然是重要的 Backhaul Technology，特别适合 Fibre 难以部署或者需要快速建设的地区。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="6">
+        <span>Melaka 这个 Project 会升级我家的 Home Fibre 吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>不是直接升级。这个项目主要针对 Telecommunications Towers 和 Mobile Network Backhaul，并不是直接把 Fibre 拉到消费者家里。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="7">
+        <span>为什么 Mobile Backhaul 会影响消费者？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>因为 Backhaul 负责把 Tower 连接到更大的 Network。如果 Backhaul Capacity 无法跟上 Data Traffic，就可能成为 Mobile Network Performance 的 Bottleneck。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="8">
+        <span>Fibre 一定比 Microwave 好吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>不一定。Fibre 通常能够提供很高的 Capacity，而 Microwave 的优势是部署速度快、灵活，并且在部分地点不需要进行 Fibre Construction。最终取决于地点、容量、成本和建设条件。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="9">
+        <span>Melaka 的 “Digital Highway” 是什么意思？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>它指的是通过 High-Capacity Fibre Network，把 Melaka 州内的 Telecommunications Infrastructure 更好地连接起来，而不是建设真正的“Internet Highway”。</p></div>
+    </div></div>
+    </section>
+    </div>
+    
+    <section class="section-card" style="margin-top:1.5rem">
+      <h2>相关文章</h2>
+      <div class="blog-grid"><a href="/zh/blog/tm-unifi-fibrewifi-streamyx/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">News</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">23/08/2026</div>
+          <div class="blog-card-title">TM 持续淘汰铜线宽频：旧网络用户可升级 Unifi Fibre，WiFi 体验或将更稳定</div>
+          <p class="blog-card-excerpt">资料来源：Unifi / TM 官方公告本文报道的是 TM 持续进行中的铜线宽频退役计划，并非表示该计划于本文发布日期当天才首次宣布。TM 持续淘汰旧铜线宽频马来西亚的传统铜线宽频网络正在逐步退出市场...</p>
+        </div></a><a href="/zh/blog/mcmc-unifi-maxis-zh/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">News</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">22/08/2026</div>
+          <div class="blog-card-title">MCMC 审查 MSAP，Unifi 与 Maxis 再度过招！未来马来西亚家用光纤会更便宜吗？</div>
+          <p class="blog-card-excerpt">MCMC 审查 MSAP，马来西亚家用 Fibre 宽频会迎来新一轮价格战吗？马来西亚宽频用户近期可能需要关注一个重要变化——马来西亚通讯及多媒体委员会（MCMC）正在推进新一轮 Mandatory ...</p>
+        </div></a><a href="/zh/blog/condo-unifi/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">28/08/2026</div>
+          <div class="blog-card-title">Condo 管理层阻止你安装 Unifi？你有哪些权利？</div>
+          <p class="blog-card-excerpt">Condo Management 真的可以不让你安装 Unifi 吗？假设你已经检查过地址。Unifi Fibre 有覆盖。你也已经申请了配套。到了安装当天，Unifi installer 来到 Co...</p>
+        </div></a><a href="/zh/blog/-condo-time-fibre-condo-/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">27/08/2026</div>
+          <div class="blog-card-title">为什么朋友的 Condo 有 TIME Fibre，你的 Condo 却没有？</div>
+          <p class="blog-card-excerpt">为什么朋友的 Condo 有 TIME Fibre，我的却没有？这种情况在马来西亚其实很常见。你朋友住在附近的 Condo，可能只是几百米、甚至同一个地区。他用的是 TIME Fibre，网速快，月费...</p>
+        </div></a><a href="/zh/blog/-copper-broadband100-full-fibre-/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">26/08/2026</div>
+          <div class="blog-card-title">为什么全球都在淘汰 Copper Broadband？100% Full Fibre 能带给你什么好处？</div>
+          <p class="blog-card-excerpt">传统的铜线宽带（Copper Broadband）正在全球多个国家逐渐退出历史舞台。从英国到马来西亚，电讯运营商都在逐步把旧有的 ADSL、VDSL 等铜线技术迁移到 Fibre Broadband。...</p>
+        </div></a><a href="/zh/blog/starlink-telco/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">26/08/2026</div>
+          <div class="blog-card-title">Starlink × 马来西亚 Telco：卫星直连手机会改变马来西亚的手机网络覆盖吗？</div>
+          <p class="blog-card-excerpt">马来西亚的手机网络未来可能出现一种新的 Coverage Layer：来自太空，而不是来自传统 Telco Tower。2026 年 7 月 30 日，马来西亚通讯部长 Fahmi Fadzil 表示...</p>
+        </div></a></div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script>const ROOT_PATH = "/"; const PAGE_TRANSLATIONS = {"en":"/en/blog/melakas-no-microwave-policy-why-telcos-are-replacing-microwave-backhaul-with-fibre/","zh":"/zh/blog/melakano-microwave-policy-telco-tower-microwave-fibre/","ms":"/ms/blog/melaka-no-microwave-policy-mengapa-telco-beralih-daripada-microwave-kepada-fibre/"};</script>
+  <script src="/assets/js/translations.js"></script>
+  <script src="/assets/js/site.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("#article-faq-list .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#article-faq-list .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
+    });
+  </script>
+
+  <div id="mascot-widget" class="mascot-widget">
+    <button type="button" class="mascot-close-btn" id="mascot-close-btn" aria-label="Close">✕</button>
+    <a href="https://wa.me/60178835110?text=Hi%20NetBijak%2C%20I'm%20reading%20%22Melaka%E3%80%8CNo%20Microwave%20Policy%E3%80%8D%E6%98%AF%E4%BB%80%E4%B9%88%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%20Telco%20%E6%AD%A3%E5%9C%A8%E6%8A%8A%20Tower%20%E4%BB%8E%20Microwave%20%E8%BD%AC%E5%90%91%20Fibre%EF%BC%9F%22%20and%20have%20a%20question." target="_blank" class="mascot-avatar-link">
+      <img src="/assets/images/mascot.png" alt="NetBijak Assistant" class="mascot-avatar-img" />
+      <span class="mascot-bubble">有问题吗？</span>
+    </a>
+  </div>
+  <script>
+    (function() {
+      var storageKey = "mascot-closed-melakano-microwave-policy-telco-tower-microwave-fibre";
+      var widget = document.getElementById("mascot-widget");
+      var closeBtn = document.getElementById("mascot-close-btn");
+      if (sessionStorage.getItem(storageKey)) {
+        widget.style.display = "none";
+      }
+      closeBtn.addEventListener("click", function() {
+        widget.style.display = "none";
+        sessionStorage.setItem(storageKey, "1");
+      });
+    })();
+  </script>
+</body>
+</html>
