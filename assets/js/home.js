@@ -114,7 +114,17 @@ async function renderLatestArticles() {
 }
 
 function buildArticleMiniCard(article) {
-  const dateStr = new Date(article.created_at).toLocaleDateString();
+  // ⭕ 1. 优先拿 publish_at，没有才拿 created_at
+  const dateSource = article.publish_at || article.created_at;
+  
+  // ⭕ 2. 强制锁定马来西亚 UTC+8 时区
+  const dateStr = new Date(dateSource).toLocaleDateString("en-US", {
+    timeZone: "Asia/Kuala_Lumpur",
+    year: "numeric",
+    month: "numeric",
+    day: "numeric"
+  });
+
   const excerpt = (article.content || "").replace(/<[^>]*>/g, "").slice(0, 80);
   const typeLabel = article.article_type === "news" ? "News" : "Article";
 
@@ -131,6 +141,7 @@ function buildArticleMiniCard(article) {
       </div>
     </a>
   `;
+}
 }
 
 function buildResultCard(plan, isBest) {
