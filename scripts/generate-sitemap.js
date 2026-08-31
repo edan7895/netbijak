@@ -36,16 +36,16 @@ function isArticleCurrentlyPublished(article) {
 }
 
 async function generateSitemap() {
-  console.log('Fetching plans...');
+    console.log('Fetching plans...');
   const plans = await fetchFromSupabase(
     'plans',
-    'select=slug,publish_at,unpublish_at,providers(slug)&is_published=eq.true'
+    'select=slug,publish_at,unpublish_at,created_at,providers(slug)&is_published=eq.true'
   );
 
   console.log('Fetching articles...');
   const articles = await fetchFromSupabase(
     'articles',
-    'select=slug,language,publish_at&is_published=eq.true'
+    'select=slug,language,publish_at,created_at&is_published=eq.true'
   );
 
   let urls = [];
@@ -54,8 +54,9 @@ async function generateSitemap() {
   (plans || []).forEach((plan) => {
     if (!isPlanCurrentlyPublished(plan)) return;
     if (plan.providers && plan.providers.slug && plan.slug) {
+      const lastmod = (plan.publish_at || plan.created_at || '').slice(0, 10);
       urls.push(
-        `  <url><loc>${SITE_URL}/${plan.providers.slug}/${plan.slug}/</loc><priority>0.6</priority></url>`
+        `  <url><loc>${SITE_URL}/${plan.providers.slug}/${plan.slug}/</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}<priority>0.6</priority></url>`
       );
     }
   });
@@ -64,8 +65,9 @@ async function generateSitemap() {
   (articles || []).forEach((article) => {
     if (!isArticleCurrentlyPublished(article)) return;
     if (article.slug && article.language && LANGS.includes(article.language)) {
+      const lastmod = (article.publish_at || article.created_at || '').slice(0, 10);
       urls.push(
-        `  <url><loc>${SITE_URL}/${article.language}/blog/${article.slug}/</loc><priority>0.6</priority></url>`
+        `  <url><loc>${SITE_URL}/${article.language}/blog/${article.slug}/</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}<priority>0.6</priority></url>`
       );
     }
   });
