@@ -35,6 +35,13 @@ function isArticleCurrentlyPublished(article) {
   return true;
 }
 
+function toMalaysiaDateString(isoString) {
+  if (!isoString) return '';
+  const date = new Date(isoString);
+  // 用马来西亚时区（en-CA 格式恰好输出 YYYY-MM-DD）
+  return date.toLocaleDateString('en-CA', { timeZone: 'Asia/Kuala_Lumpur' });
+}
+
 async function generateSitemap() {
     console.log('Fetching plans...');
   const plans = await fetchFromSupabase(
@@ -54,7 +61,7 @@ async function generateSitemap() {
   (plans || []).forEach((plan) => {
     if (!isPlanCurrentlyPublished(plan)) return;
     if (plan.providers && plan.providers.slug && plan.slug) {
-      const lastmod = (plan.publish_at || plan.created_at || '').slice(0, 10);
+     const lastmod = toMalaysiaDateString(plan.publish_at || plan.created_at);
       urls.push(
         `  <url><loc>${SITE_URL}/${plan.providers.slug}/${plan.slug}/</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}<priority>0.6</priority></url>`
       );
@@ -65,7 +72,7 @@ async function generateSitemap() {
   (articles || []).forEach((article) => {
     if (!isArticleCurrentlyPublished(article)) return;
     if (article.slug && article.language && LANGS.includes(article.language)) {
-      const lastmod = (article.publish_at || article.created_at || '').slice(0, 10);
+     const lastmod = toMalaysiaDateString(article.publish_at || article.created_at);
       urls.push(
         `  <url><loc>${SITE_URL}/${article.language}/blog/${article.slug}/</loc>${lastmod ? `<lastmod>${lastmod}</lastmod>` : ''}<priority>0.6</priority></url>`
       );
