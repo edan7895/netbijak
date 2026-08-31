@@ -20,11 +20,16 @@ async function updateSupabase(table, id, data) {
       apikey: SUPABASE_ANON_KEY,
       Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
       'Content-Type': 'application/json',
-      Prefer: 'return=minimal',
+      Prefer: 'return=representation',
     },
     body: JSON.stringify(data),
   });
   if (!res.ok) throw new Error(`Update failed: ${res.status} ${await res.text()}`);
+  const result = await res.json();
+  if (!result || result.length === 0) {
+    throw new Error(`Update matched 0 rows for id=${id} (check id type/value)`);
+  }
+  console.log(`    Confirmed updated row id=${result[0].id}`);
 }
 
 const LANG_NAMES = { en: 'English', zh: 'Simplified Chinese', ms: 'Bahasa Malaysia' };
