@@ -29,19 +29,7 @@ async function updateSupabase(table, id, data) {
 
 const LANG_NAMES = { en: 'English', zh: 'Simplified Chinese', ms: 'Bahasa Malaysia' };
 
-async function generateSummary(title, content, language) {
-  const plainText = content.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 6000);
-  const langName = LANG_NAMES[language] || 'English';
-
-  const prompt = `You are writing a concise AI summary for a broadband/telecom article on a Malaysian website called NetBijak.
-
-Article title: ${title}
-
-Article content:
-${plainText}
-
-Write a summary in ${langName}, 5-6 sentences long, covering the key points of the article. Write in a clear, neutral, helpful tone. Do not include a heading or title, just the summary text itself. Do not use markdown formatting.`;
-
+async function callGeminiOnce(prompt) {
   const res = await fetch(
     `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent`,
     {
@@ -58,13 +46,45 @@ Write a summary in ${langName}, 5-6 sentences long, covering the key points of t
 
   if (!res.ok) {
     const errText = await res.text();
-    throw new Error(`Gemini API error: ${res.status} ${errText}`);
+    const err = new Error(`Gemini API error: ${res.status} ${errText}`);
+    err.status = res.status;
+    throw err;
   }
 
   const data = await res.json();
   const summary = data.candidates?.[0]?.content?.parts?.[0]?.text;
   if (!summary) throw new Error('Gemini returned no summary text');
   return summary.trim();
+}
+
+async function generateSummary(title, content, language) {
+  const plainText = content.replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 6000);
+  const langName = LANG_NAMES[language] || 'English';
+
+  const prompt = `You are writing a concise AI summary for a broadband/telecom article on a Malaysian website called NetBijak.
+
+Article title: ${title}
+
+Article content:
+${plainText}
+
+Write a summary in ${langName}, 5-6 sentences long, covering the key points of the article. Write in a clear, neutral, helpful tone. Do not include a heading or title, just the summary text itself. Do not use markdown formatting.`;
+
+  const maxRetries = 3;
+  for (let attempt = 1; attempt <= maxRetries; attempt++) {
+    try {
+      return await callGeminiOnce(prompt);
+    } catch (err) {
+      const isRetryable = err.status === 503 || err.status === 429;
+      if (isRetryable && attempt < maxRetries) {
+        const waitMs = attempt * 8000;
+        console.log(`    Attempt ${attempt} failed (${err.status}), retrying in ${waitMs / 1000}s...`);
+        await new Promise((resolve) => setTimeout(resolve, waitMs));
+        continue;
+      }
+      throw err;
+    }
+  }
 }
 
 async function run() {
