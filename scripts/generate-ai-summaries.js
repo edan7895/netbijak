@@ -31,7 +31,7 @@ const LANG_NAMES = { en: 'English', zh: 'Simplified Chinese', ms: 'Bahasa Malays
 
 async function callGeminiOnce(prompt) {
   const res = await fetch(
-    `https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent`,
+    `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent`,
     {
       method: 'POST',
       headers: {
@@ -75,11 +75,11 @@ Write a summary in ${langName}, 5-6 sentences long, covering the key points of t
     try {
       return await callGeminiOnce(prompt);
     } catch (err) {
-      const isRetryable = err.status === 503 || err.status === 429;
+            const isRetryable = err.status === 503 || err.status === 429;
       if (isRetryable && attempt < maxRetries) {
-        const waitMs = attempt * 8000;
+        const waitMs = err.status === 429 ? attempt * 20000 : attempt * 8000;
         console.log(`    Attempt ${attempt} failed (${err.status}), retrying in ${waitMs / 1000}s...`);
-        await new Promise((resolve) => setTimeout(resolve, waitMs));
+              await new Promise((resolve) => setTimeout(resolve, 6000));
         continue;
       }
       throw err;
