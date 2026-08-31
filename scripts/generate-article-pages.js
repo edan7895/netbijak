@@ -186,6 +186,14 @@ function buildArticlePageHtml(article, translations, allArticles) {
 
   const processedContent = addNofollowToExternalLinks(article.content);
   const relatedHtml = buildRelatedArticlesHtml(article, allArticles);
+  const summaryTitles = { en: "NetBijak AI Summary", zh: "NetBijak AI 智能摘要", ms: "Ringkasan AI NetBijak" };
+  const summaryHtml = article.ai_summary
+    ? `
+    <section class="ai-summary-box">
+      <div class="ai-summary-badge">✨ ${summaryTitles[article.language] || summaryTitles.en}</div>
+      <p>${escapeHtml(article.ai_summary)}</p>
+    </section>`
+    : "";
 
   // 建立这篇文章的语言对照表，给导航栏语言切换按钮使用
   let translationMapJson = "{}";
@@ -228,6 +236,7 @@ function buildArticlePageHtml(article, translations, allArticles) {
       ${article.cover_image_url ? `<img src="${escapeHtml(article.cover_image_url)}" alt="${escapeHtml(article.title)}" class="blog-detail-cover" />` : ""}
       <div class="blog-detail-date">${dateStr}${article.geo_tag ? ` · ${escapeHtml(article.geo_tag)}` : ""}</div>
       <h1 class="blog-detail-title">${escapeHtml(article.title)}</h1>
+      ${summaryHtml}
       <div class="blog-detail-content">${processedContent || ""}</div>
       ${buildFAQHtml(faqs)}
     </div>
