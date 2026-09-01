@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>什么是 Fibre Port Availability？为什么有 Coverage 却不能安装？</title>
+  <meta name="description" content="什么是 Broadband Port Availability？了解 Fibre Coverage 与 Port Availability 的区别，以及为什么住址有 Fibre Coverage 却可能暂时无法安装。" />
+  <meta name="geo.region" content="MY" />
+  <meta name="geo.placename" content="Malaysia" />
+  <meta property="og:title" content="什么是 Fibre Port Availability？为什么有 Coverage 却不能安装？" />
+  <meta property="og:description" content="什么是 Broadband Port Availability？了解 Fibre Coverage 与 Port Availability 的区别，以及为什么住址有 Fibre Coverage 却可能暂时无法安装。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://netbijak.com/assets/images/logo.png" />
+  <meta property="og:url" content="https://netbijak.com/zh/blog/-broadband-port-availability-fibre-/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://netbijak.com/zh/blog/-broadband-port-availability-fibre-/" />
+  <link rel="alternate" hreflang="en" href="https://netbijak.com/en/blog/what-is-port-availability-and-why-does-it-matter-for-fibre-broadband/" />
+  <link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/blog/-broadband-port-availability-fibre-/" />
+  <link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/blog/apakah-port-availability-dan-mengapa-ia-penting-untuk-fibre-broadband/" />
+  <link rel="alternate" hreflang="x-default" href="https://netbijak.com/en/blog/what-is-port-availability-and-why-does-it-matter-for-fibre-broadband/" />
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"什么是 Fibre Port Availability？","acceptedAnswer":{"@type":"Answer","text":"Port Availability 通常指 ISP 有没有足够的可用 Network Capacity 或 Connection Point，可以为某个地址开通新的 Fibre Service。"}},{"@type":"Question","name":"Coverage 和 Port Availability 一样吗？","acceptedAnswer":{"@type":"Answer","text":"不一样。Coverage 代表 ISP 的 Network 已经覆盖该地区或 Premises；Port Availability 则涉及该地址目前是否能够实际开通新的 Service。Maxis 和 CelcomDigi 的官方资料都明确区分了这两种情况。"}},{"@type":"Question","name":"有 Fibre Coverage，但没有 Port，可以吗？","acceptedAnswer":{"@type":"Answer","text":"可以。CelcomDigi 的官方资料明确说明，地址即使属于 Coverage，如果没有 Port，客户仍可能需要等待。"}},{"@type":"Question","name":"Port Full 是不是代表我的 Condo 没有 Fibre？","acceptedAnswer":{"@type":"Answer","text":"不是。Port Full 可以发生在 Fibre Infrastructure 已经存在的大楼。Maxis 官方也明确把 Port Full 列为可能导致 Fibre Installation Delay 的情况。"}},{"@type":"Question","name":"Port 以后会重新有吗？","acceptedAnswer":{"@type":"Answer","text":"有可能。当 ISP 增加 Capacity 或有 Port 重新可用时，之前无法安装的地址可能可以继续申请。CelcomDigi 官方明确表示 Port Available 后会联系客户安排安装。"}},{"@type":"Question","name":"为什么 Condo 用户特别需要检查 Port？","acceptedAnswer":{"@type":"Answer","text":"因为 High-Rise 通常会使用 Building-level 或 Shared Infrastructure，Fibre Coverage 存在并不一定代表每一个 Unit 都可以立即获得新的 Connection。"}},{"@type":"Question","name":"如果我想申请的 ISP 没有 Port，怎么办？","acceptedAnswer":{"@type":"Answer","text":"检查同一个地址是否还有其他 ISP 可以提供 Fibre，然后比较 Price、Speed、Contract、Router 和其他条件。"}}]}</script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="main">
+    <div id="blog-detail-container">
+      <a href="/zh/blog/" class="blog-back-link">← 返回部落格</a>
+      <span class="blog-type-tag">Article</span>
+      
+      <div class="blog-detail-date">01/09/2026</div>
+      <h1 class="blog-detail-title">什么是 Broadband Port Availability？为什么申请 Fibre 时它很重要？</h1>
+      
+    <section class="ai-summary-box">
+      <div class="ai-summary-badge">✨ NetBijak AI 智能摘要</div>
+      <p>在申请家用光纤宽带时，许多消费者常混淆光纤覆盖范围与端口可用性这两个概念。即使你的居住大楼处于ISP的覆盖范围内，也并不代表能够立即安装，因为网络接入设备可能已达到容量上限，即所谓的端口已满。光纤基础设施的容量并非无限，尤其在公寓等高层住宅中，这种资源受限的情况更为常见。如果遇到端口不足，部分运营商会提供预约排队机制，或通过临时提供移动宽带作为过渡方案。因此，在申请前确认地址的实际可安装性至关重要，建议消费者不要仅参考覆盖图，而是通过详细的地址查询来获取最终的安装可行性确认。如果首选的运营商暂无端口，建议对比其他品牌，以确保能顺利开通所需的宽带服务。</p>
+    </section>
+      <div class="blog-detail-content"><h2>什么是 Port Availability？</h2><p>当你检查家里有没有 Fibre Broadband 时，通常会看到：</p><blockquote><strong>Coverage</strong></blockquote><p>但还有一个消费者容易忽略的概念：</p><blockquote><strong>Port Availability</strong></blockquote><p>很多人会认为：</p><blockquote>“我的 Condo 已经有 Fibre，那我一定可以马上申请 Fibre。”</blockquote><p><strong>不一定。</strong></p><p>一个 ISP 的 Fibre Network 可能已经进入你的地区或大楼，但你申请新 Broadband 时，实际需要的 Network Capacity 或 Fibre Port 可能暂时没有空位。</p><p>Maxis 官方条款明确说明，Home Fibre 需要你的地址属于 Fibre-ready，并且有相应的 Termination Point；即使这些条件已经满足，仍可能出现包括 <strong>Fibre Port</strong> 在内的其他问题。(<a href="https://www.maxis.com.my/en/terms-conditions/products-services/home-internet/maxis-fibre/" rel="noopener noreferrer nofollow" target="_blank">Maxis Home Fibre Terms &amp; Conditions</a>)</p><p>CelcomDigi 的官方资料也明确说明，如果新地址在 Coverage 内，CelcomDigi 会继续检查 <strong>Port Availability</strong>。如果没有 Port，客户可能会被加入 Demand List，等待之后有 Port 可用。(<a href="https://help.celcomdigi.com/en/support/solutions/articles/70000667834-relocating-celcomdigi-fibre" rel="noopener noreferrer nofollow" target="_blank">CelcomDigi Help Centre</a>)</p><p>Unifi 的官方资料也将 Fibre Coverage 和 Port Availability 分开处理，在部分 Fibre 服务情况下明确提到需要有 Port 才能提供服务。(<a href="https://unifi.com.my/fibre-broadband" rel="noopener noreferrer nofollow" target="_blank">Unifi</a>)</p><h1>Coverage 和 Port Availability 有什么区别？</h1><p>最简单的理解方式是：</p><h3>Fibre Coverage</h3><p>意思比较接近：</p><blockquote><strong>这个 ISP 的 Fibre Network 已经覆盖你的地区、大楼或地址。</strong></blockquote><p>例如 Unifi 提供 Address-based Coverage Checker，让用户检查某个地址有没有 Unifi Fibre。(<a href="https://unifi.com.my/check-coverage" rel="noopener noreferrer nofollow" target="_blank">Unifi Coverage</a>)</p><p>Maxis 也提供 Broadband Coverage Checker，并在官方条款中说明 Home Fibre 只在特定 Coverage Area 提供。(<a href="https://www.maxis.com.my/en/terms-conditions/products-services/home-internet/maxis-fibre/" rel="noopener noreferrer nofollow" target="_blank">Maxis Home Fibre Terms &amp; Conditions</a>)</p><p>TIME 则明确表示 Residential Plan 的 Availability 会根据 Building 而有所不同。(<a href="https://www.time.com.my/support/for-home/faq?faq=home&amp%3Butm_source=chatgpt.com" rel="noopener noreferrer nofollow" target="_blank">TIME Home FAQ</a>)</p><h3>Port Availability</h3><p>Port Availability 则更加具体。</p><p>它关系到：</p><blockquote><strong>ISP 有没有足够的 Network Capacity / Connection Point，可以为新的用户开通 Fibre Service。</strong></blockquote><p>所以有可能出现：</p><blockquote><strong>Coverage：有</strong></blockquote><p>但是：</p><blockquote><strong>Port：暂时没有</strong></blockquote><p>CelcomDigi 官方资料就明确描述了这种情况。即使地址有 Coverage，如果没有 Port，用户也可能需要等待 Port Available 后才能安排安装。(<a href="https://help.celcomdigi.com/en/support/solutions/articles/70000667834-relocating-celcomdigi-fibre" rel="noopener noreferrer nofollow" target="_blank">CelcomDigi Help Centre</a>)</p><h1>为什么一个已经有 Fibre 的大楼还可能没有 Port？</h1><p>因为 Fibre Infrastructure 并不是无限 Capacity。</p><p>一个大楼可以已经有 Fibre Network，但服务这个大楼的 Network Equipment 仍然有一定数量的 Connection Points / Ports。</p><p>当新的客户申请 Broadband 时，ISP 需要确认有没有可以分配给这个客户的 Network Capacity。</p><p>Maxis 官方条款就是一个很清楚的例子：</p><blockquote>即使 Premises 已经 Fibre-ready 并且拥有 Termination Point，仍然可能因为 Fibre Port 等其他问题影响 Service Provision。(<a href="https://www.maxis.com.my/en/terms-conditions/products-services/home-internet/maxis-fibre/" rel="noopener noreferrer nofollow" target="_blank">Maxis Home Fibre Terms &amp; Conditions</a>)</blockquote><p>TIME 的 Network Planning 资料也显示，Port Availability、Port Utilisation 和 Capacity Expansion 都是 Fibre Broadband Network Planning 的实际工作内容。(<a href="https://careers.time.com.my/job/Selangor-Demand-and-Capacity-Planning-Sela/54355644/" rel="noopener noreferrer nofollow" target="_blank">TIME – Demand and Capacity Planning</a>)</p><p>所以：</p><blockquote><strong>有 Fibre Infrastructure ≠ 每一个新申请都能马上开通。</strong></blockquote><h1>Port Availability 和 Coverage 是同一回事吗？</h1><p><strong>不是。</strong></p><p>可以把它理解成两个不同的问题。</p><h3>问题 1：</h3><blockquote><strong>这个 ISP 有没有 Fibre Network 到我的地区/大楼？</strong></blockquote><p>这是：</p><p><strong>Coverage</strong></p><h3>问题 2：</h3><blockquote><strong>这个 ISP 现在能不能为我的地址开通新的服务？</strong></blockquote><p>这里就会涉及：</p><p><strong>Port Availability / Serviceability / Premises Readiness</strong></p><p>所以：</p><blockquote><strong>Coverage 是第一关。</strong></blockquote><blockquote><strong>Port Availability 是后面的实际开通条件之一。</strong></blockquote><p>这个情况在：</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Condo</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Apartment</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>High-Rise</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>老旧住宅</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Fibre 使用率较高的大楼</li></ol><p>尤其值得注意。</p><h1>如果没有 Port，会发生什么？</h1><p>不同 ISP 的处理方式可能不同。</p><h3>CelcomDigi</h3><p>CelcomDigi 官方说明，如果地址有 Coverage 但没有 Port，客户可能会被加入 <strong>Demand List</strong>，并等待 ISP 为该地址增加 Port。</p><p>之后 Port 可用时，CelcomDigi 会联系客户确认是否仍然想申请，并安排安装。(<a href="https://help.celcomdigi.com/en/support/solutions/articles/70000667834-relocating-celcomdigi-fibre" rel="noopener noreferrer nofollow" target="_blank">CelcomDigi Help Centre</a>)</p><h3>Maxis</h3><p>Maxis 目前有针对 <strong>Port Availability Issues</strong> 的 Fibre Pre-Installation Offer。</p><p>对于因为 Port Full 等问题暂时无法安装 Fibre 的新客户，Maxis 可以提供临时的 4G Internet，等待 Fibre Installation。(<a href="https://www.maxis.com.my/en/faq/products-services/home-internet/fibre/presale/" rel="noopener noreferrer nofollow" target="_blank">Maxis Fibre Pre-Installation Offer</a>)</p><p>Maxis 目前另一项 Free Pre-Installation Internet 资料也明确提到，部分新 Home Fibre 客户可能因为 Port Availability Issues 而出现安装延迟。(<a href="https://www.maxis.com.my/en/faq/promotions/home-internet/fibre/free-pre-installation-internet/" rel="noopener noreferrer nofollow" target="_blank">Maxis Free Pre-Installation Internet</a>)</p><h3>Unifi</h3><p>Unifi 官方也要求消费者先通过 Address / Coverage Checker 检查服务 Availability，并在 Fibre 相关服务文件中区分 Coverage 和 Port Availability。(<a href="https://unifi.com.my/fibre-broadband" rel="noopener noreferrer nofollow" target="_blank">Unifi</a>)</p><p>具体处理方式则取决于地址和申请的服务。</p><h3>TIME</h3><p>TIME 当前官方资料主要强调 Residential Plan 的 Availability 会根据 Building 而不同，因此用户需要先确认自己的地址和 Building 是否属于可服务范围。(<a href="https://www.time.com.my/support/for-home/faq?faq=home&amp%3Butm_source=chatgpt.com" rel="noopener noreferrer nofollow" target="_blank">TIME Home FAQ</a>)</p><h1>“Coverage Available” 是不是代表今天一定可以装？</h1><p><strong>不一定。</strong></p><p>Coverage Checker 更准确的理解是：</p><blockquote><strong>“这个 ISP 的 Network 可以到达你的地区或 Premises。”</strong></blockquote><p>而不是：</p><blockquote><strong>“你的安装已经百分之百确定可以马上完成。”</strong></blockquote><p>Unifi 自己也说明，其 Coverage Map 主要提供指导信息，并不能保证特定地点一定可以提供服务，因为还可能受到 System Constraints、Network Infrastructure 变化等因素影响。(<a href="https://unifi.com.my/unifi-home-relocation" rel="noopener noreferrer nofollow" target="_blank">Unifi Home Relocation</a>)</p><p>Maxis 也说明，Service Provision 需要满足 Premises Fibre-ready 等条件，同时还可能存在 Fibre Port 等其他问题。(<a href="https://www.maxis.com.my/en/terms-conditions/products-services/home-internet/maxis-fibre/" rel="noopener noreferrer nofollow" target="_blank">Maxis Home Fibre Terms &amp; Conditions</a>)</p><h1>为什么 Condo 用户特别需要注意 Port？</h1><p>High-Rise Building 和 Landed Home 的 Fibre Infrastructure 可能不一样。</p><p>一个 Condo 可能有：</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>很多住户</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Shared Fibre Infrastructure</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Building-level Network Equipment</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>有限的初始 Capacity</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>多个 ISP 各自不同的 Network</li></ol><p>所以：</p><blockquote><strong>“我的邻居已经有 Fibre。”</strong></blockquote><p>并不一定代表：</p><blockquote><strong>“我的新申请今天也可以马上装。”</strong></blockquote><p>不同 ISP 也可能出现不同结果。</p><p>例如：</p><blockquote>Provider A → Coverage + Port Available</blockquote><p>但是：</p><blockquote>Provider B → Coverage + Port Full</blockquote><p>所以消费者应该检查：</p><blockquote><strong>自己的实际地址</strong></blockquote><p>而不是只问邻居有没有 Fibre。</p><h1>Port Full 是不是代表没有 Fibre？</h1><p><strong>不是。</strong></p><p>Port Full 通常并不代表这个大楼完全没有 Fibre Infrastructure。</p><p>比较接近的意思是：</p><blockquote><strong>Fibre Infrastructure 已经存在，但目前没有足够可用的 Port / Capacity 给新的 Service。</strong></blockquote><p>CelcomDigi 官方明确把：</p><blockquote>Coverage</blockquote><p>和：</p><blockquote>Port Availability</blockquote><p>分开说明。(<a href="https://help.celcomdigi.com/en/support/solutions/articles/70000667834-relocating-celcomdigi-fibre" rel="noopener noreferrer nofollow" target="_blank">CelcomDigi Help Centre</a>)</p><p>Maxis 也明确使用：</p><blockquote><strong>Port Full</strong></blockquote><p>来描述可能造成 Fibre Installation Delay 的情况。(<a href="https://www.maxis.com.my/en/faq/products-services/home-internet/fibre/presale/" rel="noopener noreferrer nofollow" target="_blank">Maxis Fibre Pre-Installation Offer</a>)</p><h1>Port 以后会不会重新有空位？</h1><p><strong>有可能。</strong></p><p>当 ISP 增加 Network Capacity，或者原本使用中的 Connection 变得可用时，之前没有 Port 的地址可能之后可以安装。</p><p>CelcomDigi 就明确说明，当 Port Available 后，会联系相关客户确认并安排 Installation。(<a href="https://help.celcomdigi.com/en/support/solutions/articles/70000667834-relocating-celcomdigi-fibre" rel="noopener noreferrer nofollow" target="_blank">CelcomDigi Help Centre</a>)</p><p>TIME 的 Network Planning 工作也包括 Port Utilisation Monitoring 和 Capacity Expansion。(<a href="https://careers.time.com.my/job/Selangor-Demand-and-Capacity-Planning-Sela/54355644/" rel="noopener noreferrer nofollow" target="_blank">TIME – Demand and Capacity Planning</a>)</p><p>但消费者不要假设：</p><blockquote>“一定 X 天就会有 Port。”</blockquote><p>除非 ISP 给出了明确的时间表，否则等待时间可能因地点和 Network Capacity 而不同。</p><h1>申请 Fibre 之前应该检查什么？</h1><h3>1. Coverage</h3><p>你的地址有没有这个 Provider？</p><h3>2. Port / Serviceability</h3><p>这个 Provider 目前能不能真的为你的地址开通？</p><h3>3. Building</h3><p>如果住 Condo，不要只看 Postcode，要确认实际 Building。</p><h3>4. Installation</h3><p>有没有额外的 Installation Requirement 或 Charge？</p><h3>5. Alternatives</h3><p>如果你最想要的 Provider 暂时没有 Port，其他 ISP 能不能装？</p><p>这就是为什么 Broadband Comparison 很重要。</p><p>你可能会遇到：</p><blockquote><strong>Unifi：Coverage + Port Available</strong></blockquote><p>但是：</p><blockquote><strong>Provider B：Coverage + Port Full</strong></blockquote><p>两者虽然都“覆盖”你的大楼，但实际可以马上安装的只有其中一个。</p><h1>为什么 Port Availability 对 NetBijak 很重要？</h1><p>这其实和 NetBijak 现在的实际流程非常吻合。</p><p>一个用户可能在 NetBijak 看到：</p><blockquote><strong>Unifi 100Mbps – RM89</strong></blockquote><p>觉得：</p><blockquote>“这个 Plan 很适合我。”</blockquote><p>然后点击：</p><blockquote><strong>Apply via NetBijak</strong></blockquote><p>接下来客服再向用户拿地址。</p><p>为什么？</p><p>因为：</p><blockquote><strong>比较 Plan</strong></blockquote><p>和：</p><blockquote><strong>确认真的可以安装</strong></blockquote><p>是两个不同的问题。</p><p>NetBijak 的 Find My Plan 可以回答：</p><blockquote><strong>“哪些配套可能符合我的需求？”</strong></blockquote><p>但最后的 Address / Port Check 才回答：</p><blockquote><strong>“哪些配套真的可以安装在我家？”</strong></blockquote><h1>NetBijak's Take</h1><p><strong>有 Fibre Coverage，并不一定代表可以立即安装 Fibre。</strong></p><p>消费者在申请 Broadband 时，应该理解：</p><blockquote><strong>Coverage</strong></blockquote><p>和：</p><blockquote><strong>Actual Serviceability / Port Availability</strong></blockquote><p>不是完全相同的概念。</p><p>一个 ISP 可能已经把 Fibre Network 建到你的 Building，但你的申请仍然可能因为 Port 或其他 Installation Conditions 而延迟。</p><p>所以 Coverage Checker 应该被看作：</p><blockquote><strong>第一步</strong></blockquote><p>而不是：</p><blockquote><strong>最终安装保证。</strong></blockquote><p>NetBijak 认为，消费者选择 Broadband 时，不应该只看：</p><blockquote><strong>Price + Mbps</strong></blockquote><p>还应该考虑：</p><blockquote><strong>Availability + Installation + Contract + Upload Speed + Router + Actual Household Needs</strong></blockquote><p>如果你喜欢的 ISP 因为 Port Issue 暂时无法安装，也不代表你没有其他选择。</p><p>可以看看同一个地址还有哪些 Provider 可以安装，再比较价格、速度、合约和其他条件。</p><p class="ql-align-center"><strong style="color: rgb(255, 255, 255); background-color: initial;"><a href="/zh/find-your-plan/" rel="noopener noreferrer" target="_blank">🎯为我找配套 →</a></strong></p><p><br></p><p><br></p></div>
+      
+    <section class="section-card" id="article-faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div id="article-faq-list" class="faq-list">
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="0">
+        <span>什么是 Fibre Port Availability？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Port Availability 通常指 ISP 有没有足够的可用 Network Capacity 或 Connection Point，可以为某个地址开通新的 Fibre Service。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="1">
+        <span>Coverage 和 Port Availability 一样吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>不一样。Coverage 代表 ISP 的 Network 已经覆盖该地区或 Premises；Port Availability 则涉及该地址目前是否能够实际开通新的 Service。Maxis 和 CelcomDigi 的官方资料都明确区分了这两种情况。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="2">
+        <span>有 Fibre Coverage，但没有 Port，可以吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>可以。CelcomDigi 的官方资料明确说明，地址即使属于 Coverage，如果没有 Port，客户仍可能需要等待。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="3">
+        <span>Port Full 是不是代表我的 Condo 没有 Fibre？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>不是。Port Full 可以发生在 Fibre Infrastructure 已经存在的大楼。Maxis 官方也明确把 Port Full 列为可能导致 Fibre Installation Delay 的情况。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="4">
+        <span>Port 以后会重新有吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>有可能。当 ISP 增加 Capacity 或有 Port 重新可用时，之前无法安装的地址可能可以继续申请。CelcomDigi 官方明确表示 Port Available 后会联系客户安排安装。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="5">
+        <span>为什么 Condo 用户特别需要检查 Port？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>因为 High-Rise 通常会使用 Building-level 或 Shared Infrastructure，Fibre Coverage 存在并不一定代表每一个 Unit 都可以立即获得新的 Connection。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="6">
+        <span>如果我想申请的 ISP 没有 Port，怎么办？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>检查同一个地址是否还有其他 ISP 可以提供 Fibre，然后比较 Price、Speed、Contract、Router 和其他条件。</p></div>
+    </div></div>
+    </section>
+    </div>
+    
+    <section class="section-card" style="margin-top:1.5rem">
+      <h2>相关文章</h2>
+      <div class="blog-grid"><a href="/zh/blog/-internet-troubleshooting-/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">31/08/2026</div>
+          <div class="blog-card-title">为什么我的 Internet 很慢？马来西亚家庭宽带 Troubleshooting 指南</div>
+          <p class="blog-card-excerpt">为什么我的 Internet 很慢？Internet 很慢，不一定代表你的 Broadband Plan 不够快。实际使用速度可能受到 Wi-Fi、Router 位置、连接设备数量、网络拥堵、设备能力...</p>
+        </div></a><a href="/zh/blog/eg-industries-800g-/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">30/08/2026</div>
+          <div class="blog-card-title">EG Industries 800G 业务增长，对马来西亚网络基础设施意味着什么？</div>
+          <p class="blog-card-excerpt">EG Industries 2026财年业绩创纪录EG Industries 在截至2026年6月30日的财年录得 14.3亿令吉营收，同比增长31.3%，核心盈利则增长24.4%至 1.024亿令吉...</p>
+        </div></a><a href="/zh/blog/-work-from-home-100mbps300mbps-/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">30/08/2026</div>
+          <div class="blog-card-title">马来西亚 Work From Home 最适合什么宽带？100Mbps、300Mbps 还是更高？</div>
+          <p class="blog-card-excerpt">对于很多马来西亚人来说，Work From Home（WFH） 已经成为日常工作的一部分。Zoom、Google Meet、Microsoft Teams、VPN、Cloud Applications...</p>
+        </div></a><a href="/zh/blog/100mbps-vs-300mbps/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">29/08/2026</div>
+          <div class="blog-card-title">100Mbps vs 300Mbps：你到底需要多快的宽带？</div>
+          <p class="blog-card-excerpt">选择 100Mbps 还是 300Mbps，并不是简单地选择“速度越快越好”。300Mbps 的理论下载速度是 100Mbps 的三倍，但这并不代表每个家庭都能明显感受到三倍的使用体验。对于一个人数较...</p>
+        </div></a><a href="/zh/blog/condo-unifi/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">28/08/2026</div>
+          <div class="blog-card-title">Condo 管理层阻止你安装 Unifi？你有哪些权利？</div>
+          <p class="blog-card-excerpt">Condo Management 真的可以不让你安装 Unifi 吗？假设你已经检查过地址。Unifi Fibre 有覆盖。你也已经申请了配套。到了安装当天，Unifi installer 来到 Co...</p>
+        </div></a><a href="/zh/blog/-condo-time-fibre-condo-/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">27/08/2026</div>
+          <div class="blog-card-title">为什么朋友的 Condo 有 TIME Fibre，你的 Condo 却没有？</div>
+          <p class="blog-card-excerpt">为什么朋友的 Condo 有 TIME Fibre，我的却没有？这种情况在马来西亚其实很常见。你朋友住在附近的 Condo，可能只是几百米、甚至同一个地区。他用的是 TIME Fibre，网速快，月费...</p>
+        </div></a></div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script>const ROOT_PATH = "/"; const PAGE_TRANSLATIONS = {"en":"/en/blog/what-is-port-availability-and-why-does-it-matter-for-fibre-broadband/","zh":"/zh/blog/-broadband-port-availability-fibre-/","ms":"/ms/blog/apakah-port-availability-dan-mengapa-ia-penting-untuk-fibre-broadband/"};</script>
+  <script src="/assets/js/translations.js"></script>
+  <script src="/assets/js/site.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("#article-faq-list .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#article-faq-list .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
+    });
+  </script>
+
+  <div id="mascot-widget" class="mascot-widget">
+    <button type="button" class="mascot-close-btn" id="mascot-close-btn" aria-label="Close">✕</button>
+    <a href="https://wa.me/60178835110?text=Hi%20NetBijak%2C%20I'm%20reading%20%22%E4%BB%80%E4%B9%88%E6%98%AF%20Broadband%20Port%20Availability%EF%BC%9F%E4%B8%BA%E4%BB%80%E4%B9%88%E7%94%B3%E8%AF%B7%20Fibre%20%E6%97%B6%E5%AE%83%E5%BE%88%E9%87%8D%E8%A6%81%EF%BC%9F%22%20and%20have%20a%20question." target="_blank" class="mascot-avatar-link">
+      <img src="/assets/images/mascot.png" alt="NetBijak Assistant" class="mascot-avatar-img" />
+      <span class="mascot-bubble">有问题吗？</span>
+    </a>
+  </div>
+  <script>
+    (function() {
+      var storageKey = "mascot-closed--broadband-port-availability-fibre-";
+      var widget = document.getElementById("mascot-widget");
+      var closeBtn = document.getElementById("mascot-close-btn");
+      if (sessionStorage.getItem(storageKey)) {
+        widget.style.display = "none";
+      }
+      closeBtn.addEventListener("click", function() {
+        widget.style.display = "none";
+        sessionStorage.setItem(storageKey, "1");
+      });
+    })();
+  </script>
+</body>
+</html>
