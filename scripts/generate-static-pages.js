@@ -230,6 +230,14 @@ async function run() {
       html = inject(html, "content", articleFullHtml(article));
       writeIfExists(cpFile, html);
     }
+
+    const coverageFile = `${lang}/coverage/index.html`;
+    if (fs.existsSync(coverageFile)) {
+      let html = fs.readFileSync(coverageFile, 'utf-8');
+      const article = articles.find((a) => a.slug === `check-fibre-coverage-buying-guide-${lang}`);
+      html = inject(html, "content", articleFullHtml(article));
+      writeIfExists(coverageFile, html);
+    }
   }
 
   console.log('Done.');
