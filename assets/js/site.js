@@ -1,4 +1,11 @@
 // NetBijak.com - 全站 Header / Footer 渲染
+
+(function loadTrackingScript() {
+  var script = document.createElement("script");
+  script.src = "/assets/js/tracking.js";
+  document.head.appendChild(script);
+})();
+
 function setFavicon() {
   const link = document.createElement("link");
   link.rel = "icon";
