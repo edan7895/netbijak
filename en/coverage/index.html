@@ -52,7 +52,7 @@
       </div>
       <div id="postcode-info-box"></div>
 
-      <div class="form-row">
+      <div class="form-row" style="margin-top:1.25rem">
         <label id="housing-label"></label>
         <div class="property-grid" style="margin-top:8px">
           <button type="button" id="btn-housing-landed" class="property-btn active">
@@ -75,12 +75,16 @@
         <div id="location-other-input-wrap" class="form-row hidden">
           <input type="text" id="location-other-input" />
         </div>
+        <div class="form-row" style="margin-top:1rem">
+          <label id="provider-label"></label>
+          <select id="provider-select"></select>
+        </div>
         <button type="button" id="btn-check-coverage" class="btn-primary" style="margin-top:1rem"></button>
       </div>
     </section>
 
     <section id="coverage-result-section" class="section-card hidden">
-      <h2 id="coverage-results-heading"><span id="coverage-results-title"></span> <span id="coverage-result-location"></span></h2>
+      <h2><span id="coverage-results-title"></span> <span id="coverage-result-location"></span></h2>
       <div id="coverage-result-grid" class="coverage-result-grid"></div>
       <p class="coverage-disclaimer" id="coverage-disclaimer-text"></p>
       <a href="#" id="coverage-cta-btn" target="_blank" class="wa-btn wa-btn-large" style="display:inline-flex; margin-top:1rem"></a>
@@ -107,6 +111,7 @@
       document.getElementById("housing-highrise-label").textContent = t("coverage_housing_highrise");
       document.getElementById("location-label").textContent = t("coverage_location_label");
       document.getElementById("location-other-input").placeholder = t("coverage_location_other_placeholder");
+      document.getElementById("provider-label").textContent = t("coverage_provider_label");
       document.getElementById("btn-check-coverage").textContent = t("coverage_btn_check");
       document.getElementById("coverage-results-title").textContent = t("coverage_results_title");
       document.getElementById("coverage-disclaimer-text").textContent = t("coverage_disclaimer");
