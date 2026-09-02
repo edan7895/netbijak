@@ -117,6 +117,7 @@ function buildPlanPageHtml(plan, provider, banners, relatedArticles) {
   <footer id="site-footer"></footer>
 
   <script>const ROOT_PATH = "/";</script>
+  <script src="/assets/js/tracking.js"></script>
   <script src="/assets/js/translations.js"></script>
   <script src="/assets/js/site.js"></script>
 </body>

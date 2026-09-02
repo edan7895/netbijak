@@ -246,6 +246,7 @@ function buildArticlePageHtml(article, translations, allArticles) {
   <footer id="site-footer"></footer>
 
   <script>const ROOT_PATH = "/"; const PAGE_TRANSLATIONS = ${translationMapJson};</script>
+  <script src="/assets/js/tracking.js"></script>
   <script src="/assets/js/translations.js"></script>
   <script src="/assets/js/site.js"></script>
   ${faqs.length > 0 ? `<script>
