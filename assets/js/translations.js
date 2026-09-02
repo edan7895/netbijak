@@ -28,6 +28,7 @@ const translations = {
     icon_speedtest: "Speed Test",
     icon_articles: "NetBijak Articles",
     icon_compare: "Compare Plans",
+    icon_coverage: "Check Coverage",
     icon_find_plan: "Find My Plan",
     search_results_for: "Search results for",
 
@@ -333,6 +334,7 @@ const translations = {
     icon_speedtest: "网速测试",
     icon_articles: "NetBijak 文章",
     icon_compare: "比较配套",
+    icon_coverage: "查询覆盖",
     icon_find_plan: "为我找配套",
     search_results_for: "搜索结果：",
 
@@ -638,6 +640,7 @@ const translations = {
     icon_speedtest: "Ujian Kelajuan",
     icon_articles: "Artikel NetBijak",
     icon_compare: "Bandingkan Pelan",
+    icon_coverage: "Semak Liputan",
     icon_find_plan: "Cari Pelan Saya",
     search_results_for: "Hasil carian untuk",
 
