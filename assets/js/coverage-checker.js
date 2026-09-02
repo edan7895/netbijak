@@ -1,6 +1,9 @@
 // NetBijak.com - Coverage Checker 核心逻辑
 
+const WHATSAPP_NUMBER_COVERAGE = "60178835110";
+
 let selectedHousingType = "landed";
+let selectedProviderSlug = "";
 let allProvidersForCoverage = [];
 let currentLocationsList = [];
 
@@ -11,7 +14,11 @@ async function initCoverageCheckerPage() {
     url: window.location.href,
   });
 
-  allProvidersForCoverage = await fetchStaticData("providers");
+  allProvidersForCoverage = (await fetchStaticData("providers")).filter(
+    (p) => !p.slug.includes("-business")
+  );
+
+  populateProviderSelect();
 
   document.getElementById("btn-housing-landed").addEventListener("click", () => {
     selectedHousingType = "landed";
@@ -27,10 +34,26 @@ async function initCoverageCheckerPage() {
 
   document.getElementById("postcode-input").addEventListener("blur", onPostcodeEntered);
   document.getElementById("postcode-input").addEventListener("keydown", (e) => {
-    if (e.key === "Enter") onPostcodeEntered();
+    if (e.key === "Enter") {
+      e.preventDefault();
+      onPostcodeEntered();
+    }
+  });
+
+  document.getElementById("provider-select").addEventListener("change", (e) => {
+    selectedProviderSlug = e.target.value;
   });
 
   document.getElementById("btn-check-coverage").addEventListener("click", checkCoverage);
+
+  loadCoverageContent();
+}
+
+function populateProviderSelect() {
+  const select = document.getElementById("provider-select");
+  select.innerHTML =
+    `<option value="">${t("coverage_select_provider_placeholder")}</option>` +
+    allProvidersForCoverage.map((p) => `<option value="${p.slug}">${p.name}</option>`).join("");
 }
 
 async function onPostcodeEntered() {
@@ -84,7 +107,6 @@ async function loadLocationOptions(postcodeRow) {
   currentLocationsList = locations || [];
 
   if (currentLocationsList.length === 0) {
-    // 资料库没有资料，改呼叫 Overpass API 抓取，抓完存回资料库
     const fetched = await fetchAndSaveOsmLocations(postcodeRow);
     currentLocationsList = fetched;
   }
@@ -104,19 +126,18 @@ function populateLocationSelect() {
       `<option value="__other__">${t("coverage_location_other")}</option>`;
   }
 
-  select.addEventListener("change", () => {
+  select.onchange = () => {
     const otherInputWrap = document.getElementById("location-other-input-wrap");
     if (select.value === "__other__") {
       otherInputWrap.classList.remove("hidden");
     } else {
       otherInputWrap.classList.add("hidden");
     }
-  });
+  };
 }
 
 async function fetchAndSaveOsmLocations(postcodeRow) {
   try {
-    // 第一步：取得Postcode中心坐标
     const geoUrl = `https://nominatim.openstreetmap.org/search?postalcode=${postcodeRow.postcode}&country=Malaysia&format=json&limit=1`;
     const geoRes = await fetch(geoUrl, { headers: { "Accept-Language": "en" } });
     if (!geoRes.ok) return [];
@@ -125,9 +146,8 @@ async function fetchAndSaveOsmLocations(postcodeRow) {
 
     const lat = parseFloat(geoResults[0].lat);
     const lon = parseFloat(geoResults[0].lon);
-    const radius = 1500; // 公尺
+    const radius = 1500;
 
-    // 第二步：用 Overpass API 抓该范围内具名的住宅建筑
     const overpassQuery = `
       [out:json][timeout:15];
       (
@@ -158,7 +178,6 @@ async function fetchAndSaveOsmLocations(postcodeRow) {
 
     if (names.length === 0) return [];
 
-    // 第三步：存回 Supabase locations 表
     const rows = names.map((name) => ({
       name,
       postcode_id: postcodeRow.id,
@@ -166,10 +185,7 @@ async function fetchAndSaveOsmLocations(postcodeRow) {
       source: "osm",
     }));
 
-    const { data: inserted } = await supabaseClient
-      .from("locations")
-      .insert(rows)
-      .select();
+    const { data: inserted } = await supabaseClient.from("locations").insert(rows).select();
 
     return inserted || [];
   } catch (err) {
@@ -179,6 +195,11 @@ async function fetchAndSaveOsmLocations(postcodeRow) {
 }
 
 async function checkCoverage() {
+  if (!selectedProviderSlug) {
+    alert(t("coverage_select_provider_first"));
+    return;
+  }
+
   const select = document.getElementById("location-select");
   const otherInput = document.getElementById("location-other-input");
   const resultSection = document.getElementById("coverage-result-section");
@@ -192,7 +213,6 @@ async function checkCoverage() {
       alert(t("coverage_enter_location_name"));
       return;
     }
-    // 用户手动输入的新地点，也存进资料库（贡献机制）
     locationId = await saveUserContributedLocation(locationName);
   } else if (locationId) {
     const found = currentLocationsList.find((l) => String(l.id) === String(locationId));
@@ -205,16 +225,21 @@ async function checkCoverage() {
   resultSection.classList.remove("hidden");
   resultSection.scrollIntoView({ behavior: "smooth" });
 
-  let coveredProviderIds = new Set();
+  let isConfirmed = false;
   if (locationId) {
-    const { data: coverage } = await supabaseClient
-      .from("location_coverage")
-      .select("provider_id")
-      .eq("location_id", locationId);
-    coveredProviderIds = new Set((coverage || []).map((c) => c.provider_id));
+    const provider = allProvidersForCoverage.find((p) => p.slug === selectedProviderSlug);
+    if (provider) {
+      const { data: coverage } = await supabaseClient
+        .from("location_coverage")
+        .select("id")
+        .eq("location_id", locationId)
+        .eq("provider_id", provider.id)
+        .maybeSingle();
+      isConfirmed = !!coverage;
+    }
   }
 
-  renderCoverageResults(locationName, coveredProviderIds);
+  renderCoverageResult(locationName, isConfirmed);
 }
 
 async function saveUserContributedLocation(name) {
@@ -241,7 +266,6 @@ async function saveUserContributedLocation(name) {
     .single();
 
   if (error) {
-    // 可能是重复名字，尝试找出既有的那笔
     const { data: existing } = await supabaseClient
       .from("locations")
       .select("id")
@@ -287,7 +311,7 @@ function getProviderTemplateType(slug) {
   return "standard";
 }
 
-function renderCoverageResults(locationName, coveredProviderIds) {
+function renderCoverageResult(locationName, isConfirmed) {
   const lang = getCurrentLang();
   const templates = COVERAGE_TEMPLATES[lang] || COVERAGE_TEMPLATES.en;
   const resultGrid = document.getElementById("coverage-result-grid");
@@ -295,25 +319,90 @@ function renderCoverageResults(locationName, coveredProviderIds) {
 
   resultLocationLabel.textContent = locationName;
 
-  const homeProviders = allProvidersForCoverage.filter((p) => !p.slug.includes("-business"));
+  const provider = allProvidersForCoverage.find((p) => p.slug === selectedProviderSlug);
+  if (!provider) return;
 
-  resultGrid.innerHTML = homeProviders
-    .map((p) => {
-      const isConfirmed = coveredProviderIds.has(p.id);
-      const templateType = getProviderTemplateType(p.slug);
-      const text = isConfirmed ? templates.confirmed(p.name) : templates.default[templateType];
+  const templateType = getProviderTemplateType(provider.slug);
+  const text = isConfirmed ? templates.confirmed(provider.name) : templates.default[templateType];
 
-      return `
-      <div class="coverage-result-card ${isConfirmed ? "coverage-confirmed" : ""}" style="border-color:${p.color_hex}">
-        ${p.logo_url ? `<img src="${ROOT_PATH}${p.logo_url.replace(/^\//, "")}" alt="${p.name}" class="coverage-result-logo" />` : ""}
-        <div class="coverage-result-body">
-          <div class="coverage-result-name" style="color:${p.color_hex}">${p.name}</div>
-          <p class="coverage-result-text">${text}</p>
-        </div>
+  resultGrid.innerHTML = `
+    <div class="coverage-result-card ${isConfirmed ? "coverage-confirmed" : ""}" style="border-color:${provider.color_hex}">
+      ${provider.logo_url ? `<img src="${ROOT_PATH}${provider.logo_url.replace(/^\//, "")}" alt="${provider.name}" class="coverage-result-logo" />` : ""}
+      <div class="coverage-result-body">
+        <div class="coverage-result-name" style="color:${provider.color_hex}">${provider.name}</div>
+        <p class="coverage-result-text">${text}</p>
       </div>
-    `;
-    })
+    </div>
+  `;
+
+  const waMessage = `Hi NetBijak, I'd like to check exact ${provider.name} availability.\nPostcode: ${document.getElementById("postcode-input").value}\nLocation: ${locationName}\nProperty Type: ${selectedHousingType === "landed" ? "Landed" : "High-Rise"}`;
+  const waLink = `https://wa.me/${WHATSAPP_NUMBER_COVERAGE}?text=${encodeURIComponent(waMessage)}`;
+  document.getElementById("coverage-cta-btn").href = waLink;
+}
+
+// ===== 文章 + FAQ 区块 =====
+async function loadCoverageContent() {
+  const contentWrap = document.getElementById("coverage-content-wrap");
+  if (!contentWrap) return;
+
+  const lang = getCurrentLang();
+  const allArticles = await fetchStaticData("articles");
+  const article = allArticles.find(
+    (a) => a.slug === `check-fibre-coverage-buying-guide-${lang}` && isArticleCurrentlyPublished(a)
+  );
+
+  const articleHtml = article
+    ? `
+    <article class="bh-article-full" id="buying-guide">
+      <h2 class="bh-article-full-title">${article.title}</h2>
+      <div class="bh-article-full-content">${article.content || ""}</div>
+    </article>
+  `
+    : "";
+
+  contentWrap.innerHTML = `
+    ${articleHtml}
+    <section class="section-card">
+      <h2>${t("coverage_faq_title")}</h2>
+      <p class="section-sub">${t("coverage_faq_subtitle")}</p>
+      <div id="coverage-faq-list" class="faq-list"></div>
+    </section>
+  `;
+
+  buildCoverageFAQ();
+}
+
+function buildCoverageFAQ() {
+  const faqList = document.getElementById("coverage-faq-list");
+  if (!faqList) return;
+
+  const questionKeys = ["coverage_faq_q1", "coverage_faq_q2", "coverage_faq_q3", "coverage_faq_q4", "coverage_faq_q5"];
+  const answerKeys = ["coverage_faq_a1", "coverage_faq_a2", "coverage_faq_a3", "coverage_faq_a4", "coverage_faq_a5"];
+
+  faqList.innerHTML = questionKeys
+    .map(
+      (qKey, i) => `
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="${i}">
+        <span>${t(qKey)}</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>${t(answerKeys[i])}</p></div>
+    </div>
+  `
+    )
     .join("");
+
+  faqList.querySelectorAll(".faq-question").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const item = btn.closest(".faq-item");
+      const isOpen = item.classList.contains("open");
+      faqList.querySelectorAll(".faq-item").forEach((el) => el.classList.remove("open"));
+      if (!isOpen) item.classList.add("open");
+    });
+  });
+
+  injectFAQSchema("coverage-faq-list");
 }
 
 document.addEventListener("DOMContentLoaded", initCoverageCheckerPage);
