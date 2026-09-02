@@ -203,61 +203,61 @@ async function saveCoverage() {
 
 async function fetchOsmSuggestions(postcode, city, state) {
   const wrap = document.getElementById("osm-suggestions-wrap");
-  wrap.innerHTML = `<p style="color:#94a3b8;font-size:0.85rem">Searching OpenStreetMap for buildings in this area...</p>`;
+  wrap.innerHTML = `<p style="color:#94a3b8;font-size:0.85rem">Searching for buildings in this area, this may take a few seconds...</p>`;
   wrap.classList.remove("hidden");
 
   try {
-    // 第一步：先用 postcode + Malaysia 查出这个邮区的中心经纬度
-    const geoQuery = encodeURIComponent(`${postcode}, Malaysia`);
     const geoUrl = `https://nominatim.openstreetmap.org/search?postalcode=${postcode}&country=Malaysia&format=json&limit=1`;
     const geoRes = await fetch(geoUrl, { headers: { "Accept-Language": "en" } });
-    if (!geoRes.ok) throw new Error("OSM geocode request failed");
+    if (!geoRes.ok) throw new Error("Geocode failed");
     const geoResults = await geoRes.json();
 
     if (!geoResults || geoResults.length === 0) {
-      wrap.innerHTML = `<p style="color:#94a3b8;font-size:0.85rem">No location suggestions found for this postcode. Please add manually below.</p>`;
+      wrap.innerHTML = `<p style="color:#94a3b8;font-size:0.85rem">No suggestions found. Please add manually below.</p>`;
       return;
     }
 
-    const { lat, lon } = geoResults[0];
-    const latNum = parseFloat(lat);
-    const lonNum = parseFloat(lon);
-    const delta = 0.01; // 大约1公里范围
-    const viewbox = `${lonNum - delta},${latNum + delta},${lonNum + delta},${latNum - delta}`;
+    const lat = parseFloat(geoResults[0].lat);
+    const lon = parseFloat(geoResults[0].lon);
+    const radius = 1500;
 
-    // 第二步：在这个范围内，搜寻具名的建筑物/社区/地标
-    const searchTerms = ["residensi", "taman", "apartment", "condominium", "kondominium", "pangsapuri"];
-    const allResults = [];
+    const overpassQuery = `
+      [out:json][timeout:15];
+      (
+        node["building"~"apartments|residential|house"]["name"](around:${radius},${lat},${lon});
+        way["building"~"apartments|residential|house"]["name"](around:${radius},${lat},${lon});
+        node["place"~"neighbourhood|suburb"]["name"](around:${radius},${lat},${lon});
+      );
+      out center 30;
+    `;
 
-    for (const term of searchTerms) {
-      const url = `https://nominatim.openstreetmap.org/search?q=${term}&format=json&addressdetails=1&limit=10&countrycodes=my&viewbox=${viewbox}&bounded=1`;
-      const res = await fetch(url, { headers: { "Accept-Language": "en" } });
-      if (res.ok) {
-        const results = await res.json();
-        allResults.push(...results);
-      }
-      await new Promise((resolve) => setTimeout(resolve, 1100)); // 尊重OSM的1秒请求间隔限制
-    }
+    const overpassRes = await fetch("https://overpass-api.de/api/interpreter", {
+      method: "POST",
+      body: overpassQuery,
+    });
 
-    const seenNames = new Set();
-    const unique = [];
-    allResults.forEach((r) => {
-      const name = r.namedetails?.name || r.display_name?.split(",")[0];
-      if (name && !seenNames.has(name.toLowerCase())) {
-        seenNames.add(name.toLowerCase());
-        unique.push(name);
+    if (!overpassRes.ok) throw new Error("Overpass failed");
+    const overpassData = await overpassRes.json();
+
+    const names = [];
+    const seen = new Set();
+    (overpassData.elements || []).forEach((el) => {
+      const name = el.tags && el.tags.name;
+      if (name && !seen.has(name.toLowerCase())) {
+        seen.add(name.toLowerCase());
+        names.push(name);
       }
     });
 
-    if (unique.length === 0) {
-      wrap.innerHTML = `<p style="color:#94a3b8;font-size:0.85rem">No location suggestions found from OpenStreetMap for this area. Please add manually below.</p>`;
+    if (names.length === 0) {
+      wrap.innerHTML = `<p style="color:#94a3b8;font-size:0.85rem">No suggestions found. Please add manually below.</p>`;
       return;
     }
 
     wrap.innerHTML = `
-      <p style="font-size:0.8rem; color:#94a3b8; margin-bottom:8px">Suggestions from OpenStreetMap — click to add:</p>
+      <p style="font-size:0.8rem; color:#94a3b8; margin-bottom:8px">Suggestions — click to add:</p>
       <div class="osm-suggestion-list">
-        ${unique
+        ${names
           .map(
             (name) =>
               `<button type="button" class="osm-suggestion-btn" data-name="${name.replace(/"/g, "&quot;")}">+ ${name}</button>`
@@ -267,14 +267,45 @@ async function fetchOsmSuggestions(postcode, city, state) {
     `;
 
     wrap.querySelectorAll(".osm-suggestion-btn").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        document.getElementById("new-location-name").value = btn.dataset.name;
+      btn.addEventListener("click", async () => {
+        btn.disabled = true;
+        btn.textContent = "Adding...";
+        await quickAddLocationFromOsm(btn.dataset.name);
       });
     });
   } catch (err) {
-    console.error("OSM fetch failed:", err);
+    console.error("OSM/Overpass fetch failed:", err);
     wrap.innerHTML = `<p style="color:#94a3b8;font-size:0.85rem">Could not load suggestions. Please add manually below.</p>`;
   }
+}
+
+async function quickAddLocationFromOsm(name) {
+  if (!currentPostcodeId) return;
+
+  const { data, error } = await supabaseClient
+    .from("locations")
+    .insert({
+      name,
+      postcode_id: currentPostcodeId,
+      housing_type: "both",
+      source: "osm",
+    })
+    .select()
+    .single();
+
+  if (error) {
+    if (error.code === "23505") {
+      alert(`"${name}" already exists for this postcode.`);
+    } else {
+      alert("Error adding location: " + error.message);
+    }
+    return;
+  }
+
+  await loadLocationsForPostcode(currentPostcodeId);
+  document.getElementById("location-select").value = data.id;
+  currentLocationId = data.id;
+  loadCoverageCheckboxes(data.id);
 }
 
 document.addEventListener("DOMContentLoaded", initAdminCoveragePage);
