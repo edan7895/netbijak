@@ -61,4 +61,8 @@
   <url><loc>https://netbijak.com/maxis-business/</loc><priority>0.7</priority></url>
   <url><loc>https://netbijak.com/time-business/</loc><priority>0.7</priority></url>
 
+  <url><loc>https://netbijak.com/en/coverage/</loc><priority>0.8</priority></url>
+  <url><loc>https://netbijak.com/zh/coverage/</loc><priority>0.8</priority></url>
+  <url><loc>https://netbijak.com/ms/coverage/</loc><priority>0.8</priority></url>
+
 </urlset>
