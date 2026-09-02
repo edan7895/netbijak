@@ -69,6 +69,8 @@ async function searchPostcode() {
 
   await loadLocationsForPostcode(postcode.id);
   locationSection.classList.remove("hidden");
+
+  fetchOsmSuggestions(postcode.postcode, postcode.city, postcode.state);
 }
 
 async function loadLocationsForPostcode(postcodeId) {
@@ -197,6 +199,61 @@ async function saveCoverage() {
   }
 
   alert("Coverage saved successfully!");
+}
+
+async function fetchOsmSuggestions(postcode, city, state) {
+  const wrap = document.getElementById("osm-suggestions-wrap");
+  wrap.innerHTML = `<p style="color:#94a3b8;font-size:0.85rem">Searching OpenStreetMap for buildings in this area...</p>`;
+  wrap.classList.remove("hidden");
+
+  try {
+    const query = encodeURIComponent(`${postcode} ${city} ${state} Malaysia`);
+    const url = `https://nominatim.openstreetmap.org/search?q=${query}&format=json&addressdetails=1&limit=15&countrycodes=my`;
+
+    const res = await fetch(url, {
+      headers: { 'Accept-Language': 'en' },
+    });
+    if (!res.ok) throw new Error('OSM request failed');
+    const results = await res.json();
+
+    // 只保留有名字、看起来像建筑/地点的结果（过滤掉纯道路等）
+    const named = results.filter((r) => r.namedetails?.name || r.display_name?.split(',')[0]);
+    const unique = [];
+    const seenNames = new Set();
+    named.forEach((r) => {
+      const name = r.namedetails?.name || r.display_name.split(',')[0];
+      if (!seenNames.has(name.toLowerCase())) {
+        seenNames.add(name.toLowerCase());
+        unique.push(name);
+      }
+    });
+
+    if (unique.length === 0) {
+      wrap.innerHTML = `<p style="color:#94a3b8;font-size:0.85rem">No suggestions found from OpenStreetMap. Please add manually below.</p>`;
+      return;
+    }
+
+    wrap.innerHTML = `
+      <p style="font-size:0.8rem; color:#94a3b8; margin-bottom:8px">Suggestions from OpenStreetMap — click to add:</p>
+      <div class="osm-suggestion-list">
+        ${unique
+          .map(
+            (name) =>
+              `<button type="button" class="osm-suggestion-btn" data-name="${name.replace(/"/g, '&quot;')}">+ ${name}</button>`
+          )
+          .join("")}
+      </div>
+    `;
+
+    wrap.querySelectorAll(".osm-suggestion-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        document.getElementById("new-location-name").value = btn.dataset.name;
+      });
+    });
+  } catch (err) {
+    console.error("OSM fetch failed:", err);
+    wrap.innerHTML = `<p style="color:#94a3b8;font-size:0.85rem">Could not load suggestions. Please add manually below.</p>`;
+  }
 }
 
 document.addEventListener("DOMContentLoaded", initAdminCoveragePage);
