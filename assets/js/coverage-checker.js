@@ -1,0 +1,319 @@
+// NetBijak.com - Coverage Checker 核心逻辑
+
+let selectedHousingType = "landed";
+let allProvidersForCoverage = [];
+let currentLocationsList = [];
+
+async function initCoverageCheckerPage() {
+  setSEOMeta({
+    title: t("coverage_title") + " | NetBijak.com",
+    description: t("coverage_subtitle"),
+    url: window.location.href,
+  });
+
+  allProvidersForCoverage = await fetchStaticData("providers");
+
+  document.getElementById("btn-housing-landed").addEventListener("click", () => {
+    selectedHousingType = "landed";
+    document.getElementById("btn-housing-landed").classList.add("active");
+    document.getElementById("btn-housing-highrise").classList.remove("active");
+  });
+
+  document.getElementById("btn-housing-highrise").addEventListener("click", () => {
+    selectedHousingType = "highrise";
+    document.getElementById("btn-housing-highrise").classList.add("active");
+    document.getElementById("btn-housing-landed").classList.remove("active");
+  });
+
+  document.getElementById("postcode-input").addEventListener("blur", onPostcodeEntered);
+  document.getElementById("postcode-input").addEventListener("keydown", (e) => {
+    if (e.key === "Enter") onPostcodeEntered();
+  });
+
+  document.getElementById("btn-check-coverage").addEventListener("click", checkCoverage);
+}
+
+async function onPostcodeEntered() {
+  const postcodeInput = document.getElementById("postcode-input");
+  const postcode = postcodeInput.value.trim();
+  const postcodeInfoBox = document.getElementById("postcode-info-box");
+  const locationSection = document.getElementById("location-input-section");
+
+  if (!/^\d{5}$/.test(postcode)) {
+    postcodeInfoBox.innerHTML = "";
+    locationSection.classList.add("hidden");
+    return;
+  }
+
+  postcodeInfoBox.innerHTML = `<p class="coverage-loading-text">${t("coverage_checking_postcode")}</p>`;
+
+  const { data: postcodeRow, error } = await supabaseClient
+    .from("postcodes")
+    .select("*")
+    .eq("postcode", postcode)
+    .maybeSingle();
+
+  if (error || !postcodeRow) {
+    postcodeInfoBox.innerHTML = `<p class="coverage-error-text">${t("coverage_postcode_not_found")}</p>`;
+    locationSection.classList.add("hidden");
+    return;
+  }
+
+  postcodeInfoBox.innerHTML = `
+    <div class="coverage-postcode-confirm">📍 ${postcodeRow.postcode} — ${postcodeRow.city}, ${postcodeRow.state}</div>
+  `;
+
+  locationSection.classList.remove("hidden");
+  await loadLocationOptions(postcodeRow);
+}
+
+async function loadLocationOptions(postcodeRow) {
+  const select = document.getElementById("location-select");
+  const suggestionHint = document.getElementById("location-loading-hint");
+
+  select.innerHTML = `<option value="">${t("coverage_location_loading")}</option>`;
+  suggestionHint.classList.remove("hidden");
+  suggestionHint.textContent = t("coverage_location_loading_hint");
+
+  const { data: locations } = await supabaseClient
+    .from("locations")
+    .select("*")
+    .eq("postcode_id", postcodeRow.id)
+    .order("name", { ascending: true });
+
+  currentLocationsList = locations || [];
+
+  if (currentLocationsList.length === 0) {
+    // 资料库没有资料，改呼叫 Overpass API 抓取，抓完存回资料库
+    const fetched = await fetchAndSaveOsmLocations(postcodeRow);
+    currentLocationsList = fetched;
+  }
+
+  suggestionHint.classList.add("hidden");
+  populateLocationSelect();
+}
+
+function populateLocationSelect() {
+  const select = document.getElementById("location-select");
+  if (currentLocationsList.length === 0) {
+    select.innerHTML = `<option value="">${t("coverage_no_locations_found")}</option>`;
+  } else {
+    select.innerHTML =
+      `<option value="">${t("coverage_select_location_placeholder")}</option>` +
+      currentLocationsList.map((loc) => `<option value="${loc.id}">${loc.name}</option>`).join("") +
+      `<option value="__other__">${t("coverage_location_other")}</option>`;
+  }
+
+  select.addEventListener("change", () => {
+    const otherInputWrap = document.getElementById("location-other-input-wrap");
+    if (select.value === "__other__") {
+      otherInputWrap.classList.remove("hidden");
+    } else {
+      otherInputWrap.classList.add("hidden");
+    }
+  });
+}
+
+async function fetchAndSaveOsmLocations(postcodeRow) {
+  try {
+    // 第一步：取得Postcode中心坐标
+    const geoUrl = `https://nominatim.openstreetmap.org/search?postalcode=${postcodeRow.postcode}&country=Malaysia&format=json&limit=1`;
+    const geoRes = await fetch(geoUrl, { headers: { "Accept-Language": "en" } });
+    if (!geoRes.ok) return [];
+    const geoResults = await geoRes.json();
+    if (!geoResults || geoResults.length === 0) return [];
+
+    const lat = parseFloat(geoResults[0].lat);
+    const lon = parseFloat(geoResults[0].lon);
+    const radius = 1500; // 公尺
+
+    // 第二步：用 Overpass API 抓该范围内具名的住宅建筑
+    const overpassQuery = `
+      [out:json][timeout:15];
+      (
+        node["building"~"apartments|residential|house"]["name"](around:${radius},${lat},${lon});
+        way["building"~"apartments|residential|house"]["name"](around:${radius},${lat},${lon});
+        node["place"~"neighbourhood|suburb"]["name"](around:${radius},${lat},${lon});
+      );
+      out center 30;
+    `;
+
+    const overpassRes = await fetch("https://overpass-api.de/api/interpreter", {
+      method: "POST",
+      body: overpassQuery,
+    });
+
+    if (!overpassRes.ok) return [];
+    const overpassData = await overpassRes.json();
+
+    const names = [];
+    const seen = new Set();
+    (overpassData.elements || []).forEach((el) => {
+      const name = el.tags && el.tags.name;
+      if (name && !seen.has(name.toLowerCase())) {
+        seen.add(name.toLowerCase());
+        names.push(name);
+      }
+    });
+
+    if (names.length === 0) return [];
+
+    // 第三步：存回 Supabase locations 表
+    const rows = names.map((name) => ({
+      name,
+      postcode_id: postcodeRow.id,
+      housing_type: "both",
+      source: "osm",
+    }));
+
+    const { data: inserted } = await supabaseClient
+      .from("locations")
+      .insert(rows)
+      .select();
+
+    return inserted || [];
+  } catch (err) {
+    console.error("OSM/Overpass fetch failed:", err);
+    return [];
+  }
+}
+
+async function checkCoverage() {
+  const select = document.getElementById("location-select");
+  const otherInput = document.getElementById("location-other-input");
+  const resultSection = document.getElementById("coverage-result-section");
+
+  let locationId = select.value;
+  let locationName = "";
+
+  if (locationId === "__other__") {
+    locationName = otherInput.value.trim();
+    if (!locationName) {
+      alert(t("coverage_enter_location_name"));
+      return;
+    }
+    // 用户手动输入的新地点，也存进资料库（贡献机制）
+    locationId = await saveUserContributedLocation(locationName);
+  } else if (locationId) {
+    const found = currentLocationsList.find((l) => String(l.id) === String(locationId));
+    locationName = found ? found.name : "";
+  } else {
+    alert(t("coverage_select_location_first"));
+    return;
+  }
+
+  resultSection.classList.remove("hidden");
+  resultSection.scrollIntoView({ behavior: "smooth" });
+
+  let coveredProviderIds = new Set();
+  if (locationId) {
+    const { data: coverage } = await supabaseClient
+      .from("location_coverage")
+      .select("provider_id")
+      .eq("location_id", locationId);
+    coveredProviderIds = new Set((coverage || []).map((c) => c.provider_id));
+  }
+
+  renderCoverageResults(locationName, coveredProviderIds);
+}
+
+async function saveUserContributedLocation(name) {
+  const postcodeInput = document.getElementById("postcode-input");
+  const postcode = postcodeInput.value.trim();
+
+  const { data: postcodeRow } = await supabaseClient
+    .from("postcodes")
+    .select("id")
+    .eq("postcode", postcode)
+    .maybeSingle();
+
+  if (!postcodeRow) return null;
+
+  const { data: inserted, error } = await supabaseClient
+    .from("locations")
+    .insert({
+      name,
+      postcode_id: postcodeRow.id,
+      housing_type: selectedHousingType === "landed" ? "landed" : "highrise",
+      source: "user",
+    })
+    .select()
+    .single();
+
+  if (error) {
+    // 可能是重复名字，尝试找出既有的那笔
+    const { data: existing } = await supabaseClient
+      .from("locations")
+      .select("id")
+      .eq("postcode_id", postcodeRow.id)
+      .ilike("name", name)
+      .maybeSingle();
+    return existing ? existing.id : null;
+  }
+
+  return inserted ? inserted.id : null;
+}
+
+const COVERAGE_TEMPLATES = {
+  en: {
+    confirmed: (provider) => `✅ Confirmed: ${provider} covers this location.`,
+    default: {
+      standard: "Typically covers most landed and high-rise properties in this area. Confirm exact availability for your unit.",
+      time: "Coverage varies by building, especially for high-rise properties where management approval may be required. Confirm exact availability for your unit.",
+      wireless: "Coverage depends on 5G network availability in this area. Confirm exact availability for your unit.",
+    },
+  },
+  zh: {
+    confirmed: (provider) => `✅ 已确认：${provider} 覆盖此地点。`,
+    default: {
+      standard: "通常覆盖本区绝大多数排屋与公寓。请查询你具体单位的可安装状态。",
+      time: "覆盖视楼盘而定，高层住宅须视管理层许可。请查询你具体单位的开通情况。",
+      wireless: "体验取决于本区的 5G 信号。请查询你所在位置的信号覆盖。",
+    },
+  },
+  ms: {
+    confirmed: (provider) => `✅ Disahkan: ${provider} meliputi lokasi ini.`,
+    default: {
+      standard: "Lazimnya meliputi kebanyakan kediaman bertanah dan pangsapuri di kawasan ini. Sila semak status liputan untuk unit anda.",
+      time: "Liputan mengikut bangunan; hartanah tinggi tertakluk pada kelulusan pengurusan (JMB/MC). Sila semak ketersediaan untuk unit anda.",
+      wireless: "Perkhidmatan bergantung pada liputan 5G di kawasan ini. Sila semak tahap capaian bagi lokasi anda.",
+    },
+  },
+};
+
+function getProviderTemplateType(slug) {
+  if (slug === "time") return "time";
+  if (slug === "yes" || slug === "umobile") return "wireless";
+  return "standard";
+}
+
+function renderCoverageResults(locationName, coveredProviderIds) {
+  const lang = getCurrentLang();
+  const templates = COVERAGE_TEMPLATES[lang] || COVERAGE_TEMPLATES.en;
+  const resultGrid = document.getElementById("coverage-result-grid");
+  const resultLocationLabel = document.getElementById("coverage-result-location");
+
+  resultLocationLabel.textContent = locationName;
+
+  const homeProviders = allProvidersForCoverage.filter((p) => !p.slug.includes("-business"));
+
+  resultGrid.innerHTML = homeProviders
+    .map((p) => {
+      const isConfirmed = coveredProviderIds.has(p.id);
+      const templateType = getProviderTemplateType(p.slug);
+      const text = isConfirmed ? templates.confirmed(p.name) : templates.default[templateType];
+
+      return `
+      <div class="coverage-result-card ${isConfirmed ? "coverage-confirmed" : ""}" style="border-color:${p.color_hex}">
+        ${p.logo_url ? `<img src="${ROOT_PATH}${p.logo_url.replace(/^\//, "")}" alt="${p.name}" class="coverage-result-logo" />` : ""}
+        <div class="coverage-result-body">
+          <div class="coverage-result-name" style="color:${p.color_hex}">${p.name}</div>
+          <p class="coverage-result-text">${text}</p>
+        </div>
+      </div>
+    `;
+    })
+    .join("");
+}
+
+document.addEventListener("DOMContentLoaded", initCoverageCheckerPage);
