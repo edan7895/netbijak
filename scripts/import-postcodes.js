@@ -12,6 +12,7 @@ async function fetchPostcodeCsv() {
 
 function parseCsv(csvText) {
   const lines = csvText.trim().split('\n');
+  const seenPostcodes = new Set();
   const rows = [];
   // 跳过标题行（postcode,city,state,state_code）
   for (let i = 1; i < lines.length; i++) {
@@ -20,9 +21,12 @@ function parseCsv(csvText) {
     const parts = line.split(',');
     if (parts.length < 3) continue;
     const [postcode, city, state] = parts;
-    if (postcode && city && state) {
-      rows.push({ postcode: postcode.trim(), city: city.trim(), state: state.trim() });
-    }
+    const cleanPostcode = (postcode || '').trim();
+    if (!cleanPostcode || !city || !state) continue;
+    // 同一份CSV内如果Postcode重复出现，只保留第一次看到的
+    if (seenPostcodes.has(cleanPostcode)) continue;
+    seenPostcodes.add(cleanPostcode);
+    rows.push({ postcode: cleanPostcode, city: city.trim(), state: state.trim() });
   }
   return rows;
 }
