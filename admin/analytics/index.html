@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Analytics | NetBijak Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="../admin.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    .admin-page { max-width: 60rem; margin: 0 auto; padding: 2rem 1.5rem; }
+    .admin-page-topbar {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 1.5rem; color: #fff; flex-wrap: wrap; gap: 1rem;
+    }
+    .admin-page-topbar h1 { font-size: 1.3rem; font-weight: 800; }
+    .admin-back-link { color: #94a3b8; text-decoration: none; font-size: 0.85rem; }
+
+    .admin-card { background: #fff; border-radius: 16px; padding: 1.75rem; margin-bottom: 1.5rem; }
+    .admin-card h2 { font-size: 1.05rem; margin-bottom: 1rem; }
+
+    .date-range-buttons { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.25rem; }
+    .date-range-btn {
+      padding: 8px 16px; background: #f1f5f9; color: #334155; border: none;
+      border-radius: 8px; font-size: 0.85rem; font-weight: 700; cursor: pointer;
+    }
+    .date-range-btn.active { background: #14b8a6; color: #fff; }
+
+    .custom-range-row { display: flex; gap: 10px; align-items: flex-end; flex-wrap: wrap; }
+    .custom-range-row .form-field { flex: 1; min-width: 140px; margin-bottom: 0; }
+    .custom-range-row label { display: block; font-size: 0.75rem; font-weight: 700; color: #94a3b8; margin-bottom: 4px; }
+    .custom-range-row input {
+      width: 100%; padding: 8px 10px; border-radius: 6px; border: 1.5px solid #cbd5e1; font-size: 0.85rem;
+    }
+    .custom-range-row button {
+      padding: 9px 18px; background: #0f172a; color: #fff; border: none;
+      border-radius: 8px; font-weight: 700; cursor: pointer; white-space: nowrap;
+    }
+
+    #analytics-summary { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .analytics-stat-card {
+      flex: 1; min-width: 150px; background: linear-gradient(135deg, #0f172a, #1e293b);
+      color: #fff; border-radius: 14px; padding: 1.5rem; text-align: center;
+    }
+    .analytics-stat-number { font-size: 2rem; font-weight: 800; color: #5eead4; }
+    .analytics-stat-label { font-size: 0.85rem; color: #94a3b8; margin-top: 4px; }
+
+    .breakdown-row {
+      display: flex; justify-content: space-between; padding: 10px 14px;
+      border-bottom: 1px solid #f1f5f9; font-size: 0.9rem;
+    }
+    .breakdown-row:last-child { border-bottom: none; }
+    .breakdown-path { color: #334155; }
+    .breakdown-count { font-weight: 800; color: #0f172a; }
+
+    .danger-zone { border: 1.5px solid #fecaca; background: #fef2f2; }
+    .danger-zone h2 { color: #991b1b; }
+    .btn-delete-range {
+      padding: 10px 20px; background: #dc2626; color: #fff; border: none;
+      border-radius: 8px; font-weight: 700; cursor: pointer; margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="admin-page">
+    <div class="admin-page-topbar">
+      <div>
+        <a href="../" class="admin-back-link">← Back to Admin</a>
+        <h1>Analytics</h1>
+      </div>
+      <div style="display:flex; align-items:center; gap:14px;">
+        <span class="admin-email-tag" id="admin-email-display"></span>
+        <button id="admin-logout-btn" class="admin-logout-btn">Sign Out</button>
+      </div>
+    </div>
+
+    <div class="admin-card">
+      <h2>Date Range</h2>
+      <div class="date-range-buttons">
+        <button class="date-range-btn active" data-range="today">Today</button>
+        <button class="date-range-btn" data-range="yesterday">Yesterday</button>
+        <button class="date-range-btn" data-range="7d">Last 7 Days</button>
+        <button class="date-range-btn" data-range="30d">Last 30 Days</button>
+        <button class="date-range-btn" data-range="1y">Last Year</button>
+      </div>
+      <div class="custom-range-row">
+        <div class="form-field">
+          <label>Custom Start</label>
+          <input type="date" id="custom-range-start" />
+        </div>
+        <div class="form-field">
+          <label>Custom End</label>
+          <input type="date" id="custom-range-end" />
+        </div>
+        <button id="btn-apply-custom-range">Apply</button>
+      </div>
+    </div>
+
+    <div class="admin-card">
+      <h2>Overview</h2>
+      <div id="analytics-summary"></div>
+    </div>
+
+    <div class="admin-card">
+      <h2>Page Views by Path</h2>
+      <div id="page-breakdown-list"></div>
+    </div>
+
+    <div class="admin-card">
+      <h2>WhatsApp Clicks by Provider</h2>
+      <div id="provider-breakdown-list"></div>
+    </div>
+
+    <div class="admin-card danger-zone">
+      <h2>⚠️ Delete Data</h2>
+      <p style="font-size:0.85rem; color:#7f1d1d; margin-bottom:1rem">
+        Permanently delete analytics data within a date range. This cannot be undone.
+      </p>
+      <div class="custom-range-row">
+        <div class="form-field">
+          <label>Delete From</label>
+          <input type="date" id="delete-range-start" />
+        </div>
+        <div class="form-field">
+          <label>Delete To</label>
+          <input type="date" id="delete-range-end" />
+        </div>
+      </div>
+      <button id="btn-delete-range" class="btn-delete-range">Delete Data in Range</button>
+    </div>
+  </div>
+
+  <script src="../../assets/js/supabase-client.js"></script>
+  <script src="../../assets/js/admin-auth.js"></script>
+  <script src="../../assets/js/admin-analytics.js"></script>
+</body>
+</html>
