@@ -9,7 +9,6 @@
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
-
   <!-- 登入画面 -->
   <div id="admin-login-section" class="admin-login-wrap hidden">
     <div class="admin-login-card">
@@ -29,7 +28,6 @@
       </form>
     </div>
   </div>
-
   <!-- 登入后的后台首页 -->
   <div id="admin-dashboard-section" class="admin-dashboard hidden">
     <div class="admin-topbar">
@@ -39,7 +37,6 @@
         <button id="admin-logout-btn" class="admin-logout-btn">Sign Out</button>
       </div>
     </div>
-
     <div class="admin-menu-grid">
       <a href="plans/" class="admin-menu-card">
         <div class="admin-menu-icon">📦</div>
@@ -56,9 +53,13 @@
         <div class="admin-menu-title">Customers</div>
         <div class="admin-menu-desc">Track contracts & renewal reminders</div>
       </a>
+      <a href="coverage/" class="admin-menu-card">
+        <div class="admin-menu-icon">📡</div>
+        <div class="admin-menu-title">Coverage</div>
+        <div class="admin-menu-desc">Manage postcode & building coverage</div>
+      </a>
     </div>
   </div>
-
   <script src="../assets/js/supabase-client.js"></script>
   <script src="../assets/js/admin-auth.js"></script>
 </body>
