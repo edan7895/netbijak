@@ -346,33 +346,20 @@ function renderCoverageResult(locationName, isConfirmed) {
 }
 
 // ===== 文章 + FAQ 区块 =====
-async function loadCoverageContent() {
+function loadCoverageContent() {
   const contentWrap = document.getElementById("coverage-content-wrap");
   if (!contentWrap) return;
 
-  const lang = getCurrentLang();
-  const allArticles = await fetchStaticData("articles");
-  const article = allArticles.find(
-    (a) => a.slug === `check-fibre-coverage-buying-guide-${lang}` && isArticleCurrentlyPublished(a)
-  );
-
-  const articleHtml = article
-    ? `
-    <article class="bh-article-full" id="buying-guide">
-      <h2 class="bh-article-full-title">${article.title}</h2>
-      <div class="bh-article-full-content">${article.content || ""}</div>
-    </article>
-  `
-    : "";
-
-  contentWrap.innerHTML = `
-    ${articleHtml}
-    <section class="section-card">
-      <h2>${t("coverage_faq_title")}</h2>
-      <p class="section-sub">${t("coverage_faq_subtitle")}</p>
-      <div id="coverage-faq-list" class="faq-list"></div>
-    </section>
+  // 文章内容已经由 generate-static-pages.js 预先写进 HTML（在 SSG:content 标记内）
+  // 这里只需要在文章后面，动态加入FAQ区块
+  const faqSection = document.createElement("section");
+  faqSection.className = "section-card";
+  faqSection.innerHTML = `
+    <h2>${t("coverage_faq_title")}</h2>
+    <p class="section-sub">${t("coverage_faq_subtitle")}</p>
+    <div id="coverage-faq-list" class="faq-list"></div>
   `;
+  contentWrap.appendChild(faqSection);
 
   buildCoverageFAQ();
 }
