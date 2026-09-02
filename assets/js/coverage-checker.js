@@ -32,7 +32,7 @@ async function initCoverageCheckerPage() {
     document.getElementById("btn-housing-landed").classList.remove("active");
   });
 
-  document.getElementById("postcode-input").addEventListener("blur", onPostcodeEntered);
+  document.getElementById("postcode-search-btn").addEventListener("click", onPostcodeEntered);
   document.getElementById("postcode-input").addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
