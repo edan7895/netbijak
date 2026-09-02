@@ -65,6 +65,13 @@
     }
 
     .hidden { display: none !important; }
+
+    .osm-suggestion-list { display: flex; flex-wrap: wrap; gap: 8px; }
+    .osm-suggestion-btn {
+      padding: 6px 12px; background: #e0f2fe; color: #0369a1; border: none;
+      border-radius: 8px; font-size: 0.8rem; font-weight: 600; cursor: pointer;
+    }
+    .osm-suggestion-btn:hover { background: #bae6fd; }
   </style>
 </head>
 <body>
@@ -98,7 +105,9 @@
         <select id="location-select"></select>
       </div>
 
-      <p style="font-size:0.8rem; color:#94a3b8; margin:1rem 0 0.5rem">Or add a new one:</p>
+      <div id="osm-suggestions-wrap" class="hidden" style="margin-top:1rem"></div>
+
+      <p style="font-size:0.8rem; color:#94a3b8; margin:1rem 0 0.5rem">Or add a new one manually:</p>
       <div class="add-location-row">
         <div class="form-field">
           <label>Name</label>
