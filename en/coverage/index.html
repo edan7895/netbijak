@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Check Broadband Coverage | NetBijak.com</title>
+  <meta name="description" content="Find out which broadband providers may be available at your address in Malaysia." />
+  <link rel="canonical" href="https://netbijak.com/en/coverage/" />
+  <link rel="alternate" hreflang="en" href="https://netbijak.com/en/coverage/" />
+  <link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/coverage/" />
+  <link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/coverage/" />
+  <link rel="alternate" hreflang="x-default" href="https://netbijak.com/en/coverage/" />
+  <meta name="geo.region" content="MY" />
+  <meta name="geo.placename" content="Malaysia" />
+  <meta property="og:title" content="Check Broadband Coverage | NetBijak.com" />
+  <meta property="og:description" content="Find out which broadband providers may be available at your address in Malaysia." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://netbijak.com/assets/images/logo.png" />
+  <meta property="og:url" content="https://netbijak.com/en/coverage/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="stylesheet" href="../../assets/css/style.css" />
+  <script src="../../assets/js/seo-meta.js"></script>
+  <script>const ROOT_PATH = "../../";</script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Check Coverage - NetBijak",
+    "applicationCategory": "UtilitiesApplication",
+    "operatingSystem": "Web",
+    "url": "https://netbijak.com/en/coverage/",
+    "offers": { "@type": "Offer", "price": "0", "priceCurrency": "MYR" },
+    "description": "Free tool to check which broadband providers may be available at your address in Malaysia."
+  }
+  </script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="main">
+    <div class="home-hero">
+      <h1 id="coverage-title"></h1>
+      <p id="coverage-subtitle"></p>
+    </div>
+
+    <section class="section-card">
+      <div class="form-row">
+        <label id="postcode-label"></label>
+        <input type="text" id="postcode-input" maxlength="5" inputmode="numeric" />
+      </div>
+      <div id="postcode-info-box"></div>
+
+      <div class="form-row">
+        <label id="housing-label"></label>
+        <div class="property-grid" style="margin-top:8px">
+          <button type="button" id="btn-housing-landed" class="property-btn active">
+            <div class="property-icon">🏡</div>
+            <div><div class="property-name" id="housing-landed-label"></div></div>
+          </button>
+          <button type="button" id="btn-housing-highrise" class="property-btn">
+            <div class="property-icon">🏢</div>
+            <div><div class="property-name" id="housing-highrise-label"></div></div>
+          </button>
+        </div>
+      </div>
+
+      <div id="location-input-section" class="hidden" style="margin-top:1.25rem">
+        <div class="form-row">
+          <label id="location-label"></label>
+          <select id="location-select"></select>
+          <p id="location-loading-hint" class="form-hint-text hidden"></p>
+        </div>
+        <div id="location-other-input-wrap" class="form-row hidden">
+          <input type="text" id="location-other-input" />
+        </div>
+        <button type="button" id="btn-check-coverage" class="btn-primary" style="margin-top:1rem"></button>
+      </div>
+    </section>
+
+    <section id="coverage-result-section" class="section-card hidden">
+      <h2 id="coverage-results-heading"><span id="coverage-results-title"></span> <span id="coverage-result-location"></span></h2>
+      <div id="coverage-result-grid" class="coverage-result-grid"></div>
+      <p class="coverage-disclaimer" id="coverage-disclaimer-text"></p>
+      <a href="#" id="coverage-cta-btn" target="_blank" class="wa-btn wa-btn-large" style="display:inline-flex; margin-top:1rem"></a>
+    </section>
+
+    <div id="coverage-content-wrap" style="margin-top:1.5rem"></div>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script src="../../assets/js/static-data.js"></script>
+  <script src="../../assets/js/supabase-client.js"></script>
+  <script src="../../assets/js/translations.js"></script>
+  <script src="../../assets/js/site.js"></script>
+  <script src="../../assets/js/coverage-checker.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.getElementById("coverage-title").textContent = t("coverage_title");
+      document.getElementById("coverage-subtitle").textContent = t("coverage_subtitle");
+      document.getElementById("postcode-label").textContent = t("coverage_postcode_label");
+      document.getElementById("postcode-input").placeholder = t("coverage_postcode_placeholder");
+      document.getElementById("housing-label").textContent = t("coverage_housing_label");
+      document.getElementById("housing-landed-label").textContent = t("coverage_housing_landed");
+      document.getElementById("housing-highrise-label").textContent = t("coverage_housing_highrise");
+      document.getElementById("location-label").textContent = t("coverage_location_label");
+      document.getElementById("location-other-input").placeholder = t("coverage_location_other_placeholder");
+      document.getElementById("btn-check-coverage").textContent = t("coverage_btn_check");
+      document.getElementById("coverage-results-title").textContent = t("coverage_results_title");
+      document.getElementById("coverage-disclaimer-text").textContent = t("coverage_disclaimer");
+      document.getElementById("coverage-cta-btn").textContent = t("coverage_cta");
+    });
+  </script>
+</body>
+</html>
