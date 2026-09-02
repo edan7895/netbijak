@@ -239,28 +239,36 @@ async function fetchOsmSuggestions(postcode, city, state) {
     if (!overpassRes.ok) throw new Error("Overpass failed");
     const overpassData = await overpassRes.json();
 
-    const names = [];
-    const seen = new Set();
+    const nameToType = new Map();
     (overpassData.elements || []).forEach((el) => {
       const name = el.tags && el.tags.name;
-      if (name && !seen.has(name.toLowerCase())) {
-        seen.add(name.toLowerCase());
-        names.push(name);
+      if (!name || nameToType.has(name.toLowerCase())) return;
+
+      const buildingTag = (el.tags && el.tags.building) || "";
+      let housingType = "both";
+      if (buildingTag === "apartments") {
+        housingType = "highrise";
+      } else if (buildingTag === "house") {
+        housingType = "landed";
       }
+      nameToType.set(name.toLowerCase(), { name, housingType });
     });
 
-    if (names.length === 0) {
+    if (nameToType.size === 0) {
       wrap.innerHTML = `<p style="color:#94a3b8;font-size:0.85rem">No suggestions found. Please add manually below.</p>`;
       return;
     }
 
+    const suggestions = Array.from(nameToType.values());
+    const typeLabels = { landed: "🏡 Landed", highrise: "🏢 High-rise", both: "" };
+
     wrap.innerHTML = `
       <p style="font-size:0.8rem; color:#94a3b8; margin-bottom:8px">Suggestions — click to add:</p>
       <div class="osm-suggestion-list">
-        ${names
+        ${suggestions
           .map(
-            (name) =>
-              `<button type="button" class="osm-suggestion-btn" data-name="${name.replace(/"/g, "&quot;")}">+ ${name}</button>`
+            ({ name, housingType }) =>
+              `<button type="button" class="osm-suggestion-btn" data-name="${name.replace(/"/g, "&quot;")}" data-type="${housingType}">+ ${name} ${typeLabels[housingType] ? `<span style="opacity:0.7">(${typeLabels[housingType]})</span>` : ""}</button>`
           )
           .join("")}
       </div>
@@ -270,7 +278,7 @@ async function fetchOsmSuggestions(postcode, city, state) {
       btn.addEventListener("click", async () => {
         btn.disabled = true;
         btn.textContent = "Adding...";
-        await quickAddLocationFromOsm(btn.dataset.name);
+        await quickAddLocationFromOsm(btn.dataset.name, btn.dataset.type);
       });
     });
   } catch (err) {
@@ -279,7 +287,7 @@ async function fetchOsmSuggestions(postcode, city, state) {
   }
 }
 
-async function quickAddLocationFromOsm(name) {
+async function quickAddLocationFromOsm(name, housingType) {
   if (!currentPostcodeId) return;
 
   const { data, error } = await supabaseClient
@@ -287,7 +295,7 @@ async function quickAddLocationFromOsm(name) {
     .insert({
       name,
       postcode_id: currentPostcodeId,
-      housing_type: "both",
+      housing_type: housingType || "both",
       source: "osm",
     })
     .select()

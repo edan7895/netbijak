@@ -166,22 +166,27 @@ async function fetchAndSaveOsmLocations(postcodeRow) {
     if (!overpassRes.ok) return [];
     const overpassData = await overpassRes.json();
 
-    const names = [];
-    const seen = new Set();
+    const nameToType = new Map();
     (overpassData.elements || []).forEach((el) => {
       const name = el.tags && el.tags.name;
-      if (name && !seen.has(name.toLowerCase())) {
-        seen.add(name.toLowerCase());
-        names.push(name);
+      if (!name || nameToType.has(name.toLowerCase())) return;
+
+      const buildingTag = (el.tags && el.tags.building) || "";
+      let housingType = "both";
+      if (buildingTag === "apartments") {
+        housingType = "highrise";
+      } else if (buildingTag === "house") {
+        housingType = "landed";
       }
+      nameToType.set(name.toLowerCase(), { name, housingType });
     });
 
-    if (names.length === 0) return [];
+    if (nameToType.size === 0) return [];
 
-    const rows = names.map((name) => ({
+    const rows = Array.from(nameToType.values()).map(({ name, housingType }) => ({
       name,
       postcode_id: postcodeRow.id,
-      housing_type: "both",
+      housing_type: housingType,
       source: "osm",
     }));
 
