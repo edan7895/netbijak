@@ -207,29 +207,50 @@ async function fetchOsmSuggestions(postcode, city, state) {
   wrap.classList.remove("hidden");
 
   try {
-    const query = encodeURIComponent(`${postcode} ${city} ${state} Malaysia`);
-    const url = `https://nominatim.openstreetmap.org/search?q=${query}&format=json&addressdetails=1&limit=15&countrycodes=my`;
+    // 第一步：先用 postcode + Malaysia 查出这个邮区的中心经纬度
+    const geoQuery = encodeURIComponent(`${postcode}, Malaysia`);
+    const geoUrl = `https://nominatim.openstreetmap.org/search?postalcode=${postcode}&country=Malaysia&format=json&limit=1`;
+    const geoRes = await fetch(geoUrl, { headers: { "Accept-Language": "en" } });
+    if (!geoRes.ok) throw new Error("OSM geocode request failed");
+    const geoResults = await geoRes.json();
 
-    const res = await fetch(url, {
-      headers: { 'Accept-Language': 'en' },
-    });
-    if (!res.ok) throw new Error('OSM request failed');
-    const results = await res.json();
+    if (!geoResults || geoResults.length === 0) {
+      wrap.innerHTML = `<p style="color:#94a3b8;font-size:0.85rem">No location suggestions found for this postcode. Please add manually below.</p>`;
+      return;
+    }
 
-    // 只保留有名字、看起来像建筑/地点的结果（过滤掉纯道路等）
-    const named = results.filter((r) => r.namedetails?.name || r.display_name?.split(',')[0]);
-    const unique = [];
+    const { lat, lon } = geoResults[0];
+    const latNum = parseFloat(lat);
+    const lonNum = parseFloat(lon);
+    const delta = 0.01; // 大约1公里范围
+    const viewbox = `${lonNum - delta},${latNum + delta},${lonNum + delta},${latNum - delta}`;
+
+    // 第二步：在这个范围内，搜寻具名的建筑物/社区/地标
+    const searchTerms = ["residensi", "taman", "apartment", "condominium", "kondominium", "pangsapuri"];
+    const allResults = [];
+
+    for (const term of searchTerms) {
+      const url = `https://nominatim.openstreetmap.org/search?q=${term}&format=json&addressdetails=1&limit=10&countrycodes=my&viewbox=${viewbox}&bounded=1`;
+      const res = await fetch(url, { headers: { "Accept-Language": "en" } });
+      if (res.ok) {
+        const results = await res.json();
+        allResults.push(...results);
+      }
+      await new Promise((resolve) => setTimeout(resolve, 1100)); // 尊重OSM的1秒请求间隔限制
+    }
+
     const seenNames = new Set();
-    named.forEach((r) => {
-      const name = r.namedetails?.name || r.display_name.split(',')[0];
-      if (!seenNames.has(name.toLowerCase())) {
+    const unique = [];
+    allResults.forEach((r) => {
+      const name = r.namedetails?.name || r.display_name?.split(",")[0];
+      if (name && !seenNames.has(name.toLowerCase())) {
         seenNames.add(name.toLowerCase());
         unique.push(name);
       }
     });
 
     if (unique.length === 0) {
-      wrap.innerHTML = `<p style="color:#94a3b8;font-size:0.85rem">No suggestions found from OpenStreetMap. Please add manually below.</p>`;
+      wrap.innerHTML = `<p style="color:#94a3b8;font-size:0.85rem">No location suggestions found from OpenStreetMap for this area. Please add manually below.</p>`;
       return;
     }
 
@@ -239,7 +260,7 @@ async function fetchOsmSuggestions(postcode, city, state) {
         ${unique
           .map(
             (name) =>
-              `<button type="button" class="osm-suggestion-btn" data-name="${name.replace(/"/g, '&quot;')}">+ ${name}</button>`
+              `<button type="button" class="osm-suggestion-btn" data-name="${name.replace(/"/g, "&quot;")}">+ ${name}</button>`
           )
           .join("")}
       </div>
