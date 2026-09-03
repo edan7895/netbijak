@@ -41,6 +41,23 @@ function buildPlanPageHtml(plan, provider, banners, relatedArticles) {
   const waMsg = plan.whatsapp_ref || `Hi NetBijak, I'm interested in ${plan.name}`;
   const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waMsg)}`;
 
+  const overviewHtml = plan.ai_overview
+    ? `<div class="plan-overview-box">
+        <div class="plan-overview-badge">✨ NetBijak's Take</div>
+        <p>${escapeHtml(plan.ai_overview)}</p>
+      </div>`
+    : "";
+
+  const promoHtml = plan.promo_enabled
+    ? `<div class="plan-promo-box">
+        ${plan.promo_image_name ? `<img src="/assets/images/promos/${escapeHtml(plan.promo_image_name)}" alt="Promotion" class="plan-promo-image" />` : ""}
+        <div class="plan-promo-text">
+          <h3>🎁 Promotion</h3>
+          <p>${escapeHtml(plan.promo_text || "")}</p>
+        </div>
+      </div>`
+    : "";
+
   const activeBanner = (banners || []).find((b) => {
     if (!b.is_active) return false;
     const now = new Date();
@@ -110,6 +127,8 @@ function buildPlanPageHtml(plan, provider, banners, relatedArticles) {
         <a href="${waLink}" target="_blank" class="wa-btn wa-btn-large">Apply via NetBijak</a>
       </div>
     </div>
+    ${promoHtml}
+    ${overviewHtml}
     ${featuresHtml}
     ${articlesHtml}
   </main>
