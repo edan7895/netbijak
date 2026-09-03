@@ -2,6 +2,7 @@
 
 let allProvidersCache = [];
 let editingPlanId = null;
+let planQuillEditor = null;
 
 async function initAdminPlansPage() {
   const session = await checkAdminAuth();
@@ -12,6 +13,7 @@ async function initAdminPlansPage() {
   document.getElementById("admin-email-display").textContent = session.user.email;
   document.getElementById("admin-logout-btn").addEventListener("click", handleAdminLogout);
 
+  initPlanQuillEditor();
   await loadProviderOptions();
   await loadPlansList();
 
@@ -21,6 +23,32 @@ async function initAdminPlansPage() {
   document.getElementById("btn-cancel-form").addEventListener("click", closePlanForm);
   document.getElementById("btn-add-banner").addEventListener("click", addBannerRow);
   document.getElementById("form-promo-enabled").addEventListener("change", togglePromoFieldsVisibility);
+}
+
+function initPlanQuillEditor() {
+  planQuillEditor = new Quill("#plan-quill-editor", {
+    theme: "snow",
+    modules: {
+      toolbar: [
+        [{ header: [2, 3, false] }],
+        ["bold", "italic", "underline"],
+        [{ list: "ordered" }, { list: "bullet" }],
+        ["link"],
+        ["clean"],
+      ],
+    },
+    placeholder: "Optional: write a full in-depth analysis for this plan...",
+  });
+}
+
+function togglePromoFieldsVisibility() {
+  const enabled = document.getElementById("form-promo-enabled").checked;
+  const wrap = document.getElementById("promo-fields-wrap");
+  if (enabled) {
+    wrap.classList.remove("hidden");
+  } else {
+    wrap.classList.add("hidden");
+  }
 }
 
 async function loadProviderOptions() {
@@ -85,6 +113,7 @@ async function openPlanForm(planId) {
   document.getElementById("plan-form-title").textContent = planId ? "Edit Plan" : "New Plan";
   document.getElementById("plan-form").reset();
   document.getElementById("banners-list").innerHTML = "";
+  planQuillEditor.root.innerHTML = "";
 
   if (planId) {
     const { data: plan } = await supabaseClient.from("plans").select("*").eq("id", planId).single();
@@ -111,6 +140,7 @@ async function openPlanForm(planId) {
       document.getElementById("form-promo-enabled").checked = plan.promo_enabled || false;
       document.getElementById("form-promo-image-name").value = plan.promo_image_name || "";
       document.getElementById("form-promo-text").value = plan.promo_text || "";
+      planQuillEditor.root.innerHTML = plan.deep_analysis || "";
       togglePromoFieldsVisibility();
 
       await loadBannersForPlan(planId);
@@ -131,6 +161,9 @@ function closePlanForm() {
 
 async function savePlan(e) {
   e.preventDefault();
+
+  const deepAnalysisHtml = planQuillEditor.root.innerHTML.trim();
+  const isEmptyEditor = deepAnalysisHtml === "<p><br></p>" || deepAnalysisHtml === "";
 
   const planData = {
     provider_id: document.getElementById("form-provider-id").value || null,
@@ -155,9 +188,9 @@ async function savePlan(e) {
     promo_enabled: document.getElementById("form-promo-enabled").checked,
     promo_image_name: document.getElementById("form-promo-image-name").value || null,
     promo_text: document.getElementById("form-promo-text").value || null,
+    deep_analysis: isEmptyEditor ? null : deepAnalysisHtml,
   };
 
-  // 自动生成 slug
   const appTypeSlug = (planData.new_and_transfer || "").toLowerCase().includes("new")
     ? "new"
     : (planData.new_and_transfer || "").toLowerCase().includes("transfer")
@@ -206,7 +239,6 @@ async function loadBannersForPlan(planId) {
 
 function addBannerRow(banner) {
   const list = document.getElementById("banners-list");
-  const rowId = banner && banner.id ? banner.id : "new-" + Date.now();
 
   const row = document.createElement("div");
   row.className = "banner-row";
@@ -243,16 +275,6 @@ async function saveBanners(planId) {
     } else {
       await supabaseClient.from("plan_banners").insert(bannerData);
     }
-  }
-}
-
-function togglePromoFieldsVisibility() {
-  const enabled = document.getElementById("form-promo-enabled").checked;
-  const wrap = document.getElementById("promo-fields-wrap");
-  if (enabled) {
-    wrap.classList.remove("hidden");
-  } else {
-    wrap.classList.add("hidden");
   }
 }
 
