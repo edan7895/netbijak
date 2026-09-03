@@ -20,6 +20,7 @@ async function initAdminPlansPage() {
   document.getElementById("plan-form").addEventListener("submit", savePlan);
   document.getElementById("btn-cancel-form").addEventListener("click", closePlanForm);
   document.getElementById("btn-add-banner").addEventListener("click", addBannerRow);
+  document.getElementById("form-promo-enabled").addEventListener("change", togglePromoFieldsVisibility);
 }
 
 async function loadProviderOptions() {
@@ -106,11 +107,18 @@ async function openPlanForm(planId) {
       document.getElementById("form-is-published").checked = plan.is_published;
       document.getElementById("form-publish-at").value = plan.publish_at ? plan.publish_at.slice(0, 16) : "";
       document.getElementById("form-unpublish-at").value = plan.unpublish_at ? plan.unpublish_at.slice(0, 16) : "";
+      document.getElementById("form-ai-overview").value = plan.ai_overview || "";
+      document.getElementById("form-promo-enabled").checked = plan.promo_enabled || false;
+      document.getElementById("form-promo-image-name").value = plan.promo_image_name || "";
+      document.getElementById("form-promo-text").value = plan.promo_text || "";
+      togglePromoFieldsVisibility();
 
       await loadBannersForPlan(planId);
     }
   } else {
     document.getElementById("form-is-published").checked = true;
+    document.getElementById("form-promo-enabled").checked = false;
+    togglePromoFieldsVisibility();
   }
 
   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -143,6 +151,10 @@ async function savePlan(e) {
     is_published: document.getElementById("form-is-published").checked,
     publish_at: document.getElementById("form-publish-at").value || null,
     unpublish_at: document.getElementById("form-unpublish-at").value || null,
+    ai_overview: document.getElementById("form-ai-overview").value || null,
+    promo_enabled: document.getElementById("form-promo-enabled").checked,
+    promo_image_name: document.getElementById("form-promo-image-name").value || null,
+    promo_text: document.getElementById("form-promo-text").value || null,
   };
 
   // 自动生成 slug
@@ -214,11 +226,9 @@ function addBannerRow(banner) {
 
 async function saveBanners(planId) {
   const rows = document.querySelectorAll("#banners-list .banner-row");
-
   for (const row of rows) {
     const imageUrl = row.querySelector(".banner-image-url").value;
     if (!imageUrl) continue;
-
     const bannerData = {
       plan_id: planId,
       image_url: imageUrl,
@@ -227,13 +237,22 @@ async function saveBanners(planId) {
       start_at: row.querySelector(".banner-start-at").value || null,
       end_at: row.querySelector(".banner-end-at").value || null,
     };
-
     const existingId = row.dataset.bannerId;
     if (existingId) {
       await supabaseClient.from("plan_banners").update(bannerData).eq("id", existingId);
     } else {
       await supabaseClient.from("plan_banners").insert(bannerData);
     }
+  }
+}
+
+function togglePromoFieldsVisibility() {
+  const enabled = document.getElementById("form-promo-enabled").checked;
+  const wrap = document.getElementById("promo-fields-wrap");
+  if (enabled) {
+    wrap.classList.remove("hidden");
+  } else {
+    wrap.classList.add("hidden");
   }
 }
 
