@@ -27,6 +27,27 @@ function escapeHtml(str) {
   return String(str).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 }
 
+function buildProductSchema(plan, provider, pageUrl) {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": plan.name,
+    "description": plan.seo_description || plan.tagline || plan.name,
+    "brand": {
+      "@type": "Brand",
+      "name": provider ? provider.name : plan.provider,
+    },
+    "offers": {
+      "@type": "Offer",
+      "url": pageUrl,
+      "priceCurrency": "MYR",
+      "price": plan.promo_price,
+      "availability": "https://schema.org/InStock",
+    },
+  };
+  return `<script type="application/ld+json">${JSON.stringify(schema)}</script>`;
+}
+
 function buildPlanPageHtml(plan, provider, banners, relatedArticles) {
   const color = provider ? provider.color_hex : "#14b8a6";
   const logoUrl = provider ? provider.logo_url : "";
@@ -41,11 +62,16 @@ function buildPlanPageHtml(plan, provider, banners, relatedArticles) {
   const waMsg = plan.whatsapp_ref || `Hi NetBijak, I'm interested in ${plan.name}`;
   const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waMsg)}`;
 
-  const overviewHtml = plan.ai_overview
-    ? `<div class="plan-overview-box">
-        <div class="plan-overview-badge">✨ NetBijak's Take</div>
-        <p>${escapeHtml(plan.ai_overview)}</p>
-      </div>`
+  const activeBanner = (banners || []).find((b) => {
+    if (!b.is_active) return false;
+    const now = new Date();
+    if (b.start_at && new Date(b.start_at) > now) return false;
+    if (b.end_at && new Date(b.end_at) < now) return false;
+    return true;
+  });
+
+  const bannerHtml = activeBanner
+    ? `<div class="detail-banner">${activeBanner.link_url ? `<a href="${escapeHtml(activeBanner.link_url)}" target="_blank">` : ""}<img src="${escapeHtml(activeBanner.image_url)}" alt="Promotion" />${activeBanner.link_url ? `</a>` : ""}</div>`
     : "";
 
   const promoHtml = plan.promo_enabled
@@ -58,17 +84,16 @@ function buildPlanPageHtml(plan, provider, banners, relatedArticles) {
       </div>`
     : "";
 
-  const activeBanner = (banners || []).find((b) => {
-    if (!b.is_active) return false;
-    const now = new Date();
-    if (b.start_at && new Date(b.start_at) > now) return false;
-    if (b.end_at && new Date(b.end_at) < now) return false;
-    return true;
-  });
-
-  const bannerHtml = activeBanner
-    ? `<div class="detail-banner">${activeBanner.link_url ? `<a href="${escapeHtml(activeBanner.link_url)}" target="_blank">` : ""}<img src="${escapeHtml(activeBanner.image_url)}" alt="Promotion" />${activeBanner.link_url ? `</a>` : ""}</div>`
-    : "";
+  // 深度分析优先，没有的话用简短AI介绍
+  let overviewHtml = "";
+  if (plan.deep_analysis && plan.deep_analysis.trim().length > 0) {
+    overviewHtml = `<div class="plan-deep-analysis">${plan.deep_analysis}</div>`;
+  } else if (plan.ai_overview) {
+    overviewHtml = `<div class="plan-overview-box">
+        <div class="plan-overview-badge">✨ NetBijak's Take</div>
+        <p>${escapeHtml(plan.ai_overview)}</p>
+      </div>`;
+  }
 
   const featuresList = (plan.features || "").split(",").map((f) => f.trim()).filter((f) => f.length > 0);
   const featuresHtml = featuresList.length > 0
@@ -97,6 +122,7 @@ function buildPlanPageHtml(plan, provider, banners, relatedArticles) {
   <link rel="canonical" href="${pageUrl}" />
   <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
   <link rel="stylesheet" href="/assets/css/style.css" />
+  ${buildProductSchema(plan, provider, pageUrl)}
 </head>
 <body>
   <div id="site-header"></div>
