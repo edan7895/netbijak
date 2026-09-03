@@ -83,6 +83,11 @@
       padding: 8px 16px; background: #e0f2fe; color: #0369a1; border: none;
       border-radius: 8px; font-size: 0.8rem; font-weight: 700; cursor: pointer;
     }
+    .ai-overview-section, .promo-section {
+      margin-top: 1.5rem; border-top: 2px solid #f1f5f9; padding-top: 1.25rem;
+    }
+    .ai-overview-section h3, .promo-section h3 { font-size: 1rem; margin-bottom: 0.5rem; }
+    .form-hint { font-size: 0.75rem; color: #94a3b8; margin-bottom: 10px; }
   </style>
 </head>
 <body>
@@ -177,6 +182,29 @@
         <div class="form-checkbox-row">
           <input type="checkbox" id="form-is-published" />
           <label for="form-is-published">Published (visible on website)</label>
+        </div>
+
+        <div class="ai-overview-section">
+          <h3>NetBijak's Take (AI-generated, editable)</h3>
+          <p class="form-hint">Leave empty to let the system auto-generate one. Once filled (by AI or manually), it will not be overwritten automatically.</p>
+          <textarea id="form-ai-overview" rows="4" placeholder="Auto-generated on next data sync if left empty..."></textarea>
+        </div>
+
+        <div class="promo-section">
+          <div class="form-checkbox-row">
+            <input type="checkbox" id="form-promo-enabled" />
+            <label for="form-promo-enabled">Enable Promotion / Gift Section</label>
+          </div>
+          <div id="promo-fields-wrap" class="hidden">
+            <div class="form-field">
+              <label>Promo Image File Name (e.g. earbudsamsung.png — must be uploaded to assets/images/promos/)</label>
+              <input type="text" id="form-promo-image-name" placeholder="e.g. earbudsamsung.png" />
+            </div>
+            <div class="form-field">
+              <label>Promo Text</label>
+              <textarea id="form-promo-text" placeholder="e.g. Free Samsung Galaxy Buds worth RM399 when you sign up!"></textarea>
+            </div>
+          </div>
         </div>
 
         <div class="banners-section">
