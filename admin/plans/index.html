@@ -6,7 +6,9 @@
   <title>Manage Plans | NetBijak Admin</title>
   <meta name="robots" content="noindex, nofollow" />
   <link rel="stylesheet" href="../admin.css" />
+  <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet" />
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
   <style>
     .admin-page { max-width: 72rem; margin: 0 auto; padding: 2rem 1.5rem; }
     .admin-page-topbar {
@@ -64,6 +66,17 @@
       border-radius: 10px; font-weight: 700; cursor: pointer;
     }
 
+    .ai-overview-section, .promo-section, .deep-analysis-section {
+      margin-top: 1.5rem; border-top: 2px solid #f1f5f9; padding-top: 1.25rem;
+    }
+    .ai-overview-section h3, .promo-section h3, .deep-analysis-section h3 { font-size: 1rem; margin-bottom: 0.5rem; }
+    .form-hint { font-size: 0.75rem; color: #94a3b8; margin-bottom: 10px; }
+
+    #plan-quill-editor { min-height: 220px; background: #fff; font-size: 0.9rem; }
+    .ql-editor { min-height: 220px; }
+    .ql-editor table { border-collapse: collapse; width: 100%; }
+    .ql-editor table td, .ql-editor table th { border: 1px solid #cbd5e1; padding: 6px 10px; }
+
     .banners-section { margin-top: 1.5rem; border-top: 2px solid #f1f5f9; padding-top: 1.25rem; }
     .banners-section h3 { font-size: 1rem; margin-bottom: 0.75rem; }
     .banner-row {
@@ -83,11 +96,6 @@
       padding: 8px 16px; background: #e0f2fe; color: #0369a1; border: none;
       border-radius: 8px; font-size: 0.8rem; font-weight: 700; cursor: pointer;
     }
-    .ai-overview-section, .promo-section {
-      margin-top: 1.5rem; border-top: 2px solid #f1f5f9; padding-top: 1.25rem;
-    }
-    .ai-overview-section h3, .promo-section h3 { font-size: 1rem; margin-bottom: 0.5rem; }
-    .form-hint { font-size: 0.75rem; color: #94a3b8; margin-bottom: 10px; }
   </style>
 </head>
 <body>
@@ -185,9 +193,15 @@
         </div>
 
         <div class="ai-overview-section">
-          <h3>NetBijak's Take (AI-generated, editable)</h3>
-          <p class="form-hint">Leave empty to let the system auto-generate one. Once filled (by AI or manually), it will not be overwritten automatically.</p>
+          <h3>NetBijak's Take (short AI-generated summary, editable)</h3>
+          <p class="form-hint">Leave empty to let the system auto-generate a short 3-4 sentence overview. Once filled (by AI or manually), it will not be overwritten automatically. This is used as the fallback when no Deep Analysis is provided below.</p>
           <textarea id="form-ai-overview" rows="4" placeholder="Auto-generated on next data sync if left empty..."></textarea>
+        </div>
+
+        <div class="deep-analysis-section">
+          <h3>Deep Analysis (optional — full breakdown for your most important plans)</h3>
+          <p class="form-hint">If filled, this replaces the short "NetBijak's Take" summary above with a full in-depth breakdown on the plan page (headings, tables, etc. supported). Leave empty for most plans — only use for high-traffic / priority plans.</p>
+          <div id="plan-quill-editor"></div>
         </div>
 
         <div class="promo-section">
@@ -215,35 +229,4 @@
 
         <div class="form-actions">
           <button type="submit" class="btn-save">Save Plan</button>
-          <button type="button" id="btn-cancel-form" class="btn-cancel">Cancel</button>
-        </div>
-      </form>
-    </div>
-
-    <div class="admin-filter-bar">
-      <select id="filter-provider"></select>
-      <button id="btn-new-plan" class="btn-new">+ New Plan</button>
-    </div>
-
-    <div class="admin-table-wrap">
-      <table class="admin-table">
-        <thead>
-          <tr>
-            <th>Provider</th>
-            <th>Plan Name</th>
-            <th>Price</th>
-            <th>App Type</th>
-            <th>Status</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody id="plans-table-body"></tbody>
-      </table>
-    </div>
-  </div>
-
-  <script src="../../assets/js/supabase-client.js"></script>
-  <script src="../../assets/js/admin-auth.js"></script>
-  <script src="../../assets/js/admin-plans.js"></script>
-</body>
-</html>
+          <button type="button" id="btn-cancel-form"
