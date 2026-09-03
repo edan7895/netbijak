@@ -1034,3 +1034,31 @@ table.compare-table tbody tr:nth-child(odd) .compare-row-label { background: #ee
 @media (max-width: 640px) {
   .coverage-result-card { flex-direction: column; text-align: center; }
 }
+
+
+/* ===== 配套详情页：AI介绍 + 促销赠品区块 ===== */
+.plan-overview-box {
+  background: linear-gradient(135deg, rgba(14,165,233,0.08), rgba(20,184,166,0.08));
+  border: 1.5px solid rgba(20,184,166,0.3);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  margin: 1.25rem 0;
+}
+.plan-overview-badge {
+  display: inline-block; font-size: 0.75rem; font-weight: 800; color: #0d9488;
+  text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 8px;
+}
+.plan-overview-box p { margin: 0; color: #334155; line-height: 1.75; font-size: 0.95rem; }
+
+.plan-promo-box {
+  display: flex; align-items: center; gap: 1.5rem;
+  background: #fff7ed; border: 1.5px solid #fed7aa; border-radius: 16px;
+  padding: 1.5rem; margin: 1.25rem 0;
+}
+.plan-promo-image { width: 100px; height: 100px; object-fit: contain; flex-shrink: 0; }
+.plan-promo-text h3 { margin: 0 0 8px; font-size: 1rem; color: #9a3412; }
+.plan-promo-text p { margin: 0; color: #7c2d12; font-size: 0.9rem; line-height: 1.6; }
+
+@media (max-width: 480px) {
+  .plan-promo-box { flex-direction: column; text-align: center; }
+}
