@@ -229,4 +229,35 @@
 
         <div class="form-actions">
           <button type="submit" class="btn-save">Save Plan</button>
-          <button type="button" id="btn-cancel-form"
+          <button type="button" id="btn-cancel-form" class="btn-cancel">Cancel</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="admin-filter-bar">
+      <select id="filter-provider"></select>
+      <button id="btn-new-plan" class="btn-new">+ New Plan</button>
+    </div>
+
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Provider</th>
+            <th>Plan Name</th>
+            <th>Price</th>
+            <th>App Type</th>
+            <th>Status</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="plans-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="../../assets/js/supabase-client.js"></script>
+  <script src="../../assets/js/admin-auth.js"></script>
+  <script src="../../assets/js/admin-plans.js"></script>
+</body>
+</html>
