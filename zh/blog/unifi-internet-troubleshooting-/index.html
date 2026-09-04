@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unifi Internet 很慢或断线怎么办？官方 Troubleshooting 指南</title>
+  <meta name="description" content="Unifi Internet 很慢、断线或无法连接怎么办？按照 Unifi 官方步骤检查 Outage、PON 与 LOS 指示灯、重启设备并使用 EasyFix。" />
+  <meta name="geo.region" content="MY" />
+  <meta name="geo.placename" content="Malaysia" />
+  <meta property="og:title" content="Unifi Internet 很慢或断线怎么办？官方 Troubleshooting 指南" />
+  <meta property="og:description" content="Unifi Internet 很慢、断线或无法连接怎么办？按照 Unifi 官方步骤检查 Outage、PON 与 LOS 指示灯、重启设备并使用 EasyFix。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://netbijak.com/assets/images/logo.png" />
+  <meta property="og:url" content="https://netbijak.com/zh/blog/unifi-internet-troubleshooting-/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://netbijak.com/zh/blog/unifi-internet-troubleshooting-/" />
+  <link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/blog/cara-troubleshoot-internet-unifi-panduan-langkah-demi-langkah/" />
+  <link rel="alternate" hreflang="en" href="https://netbijak.com/en/blog/how-to-troubleshoot-unifi-internet-problems-a-simple-step-by-step-guide/" />
+  <link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/blog/unifi-internet-troubleshooting-/" />
+  <link rel="alternate" hreflang="x-default" href="https://netbijak.com/en/blog/how-to-troubleshoot-unifi-internet-problems-a-simple-step-by-step-guide/" />
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"怎么检查 Unifi 有没有 Outage？","acceptedAnswer":{"@type":"Answer","text":"可以使用 Unifi Alerts 或 EasyFix Service Outage Checker。"}},{"@type":"Question","name":"Unifi 设备的 LOS 红灯闪烁是什么意思？","acceptedAnswer":{"@type":"Answer","text":"代表 ONT 没有收到 Optical Power，或者 Fibre Connection 可能没有正确连接。"}},{"@type":"Question","name":"PON 绿灯是什么意思？","acceptedAnswer":{"@type":"Answer","text":"稳定绿色的 PON 灯表示 ONT 已经成功向 OLT 注册"}},{"@type":"Question","name":"Restart Unifi 设备后要等多久？","acceptedAnswer":{"@type":"Answer","text":"Unifi 建议重新开启设备前等待 10 秒，然后等待大约 2 分钟让服务恢复。"}},{"@type":"Question","name":"EasyFix 无法解决问题怎么办？","acceptedAnswer":{"@type":"Answer","text":"Unifi 表示 EasyFix 可以自动建立 Ticket / Report，或者提供 Live Chat 进行进一步处理。"}}]}</script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="main">
+    <div id="blog-detail-container">
+      <a href="/zh/blog/" class="blog-back-link">← 返回部落格</a>
+      <span class="blog-type-tag">Article</span>
+      
+      <div class="blog-detail-date">05/09/2026</div>
+      <h1 class="blog-detail-title">Unifi Internet 出问题怎么办？官方 Troubleshooting 步骤</h1>
+      
+    <section class="ai-summary-box">
+      <div class="ai-summary-badge">✨ NetBijak AI 智能摘要</div>
+      <p>当Unifi网络出现故障或变慢时，建议先通过Unifi Alerts或EasyFix查询所在地区是否有官方维护或服务中断。接着，请检查路由器和ONT设备的指示灯状态，特别是留意LOS灯是否闪烁红色，以判断光纤连接是否存在物理损坏。若设备指示灯异常，尝试将设备断电并等待10秒后重新开启，通常能解决大部分临时性故障。如果重启后问题依旧，用户可使用EasyFix自助排查工具进行详细诊断。若上述步骤仍无法修复网络，系统将通过EasyFix自动建立报修工单或连接在线客服。请记住，在考虑升级宽带配套前，应优先按照此流程进行排查，以避免不必要的支出。</p>
+    </section>
+      <div class="blog-detail-content"><p>如果你的 Unifi Internet 很慢或者完全无法使用，<strong>先检查有没有 Outage，再检查设备和指示灯，然后重启设备，最后使用 EasyFix 自助排查。</strong></p><h2>1. 先检查有没有 Outage 或 Maintenance</h2><p>在修改 Router Settings 之前，先确认所在地区有没有 Unifi Service Interruption 或 Maintenance。</p><p>Unifi 提供 <strong>Unifi Alerts</strong>，让用户查看服务中断以及受影响地区。(<a href="https://unifi.com.my/unifi-alerts" rel="noopener noreferrer nofollow" target="_blank">Unifi Alerts</a>)</p><p>你也可以通过 EasyFix 的 Service Outage Checker 检查服务状态。(<a href="https://easyfix.unifi.com.my/service-outage/" rel="noopener noreferrer nofollow" target="_blank">Unifi EasyFix – Service Outage</a>)</p><p>如果确认是 Network Issue，单纯改变家里的 Wi-Fi Settings 通常无法解决根本问题。</p><h2>2. 检查 Unifi 设备和指示灯</h2><p>先检查：</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Power</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Fibre Cable</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Ethernet Cable</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>ONT / BTU</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Router</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Indicator Lights</li></ol><p>Unifi 官方资料建议用户检查设备指示灯，包括 <strong>PON Light</strong>，并确保 PON 灯稳定呈绿色。红色或闪烁的指示灯可能代表 Service Disruption。(<a href="https://unifi.com.my/sites/default/files/html/List-FAQ/others/faq-system-upgrade-for-unifi-customers.pdf" rel="noopener noreferrer nofollow" target="_blank">Unifi System Upgrade FAQ</a>)</p><p>特别注意：</p><h3>LOS（Loss of Signal）</h3><p>如果 LOS 灯闪红，代表 ONT 没有收到 Optical Power，或者 Fibre Connection 可能没有正确连接。(<a href="https://biz.unifi.com.my/tncfaq/general/5G_Dongle_Quick_Start_Guide_%28QIG%29.pdf" rel="noopener noreferrer nofollow" target="_blank">Unifi Equipment Guide</a>)</p><h3>PON</h3><p>如果 PON 灯稳定绿色，代表 ONT 已经成功向 OLT 注册。(<a href="https://biz.unifi.com.my/tncfaq/general/5G_Dongle_Quick_Start_Guide_%28QIG%29.pdf" rel="noopener noreferrer nofollow" target="_blank">Unifi Equipment Guide</a>)</p><p>不过，<strong>PON 绿色并不代表所有其他问题都已经排除</strong>，它只是说明 ONT 已经完成相关的 Optical Registration。</p><h3>快速判断</h3><p><strong>PON — 稳定绿色</strong></p><p>ONT 已成功向 Optical Network 注册。(<a href="https://biz.unifi.com.my/tncfaq/general/5G_Dongle_Quick_Start_Guide_%28QIG%29.pdf" rel="noopener noreferrer nofollow" target="_blank">Unifi Equipment Guide</a>)</p><p><strong>LOS — 闪红</strong></p><p>ONT 没有收到 Optical Power，或者 Fibre Connection 可能没有正确连接。(<a href="https://biz.unifi.com.my/tncfaq/general/5G_Dongle_Quick_Start_Guide_%28QIG%29.pdf" rel="noopener noreferrer nofollow" target="_blank">Unifi Equipment Guide</a>)</p><p>如果检查 Fibre Cable 并重启设备之后 LOS 仍然异常，就继续使用 EasyFix 或向 Unifi 报修。</p><h2>3. 重启 Unifi 设备</h2><p>Unifi 官方建议关闭相关设备，等待 <strong>10 秒</strong>，然后重新开启，并等待大约 <strong>2 分钟</strong>让服务恢复。(<a href="https://unifi.com.my/installation" rel="noopener noreferrer nofollow" target="_blank">Unifi Installation Guide</a>)</p><p>如果你的系统同时有 ONT/BTU 和 Router，就按照 Unifi 的说明重新启动相关设备。</p><p>这是最简单的 Troubleshooting 步骤之一，有时可以直接解决 Connection Problems。</p><h2>4. 使用 Unifi EasyFix</h2><p>如果 Restart 后问题仍然存在，可以使用 <strong>Unifi EasyFix</strong>。</p><p>EasyFix 可以帮助用户自助检查：</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Internet Connection</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Internet Speed</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Wi-Fi</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Telephony</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Unifi TV</li></ol><p>Unifi 表示 EasyFix 可以通过 Unifi Portal、MyUnifi App 或 EasyFix Website 使用。(<a href="https://easyfix.unifi.com.my/faq/" rel="noopener noreferrer nofollow" target="_blank">Unifi EasyFix FAQ</a>)</p><p>还有一个很实用的功能：</p><blockquote><strong>即使家里的 Internet 完全断掉，也可以使用 EasyFix。</strong></blockquote><p>Unifi 表示用户可以通过手机 Browser 在没有 Active Internet Connection 的情况下访问 EasyFix。(<a href="https://easyfix.unifi.com.my/faq/" rel="noopener noreferrer nofollow" target="_blank">Unifi EasyFix FAQ</a>)</p><h2>5. EasyFix 找到问题后怎么办？</h2><p>如果 Self-Troubleshooting 还是无法解决问题，Unifi 官方表示 EasyFix 可以：</p><blockquote><strong>自动建立 Ticket / Report，或者提供 Live Chat。</strong></blockquote><p>(<a href="https://unifi.com.my/unifipromise" rel="noopener noreferrer nofollow" target="_blank">Unifi Promise</a>)</p><p>这意味着用户不一定需要重新从头解释同一个问题。</p><p>不过要注意，Unifi 官方目前明确支持的是：</p><p><strong>Automatic Ticket / Report Creation OR Live Chat</strong></p><p>并没有表示每一次 Diagnostic Result 都会自动安排 Technician 上门。</p><h2>6. 什么情况下应该联系 Unifi？</h2><p>可以考虑联系 Unifi，如果：</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Restart 后仍然无法解决</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>LOS 指示灯持续异常</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>多台设备都无法上网</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Internet 经常断线</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>EasyFix 无法解决问题</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>EasyFix 建立了 Report</li></ol><p>Unifi 官方列出的 Support Channels 包括 Live Chat、Service Request Form 和 TM100 Hotline，其中 Live Chat 每天 24 小时提供服务。(<a href="https://unifi.com.my/support/contact-us" rel="noopener noreferrer nofollow" target="_blank">Unifi Contact Us</a>)</p><h1>NetBijak's Take</h1><p>Unifi 官方的 Troubleshooting 流程其实很直接：</p><blockquote><strong>检查 Outage → 检查设备和 LED → Restart → EasyFix → 联系 Support</strong></blockquote><p>其中 <strong>LOS 和 PON 指示灯</strong>可以作为第一层判断工具，特别是当你怀疑问题可能与 Fibre Connection 有关时。但指示灯只能提供线索，不能代替完整的技术诊断。(<a href="https://biz.unifi.com.my/tncfaq/general/5G_Dongle_Quick_Start_Guide_%28QIG%29.pdf" rel="noopener noreferrer nofollow" target="_blank">Unifi Equipment Guide</a>)</p><p>最重要的是：</p><p><strong>Internet 慢，不代表你一定需要升级 Broadband Plan。</strong></p><p>先按照官方流程检查 Network、设备和 Fibre Connection，再根据实际情况决定下一步。</p><blockquote><strong>Troubleshoot first. Upgrade second.</strong></blockquote><p class="ql-align-center"><strong style="color: rgb(255, 255, 255); background-color: initial;"><a href="/zh/find-your-plan/" rel="noopener noreferrer" target="_blank">🎯为我找配套 →</a></strong></p><p><br></p></div>
+      
+    <section class="section-card" id="article-faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div id="article-faq-list" class="faq-list">
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="0">
+        <span>怎么检查 Unifi 有没有 Outage？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>可以使用 Unifi Alerts 或 EasyFix Service Outage Checker。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="1">
+        <span>Unifi 设备的 LOS 红灯闪烁是什么意思？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>代表 ONT 没有收到 Optical Power，或者 Fibre Connection 可能没有正确连接。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="2">
+        <span>PON 绿灯是什么意思？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>稳定绿色的 PON 灯表示 ONT 已经成功向 OLT 注册</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="3">
+        <span>Restart Unifi 设备后要等多久？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Unifi 建议重新开启设备前等待 10 秒，然后等待大约 2 分钟让服务恢复。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="4">
+        <span>EasyFix 无法解决问题怎么办？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Unifi 表示 EasyFix 可以自动建立 Ticket / Report，或者提供 Live Chat 进行进一步处理。</p></div>
+    </div></div>
+    </section>
+    </div>
+    
+    <section class="section-card" style="margin-top:1.5rem">
+      <h2>相关文章</h2>
+      <div class="blog-grid"><a href="/zh/blog/-tiktoknetflix-fibre/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">04/09/2026</div>
+          <div class="blog-card-title">孩子一直刷 TikTok，Netflix 一直卡？先别急着升级 Fibre</div>
+          <p class="blog-card-excerpt">为什么孩子刷 TikTok，Netflix 就开始卡？如果孩子一刷 TikTok，你的 Netflix 就开始 Buffer，先不要急着升级 Fibre 配套。问题可能是家里的 网络拥塞、WiFi 干...</p>
+        </div></a><a href="/zh/blog/mobile-legends-pingunifimaxis-time-fibre/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">03/09/2026</div>
+          <div class="blog-card-title">Mobile Legends 最低 Ping：Unifi、Maxis 还是 TIME Fibre？</div>
+          <p class="blog-card-excerpt">哪家 Fibre 玩 Mobile Legends Ping 最低？根据目前可以找到的&amp;nbsp;2026 年 KL 第三方测试，TIME 在 TIME、Maxis Fibre 和 Unifi 三家当...</p>
+        </div></a><a href="/zh/blog/check-fibre-coverage-buying-guide-zh/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">02/09/2026</div>
+          <div class="blog-card-title">为什么光纤宽带是否能安装，取决于你的具体地址？</div>
+          <p class="blog-card-excerpt">为什么光纤宽带是否能安装，取决于你的具体地址？因为光纤服务是否能够接入，会受到大楼基础设施、内部布线、现有网络容量以及安装条件等因素影响。所以，即使附近的住宅已经有 Fibre，你自己的房子或单位也不...</p>
+        </div></a><a href="/zh/blog/-unifi-1-/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">02/09/2026</div>
+          <div class="blog-card-title">签了 Unifi 才用 1 年就解约？你真正要付多少钱？</div>
+          <p class="blog-card-excerpt">用了 1 年就取消 Unifi？先算清楚这笔钱在马来西亚，Unifi Home 配套通常会有合约期。如果你在合约还没结束前解约，Unifi 官方说明会根据合约剩余月份的完整月费收取提前解约费用。 (U...</p>
+        </div></a><a href="/zh/blog/-broadband-port-availability-fibre-/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">01/09/2026</div>
+          <div class="blog-card-title">什么是 Broadband Port Availability？为什么申请 Fibre 时它很重要？</div>
+          <p class="blog-card-excerpt">如果你申请 Fibre Broadband 时被告知 “Port Full”，意思通常不是你家完全没有 Fibre，而是目前负责连接你单位的 Fibre 网络没有可用容量。真正重要的问题不是“哪一家 ...</p>
+        </div></a><a href="/zh/blog/-internet-troubleshooting-/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">31/08/2026</div>
+          <div class="blog-card-title">为什么我的 Internet 很慢？马来西亚家庭宽带 Troubleshooting 指南</div>
+          <p class="blog-card-excerpt">为什么我的 Internet 很慢？Internet 很慢，不一定代表你的 Broadband Plan 不够快。实际使用速度可能受到 Wi-Fi、Router 位置、连接设备数量、网络拥堵、设备能力...</p>
+        </div></a></div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script>const ROOT_PATH = "/"; const PAGE_TRANSLATIONS = {"ms":"/ms/blog/cara-troubleshoot-internet-unifi-panduan-langkah-demi-langkah/","en":"/en/blog/how-to-troubleshoot-unifi-internet-problems-a-simple-step-by-step-guide/","zh":"/zh/blog/unifi-internet-troubleshooting-/"};</script>
+  <script src="/assets/js/tracking.js"></script>
+  <script src="/assets/js/translations.js"></script>
+  <script src="/assets/js/site.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("#article-faq-list .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#article-faq-list .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
+    });
+  </script>
+
+  <div id="mascot-widget" class="mascot-widget">
+    <button type="button" class="mascot-close-btn" id="mascot-close-btn" aria-label="Close">✕</button>
+    <a href="https://wa.me/60178835110?text=Hi%20NetBijak%2C%20I'm%20reading%20%22Unifi%20Internet%20%E5%87%BA%E9%97%AE%E9%A2%98%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F%E5%AE%98%E6%96%B9%20Troubleshooting%20%E6%AD%A5%E9%AA%A4%22%20and%20have%20a%20question." target="_blank" class="mascot-avatar-link">
+      <img src="/assets/images/mascot.png" alt="NetBijak Assistant" class="mascot-avatar-img" />
+      <span class="mascot-bubble">有问题吗？</span>
+    </a>
+  </div>
+  <script>
+    (function() {
+      var storageKey = "mascot-closed-unifi-internet-troubleshooting-";
+      var widget = document.getElementById("mascot-widget");
+      var closeBtn = document.getElementById("mascot-close-btn");
+      if (sessionStorage.getItem(storageKey)) {
+        widget.style.display = "none";
+      }
+      closeBtn.addEventListener("click", function() {
+        widget.style.display = "none";
+        sessionStorage.setItem(storageKey, "1");
+      });
+    })();
+  </script>
+</body>
+</html>

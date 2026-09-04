@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cara Baiki Internet Unifi Perlahan atau Terputus</title>
+  <meta name="description" content="Internet Unifi perlahan atau tidak berfungsi? Ikuti langkah rasmi Unifi untuk semak outage, PON dan LOS, restart peralatan dan gunakan EasyFix." />
+  <meta name="geo.region" content="MY" />
+  <meta name="geo.placename" content="Malaysia" />
+  <meta property="og:title" content="Cara Baiki Internet Unifi Perlahan atau Terputus" />
+  <meta property="og:description" content="Internet Unifi perlahan atau tidak berfungsi? Ikuti langkah rasmi Unifi untuk semak outage, PON dan LOS, restart peralatan dan gunakan EasyFix." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://netbijak.com/assets/images/logo.png" />
+  <meta property="og:url" content="https://netbijak.com/ms/blog/cara-troubleshoot-internet-unifi-panduan-langkah-demi-langkah/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://netbijak.com/ms/blog/cara-troubleshoot-internet-unifi-panduan-langkah-demi-langkah/" />
+  <link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/blog/cara-troubleshoot-internet-unifi-panduan-langkah-demi-langkah/" />
+  <link rel="alternate" hreflang="en" href="https://netbijak.com/en/blog/how-to-troubleshoot-unifi-internet-problems-a-simple-step-by-step-guide/" />
+  <link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/blog/unifi-internet-troubleshooting-/" />
+  <link rel="alternate" hreflang="x-default" href="https://netbijak.com/en/blog/how-to-troubleshoot-unifi-internet-problems-a-simple-step-by-step-guide/" />
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Bagaimana saya boleh menyemak Unifi Outage?","acceptedAnswer":{"@type":"Answer","text":"Gunakan Unifi Alerts atau EasyFix Service Outage Checker."}},{"@type":"Question","name":"Apakah maksud LOS berkelip merah?","acceptedAnswer":{"@type":"Answer","text":"Ia menunjukkan ONT tidak menerima optical power atau fibre connection mungkin tidak disambungkan dengan betul."}},{"@type":"Question","name":"Apakah maksud PON stabil hijau?","acceptedAnswer":{"@type":"Answer","text":"PON stabil hijau menunjukkan ONT telah berjaya didaftarkan dengan OLT."}},{"@type":"Question","name":"Berapa lama perlu menunggu selepas restart Unifi?","acceptedAnswer":{"@type":"Answer","text":"Unifi menyarankan menunggu 10 saat sebelum menghidupkan semula peralatan dan kemudian sekitar 2 minit untuk service pulih."}},{"@type":"Question","name":"Apa berlaku jika EasyFix tidak menyelesaikan masalah?","acceptedAnswer":{"@type":"Answer","text":"Unifi menyatakan EasyFix boleh membuat ticket/report secara automatik atau memberikan akses kepada Live Chat untuk bantuan lanjut."}}]}</script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="main">
+    <div id="blog-detail-container">
+      <a href="/ms/blog/" class="blog-back-link">← Kembali ke Blog</a>
+      <span class="blog-type-tag">Article</span>
+      
+      <div class="blog-detail-date">05/09/2026</div>
+      <h1 class="blog-detail-title">Cara Troubleshoot Internet Unifi: Panduan Langkah demi Langkah</h1>
+      
+    <section class="ai-summary-box">
+      <div class="ai-summary-badge">✨ Ringkasan AI NetBijak</div>
+      <p>Jika internet Unifi anda mengalami gangguan, langkah pertama yang perlu dilakukan adalah menyemak status gangguan atau penyelenggaraan di kawasan anda melalui portal Unifi. Seterusnya, periksa keadaan peralatan serta lampu indikator pada modem untuk memastikan tiada kerosakan fizikal seperti lampu LOS yang berkelip merah. Lakukan proses restart pada router dan modem anda dengan membiarkannya mati seketika sebelum dihidupkan semula untuk menyegarkan sambungan. Jika masalah masih berterusan, gunakan alat diagnostik kendiri EasyFix melalui aplikasi MyUnifi yang boleh diakses walaupun tanpa sambungan internet. Sekiranya langkah-langkah tersebut gagal menyelesaikan isu teknikal, anda disarankan untuk menghubungi sokongan pelanggan Unifi melalui Live Chat atau talian bantuan untuk tindakan lanjut. Ingatlah untuk sentiasa melakukan troubleshooting terlebih dahulu sebelum mempertimbangkan untuk menaik taraf pelan jalur lebar anda.</p>
+    </section>
+      <div class="blog-detail-content"><p>Jika Internet Unifi anda perlahan atau tidak berfungsi, <strong>semak outage dahulu, periksa peralatan dan lampu indikator, restart peralatan dan gunakan EasyFix sebelum menghubungi support.</strong></p><h2>1. Semak Outage atau Maintenance</h2><p>Sebelum mengubah tetapan router, periksa sama ada kawasan anda mengalami service interruption atau maintenance.</p><p>Unifi menyediakan <strong>Unifi Alerts</strong> untuk memaklumkan pengguna mengenai gangguan perkhidmatan dan kawasan yang terjejas. (<a href="https://unifi.com.my/unifi-alerts" rel="noopener noreferrer nofollow" target="_blank">Unifi Alerts</a>)</p><p>Anda juga boleh menyemak service outage melalui EasyFix. (<a href="https://easyfix.unifi.com.my/service-outage/" rel="noopener noreferrer nofollow" target="_blank">Unifi EasyFix – Service Outage</a>)</p><p>Jika terdapat network issue yang telah disahkan, mengubah Wi-Fi Settings di rumah mungkin tidak menyelesaikan masalah tersebut.</p><h2>2. Periksa Peralatan dan Lampu Indikator Unifi</h2><p>Periksa:</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Power</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Fibre Cable</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Ethernet Cable</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>ONT / BTU</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Router</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Indicator Lights</li></ol><p>Panduan rasmi Unifi menyarankan pengguna memeriksa indicator lights termasuk <strong>PON light</strong> dan memastikan PON light stabil dan berwarna hijau. Lampu merah atau berkelip boleh menunjukkan service disruption. (<a href="https://unifi.com.my/sites/default/files/html/List-FAQ/others/faq-system-upgrade-for-unifi-customers.pdf" rel="noopener noreferrer nofollow" target="_blank">Unifi System Upgrade FAQ</a>)</p><p>Perhatikan juga lampu <strong>LOS (Loss of Signal)</strong>.</p><h3>LOS — Berkelip Merah</h3><p>Lampu LOS yang berkelip merah menunjukkan ONT tidak menerima optical power atau fibre connection mungkin tidak disambungkan dengan betul. (<a href="https://biz.unifi.com.my/tncfaq/general/5G_Dongle_Quick_Start_Guide_%28QIG%29.pdf" rel="noopener noreferrer nofollow" target="_blank">Unifi Equipment Guide</a>)</p><h3>PON — Stabil Hijau</h3><p>PON light yang stabil hijau menunjukkan ONT telah berjaya didaftarkan kepada OLT. (<a href="https://biz.unifi.com.my/tncfaq/general/5G_Dongle_Quick_Start_Guide_%28QIG%29.pdf" rel="noopener noreferrer nofollow" target="_blank">Unifi Equipment Guide</a>)</p><p>Namun, PON hijau tidak bermaksud semua kemungkinan masalah telah diketepikan. Ia hanya menunjukkan bahawa ONT telah berjaya melalui optical registration yang berkaitan.</p><h3>Ringkasnya</h3><p><strong>PON — Stabil Hijau</strong></p><p>ONT berjaya berdaftar dengan optical network. (<a href="https://biz.unifi.com.my/tncfaq/general/5G_Dongle_Quick_Start_Guide_%28QIG%29.pdf" rel="noopener noreferrer nofollow" target="_blank">Unifi Equipment Guide</a>)</p><p><strong>LOS — Berkelip Merah</strong></p><p>ONT tidak menerima optical power atau fibre connection mungkin tidak disambungkan dengan betul. (<a href="https://biz.unifi.com.my/tncfaq/general/5G_Dongle_Quick_Start_Guide_%28QIG%29.pdf" rel="noopener noreferrer nofollow" target="_blank">Unifi Equipment Guide</a>)</p><p>Jika LOS masih abnormal selepas memeriksa fibre connection dan restart peralatan, gunakan EasyFix atau laporkan masalah kepada Unifi.</p><h2>3. Restart Peralatan Unifi</h2><p>Unifi menyarankan pengguna mematikan peralatan, menunggu <strong>10 saat</strong>, kemudian menghidupkannya semula dan menunggu kira-kira <strong>2 minit</strong> untuk service kembali pulih. (<a href="https://unifi.com.my/installation" rel="noopener noreferrer nofollow" target="_blank">Unifi Installation Guide</a>)</p><p>Jika terdapat ONT/BTU dan Router, ikuti arahan Unifi untuk restart peralatan tersebut.</p><h2>4. Gunakan Unifi EasyFix</h2><p>Jika restart tidak menyelesaikan masalah, gunakan <strong>Unifi EasyFix</strong>.</p><p>EasyFix boleh membantu pelanggan melakukan self-diagnosis untuk:</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Internet Connection</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Internet Speed</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Wi-Fi</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Telephony</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Unifi TV</li></ol><p>Unifi menyatakan EasyFix boleh digunakan melalui Unifi Portal, MyUnifi App atau laman EasyFix. (<a href="https://easyfix.unifi.com.my/faq/" rel="noopener noreferrer nofollow" target="_blank">Unifi EasyFix FAQ</a>)</p><p>Satu ciri yang berguna ialah:</p><blockquote><strong>EasyFix masih boleh digunakan walaupun Internet rumah anda terputus.</strong></blockquote><p>Unifi menyatakan EasyFix boleh diakses melalui browser telefon tanpa Active Internet Connection. (<a href="https://easyfix.unifi.com.my/faq/" rel="noopener noreferrer nofollow" target="_blank">Unifi EasyFix FAQ</a>)</p><h2>5. Jika EasyFix Menemui Masalah</h2><p>Jika Self-Troubleshooting tidak menyelesaikan masalah, Unifi menyatakan EasyFix boleh:</p><blockquote><strong>Automatically create a ticket/report atau memberikan akses kepada Live Chat.</strong></blockquote><p>(<a href="https://unifi.com.my/unifipromise" rel="noopener noreferrer nofollow" target="_blank">Unifi Promise</a>)</p><p>Jadi pengguna tidak semestinya perlu menerangkan masalah yang sama dari awal.</p><p>Namun, maklumat rasmi Unifi yang tersedia menyokong <strong>automatic ticket/report creation atau Live Chat</strong> dan tidak menyatakan bahawa setiap diagnosis akan terus menghasilkan Technician visit secara automatik.</p><h2>6. Bila Perlu Hubungi Unifi?</h2><p>Hubungi Unifi jika:</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Masalah berterusan selepas restart</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>LOS masih abnormal</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Beberapa peranti tidak boleh connect</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Internet kerap terputus</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>EasyFix tidak menyelesaikan masalah</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>EasyFix menghasilkan report untuk tindakan lanjut</li></ol><p>Unifi menyenaraikan Live Chat, Service Request Form dan TM100 Hotline sebagai support channels. Live Chat tersedia 24 jam sehari. (<a href="https://unifi.com.my/support/contact-us" rel="noopener noreferrer nofollow" target="_blank">Unifi Contact Us</a>)</p><h1>NetBijak's Take</h1><p>Aliran troubleshooting rasmi Unifi sebenarnya mudah:</p><blockquote><strong>Semak Outage → Periksa Equipment &amp; LED → Restart → EasyFix → Contact Support</strong></blockquote><p>Lampu <strong>LOS dan PON</strong> boleh menjadi petunjuk awal yang berguna, terutamanya apabila anda mengesyaki masalah berkaitan Fibre Connection. Tetapi indicator lights hanya memberikan petunjuk dan bukan diagnosis penuh. (<a href="https://biz.unifi.com.my/tncfaq/general/5G_Dongle_Quick_Start_Guide_%28QIG%29.pdf" rel="noopener noreferrer nofollow" target="_blank">Unifi Equipment Guide</a>)</p><p>Yang paling penting:</p><p><strong>Internet perlahan tidak semestinya bermaksud anda perlu upgrade Broadband Plan.</strong></p><p>Cuba troubleshoot sambungan, peralatan dan fibre connection terlebih dahulu.</p><blockquote><strong>Troubleshoot first. Upgrade second.</strong></blockquote><p class="ql-align-center"><strong style="color: rgb(255, 255, 255); background-color: initial;"><a href="/ms/find-your-plan/" rel="noopener noreferrer" target="_blank">🎯Cari Pelan Saya →</a></strong></p><p><br></p></div>
+      
+    <section class="section-card" id="article-faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div id="article-faq-list" class="faq-list">
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="0">
+        <span>Bagaimana saya boleh menyemak Unifi Outage?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Gunakan Unifi Alerts atau EasyFix Service Outage Checker.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="1">
+        <span>Apakah maksud LOS berkelip merah?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Ia menunjukkan ONT tidak menerima optical power atau fibre connection mungkin tidak disambungkan dengan betul.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="2">
+        <span>Apakah maksud PON stabil hijau?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>PON stabil hijau menunjukkan ONT telah berjaya didaftarkan dengan OLT.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="3">
+        <span>Berapa lama perlu menunggu selepas restart Unifi?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Unifi menyarankan menunggu 10 saat sebelum menghidupkan semula peralatan dan kemudian sekitar 2 minit untuk service pulih.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="4">
+        <span>Apa berlaku jika EasyFix tidak menyelesaikan masalah?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Unifi menyatakan EasyFix boleh membuat ticket/report secara automatik atau memberikan akses kepada Live Chat untuk bantuan lanjut.</p></div>
+    </div></div>
+    </section>
+    </div>
+    
+    <section class="section-card" style="margin-top:1.5rem">
+      <h2>Artikel Berkaitan</h2>
+      <div class="blog-grid"><a href="/ms/blog/anak-asyik-scroll-tiktok-netflix-pula-buffer-jangan-terus-upgrade-fibre/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">04/09/2026</div>
+          <div class="blog-card-title">Anak Asyik Scroll TikTok, Netflix Pula Buffer? Jangan Terus Upgrade Fibre</div>
+          <p class="blog-card-excerpt">Kenapa Anak Scroll TikTok, Netflix Terus Buffer?Kalau anak mula scroll TikTok dan Netflix anda terus...</p>
+        </div></a><a href="/ms/blog/ping-terendah-untuk-mobile-legends-unifi-maxis-atau-time-fibre/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">03/09/2026</div>
+          <div class="blog-card-title">Ping Terendah untuk Mobile Legends: Unifi, Maxis atau TIME Fibre?</div>
+          <p class="blog-card-excerpt">Fibre Mana Paling Rendah Ping untuk Mobile Legends?Berdasarkan&amp;nbsp;ujian pihak ketiga yang tersedia...</p>
+        </div></a><a href="/ms/blog/check-fibre-coverage-buying-guide-ms/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">02/09/2026</div>
+          <div class="blog-card-title">Mengapa Ketersediaan Fibre Bergantung Pada Alamat Sebenar Anda?</div>
+          <p class="blog-card-excerpt">Mengapa ketersediaan fibre bergantung pada alamat sebenar anda?Ini kerana kebolehdapatan perkhidmata...</p>
+        </div></a><a href="/ms/blog/batalkan-unifi-selepas-1-tahun-berapa-sebenarnya-anda-perlu-bayar/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">02/09/2026</div>
+          <div class="blog-card-title">Batalkan Unifi Selepas 1 Tahun? Berapa Sebenarnya Anda Perlu Bayar?</div>
+          <p class="blog-card-excerpt">Baru Guna 1 Tahun, Nak Batalkan Unifi? Kira Dulu KosnyaDi Malaysia, pelan Unifi Home biasanya datang...</p>
+        </div></a><a href="/ms/blog/apakah-port-availability-dan-mengapa-ia-penting-untuk-fibre-broadband/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">01/09/2026</div>
+          <div class="blog-card-title">Apakah Port Availability dan Mengapa Ia Penting untuk Fibre Broadband?</div>
+          <p class="blog-card-excerpt">Kalau anda memohon Fibre Broadband tetapi ISP memberitahu “Port Full”, ini biasanya bermaksud rangka...</p>
+        </div></a><a href="/ms/blog/kenapa-internet-saya-perlahan/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">31/08/2026</div>
+          <div class="blog-card-title">Kenapa Internet Saya Perlahan?</div>
+          <p class="blog-card-excerpt">Kenapa Internet Saya Perlahan?Internet yang perlahan tidak semestinya bermaksud pelan broadband anda...</p>
+        </div></a></div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script>const ROOT_PATH = "/"; const PAGE_TRANSLATIONS = {"ms":"/ms/blog/cara-troubleshoot-internet-unifi-panduan-langkah-demi-langkah/","en":"/en/blog/how-to-troubleshoot-unifi-internet-problems-a-simple-step-by-step-guide/","zh":"/zh/blog/unifi-internet-troubleshooting-/"};</script>
+  <script src="/assets/js/tracking.js"></script>
+  <script src="/assets/js/translations.js"></script>
+  <script src="/assets/js/site.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("#article-faq-list .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#article-faq-list .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
+    });
+  </script>
+
+  <div id="mascot-widget" class="mascot-widget">
+    <button type="button" class="mascot-close-btn" id="mascot-close-btn" aria-label="Close">✕</button>
+    <a href="https://wa.me/60178835110?text=Hi%20NetBijak%2C%20I'm%20reading%20%22Cara%20Troubleshoot%20Internet%20Unifi%3A%20Panduan%20Langkah%20demi%20Langkah%22%20and%20have%20a%20question." target="_blank" class="mascot-avatar-link">
+      <img src="/assets/images/mascot.png" alt="NetBijak Assistant" class="mascot-avatar-img" />
+      <span class="mascot-bubble">Ada soalan?</span>
+    </a>
+  </div>
+  <script>
+    (function() {
+      var storageKey = "mascot-closed-cara-troubleshoot-internet-unifi-panduan-langkah-demi-langkah";
+      var widget = document.getElementById("mascot-widget");
+      var closeBtn = document.getElementById("mascot-close-btn");
+      if (sessionStorage.getItem(storageKey)) {
+        widget.style.display = "none";
+      }
+      closeBtn.addEventListener("click", function() {
+        widget.style.display = "none";
+        sessionStorage.setItem(storageKey, "1");
+      });
+    })();
+  </script>
+</body>
+</html>
