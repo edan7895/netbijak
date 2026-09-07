@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Check Your Broadband Speed in Malaysia：正确测试 Fibre 网速的方法</title>
+  <meta name="description" content="怀疑家里的 Fibre 没有达到你付的钱？了解如何正确测试 Broadband Speed、识别 100Mbps 硬件瓶颈，以及用 MCMC 90% 标准判断是否值得向 ISP 投诉。" />
+  <meta name="geo.region" content="MY" />
+  <meta name="geo.placename" content="Malaysia" />
+  <meta property="og:title" content="How to Check Your Broadband Speed in Malaysia：正确测试 Fibre 网速的方法" />
+  <meta property="og:description" content="怀疑家里的 Fibre 没有达到你付的钱？了解如何正确测试 Broadband Speed、识别 100Mbps 硬件瓶颈，以及用 MCMC 90% 标准判断是否值得向 ISP 投诉。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://netbijak.com/assets/images/logo.png" />
+  <meta property="og:url" content="https://netbijak.com/zh/blog/-fibre-/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://netbijak.com/zh/blog/-fibre-/" />
+  <link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/blog/cara-check-broadband-speed-anda-di-malaysia/" />
+  <link rel="alternate" hreflang="en" href="https://netbijak.com/en/blog/how-to-check-your-broadband-speed-in-malaysia/" />
+  <link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/blog/-fibre-/" />
+  <link rel="alternate" hreflang="x-default" href="https://netbijak.com/en/blog/how-to-check-your-broadband-speed-in-malaysia/" />
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"我的 500Mbps Fibre，手机只有 150Mbps，是不是 ISP 偷速度？","acceptedAnswer":{"@type":"Answer","text":"不一定。\n\nWiFi 会受到 Router、Device、Signal Strength、距离和墙壁等因素影响。先使用 LAN Cable 测试 Fibre，再判断 ISP 有没有问题。"}},{"@type":"Question","name":"MCMC 的 90% 是不是代表每一次测速都必须超过 90%？","acceptedAnswer":{"@type":"Answer","text":"不是。\n\n相关 Fibre QoS 标准是以 至少 90% subscribed speed，并在至少 90% 的时间达到该水平作为服务表现基准。一次偶尔偏低的测速结果，本身不能证明 ISP 违反标准。"}},{"@type":"Question","name":"我的 500Mbps 一直只有 90–95Mbps，最先检查什么？","acceptedAnswer":{"@type":"Answer","text":"先检查 Ethernet Cable、Router LAN Port、Laptop LAN Port、USB-to-Ethernet Adapter 和 Docking Station。\n\n尤其检查 Ethernet Link 是不是只有 100Mbps。"}},{"@type":"Question","name":"投诉 ISP 要准备多少张截图？","acceptedAnswer":{"@type":"Answer","text":"建议先准备 3 张有日期的 LAN Speed Test Screenshot。\n\n测试时关闭其他大量占用带宽的应用，并注明使用的是 Wired Connection。"}},{"@type":"Question","name":"我要怎样跟客服说比较有效？","acceptedAnswer":{"@type":"Answer","text":"不要只写：\n\n“Internet slow.”\n\n直接告诉客服：\n\n“I have performed three wired LAN speed tests and the results are consistently below 90% of my subscribed Fibre speed. Please check the line and escalate this as a technical fault.”\n\n这样客服拿到的是可以调查的技术证据，而不是一个无法量化的感觉。"}}]}</script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="main">
+    <div id="blog-detail-container">
+      <a href="/zh/blog/" class="blog-back-link">← 返回部落格</a>
+      <span class="blog-type-tag">Article</span>
+      
+      <div class="blog-detail-date">08/09/2026</div>
+      <h1 class="blog-detail-title">正确测试 Fibre 网速的方法</h1>
+      
+    <section class="ai-summary-box">
+      <div class="ai-summary-badge">✨ NetBijak AI 智能摘要</div>
+      <p>怀疑家中网速不理想时，切勿仅凭手机WiFi测试结果下结论，应优先使用LAN网线将电脑直连路由器进行有线测速。测试时需确保网线为Cat5e或Cat6标准，并检查电脑接口是否支持千兆传输，以避免因硬件瓶颈导致的100Mbps速度封顶。建议在关闭其他后台应用的情况下进行多次有线测试，若连续结果明显低于MCMC规定的90%服务质量基准，则可视为网络供应商的问题。在确定有线速度正常的前提下，若WiFi测速依然缓慢，则应排查路由器位置或覆盖范围，而非盲目升级宽带配套。向客服报修时，请提供多次有线测速截图作为证据，这样能更有效地让技术人员跟进处理。正确的方法能帮助你准确区分究竟是运营商线路故障，还是家庭内部网络配置的问题。</p>
+    </section>
+      <div class="blog-detail-content"><p>测 Broadband Speed，<strong>不要直接拿手机连 WiFi 跑一次 Speedtest 就下结论</strong>。要判断 Fibre 本身有没有问题，第一步应该是用 LAN Cable 直接连接 Router，再进行多次测试。</p><h2>NetBijak 测速方法：先测 Fibre，再测 WiFi</h2><p>最简单的顺序是：</p><p><strong>LAN 测试 → 重复测试 → 对比配套速度 → 再测试 WiFi</strong></p><p>这样才能分清楚到底是 <strong>ISP 的 Fibre 有问题，还是你家里的 WiFi 有问题</strong>。</p><p>CelcomDigi 建议用户通过 LAN Connection 检查实际 Broadband Speed，Unifi 也建议使用 Wired Connection 进行速度测试。 <a href="https://help.celcomdigi.com/en/support/solutions/articles/70000670936-my-internet-speed-is-not-as-per-the-plan-i-have-subscribed-to-why-is-this-happening-" rel="noopener noreferrer nofollow" target="_blank">CelcomDigi Fibre Speed Guide</a> · <a href="https://unifi.com.my/speedupgrade2023/faq" rel="noopener noreferrer nofollow" target="_blank">Unifi Speed Test FAQ</a></p><h2>1. 先插 LAN Cable，不要急着怪 ISP</h2><p>要测试 Fibre 本身，最好把 Laptop 或 PC 直接接到 Router 的 LAN Port。</p><p>Unifi 在测速指引中建议，高速 Broadband 应使用合适的 Ethernet Cable，以及具备 Gigabit Ethernet 的电脑，同时在测速时断开其他设备和关闭正在占用带宽的应用程序。 <a href="https://unifi.com.my/speedupgrade2023/faq" rel="noopener noreferrer nofollow" target="_blank">Unifi Speed Test FAQ</a></p><p>如果你现在还在使用很旧的网线，建议至少换成 <strong>Cat5e 或 Cat6</strong> 再测。</p><p>电脑本身也一样重要。</p><p>如果你的 Laptop 是通过旧款 USB-to-Ethernet Adapter、Docking Station，或者只有 <strong>100Mbps Fast Ethernet</strong> 的 LAN Port，那么就算你订的是 500Mbps 或 1Gbps Fibre，也可能永远跑不上去。</p><h2>2. 小心最常见的「100Mbps 封顶陷阱」</h2><p>这个问题其实很好认。</p><p>如果你订的是 <strong>300Mbps、500Mbps 或 1Gbps</strong>，但连续几次有线测速都卡在 <strong>90–95Mbps 左右</strong>，先别急着打电话骂 ISP。</p><p>先检查自己的硬件。</p><p><strong>网线问题</strong></p><p>旧 Cable 或品质不佳的 Cable 可能成为瓶颈。最简单的方法，就是换一条确认正常的 <strong>Cat5e 或 Cat6</strong> 再测试。</p><p><strong>LAN Port / Adapter 问题</strong></p><p>检查 Laptop、USB-to-Ethernet Adapter、Docking Station 或 Router LAN Port，目前到底是以：</p><p><strong>100Mbps</strong></p><p>还是：</p><p><strong>1000Mbps / 1Gbps</strong></p><p>连接。</p><p>如果 Ethernet Link 只协商到 100Mbps，那么你的 300Mbps、500Mbps Fibre 根本没有机会发挥完整速度。</p><p>所以：</p><blockquote><strong>500Mbps Fibre 测到 92Mbps，不一定是 Fibre 有问题。</strong></blockquote><p>先检查是不是你的 Hardware 把速度锁死在 100Mbps。</p><h2>3. 大马用户一定要知道的 MCMC 90% 标准</h2><p>这组数字值得记下来。</p><p>MCMC 针对 Wired Broadband Access Service 的 Mandatory Standards，对 Fibre Throughput 设有 <strong>90% subscribed speed</strong> 的服务质量基准；相关要求是 Fibre 的 Download 和 Upload Throughput，应达到订购速度至少 90%，并在至少 90% 的时间达到该水平。 (<a href="https://laravel.fortiddns.com/ipr/assets/pdfs/MCMC%20IPR%202024_V.031125.pdf" rel="noopener noreferrer nofollow" target="_blank">MCMC Industry Performance Report</a>)</p><p>简单换算：</p><p><strong>500Mbps 配套 → 450Mbps</strong></p><p><strong>300Mbps 配套 → 270Mbps</strong></p><p><strong>100Mbps 配套 → 90Mbps</strong></p><p>但是这里不要误会。</p><p><strong>“90% Rule” 并不是说你每一次 Speedtest 都必须刚好达到 90%。</strong></p><p>这是一个针对服务表现的 QoS 标准，并不是保证你 Laptop 每一次测速都会显示完全一样的数字。 (<a href="https://laravel.fortiddns.com/ipr/assets/pdfs/MCMC%20IPR%202024_V.031125.pdf" rel="noopener noreferrer nofollow" target="_blank">MCMC Industry Performance Report</a>)</p><p>所以一次测速只有 200Mbps，并不能单凭这一张截图就证明 ISP 违反标准。</p><p>但如果你的 <strong>LAN 有线测速连续多次明显低于这个水平</strong>，同时你已经排除网线、LAN Port、Adapter、电脑和其他网络使用情况，那么你就有更充分的理由向 ISP 提交技术投诉。</p><h2>4. 不要只测一次</h2><p>一张 Speedtest Screenshot 不能代表全部。</p><p>建议至少测 <strong>3 次</strong>，最好选择不同时间进行。</p><p>测速前先关闭：</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Netflix / YouTube</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Game Download</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>OneDrive / Google Drive Backup</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>VPN</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Windows Update</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>其他大量占用 Bandwidth 的应用</li></ol><p>Unifi 建议测速时减少其他设备及网络流量；CelcomDigi 也建议通过 LAN 来检查订购的实际速度。 <a href="https://unifi.com.my/speedupgrade2023/faq" rel="noopener noreferrer nofollow" target="_blank">Unifi Speed Test FAQ</a> · <a href="https://help.celcomdigi.com/en/support/solutions/articles/70000670936-my-internet-speed-is-not-as-per-the-plan-i-have-subscribed-to-why-is-this-happening-" rel="noopener noreferrer nofollow" target="_blank">CelcomDigi Fibre Speed Guide</a></p><p><strong>连续三次都低，才更值得认真追查。</strong></p><h2>5. LAN 测完，再测 WiFi</h2><p>有线测速确认之后，再拿手机或 Laptop 测 WiFi。</p><p>这一步是为了回答一个非常重要的问题：</p><p><strong>到底是 Fibre 慢，还是你家的 WiFi 慢？</strong></p><p>Maxis 提醒用户，WiFi Speed 会受到 Router 距离、墙壁等因素影响；CelcomDigi 也提到 WiFi Frequency、连接设备数量和 Router 放置位置都会影响实际测速结果。 <a href="https://www.maxis.com.my/en/faq/network/home-fibre/test-my-home-wifi/" rel="noopener noreferrer nofollow" target="_blank">Maxis Home WiFi Speed Test</a> · <a href="https://help.celcomdigi.com/en/support/solutions/articles/70000670936-my-internet-speed-is-not-as-per-the-plan-i-have-subscribed-to-why-is-this-happening-" rel="noopener noreferrer nofollow" target="_blank">CelcomDigi Fibre Speed Guide</a></p><p>例如：</p><p><strong>500Mbps Fibre + LAN：480Mbps</strong></p><p><strong>500Mbps Fibre + WiFi：120Mbps</strong></p><p>这种情况下，不应该第一时间叫 ISP 帮你升级到 1Gbps。</p><p>因为你的 Fibre 本身可能已经正常，真正的瓶颈可能在 <strong>WiFi Coverage、Router、手机或 Laptop</strong>。</p><h2>6. 报修不要只说「Internet Slow」——给证据</h2><p>如果真的要向 Unifi、Maxis 或其他 ISP 开 Ticket，最没用的一句话就是：</p><blockquote>“Internet saya slow.”</blockquote><p>客服每天都会收到这种投诉。</p><p>更有效的方法是准备 <strong>3 张有日期的 Wired Speed Test Screenshot</strong>，记录：</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>测试日期和时间</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Download Speed</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Upload Speed</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>测试方式：LAN</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>使用的 Laptop / PC</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Ethernet Adapter 或 LAN Port</li></ol><p>可以使用 Speedtest by Ookla 等测速工具；CelcomDigi 官方也建议使用 Speedtest by Ookla 检查 Broadband Performance。 <a href="https://help.celcomdigi.com/en/support/solutions/articles/70000670936-my-internet-speed-is-not-as-per-the-plan-i-have-subscribed-to-why-is-this-happening-" rel="noopener noreferrer nofollow" target="_blank">CelcomDigi Internet Speed Guide</a></p><p>然后直接这样跟客服说：</p><blockquote><strong>“I performed three wired LAN speed tests and the results are consistently below 90% of my subscribed Fibre speed. Please check the line and escalate this as a technical fault.”</strong></blockquote><p>比单纯说“我的 Internet 很慢”有效得多。</p><p><strong>Show Proof, Not Excuses。</strong></p><h2>什么时候应该正式投诉 ISP？</h2><p>满足下面两个条件，就值得开 Technical Ticket：</p><p><strong>第一：你的 LAN Speed 连续测试都明显偏低。</strong></p><p><strong>第二：你已经排除了网线、LAN Port、Adapter、电脑和 Background Traffic。</strong></p><p>这时记得保留 Speed Test Screenshot 和 Ticket Number。</p><p>Unifi 有 EasyFix 进行连接检测；Maxis 和 CelcomDigi 也提供 Fibre / Home Network 的 Troubleshooting 和支援渠道。 <a href="https://unifi.com.my/support/faq?gotoaccount=true&amp%3Butm_source=chatgpt.com" rel="noopener noreferrer nofollow" target="_blank">Unifi Support</a> · <a href="https://www.maxis.com.my/en/faq/network/home-fibre/" rel="noopener noreferrer nofollow" target="_blank">Maxis Home Fibre Support</a> · CelcomDigi Fibre Support</p><h2>NetBijak’s Take</h2><p><strong>别因为手机 WiFi Speedtest 只有 150Mbps，就马上把 500Mbps Fibre 升级成 1Gbps。</strong></p><p>先做一次正确的 <strong>LAN Speed Test</strong>。</p><p>如果 LAN 已经接近你的 subscribed speed，而 WiFi 很慢，升级 Fibre 很可能只是多花钱，却没有解决真正的问题。</p><p>而当你的有线测速长期明显偏低时，<strong>MCMC 的 90% benchmark 就是你和 ISP 沟通时非常有用的参考数字。</strong> (<a href="https://laravel.fortiddns.com/ipr/assets/pdfs/MCMC%20IPR%202024_V.031125.pdf" rel="noopener noreferrer nofollow" target="_blank">MCMC Industry Performance Report</a>)</p><p><a href="https://netbijak.com/zh/speedtest/" rel="noopener noreferrer" target="_blank">NetBijak：网速测试</a></p></div>
+      
+    <section class="section-card" id="article-faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div id="article-faq-list" class="faq-list">
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="0">
+        <span>我的 500Mbps Fibre，手机只有 150Mbps，是不是 ISP 偷速度？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>不一定。
+
+WiFi 会受到 Router、Device、Signal Strength、距离和墙壁等因素影响。先使用 LAN Cable 测试 Fibre，再判断 ISP 有没有问题。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="1">
+        <span>MCMC 的 90% 是不是代表每一次测速都必须超过 90%？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>不是。
+
+相关 Fibre QoS 标准是以 至少 90% subscribed speed，并在至少 90% 的时间达到该水平作为服务表现基准。一次偶尔偏低的测速结果，本身不能证明 ISP 违反标准。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="2">
+        <span>我的 500Mbps 一直只有 90–95Mbps，最先检查什么？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>先检查 Ethernet Cable、Router LAN Port、Laptop LAN Port、USB-to-Ethernet Adapter 和 Docking Station。
+
+尤其检查 Ethernet Link 是不是只有 100Mbps。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="3">
+        <span>投诉 ISP 要准备多少张截图？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>建议先准备 3 张有日期的 LAN Speed Test Screenshot。
+
+测试时关闭其他大量占用带宽的应用，并注明使用的是 Wired Connection。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="4">
+        <span>我要怎样跟客服说比较有效？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>不要只写：
+
+“Internet slow.”
+
+直接告诉客服：
+
+“I have performed three wired LAN speed tests and the results are consistently below 90% of my subscribed Fibre speed. Please check the line and escalate this as a technical fault.”
+
+这样客服拿到的是可以调查的技术证据，而不是一个无法量化的感觉。</p></div>
+    </div></div>
+    </section>
+    </div>
+    
+    <section class="section-card" style="margin-top:1.5rem">
+      <h2>相关文章</h2>
+      <div class="blog-grid"><a href="/zh/blog/unifi-vs-maxis-fibre/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">07/09/2026</div>
+          <div class="blog-card-title">Unifi vs Maxis Fibre：谁的客服响应和维修速度更好？</div>
+          <p class="blog-card-excerpt">Fibre 断线时，客服回复得快，不等于网络修得快。对马来西亚用户来说，真正重要的是投诉提交后，Ticket 怎么走、谁负责维修，以及最终多久恢复网络。NetBijak 独家判断：别只看谁回复快比较 ...</p>
+        </div></a><a href="/zh/blog/-fibre-coverage/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">06/09/2026</div>
+          <div class="blog-card-title">搬家后新家没有 Fibre Coverage，你的宽带合约会怎样？</div>
+          <p class="blog-card-excerpt">搬去一个没有 Fibre Coverage 的新家，并不代表你的宽带合约可以自动免费取消。真正会影响你要不要赔钱的，是 ISP 的搬迁规则、你已经用了多久，以及新地址有没有其他替代方案。NetBija...</p>
+        </div></a><a href="/zh/blog/maxis-12tbps/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">05/09/2026</div>
+          <div class="blog-card-title">Maxis 骨干网升级至 1.2Tbps：你的家宽网速会变快吗？</div>
+          <p class="blog-card-excerpt">Maxis 最近对其全国光纤传输网络进行了升级，采用了诺基亚（Nokia）的 1830 PSS 与 PSE-6 光学技术，将单通道传输容量提升到了&amp;nbsp;1.2Tbps。虽然“1.2Tbps”听起...</p>
+        </div></a><a href="/zh/blog/unifi-internet-troubleshooting-/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">05/09/2026</div>
+          <div class="blog-card-title">Unifi Internet 出问题怎么办？官方 Troubleshooting 步骤</div>
+          <p class="blog-card-excerpt">如果你的 Unifi Internet 很慢或者完全无法使用，先检查有没有 Outage，再检查设备和指示灯，然后重启设备，最后使用 EasyFix 自助排查。1. 先检查有没有 Outage 或 M...</p>
+        </div></a><a href="/zh/blog/-tiktoknetflix-fibre/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">04/09/2026</div>
+          <div class="blog-card-title">孩子一直刷 TikTok，Netflix 一直卡？先别急着升级 Fibre</div>
+          <p class="blog-card-excerpt">为什么孩子刷 TikTok，Netflix 就开始卡？如果孩子一刷 TikTok，你的 Netflix 就开始 Buffer，先不要急着升级 Fibre 配套。问题可能是家里的 网络拥塞、WiFi 干...</p>
+        </div></a><a href="/zh/blog/mobile-legends-pingunifimaxis-time-fibre/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">03/09/2026</div>
+          <div class="blog-card-title">Mobile Legends 最低 Ping：Unifi、Maxis 还是 TIME Fibre？</div>
+          <p class="blog-card-excerpt">哪家 Fibre 玩 Mobile Legends Ping 最低？根据目前可以找到的&amp;nbsp;2026 年 KL 第三方测试，TIME 在 TIME、Maxis Fibre 和 Unifi 三家当...</p>
+        </div></a></div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script>const ROOT_PATH = "/"; const PAGE_TRANSLATIONS = {"ms":"/ms/blog/cara-check-broadband-speed-anda-di-malaysia/","en":"/en/blog/how-to-check-your-broadband-speed-in-malaysia/","zh":"/zh/blog/-fibre-/"};</script>
+  <script src="/assets/js/tracking.js"></script>
+  <script src="/assets/js/translations.js"></script>
+  <script src="/assets/js/site.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("#article-faq-list .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#article-faq-list .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
+    });
+  </script>
+
+  <div id="mascot-widget" class="mascot-widget">
+    <button type="button" class="mascot-close-btn" id="mascot-close-btn" aria-label="Close">✕</button>
+    <a href="https://wa.me/60178835110?text=Hi%20NetBijak%2C%20I'm%20reading%20%22%E6%AD%A3%E7%A1%AE%E6%B5%8B%E8%AF%95%20Fibre%20%E7%BD%91%E9%80%9F%E7%9A%84%E6%96%B9%E6%B3%95%22%20and%20have%20a%20question." target="_blank" class="mascot-avatar-link">
+      <img src="/assets/images/mascot.png" alt="NetBijak Assistant" class="mascot-avatar-img" />
+      <span class="mascot-bubble">有问题吗？</span>
+    </a>
+  </div>
+  <script>
+    (function() {
+      var storageKey = "mascot-closed--fibre-";
+      var widget = document.getElementById("mascot-widget");
+      var closeBtn = document.getElementById("mascot-close-btn");
+      if (sessionStorage.getItem(storageKey)) {
+        widget.style.display = "none";
+      }
+      closeBtn.addEventListener("click", function() {
+        widget.style.display = "none";
+        sessionStorage.setItem(storageKey, "1");
+      });
+    })();
+  </script>
+</body>
+</html>
