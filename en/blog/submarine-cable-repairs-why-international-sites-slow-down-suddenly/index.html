@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Submarine Cable Repairs in Malaysia: Why Overseas Websites Suddenly Become Slow</title>
+  <meta name="description" content="Why are overseas websites suddenly slow in Malaysia? Learn how submarine cable faults such as APCN2 and AAG affect international traffic, how ISPs reroute traffic, and how to tell an international routing problem from a faulty Fibre connection." />
+  <meta name="geo.region" content="MY" />
+  <meta name="geo.placename" content="Malaysia" />
+  <meta property="og:title" content="Submarine Cable Repairs in Malaysia: Why Overseas Websites Suddenly Become Slow" />
+  <meta property="og:description" content="Why are overseas websites suddenly slow in Malaysia? Learn how submarine cable faults such as APCN2 and AAG affect international traffic, how ISPs reroute traffic, and how to tell an international routing problem from a faulty Fibre connection." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://netbijak.com/assets/images/logo.png" />
+  <meta property="og:url" content="https://netbijak.com/en/blog/submarine-cable-repairs-why-international-sites-slow-down-suddenly/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://netbijak.com/en/blog/submarine-cable-repairs-why-international-sites-slow-down-suddenly/" />
+  <link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/blog/submarine-cable-repairs-zh/" />
+  <link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/blog/pembaikan-kabel-dasar-laut-kenapa-website-antarabangsa-tiba-tiba-jadi-slow/" />
+  <link rel="alternate" hreflang="en" href="https://netbijak.com/en/blog/submarine-cable-repairs-why-international-sites-slow-down-suddenly/" />
+  <link rel="alternate" hreflang="x-default" href="https://netbijak.com/en/blog/submarine-cable-repairs-why-international-sites-slow-down-suddenly/" />
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does a submarine cable fault mean Malaysia has no Internet?","acceptedAnswer":{"@type":"Answer","text":"No. Malaysia is connected to multiple international cable systems, and network operators can use alternative routes. The actual impact depends on the affected cable, available backup capacity and the destination being accessed."}},{"@type":"Question","name":"Why can my friend on another ISP access the same website normally?","acceptedAnswer":{"@type":"Answer","text":"Their ISP may be using a different international route, upstream provider or traffic path. The difference does not necessarily mean your Fibre connection is defective."}},{"@type":"Question","name":"Can a VPN bypass a submarine cable problem?","acceptedAnswer":{"@type":"Answer","text":"A VPN can sometimes produce a different route to a destination, but it is not a guaranteed workaround. If the underlying international links are congested, routing traffic through a VPN can even add another layer of latency."}},{"@type":"Question","name":"Will upgrading from 500Mbps to 1Gbps fix slow overseas websites?","acceptedAnswer":{"@type":"Answer","text":"Not if the bottleneck is the international route. A faster Fibre plan increases your local access capacity, but it does not automatically increase the capacity of a congested international path."}},{"@type":"Question","name":"Should I contact my ISP when only overseas websites are slow?","acceptedAnswer":{"@type":"Answer","text":"Yes, particularly if the problem persists across several overseas destinations. Give the ISP useful information such as the affected website, approximate time, latency results and traceroute output rather than simply reporting that “the Internet is slow.”"}}]}</script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="main">
+    <div id="blog-detail-container">
+      <a href="/en/blog/" class="blog-back-link">← Back to Blog</a>
+      <span class="blog-type-tag">Article</span>
+      
+      <div class="blog-detail-date">09/09/2026</div>
+      <h1 class="blog-detail-title">Submarine Cable Repairs: Why International Sites Slow Down Suddenly</h1>
+      
+    <section class="ai-summary-box">
+      <div class="ai-summary-badge">✨ NetBijak AI Summary</div>
+      <p>When you notice that overseas websites are slow while local services and speed tests remain normal, the issue is often a fault in an international submarine cable rather than a problem with your home fibre connection. These cables carry global traffic, and when one is damaged, ISPs must reroute data through alternative paths to keep you connected. While this prevents a complete blackout, these backup routes often suffer from limited capacity, higher latency, or congestion compared to the original path. Consequently, you may experience inconsistent speeds that fluctuate depending on the time of day or the specific international destination you are accessing. This phenomenon is a standard part of global network management, as ISPs prioritize keeping your connection active even when primary transit routes are unavailable. Understanding this process helps clarify why your local internet performance can seem perfect while certain global applications or services struggle to load.</p>
+    </section>
+      <div class="blog-detail-content"><p>When overseas websites suddenly become slow but Malaysian websites and your local speed test still look normal, the problem may not be your Fibre connection at all. A fault or maintenance event affecting an international submarine cable can reduce the capacity available between Malaysia and overseas networks, forcing ISPs to move traffic onto alternative routes.</p><p>For Malaysian users, the important question is therefore not simply <strong>“Is the cable broken?”</strong>, but <strong>which route is affected, where your ISP sends the traffic instead, and whether the alternative path is congested.</strong></p><h2>Why Malaysia Depends on Submarine Cables</h2><p>Most international Internet traffic cannot travel directly from a Malaysian home to an overseas server. After leaving your ISP's domestic network, the traffic normally enters an international network and eventually crosses one or more submarine cable systems before reaching another country.</p><p>This is particularly important for services hosted outside Malaysia. A connection to a Malaysian website may remain largely within domestic infrastructure, while a connection to a server in the US, Japan or Europe requires international transit.</p><p>That difference explains a common Malaysian broadband complaint:</p><p><strong>Local websites work normally, but certain overseas services suddenly become slow.</strong></p><p>It does not necessarily mean the Fibre line between your home and the ISP has degraded. The problem can be further upstream, somewhere along the international path.</p><h2>What Happens When an International Cable Has a Fault?</h2><p>A submarine cable fault does not normally disconnect an ISP from the global Internet altogether. The more immediate problem is <strong>loss of available capacity on a particular route</strong>.</p><p>Major ISPs and network operators normally have multiple international connections. When one cable becomes unavailable, traffic can be redirected through another available path.</p><p>This process is generally referred to as <strong>rerouting</strong>.</p><p>For example, a simplified route might look like:</p><p><strong>Malaysia → International Gateway → Cable A → Overseas Transit → Server</strong></p><p>After a fault:</p><p><strong>Malaysia → International Gateway → Cable B → Overseas Transit → Server</strong></p><p>The second route may keep the connection alive, but it may not have the same latency or available capacity as the original route.</p><p>This is why users can experience slower overseas websites even though the Internet connection itself has not completely gone down.</p><h2>APCN2 and AAG: Real Examples Affecting Malaysian Connectivity</h2><p>Malaysia has experienced international cable incidents before, including faults involving major systems such as <strong>APCN2</strong> and <strong>AAG</strong>.</p><h3>APCN2</h3><p>The Asia Pacific Cable Network 2 (APCN2) is an international submarine cable system connecting major telecommunications markets across Asia.</p><p>During an APCN2 fault, TM reported that it lost international capacity but was able to reroute traffic through alternative international routes while repair work was underway.</p><p>That example is important because it shows why a cable fault does not necessarily produce a nationwide Internet outage.</p><p>The physical cable can be damaged while customers remain online because the operator has moved traffic elsewhere.</p><p>The trade-off is that the replacement route may have less spare capacity or a different path to the destination.</p><h3>AAG</h3><p>The Asia-America Gateway (AAG) is another major submarine cable system connecting Southeast Asia with international destinations including the US.</p><p>During previous AAG maintenance, TM warned that users accessing certain services could experience service degradation and said traffic would be diverted through alternative routes to minimise the impact.</p><p>This is why cable repair announcements often mention specific destinations or applications rather than saying <strong>“the whole Internet will be slow.”</strong></p><p>The impact depends on the traffic that normally uses the affected route.</p><h2>What Does ISP Rerouting Actually Mean?</h2><p>Rerouting is more than simply finding another physical cable.</p><p>Internet traffic is controlled by routing information exchanged between networks. At the larger Internet level, <strong>BGP (Border Gateway Protocol)</strong> is used by autonomous systems to advertise which IP prefixes they can reach and through which paths.</p><p>If an international path becomes unavailable, routing information can change so that traffic is directed through another available path.</p><p>The exact process differs between networks, but the practical result for a consumer is straightforward:</p><p><strong>The destination is still reachable, but the path used to reach it has changed.</strong></p><p>That change can affect three things that matter to users:</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Latency:</strong> the new path may travel through more network hops or a less direct geographic route.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Packet loss:</strong> congestion or instability on the alternative route can cause packets to be dropped.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Throughput:</strong> TCP-based applications reduce their sending rate when they detect packet loss, meaning a connection can have plenty of theoretical bandwidth but still deliver poor real-world download performance.</li></ol><p>This is one reason a user can see a perfectly respectable speed-test result while an overseas download remains unusually slow.</p><h2>Why Does Rerouting Sometimes Make the Internet Feel Worse?</h2><p>Imagine an international route normally operating with plenty of spare capacity.</p><p>If a submarine cable suddenly becomes unavailable, its traffic has to be absorbed by the remaining routes.</p><p>If those routes have sufficient capacity, most customers may notice little difference.</p><p>If they do not, congestion starts to appear.</p><p>The result can be particularly noticeable during peak hours, when the alternative international links are already carrying heavy traffic.</p><p>This is also why a cable fault can produce <strong>inconsistent symptoms</strong>. A website may load quickly at 3am but become slow at 9pm. A Singapore service may work normally while a US service performs badly. A gaming connection may suffer high ping while ordinary web browsing remains usable.</p><p>These differences are clues about where the bottleneck may be.</p><h2>Why Are Some Websites Slow While Others Work Normally?</h2><p>A submarine cable fault does not affect every Internet destination equally.</p><p>There are several reasons.</p><h3>The destination may use a different route</h3><p>Two websites hosted in different countries can take completely different paths out of Malaysia.</p><p>A Singapore-hosted service may use a regional route that is unaffected, while a US-based service may depend on an international path experiencing congestion.</p><h3>The service may use a CDN</h3><p>Large platforms often distribute content through <strong>Content Delivery Networks (CDNs)</strong>.</p><p>If the content is served from a nearby cache, your traffic may not need to travel to the company's original server in the US or Europe.</p><p>That can make a major difference during an international routing incident.</p><h3>Different ISPs may use different upstream paths</h3><p>Even when two customers are physically located next to each other, their ISPs may have different international connectivity arrangements.</p><p>One ISP may have a less congested alternative route available, while another may be sending more traffic through an overloaded path.</p><p>This is why <strong>“my friend's Internet is fine” does not automatically mean your Fibre line is faulty.</strong></p><h2>Why Can a Speed Test Still Show 500Mbps?</h2><p>This is where many consumers misdiagnose the problem.</p><p>A speed test does not measure <strong>“the Internet”</strong> as one single connection. It measures the path between your device and a particular test server.</p><p>If the test server is in Malaysia or connected through a strong local peering arrangement, your traffic may never touch the international route causing the problem.</p><p>You could therefore see:</p><p><strong>500Mbps to a Malaysian test server</strong></p><p>while experiencing:</p><p><strong>slow downloads from a US server</strong></p><p>Both results can be accurate because they are testing different network paths.</p><p>For troubleshooting, it is more useful to compare destinations.</p><p>Test a Malaysian server first, then compare services or servers in places such as:</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Singapore</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Hong Kong</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Japan</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>United States</li></ol><p>If local connectivity remains healthy but certain international destinations show significantly higher latency or packet loss, the problem is more likely to be related to the international path rather than your Wi-Fi speed.</p><h2>Use Traceroute to See Where the Path Changes</h2><p>For technically minded users, <strong>traceroute</strong> can provide more useful information than a single speed-test number.</p><p>On Windows, you can use:</p><p><code>tracert example.com</code></p><p>On macOS or Linux:</p><p><code>traceroute example.com</code></p><p>The command shows the network hops between your device and the destination.</p><p>You are not necessarily looking for one specific hop to “blame”. Internet routers may deliberately hide ICMP responses, and some intermediate hops can show packet loss without actually affecting the final connection.</p><p>Instead, look for <strong>patterns</strong>.</p><p>For example:</p><p><strong>Malaysia → ISP network → International Gateway → Singapore → US → Destination</strong></p><p>If an international route suddenly takes a noticeably different path, or latency increases substantially after traffic leaves Malaysia, that provides useful evidence that the problem is occurring beyond your home network.</p><p>A proper diagnosis should compare the results with another destination and, ideally, with results taken at different times.</p><h2>Why Packet Loss Can Hurt More Than a Lower Speed</h2><p>Users often focus on Mbps, but international applications can be much more sensitive to <strong>latency and packet loss</strong>.</p><p>For TCP connections, packet loss signals congestion or transmission problems. TCP responds by reducing its sending rate and then gradually increasing it again.</p><p>That means even a relatively small amount of sustained packet loss can have a disproportionate effect on a long-distance connection.</p><p>For example, a Fibre plan may still have hundreds of Mbps of available capacity locally, but a congested international path with packet loss can make a large overseas file download perform far below expectations.</p><p>This is particularly noticeable with:</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Cloud services</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>International file downloads</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Remote desktops</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>VPN connections</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Online gaming</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Video conferencing</li></ol><p>The problem is not necessarily <strong>“insufficient Fibre speed.”</strong> It can be the quality of the route between the ISP and the destination.</p><h2>Can Changing ISP Fix a Submarine Cable Problem?</h2><p><strong>Sometimes, but there is no guarantee.</strong></p><p>The important factor is not the brand printed on your broadband bill. It is the ISP's actual international connectivity.</p><p>Two retail broadband providers may use different international routes, while two apparently different services may share some upstream infrastructure or cable capacity.</p><p>This means switching from one ISP to another is only useful if the new provider gives you a <strong>meaningfully different route to the affected destination</strong>.</p><p>It is also why upgrading from 300Mbps to 500Mbps or 1Gbps does not automatically solve an international routing problem.</p><p>If the bottleneck is upstream, buying more domestic access bandwidth does not create additional international capacity.</p><h2>How Long Do Submarine Cable Repairs Take?</h2><p>There is no universal repair time.</p><p>A damaged submarine cable requires specialised marine repair work, and the timeline can depend on:</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>The location of the fault</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Weather and sea conditions</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Availability of a cable repair vessel</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Access to the damaged section</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Spare cable availability</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>The number of cables or segments involved</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Coordination between cable system owners and operators</li></ol><p>However, <strong>physical repair time and customer impact are not the same thing</strong>.</p><p>An ISP may restore acceptable connectivity by rerouting traffic before the damaged cable is physically repaired.</p><p>Conversely, a cable may remain operational but have reduced capacity during maintenance, producing noticeable congestion without a complete outage.</p><p>That distinction is often missing from consumer discussions about submarine cable incidents.</p><h2>How to Tell If the Problem Is Your Fibre or the International Network</h2><p>Use the pattern of the problem rather than relying on one speed test.</p><table><tbody><tr><td data-row="1">What you experience</td><td data-row="1">What it may indicate</td></tr><tr><td data-row="2">Malaysian and overseas websites are all slow</td><td data-row="2">Home network, Wi-Fi, access network or ISP issue</td></tr><tr><td data-row="3">Malaysian websites work normally but certain overseas sites are slow</td><td data-row="3">International routing or destination issue</td></tr><tr><td data-row="4">Several overseas destinations show higher latency</td><td data-row="4">Wider international connectivity problem</td></tr><tr><td data-row="5">Only one website is slow</td><td data-row="5">Website/CDN/server problem is also possible</td></tr><tr><td data-row="6">Different ISP users experience different performance</td><td data-row="6">Different routing or upstream connectivity</td></tr><tr><td data-row="7">Speed test is normal but overseas download is slow</td><td data-row="7">Different path, congestion, packet loss or server-side limitation</td></tr></tbody></table><p>This is not a substitute for an ISP network diagnosis, but it helps prevent the common mistake of blaming the Fibre line simply because one overseas website is slow.</p><h2>What Should Malaysian Users Do During a Cable Incident?</h2><p>If your ISP has announced a submarine cable fault or international maintenance, there is usually little value in repeatedly restarting the ONT or router unless you are also experiencing local connectivity problems.</p><p>Instead, establish whether the issue is actually international.</p><p>Start with a Malaysian speed test or local service. Then test the overseas service that is giving you trouble. If possible, compare several destinations and run a traceroute to identify whether the route changes after leaving your ISP's local network.</p><p>If the ISP confirms an international cable incident, the most useful information is usually <strong>the affected route, expected service impact and whether traffic has already been rerouted</strong>.</p><p>Do not assume that a higher-speed broadband package will fix the problem. International routing and last-mile Fibre speed are separate parts of the connection.</p><p><br></p><h2>NetBijak's Take</h2><p>A submarine cable fault is not the same thing as a Fibre outage at your home.</p><p>The important distinction is <strong>where the congestion or failure occurs</strong>. Your local Fibre connection can remain perfectly healthy while an international route is operating with reduced capacity, forcing your ISP to reroute traffic through a longer or more congested path.</p><p>For Malaysian consumers, the practical lesson is simple: <strong>check the destination and the route before blaming your broadband speed.</strong> If local services remain normal while specific overseas destinations suddenly develop high latency, packet loss or poor throughput, an international connectivity problem is a much stronger suspect than a faulty home router.</p><p class="ql-align-center"><strong style="color: rgb(255, 255, 255); background-color: initial;"><a href="/en/find-your-plan/" rel="noopener noreferrer" target="_blank">🎯Find My Plan →</a></strong></p><p><br></p></div>
+      
+    <section class="section-card" id="article-faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div id="article-faq-list" class="faq-list">
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="0">
+        <span>Does a submarine cable fault mean Malaysia has no Internet?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>No. Malaysia is connected to multiple international cable systems, and network operators can use alternative routes. The actual impact depends on the affected cable, available backup capacity and the destination being accessed.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="1">
+        <span>Why can my friend on another ISP access the same website normally?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Their ISP may be using a different international route, upstream provider or traffic path. The difference does not necessarily mean your Fibre connection is defective.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="2">
+        <span>Can a VPN bypass a submarine cable problem?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>A VPN can sometimes produce a different route to a destination, but it is not a guaranteed workaround. If the underlying international links are congested, routing traffic through a VPN can even add another layer of latency.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="3">
+        <span>Will upgrading from 500Mbps to 1Gbps fix slow overseas websites?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Not if the bottleneck is the international route. A faster Fibre plan increases your local access capacity, but it does not automatically increase the capacity of a congested international path.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="4">
+        <span>Should I contact my ISP when only overseas websites are slow?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Yes, particularly if the problem persists across several overseas destinations. Give the ISP useful information such as the affected website, approximate time, latency results and traceroute output rather than simply reporting that “the Internet is slow.”</p></div>
+    </div></div>
+    </section>
+    </div>
+    
+    <section class="section-card" style="margin-top:1.5rem">
+      <h2>Related Articles</h2>
+      <div class="blog-grid"><a href="/en/blog/how-to-check-your-broadband-speed-in-malaysia/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">08/09/2026</div>
+          <div class="blog-card-title">How to Check Your Broadband Speed in Malaysia</div>
+          <p class="blog-card-excerpt">Your broadband speed test is only useful if you test the Fibre connection properly first. A 500Mbps ...</p>
+        </div></a><a href="/en/blog/unifi-vs-maxis-fibre-who-has-the-better-customer-service-response-time/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">07/09/2026</div>
+          <div class="blog-card-title">Unifi vs Maxis Fibre: Who Has the Better Customer Service Response Time?</div>
+          <p class="blog-card-excerpt">When your Fibre goes down, a fast customer-service reply is not the same thing as getting your inter...</p>
+        </div></a><a href="/en/blog/moving-to-a-no-coverage-area-heres-what-happens-to-your-fibre-contract/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">06/09/2026</div>
+          <div class="blog-card-title">Moving to a No-Coverage Area? Here’s What Happens to Your Fibre Contract</div>
+          <p class="blog-card-excerpt">Moving to a house without fibre coverage can turn a simple house move into an expensive contract pro...</p>
+        </div></a><a href="/en/blog/maxis-upgrades-its-fibre-backbone-to-12tbps-will-your-internet-get-faster/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">05/09/2026</div>
+          <div class="blog-card-title">Maxis Upgrades Its Fibre Backbone to 1.2Tbps: Will Your Internet Get Faster?</div>
+          <p class="blog-card-excerpt">Maxis has upgraded its nationwide optical transport network using Nokia’s 1830 PSS and PSE-6 optical...</p>
+        </div></a><a href="/en/blog/how-to-troubleshoot-unifi-internet-problems-a-simple-step-by-step-guide/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">05/09/2026</div>
+          <div class="blog-card-title">How to Troubleshoot Unifi Internet Problems: A Simple Step-by-Step Guide</div>
+          <p class="blog-card-excerpt">If your Unifi Internet is slow or not working, check for an outage first, check your equipment and i...</p>
+        </div></a><a href="/en/blog/how-to-stop-your-kids-tiktok-scrolling-from-freezing-your-netflix-stream/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">04/09/2026</div>
+          <div class="blog-card-title">How to Stop Your Kids’ TikTok Scrolling From Freezing Your Netflix Stream</div>
+          <p class="blog-card-excerpt">Why Does TikTok Make Netflix Freeze?If your Netflix stream freezes whenever the kids start scrolling...</p>
+        </div></a></div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script>const ROOT_PATH = "/"; const PAGE_TRANSLATIONS = {"zh":"/zh/blog/submarine-cable-repairs-zh/","ms":"/ms/blog/pembaikan-kabel-dasar-laut-kenapa-website-antarabangsa-tiba-tiba-jadi-slow/","en":"/en/blog/submarine-cable-repairs-why-international-sites-slow-down-suddenly/"};</script>
+  <script src="/assets/js/tracking.js"></script>
+  <script src="/assets/js/translations.js"></script>
+  <script src="/assets/js/site.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("#article-faq-list .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#article-faq-list .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
+    });
+  </script>
+
+  <div id="mascot-widget" class="mascot-widget">
+    <button type="button" class="mascot-close-btn" id="mascot-close-btn" aria-label="Close">✕</button>
+    <a href="https://wa.me/60178835110?text=Hi%20NetBijak%2C%20I'm%20reading%20%22Submarine%20Cable%20Repairs%3A%20Why%20International%20Sites%20Slow%20Down%20Suddenly%22%20and%20have%20a%20question." target="_blank" class="mascot-avatar-link">
+      <img src="/assets/images/mascot.png" alt="NetBijak Assistant" class="mascot-avatar-img" />
+      <span class="mascot-bubble">Need help?</span>
+    </a>
+  </div>
+  <script>
+    (function() {
+      var storageKey = "mascot-closed-submarine-cable-repairs-why-international-sites-slow-down-suddenly";
+      var widget = document.getElementById("mascot-widget");
+      var closeBtn = document.getElementById("mascot-close-btn");
+      if (sessionStorage.getItem(storageKey)) {
+        widget.style.display = "none";
+      }
+      closeBtn.addEventListener("click", function() {
+        widget.style.display = "none";
+        sessionStorage.setItem(storageKey, "1");
+      });
+    })();
+  </script>
+</body>
+</html>

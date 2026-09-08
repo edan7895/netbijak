@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pembaikan Kabel Dasar Laut di Malaysia: Kenapa Website Antarabangsa Tiba-Tiba Slow?</title>
+  <meta name="description" content="Kenapa website luar negara tiba-tiba slow di Malaysia? Ketahui bagaimana gangguan kabel dasar laut seperti APCN2 dan AAG menjejaskan trafik antarabangsa, bagaimana ISP melakukan rerouting dan cara membezakan masalah Fibre dengan masalah international routing." />
+  <meta name="geo.region" content="MY" />
+  <meta name="geo.placename" content="Malaysia" />
+  <meta property="og:title" content="Pembaikan Kabel Dasar Laut di Malaysia: Kenapa Website Antarabangsa Tiba-Tiba Slow?" />
+  <meta property="og:description" content="Kenapa website luar negara tiba-tiba slow di Malaysia? Ketahui bagaimana gangguan kabel dasar laut seperti APCN2 dan AAG menjejaskan trafik antarabangsa, bagaimana ISP melakukan rerouting dan cara membezakan masalah Fibre dengan masalah international routing." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://netbijak.com/assets/images/logo.png" />
+  <meta property="og:url" content="https://netbijak.com/ms/blog/pembaikan-kabel-dasar-laut-kenapa-website-antarabangsa-tiba-tiba-jadi-slow/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://netbijak.com/ms/blog/pembaikan-kabel-dasar-laut-kenapa-website-antarabangsa-tiba-tiba-jadi-slow/" />
+  <link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/blog/submarine-cable-repairs-zh/" />
+  <link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/blog/pembaikan-kabel-dasar-laut-kenapa-website-antarabangsa-tiba-tiba-jadi-slow/" />
+  <link rel="alternate" hreflang="en" href="https://netbijak.com/en/blog/submarine-cable-repairs-why-international-sites-slow-down-suddenly/" />
+  <link rel="alternate" hreflang="x-default" href="https://netbijak.com/en/blog/submarine-cable-repairs-why-international-sites-slow-down-suddenly/" />
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Adakah kabel dasar laut rosak bermaksud Malaysia akan kehilangan Internet sepenuhnya?","acceptedAnswer":{"@type":"Answer","text":"Tidak semestinya. Malaysia mempunyai beberapa sistem kabel antarabangsa dan network operator boleh menggunakan laluan alternatif. Kesan sebenar bergantung kepada kabel yang terjejas, kapasiti backup dan destinasi yang anda akses."}},{"@type":"Question","name":"Kenapa kawan saya guna ISP lain tetapi website yang sama masih laju?","acceptedAnswer":{"@type":"Answer","text":"ISP mereka mungkin menggunakan international route, upstream provider atau transit path yang berbeza. Jadi prestasi antara ISP memang boleh berbeza semasa sesuatu international route mengalami masalah."}},{"@type":"Question","name":"VPN boleh bypass masalah kabel dasar laut?","acceptedAnswer":{"@type":"Answer","text":"Kadang-kadang VPN boleh menghasilkan laluan yang berbeza ke destinasi tertentu dan mungkin membantu. Tetapi ia bukan penyelesaian yang dijamin. Jika international network memang congestion, VPN boleh menambah latency."}},{"@type":"Question","name":"Kalau upgrade 500Mbps ke 1Gbps, website luar negara akan jadi lebih laju?","acceptedAnswer":{"@type":"Answer","text":"Tidak semestinya. Kalau bottleneck berada pada international route, upgrade Fibre tidak akan menambah kapasiti pada laluan antarabangsa tersebut."}},{"@type":"Question","name":"Perlu hubungi ISP kalau hanya website luar negara yang slow?","acceptedAnswer":{"@type":"Answer","text":"Jika masalah berterusan dan melibatkan beberapa destinasi luar negara, ya. Berikan website, masa masalah berlaku, latency dan Traceroute jika ada. Maklumat tersebut lebih berguna untuk ISP membuat semakan rangkaian."}}]}</script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="main">
+    <div id="blog-detail-container">
+      <a href="/ms/blog/" class="blog-back-link">← Kembali ke Blog</a>
+      <span class="blog-type-tag">Article</span>
+      
+      <div class="blog-detail-date">09/09/2026</div>
+      <h1 class="blog-detail-title">Pembaikan Kabel Dasar Laut: Kenapa Website Antarabangsa Tiba-Tiba Jadi Slow?</h1>
+      
+    <section class="ai-summary-box">
+      <div class="ai-summary-badge">✨ Ringkasan AI NetBijak</div>
+      <p>Internet perlahan pada laman web antarabangsa tidak semestinya berpunca daripada kerosakan sambungan gentian optik di rumah anda, sebaliknya sering kali disebabkan oleh gangguan atau kerja penyelenggaraan pada kabel dasar laut. Apabila kabel utama mengalami masalah, penyedia perkhidmatan internet (ISP) akan melakukan rerouting bagi mengalihkan trafik melalui laluan alternatif yang tersedia. Walaupun kaedah ini membolehkan akses internet diteruskan tanpa terputus sepenuhnya, laluan baharu tersebut mungkin lebih jauh atau mengalami kesesakan. Keadaan ini menyebabkan peningkatan latensi, kehilangan paket, dan penurunan kelajuan muat turun yang ketara, terutamanya pada waktu puncak. Oleh itu, masalah kelajuan yang dialami pengguna adalah kesan langsung daripada kapasiti trafik antarabangsa yang terhad dan bukan kegagalan perkhidmatan ISP tempatan.</p>
+    </section>
+      <div class="blog-detail-content"><p>Kalau website Malaysia masih boleh dibuka seperti biasa tetapi website dari Amerika Syarikat, Jepun atau negara lain tiba-tiba menjadi sangat slow, masalah itu tidak semestinya datang daripada Fibre Broadband di rumah anda.</p><p>Apabila kabel dasar laut antarabangsa mengalami kerosakan atau menjalani maintenance, kapasiti untuk membawa trafik antara Malaysia dan rangkaian luar negara boleh berkurang. ISP kemudian akan mengalihkan trafik melalui laluan lain, tetapi laluan alternatif mungkin lebih jauh atau lebih sesak.</p><p>Sebab itu Internet masih boleh digunakan, tetapi prestasi untuk sesetengah website antarabangsa boleh jatuh dengan ketara.</p><h2>Kenapa Malaysia Bergantung Pada Kabel Dasar Laut?</h2><p>Sambungan Fibre di rumah anda bukanlah sambungan terus ke semua server di seluruh dunia.</p><p>Apabila anda membuka website yang servernya berada di luar negara, trafik biasanya bergerak melalui rangkaian ISP tempatan sebelum masuk ke rangkaian antarabangsa dan seterusnya melalui satu atau lebih sistem kabel dasar laut.</p><p>Secara ringkas, laluan itu boleh kelihatan seperti:</p><p><strong>Rumah → Rangkaian ISP → International Gateway → Kabel Dasar Laut → Rangkaian Luar Negara → Server</strong></p><p>Kalau anda membuka website yang servernya berada di Malaysia, trafik mungkin kekal dalam rangkaian domestik untuk sebahagian besar laluannya.</p><p>Tetapi kalau server berada di Amerika Syarikat, Jepun atau Eropah, trafik perlu melalui sambungan antarabangsa.</p><p>Sebab itu keadaan seperti ini boleh berlaku:</p><p><strong>Website Malaysia normal, website luar negara slow.</strong></p><p>Ia tidak semestinya bermaksud Fibre di rumah anda bermasalah.</p><h2>Apa Berlaku Bila Kabel Dasar Laut Rosak?</h2><p>Kerosakan satu kabel tidak semestinya menyebabkan seluruh Internet terputus.</p><p>Masalah yang lebih biasa ialah <strong>kapasiti pada laluan antarabangsa tertentu berkurang</strong>.</p><p>ISP dan network operator yang besar biasanya mempunyai lebih daripada satu sambungan antarabangsa. Apabila satu kabel mengalami gangguan, trafik boleh dialihkan ke laluan lain yang masih tersedia.</p><p>Proses ini biasanya dipanggil <strong>rerouting</strong>.</p><p>Contohnya, sebelum gangguan:</p><p><strong>Malaysia → International Gateway → Cable A → Overseas Transit → Server</strong></p><p>Selepas Cable A bermasalah:</p><p><strong>Malaysia → International Gateway → Cable B → Overseas Transit → Server</strong></p><p>Sambungan masih boleh berfungsi, tetapi Cable B mungkin mempunyai laluan yang lebih panjang atau kapasiti yang lebih terhad.</p><p>Jadi:</p><p><strong>Cable rosak tidak semestinya bermaksud Internet terus terputus.</strong></p><p>Tetapi:</p><p><strong>Rerouting juga tidak bermaksud prestasi akan kekal sama seperti sebelum gangguan.</strong></p><h2>APCN2 dan AAG: Contoh Gangguan Yang Pernah Memberi Kesan Kepada Malaysia</h2><p>Malaysia pernah berdepan gangguan yang melibatkan sistem kabel dasar laut antarabangsa seperti <strong>APCN2</strong> dan <strong>AAG</strong>.</p><h3>APCN2</h3><p><strong>Asia Pacific Cable Network 2 (APCN2)</strong> ialah sistem kabel dasar laut yang menghubungkan beberapa pasaran telekomunikasi utama di Asia.</p><p>Semasa gangguan APCN2 sebelum ini, TM melaporkan bahawa kapasiti antarabangsa mereka terjejas tetapi trafik boleh dialihkan dan dioptimumkan melalui laluan antarabangsa alternatif.</p><p>Ini menunjukkan kenapa kerosakan satu kabel tidak semestinya menyebabkan pengguna Malaysia kehilangan sambungan Internet sepenuhnya.</p><p>Trafik masih boleh bergerak melalui laluan lain.</p><p>Masalah seterusnya ialah sama ada laluan alternatif tersebut mempunyai kapasiti yang mencukupi.</p><h2>Bagaimana Dengan AAG?</h2><p><strong>Asia-America Gateway (AAG)</strong> ialah sistem kabel dasar laut yang menghubungkan Asia Tenggara dengan destinasi antarabangsa termasuk Amerika Syarikat dan Hong Kong.</p><p>Semasa maintenance AAG sebelum ini, TM memberi amaran bahawa sesetengah perkhidmatan yang bergantung kepada laluan tersebut mungkin mengalami degradation. TM juga menyatakan trafik akan dialihkan ke laluan alternatif untuk mengurangkan kesan kepada pengguna.</p><p>Sebab itu pengumuman cable maintenance biasanya tidak bermaksud:</p><p><strong>“Semua Internet di Malaysia akan slow.”</strong></p><p>Kesan sebenar bergantung kepada <strong>laluan mana yang terjejas dan ke mana trafik pengguna tersebut perlu pergi.</strong></p><h2>Bagaimana Sebenarnya ISP Buat Rerouting?</h2><p>Rerouting bukan sekadar “tukar kepada kabel lain”.</p><p>Internet terdiri daripada ribuan rangkaian yang saling berhubung dan rangkaian ini bertukar maklumat tentang laluan yang boleh digunakan.</p><p>Di peringkat Internet yang lebih besar, salah satu mekanisme utama ialah <strong>BGP (Border Gateway Protocol)</strong>.</p><p>BGP digunakan untuk mengiklankan <strong>IP Prefix</strong> yang boleh dicapai melalui sesuatu rangkaian dan laluan yang tersedia untuk sampai ke destinasi tersebut.</p><p>Apabila sesuatu laluan tidak lagi tersedia atau network operator perlu mengubah trafik, maklumat routing boleh berubah dan trafik boleh dihantar melalui laluan alternatif.</p><p>Bagi pengguna biasa, cara paling mudah untuk memahami proses ini ialah:</p><p><strong>Destinasi sama, tetapi laluan untuk sampai ke destinasi sudah berubah.</strong></p><p>Perubahan laluan ini boleh memberi kesan kepada tiga perkara utama.</p><h3>Latency</h3><p>Laluan baharu mungkin lebih jauh atau melalui lebih banyak network hops, menyebabkan ping meningkat.</p><h3>Packet Loss</h3><p>Jika trafik yang banyak dialihkan ke laluan yang mempunyai kapasiti terhad, congestion boleh menyebabkan packet loss.</p><h3>Throughput</h3><p>Apabila sambungan TCP mengesan packet loss atau congestion, ia akan mengurangkan kadar penghantaran.</p><p>Sebab itu anda boleh mempunyai Fibre <strong>500Mbps atau 1Gbps</strong>, tetapi download daripada server luar negara masih sangat perlahan.</p><p>Masalah mungkin bukan pada kelajuan Fibre anda, tetapi pada <strong>laluan antarabangsa menuju server tersebut</strong>.</p><h2>Kenapa Internet Masih Boleh Jadi Slow Selepas Rerouting?</h2><p>Bayangkan laluan asal mempunyai banyak kapasiti yang masih kosong.</p><p>Apabila satu kabel mengalami gangguan, trafik yang biasanya melalui kabel tersebut perlu diserap oleh laluan lain.</p><p>Kalau kapasiti alternatif mencukupi, kebanyakan pengguna mungkin tidak perasan banyak perbezaan.</p><p>Tetapi kalau terlalu banyak trafik dipindahkan ke laluan yang sama, congestion boleh berlaku.</p><p>Sebab itu prestasi juga boleh berubah mengikut masa.</p><p>Contohnya:</p><p><strong>3 pagi → website US normal</strong></p><p><strong>9 malam → website US sangat slow</strong></p><p>Pada waktu puncak, laluan antarabangsa alternatif mungkin sudah membawa trafik yang tinggi.</p><p>Anda juga mungkin melihat keadaan seperti:</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Website Singapore normal</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Website US slow</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Ping ke server Jepun meningkat</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Online gaming mengalami latency tinggi</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>VPN menjadi tidak stabil</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Download dari server luar negara menjadi perlahan</li></ol><p>Corak seperti ini lebih berguna untuk troubleshooting berbanding hanya melihat satu keputusan Speed Test.</p><h2>Kenapa Hanya Website Tertentu Yang Slow?</h2><p>Kerosakan kabel dasar laut tidak memberi kesan yang sama kepada semua website.</p><h3>Website berbeza menggunakan laluan berbeza</h3><p>Server di Singapore, Japan dan US mungkin menggunakan laluan antarabangsa yang berbeza.</p><p>Jadi, website Singapore yang normal tidak bermaksud laluan ke US juga normal.</p><h3>Website mungkin menggunakan CDN</h3><p>Platform besar biasanya menggunakan <strong>Content Delivery Network (CDN)</strong>.</p><p>Content boleh disimpan di server yang lebih dekat dengan pengguna. Ini bermakna anda mungkin tidak perlu berhubung terus dengan Origin Server di US atau Eropah.</p><p>Sebab itu sesetengah platform masih boleh berfungsi dengan baik walaupun satu laluan antarabangsa mengalami gangguan.</p><h3>ISP berbeza mempunyai international connectivity yang berbeza</h3><p>Dua pengguna yang tinggal berdekatan tidak semestinya menggunakan laluan antarabangsa yang sama.</p><p>ISP A mungkin mempunyai laluan alternatif yang kurang sesak, manakala ISP B mungkin menggunakan laluan yang mengalami congestion.</p><p>Sebab itu:</p><p><strong>“Kawan saya guna ISP lain dan tak ada masalah.”</strong></p><p>tidak semestinya bermaksud Fibre anda rosak.</p><h2>Kenapa Speed Test Masih Boleh Dapat 500Mbps?</h2><p>Speed Test tidak mengukur <strong>“seluruh Internet”</strong>.</p><p>Ia mengukur sambungan antara peranti anda dengan server ujian tertentu.</p><p>Kalau server tersebut berada di Malaysia atau mempunyai peering yang baik dengan ISP anda, trafik ujian mungkin tidak melalui laluan antarabangsa yang sedang bermasalah.</p><p>Jadi anda boleh mendapat:</p><p><strong>Speed Test Malaysia: 500Mbps</strong></p><p>tetapi:</p><p><strong>Download dari server US: sangat slow</strong></p><p>Kedua-dua keputusan itu boleh menjadi betul kerana kedua-duanya menggunakan <strong>network path yang berbeza</strong>.</p><p>Untuk troubleshooting, bandingkan beberapa destinasi:</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Malaysia</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Singapore</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Hong Kong</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Japan</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>United States</li></ol><p>Kalau local connection masih normal tetapi beberapa destinasi antarabangsa menunjukkan latency atau packet loss yang lebih tinggi, international routing menjadi salah satu kemungkinan utama.</p><h2>Nak Semak Laluan Dengan Lebih Terperinci? Gunakan Traceroute</h2><p>Pengguna yang lebih teknikal boleh menggunakan <strong>Traceroute</strong> untuk melihat laluan trafik.</p><p>Untuk Windows:</p><p><code>tracert example.com</code></p><p>Untuk macOS atau Linux:</p><p><code>traceroute example.com</code></p><p>Traceroute menunjukkan network hops antara peranti anda dan destinasi.</p><p>Tetapi jangan terus membuat kesimpulan hanya kerana satu hop menunjukkan packet loss.</p><p>Sesetengah router memang tidak memberi respons kepada semua ICMP request. Jadi packet loss pada satu intermediate hop tidak semestinya bermaksud connection sebenar mengalami packet loss.</p><p>Apa yang lebih berguna ialah melihat <strong>corak keseluruhan laluan</strong>.</p><p>Contohnya:</p><p><strong>Malaysia → ISP Network → International Gateway → Singapore → US → Destination</strong></p><p>Kalau laluan ke destinasi tertentu tiba-tiba berubah atau latency meningkat dengan ketara selepas trafik meninggalkan rangkaian Malaysia, itu boleh menjadi petunjuk bahawa masalah berlaku pada bahagian antarabangsa.</p><p>Lebih baik buat perbandingan dengan destinasi lain dan pada waktu yang berbeza.</p><h2>Kenapa Packet Loss Kadang-Kadang Lebih Teruk Daripada Speed Yang Rendah?</h2><p>Ramai pengguna hanya melihat Mbps.</p><p>Untuk sambungan antarabangsa, <strong>latency dan packet loss juga sangat penting</strong>.</p><p>Apabila TCP mengesan packet loss, ia menganggap terdapat congestion atau masalah penghantaran dan akan mengurangkan kadar penghantaran.</p><p>Akibatnya, packet loss yang berterusan walaupun tidak terlalu tinggi boleh memberi kesan besar kepada sambungan jarak jauh.</p><p>Contohnya, Fibre anda masih mempunyai kapasiti ratusan Mbps di Malaysia, tetapi laluan ke server US mengalami congestion dan packet loss.</p><p>Hasilnya:</p><p><strong>Local Fibre laju, tetapi download dari US tetap slow.</strong></p><p>Kesan ini lebih mudah dirasai pada:</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Cloud Services</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>International File Downloads</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Remote Desktop</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>VPN</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Online Gaming</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Video Conferencing</li></ol><h2>Boleh Tukar ISP Untuk Selesaikan Masalah Kabel Dasar Laut?</h2><p><strong>Kadang-kadang boleh, tetapi bukan jaminan.</strong></p><p>Perkara paling penting bukan jenama ISP, tetapi <strong>international connectivity yang digunakan oleh ISP tersebut</strong>.</p><p>Dua ISP yang berbeza mungkin menggunakan laluan antarabangsa yang berbeza.</p><p>Sebaliknya, dua perkhidmatan broadband yang kelihatan berbeza juga mungkin berkongsi upstream network, transit atau kapasiti tertentu.</p><p>Jadi kalau masalah berlaku pada international route, upgrade:</p><p><strong>300Mbps → 500Mbps → 1Gbps</strong></p><p>tidak semestinya menyelesaikan masalah.</p><p>Anda hanya menambah kapasiti Fibre antara rumah dengan ISP. Anda tidak secara automatik menambah kapasiti pada laluan antarabangsa yang sedang congestion.</p><h2>Berapa Lama Kabel Dasar Laut Ambil Untuk Dibaiki?</h2><p>Tiada satu tempoh standard.</p><p>Kerja membaiki kabel dasar laut memerlukan kapal dan peralatan khusus, dan tempohnya boleh bergantung kepada:</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Lokasi kerosakan</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Cuaca dan keadaan laut</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Availability repair vessel</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Akses kepada lokasi kerosakan</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Spare cable</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Jumlah cable segment yang terjejas</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Koordinasi antara cable owners dan operators</li></ol><p>Tetapi ada satu perkara penting yang ramai pengguna terlepas pandang:</p><p><strong>Physical repair time tidak sama dengan customer impact time.</strong></p><p>ISP boleh memulihkan prestasi melalui rerouting sebelum kabel yang rosak selesai dibaiki.</p><p>Sebaliknya, kabel yang masih beroperasi tetapi mempunyai kapasiti terhad semasa maintenance juga boleh menyebabkan congestion.</p><h2>Macam Mana Nak Tahu Masalah Datang Dari Fibre Rumah Atau International Network?</h2><p>Jangan bergantung kepada satu Speed Test sahaja.</p><table><tbody><tr><td data-row="1">Kemungkinan masalah</td><td data-row="1">Kemungkinan masalah</td></tr><tr><td data-row="2">Website Malaysia dan luar negara semua slow</td><td data-row="2">WiFi, router, Fibre, access network atau ISP</td></tr><tr><td data-row="3">Website Malaysia normal tetapi website luar negara tertentu slow</td><td data-row="3">International routing atau destination</td></tr><tr><td data-row="4">Beberapa destinasi luar negara tiba-tiba latency tinggi</td><td data-row="4">International connectivity</td></tr><tr><td data-row="5">Hanya satu website slow</td><td data-row="5">Server, CDN atau website tersebut juga mungkin bermasalah</td></tr><tr><td data-row="6">ISP berbeza menunjukkan prestasi berbeza</td><td data-row="6">Perbezaan routing atau upstream</td></tr><tr><td data-row="7">Speed Test normal tetapi download luar negara slow</td><td data-row="7">Congestion, packet loss atau server limitation</td></tr></tbody></table><p>Ia bukan diagnosis muktamad, tetapi cukup untuk membantu anda menentukan arah troubleshooting.</p><h2>Apa Patut Pengguna Malaysia Buat Bila Berlaku Cable Incident?</h2><p>Kalau ISP sudah mengesahkan berlaku <strong>International Cable Fault atau Maintenance</strong>, dan local connection di rumah masih normal, tidak banyak manfaat untuk restart ONT atau router berulang kali.</p><p>Sebaliknya, periksa:</p><ol><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span>Adakah website Malaysia normal?</li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span>Website luar negara mana yang terjejas?</li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span>Adakah negara tertentu sahaja yang bermasalah?</li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span>Adakah latency meningkat?</li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span>Adakah terdapat packet loss?</li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span>Adakah ISP sudah mengeluarkan pengumuman mengenai international network incident?</li></ol><p>Kalau perlu hubungi ISP, berikan maklumat yang spesifik:</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Website yang terjejas</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Masa masalah berlaku</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Negara destinasi</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Ping / latency</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Traceroute result</li></ol><p>Maklumat ini jauh lebih berguna daripada hanya memberitahu customer service:</p><p><strong>“Internet saya slow.”</strong></p><p><br></p><h2>NetBijak’s Take</h2><p><strong>Kabel dasar laut bermasalah tidak bermaksud Fibre rumah anda rosak.</strong></p><p>Perkara paling penting ialah mengenal pasti <strong>di mana bottleneck berlaku</strong> — sama ada pada WiFi, Fibre access network, ISP atau international route menuju destinasi tertentu.</p><p>Kalau website Malaysia masih normal tetapi website luar negara tertentu tiba-tiba mengalami latency tinggi, packet loss atau throughput rendah, semak international routing sebelum menyalahkan Fibre Broadband anda.</p><p><strong>500Mbps atau 1Gbps tidak akan membaiki laluan antarabangsa yang sedang congestion.</strong></p><p><br></p></div>
+      
+    <section class="section-card" id="article-faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div id="article-faq-list" class="faq-list">
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="0">
+        <span>Adakah kabel dasar laut rosak bermaksud Malaysia akan kehilangan Internet sepenuhnya?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Tidak semestinya. Malaysia mempunyai beberapa sistem kabel antarabangsa dan network operator boleh menggunakan laluan alternatif. Kesan sebenar bergantung kepada kabel yang terjejas, kapasiti backup dan destinasi yang anda akses.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="1">
+        <span>Kenapa kawan saya guna ISP lain tetapi website yang sama masih laju?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>ISP mereka mungkin menggunakan international route, upstream provider atau transit path yang berbeza. Jadi prestasi antara ISP memang boleh berbeza semasa sesuatu international route mengalami masalah.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="2">
+        <span>VPN boleh bypass masalah kabel dasar laut?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Kadang-kadang VPN boleh menghasilkan laluan yang berbeza ke destinasi tertentu dan mungkin membantu. Tetapi ia bukan penyelesaian yang dijamin. Jika international network memang congestion, VPN boleh menambah latency.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="3">
+        <span>Kalau upgrade 500Mbps ke 1Gbps, website luar negara akan jadi lebih laju?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Tidak semestinya. Kalau bottleneck berada pada international route, upgrade Fibre tidak akan menambah kapasiti pada laluan antarabangsa tersebut.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="4">
+        <span>Perlu hubungi ISP kalau hanya website luar negara yang slow?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Jika masalah berterusan dan melibatkan beberapa destinasi luar negara, ya. Berikan website, masa masalah berlaku, latency dan Traceroute jika ada. Maklumat tersebut lebih berguna untuk ISP membuat semakan rangkaian.</p></div>
+    </div></div>
+    </section>
+    </div>
+    
+    <section class="section-card" style="margin-top:1.5rem">
+      <h2>Artikel Berkaitan</h2>
+      <div class="blog-grid"><a href="/ms/blog/cara-check-broadband-speed-anda-di-malaysia/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">08/09/2026</div>
+          <div class="blog-card-title">Cara Check Broadband Speed Anda di Malaysia</div>
+          <p class="blog-card-excerpt">Kalau nak tahu sama ada Fibre anda betul-betul dapat speed yang anda bayar, jangan terus test guna p...</p>
+        </div></a><a href="/ms/blog/unifi-vs-maxis-fibre-siapa-lebih-bagus-dari-segi-response-time-customer-service/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">07/09/2026</div>
+          <div class="blog-card-title">Unifi vs Maxis Fibre: Siapa Lebih Bagus Dari Segi Response Time Customer Service?</div>
+          <p class="blog-card-excerpt">Bila Fibre down, customer service yang reply cepat tidak semestinya bermaksud internet anda cepat pu...</p>
+        </div></a><a href="/ms/blog/pindah-rumah-ke-kawasan-tiada-coverage-fibre-apa-jadi-dengan-kontrak-internet-anda/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">06/09/2026</div>
+          <div class="blog-card-title">Pindah Rumah ke Kawasan Tiada Coverage Fibre? Apa Jadi Dengan Kontrak Internet Anda?</div>
+          <p class="blog-card-excerpt">Pindah rumah ke kawasan yang tiada Fibre Coverage tidak bermaksud anda boleh terminate kontrak broad...</p>
+        </div></a><a href="/ms/blog/maxis-naiktaraf-rangkaian-teras-naik-ke-12tbps-internet-rumah-anda-akan-makin-laju-ke/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">05/09/2026</div>
+          <div class="blog-card-title">Maxis NaikTaraf Rangkaian Teras Naik Ke 1.2Tbps: Internet Rumah Anda Akan Makin Laju Ke?</div>
+          <p class="blog-card-excerpt">Maxis telah menaik taraf rangkaian pengangkutan optik peringkat kebangsaannya menggunakan teknologi ...</p>
+        </div></a><a href="/ms/blog/cara-troubleshoot-internet-unifi-panduan-langkah-demi-langkah/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">05/09/2026</div>
+          <div class="blog-card-title">Cara Troubleshoot Internet Unifi: Panduan Langkah demi Langkah</div>
+          <p class="blog-card-excerpt">Jika Internet Unifi anda perlahan atau tidak berfungsi, semak outage dahulu, periksa peralatan dan l...</p>
+        </div></a><a href="/ms/blog/anak-asyik-scroll-tiktok-netflix-pula-buffer-jangan-terus-upgrade-fibre/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">04/09/2026</div>
+          <div class="blog-card-title">Anak Asyik Scroll TikTok, Netflix Pula Buffer? Jangan Terus Upgrade Fibre</div>
+          <p class="blog-card-excerpt">Kenapa Anak Scroll TikTok, Netflix Terus Buffer?Kalau anak mula scroll TikTok dan Netflix anda terus...</p>
+        </div></a></div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script>const ROOT_PATH = "/"; const PAGE_TRANSLATIONS = {"zh":"/zh/blog/submarine-cable-repairs-zh/","ms":"/ms/blog/pembaikan-kabel-dasar-laut-kenapa-website-antarabangsa-tiba-tiba-jadi-slow/","en":"/en/blog/submarine-cable-repairs-why-international-sites-slow-down-suddenly/"};</script>
+  <script src="/assets/js/tracking.js"></script>
+  <script src="/assets/js/translations.js"></script>
+  <script src="/assets/js/site.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("#article-faq-list .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#article-faq-list .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
+    });
+  </script>
+
+  <div id="mascot-widget" class="mascot-widget">
+    <button type="button" class="mascot-close-btn" id="mascot-close-btn" aria-label="Close">✕</button>
+    <a href="https://wa.me/60178835110?text=Hi%20NetBijak%2C%20I'm%20reading%20%22Pembaikan%20Kabel%20Dasar%20Laut%3A%20Kenapa%20Website%20Antarabangsa%20Tiba-Tiba%20Jadi%20Slow%3F%22%20and%20have%20a%20question." target="_blank" class="mascot-avatar-link">
+      <img src="/assets/images/mascot.png" alt="NetBijak Assistant" class="mascot-avatar-img" />
+      <span class="mascot-bubble">Ada soalan?</span>
+    </a>
+  </div>
+  <script>
+    (function() {
+      var storageKey = "mascot-closed-pembaikan-kabel-dasar-laut-kenapa-website-antarabangsa-tiba-tiba-jadi-slow";
+      var widget = document.getElementById("mascot-widget");
+      var closeBtn = document.getElementById("mascot-close-btn");
+      if (sessionStorage.getItem(storageKey)) {
+        widget.style.display = "none";
+      }
+      closeBtn.addEventListener("click", function() {
+        widget.style.display = "none";
+        sessionStorage.setItem(storageKey, "1");
+      });
+    })();
+  </script>
+</body>
+</html>
