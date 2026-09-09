@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Broadband Terbaik untuk CCTV Rumah di Malaysia: Berapa Upload Speed Diperlukan?</title>
+  <meta name="description" content="Pasang CCTV 4K di rumah dan mahu pantau dari luar? Ketahui keperluan Upload Speed, serta bagaimana DDNS, Public IPv4, CGNAT dan P2P mempengaruhi remote CCTV." />
+  <meta name="geo.region" content="MY" />
+  <meta name="geo.placename" content="Malaysia" />
+  <meta property="og:title" content="Broadband Terbaik untuk CCTV Rumah di Malaysia: Berapa Upload Speed Diperlukan?" />
+  <meta property="og:description" content="Pasang CCTV 4K di rumah dan mahu pantau dari luar? Ketahui keperluan Upload Speed, serta bagaimana DDNS, Public IPv4, CGNAT dan P2P mempengaruhi remote CCTV." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://netbijak.com/assets/images/logo.png" />
+  <meta property="og:url" content="https://netbijak.com/ms/blog/broadband-terbaik-untuk-cctv-rumah-dan-remote-monitoring-di-malaysia/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://netbijak.com/ms/blog/broadband-terbaik-untuk-cctv-rumah-dan-remote-monitoring-di-malaysia/" />
+  <link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/blog/best-broadband-for-home-cctv-zh/" />
+  <link rel="alternate" hreflang="en" href="https://netbijak.com/en/blog/best-broadband-for-home-cctv-remote-monitoring-in-malaysia/" />
+  <link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/blog/broadband-terbaik-untuk-cctv-rumah-dan-remote-monitoring-di-malaysia/" />
+  <link rel="alternate" hreflang="x-default" href="https://netbijak.com/en/blog/best-broadband-for-home-cctv-remote-monitoring-in-malaysia/" />
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Adakah 500Mbps cukup untuk CCTV rumah?","acceptedAnswer":{"@type":"Answer","text":"Ya. Perkara yang lebih penting ialah Upload Speed dan Camera Bitrate. 500Mbps Download biasanya lebih daripada mencukupi untuk CCTV rumah, tetapi anda masih perlu menyemak Upload Speed pelan tersebut."}},{"@type":"Question","name":"Adakah CCTV 4K memerlukan “4K Internet”?","acceptedAnswer":{"@type":"Answer","text":"Tidak. Resolution 4K pada kamera tidak bermaksud Internet anda perlu mempunyai “4K speed”. Local NVR Recording boleh dilakukan sepenuhnya melalui LAN rumah."}},{"@type":"Question","name":"Bolehkah DDNS bypass CGNAT?","acceptedAnswer":{"@type":"Answer","text":"Tidak. DDNS hanya memastikan Hostname menunjuk kepada Public IP yang betul. Ia tidak boleh bypass CGNAT pada rangkaian ISP."}},{"@type":"Question","name":"Adakah CCTV memerlukan Static IP?","acceptedAnswer":{"@type":"Answer","text":"Tidak semestinya. Public Dynamic IP + DDNS boleh digunakan untuk sesetengah setup Remote Access. Manufacturer P2P juga boleh menghapuskan keperluan untuk Direct Inbound Access dalam banyak keadaan."}},{"@type":"Question","name":"Adakah Sub-stream penting untuk Remote CCTV?","acceptedAnswer":{"@type":"Answer","text":"Ya. Sub-stream dengan Bitrate yang lebih rendah boleh mengurangkan penggunaan Upload dengan ketara ketika melihat CCTV melalui telefon, manakala Main Stream boleh digunakan untuk Local Recording."}}]}</script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="main">
+    <div id="blog-detail-container">
+      <a href="/ms/blog/" class="blog-back-link">← Kembali ke Blog</a>
+      <span class="blog-type-tag">Article</span>
+      
+      <div class="blog-detail-date">10/09/2026</div>
+      <h1 class="blog-detail-title">Broadband Terbaik untuk CCTV Rumah dan Remote Monitoring di Malaysia</h1>
+      
+    <section class="ai-summary-box">
+      <div class="ai-summary-badge">✨ Ringkasan AI NetBijak</div>
+      <p>Apabila memilih pelan jalur lebar untuk CCTV di Malaysia, kelajuan muat naik (Upload Speed) adalah lebih kritikal berbanding kelajuan muat turun untuk memastikan pemantauan jarak jauh berjalan lancar. Pengguna dinasihatkan untuk menyemak profil muat naik penyedia perkhidmatan internet masing-masing kerana angka kelajuan pada nama pelan lazimnya merujuk kepada muat turun sahaja. Penggunaan data internet hanya berlaku apabila anda mengakses kamera dari luar rumah, manakala rakaman harian biasanya dilakukan secara setempat melalui rangkaian dalaman (LAN). Bagi menjimatkan penggunaan lebar jalur, penggunaan Sub-stream beresolusi rendah amat disyorkan untuk tontonan melalui telefon pintar. Walaupun sistem CCTV moden kini banyak menggunakan perkhidmatan P2P atau Cloud yang memudahkan akses tanpa memerlukan Static IP, anda tetap perlu memastikan pelan internet mempunyai ruang muat naik yang mencukupi. Justeru, pilihlah pelan jalur lebar berdasarkan keperluan sebenar bitrate kamera anda dan bukannya sekadar mengejar kelajuan muat turun yang tinggi.</p>
+    </section>
+      <div class="blog-detail-content"><p>Jika anda memasang CCTV di rumah di Malaysia, <strong>Upload Speed lebih penting daripada Download Speed apabila anda mahu melihat kamera dari luar rumah</strong>. Pelan Fibre 500Mbps biasanya sudah mencukupi untuk kebanyakan sistem CCTV rumah, tetapi keperluan sebenar bergantung pada Camera Bitrate, jumlah kamera yang dilihat serentak dan sama ada anda menggunakan Main Stream, Sub-stream atau P2P/Cloud.</p><h2>Berapa Upload Bandwidth yang Diperlukan oleh CCTV 4K?</h2><p>Tiada satu angka tetap untuk semua kamera 4K. Bitrate sebenar bergantung pada Resolution, Frame Rate, Compression, perubahan dalam scene dan tetapan kamera. Secara umum, Resolution dan Frame Rate yang lebih tinggi memerlukan lebih banyak bandwidth, manakala Compression yang lebih tinggi boleh mengurangkan Bitrate tetapi mungkin menjejaskan kualiti imej.</p><p>(Source: Axis — AXIS OS Web Interface Help)</p><p>Untuk sistem CCTV rumah, anda boleh menggunakan angka berikut sebagai contoh perancangan:</p><table><tbody><tr><td data-row="1">Stream Type</td><td data-row="1">Contoh Bitrate Setiap Kamera</td><td data-row="1">Jumlah 4 Kamera</td><td data-row="1">Kegunaan Utama</td></tr><tr><td data-row="2">Main Stream</td><td data-row="2" class="ql-align-right">5–6Mbps</td><td data-row="2" class="ql-align-right">20–24Mbps</td><td data-row="2">Rakaman NVR berkualiti tinggi</td></tr><tr><td data-row="3">Sub-stream</td><td data-row="3" class="ql-align-right">Sekitar 1Mbps</td><td data-row="3" class="ql-align-right">Sekitar 4Mbps</td><td data-row="3">Remote viewing melalui telefon</td></tr></tbody></table><p>Angka ini hanyalah <strong>contoh untuk perancangan</strong>, bukan spesifikasi tetap bagi semua kamera 4K. Bitrate sebenar perlu diperiksa pada tetapan Camera / NVR anda.</p><p>(Source: Axis — AXIS OS Web Interface Help)</p><h2>Apa Maksudnya untuk Pengguna Fibre di Malaysia?</h2><p>Di sinilah <strong>Upload Speed</strong> pelan Broadband anda menjadi penting.</p><p>Ramai pengguna di Malaysia memilih Fibre berdasarkan Download Speed seperti 300Mbps, 500Mbps atau 1Gbps. Tetapi apabila anda melihat CCTV dari luar rumah, video perlu <strong>dihantar keluar dari rumah melalui Upload Connection</strong>.</p><p>Sebagai contoh, pelan Unifi 300Mbps Home pada masa ini menawarkan sehingga <strong>50Mbps Upload</strong>, manakala pelan 500Mbps menawarkan sehingga <strong>100Mbps Upload</strong>. Jadi angka “500Mbps” tidak bermaksud Download dan Upload kedua-duanya 500Mbps.</p><p>(Source: Unifi — General FAQ / Unifi Home Package)</p><p>Upload Profile juga berbeza mengikut Fibre Provider. TIME, sebagai contoh, kini menawarkan 200Mbps Upload untuk pelan 200Mbps tertentu, manakala pelan 600Mbps dan 1Gbps menawarkan sehingga 500Mbps Upload.</p><p>(Source: TIME — Our Fibre Network)</p><p><strong>Jadi, apabila memilih Broadband untuk CCTV di Malaysia, jangan bandingkan Download Speed sahaja. Semak Upload Speed juga.</strong></p><h2>Adakah CCTV 4K Sentiasa Menggunakan Internet Upload?</h2><p>Tidak.</p><p>Jika kamera anda dirakam ke NVR di dalam rumah, laluan rakaman biasanya ialah:</p><p><code>Camera → Local Switch / LAN → NVR → Hard Drive</code></p><p>Ini bermaksud Main Stream boleh dirakam terus ke NVR melalui Local Network tanpa menghantar keseluruhan video 4K melalui Internet.</p><p>Internet Upload digunakan terutamanya apabila anda:</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Membuka CCTV App dari luar rumah</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Melihat Live View dari jauh</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Membuat Remote Playback</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Menggunakan Cloud Recording</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Menggunakan Cloud-based Monitoring Service</li></ol><p>Jadi, sistem empat kamera masih boleh merakam video berkualiti tinggi ke NVR secara berterusan tanpa menggunakan banyak Internet Upload apabila tiada Remote Viewing.</p><h2>Main Stream vs Sub-stream: Cara Kurangkan Penggunaan Upload</h2><p>Kebanyakan IP Camera moden menyokong lebih daripada satu Video Stream.</p><p><strong>Main Stream</strong></p><p>Biasanya menggunakan Resolution dan Bitrate yang lebih tinggi. Ia lazimnya digunakan untuk Local NVR Recording atau Playback berkualiti tinggi.</p><p><strong>Sub-stream</strong></p><p>Menggunakan Resolution dan Bitrate yang lebih rendah. Ia sering digunakan untuk Mobile Remote Viewing kerana penggunaan Upload Bandwidth lebih rendah.</p><p>Contohnya, untuk empat kamera:</p><p>Jika setiap kamera menggunakan 5Mbps Main Stream:</p><p><code>4 × 5Mbps = 20Mbps</code></p><p>Jika aplikasi menggunakan Sub-stream sekitar 1Mbps setiap kamera:</p><p><code>4 × 1Mbps = 4Mbps</code></p><p>Formula mudah untuk perancangan:</p><p><strong>CCTV Upload Requirement ≈ Jumlah Bitrate Remote Stream Serentak + Headroom</strong></p><p>Jika sistem anda memerlukan kira-kira 20Mbps untuk Remote Viewing, menyediakan sekitar <strong>25–30Mbps usable Upload Capacity</strong> memberikan lebih banyak ruang berbanding menggunakan connection pada had maksimum.</p><h2>Broadband Berapa Laju yang Sesuai untuk CCTV Rumah di Malaysia?</h2><p>Untuk CCTV rumah, anda tidak semestinya perlu terus membeli pelan 500Mbps atau 1Gbps.</p><p>Perkara pertama yang perlu dilihat ialah Upload Speed.</p><h3>Setup CCTV asas</h3><p>Jika sistem anda menggunakan:</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Local NVR Recording</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Sub-stream untuk Remote Viewing</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>2–4 kamera</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Remote Viewing sekali-sekala</li></ol><p>Fibre dengan sekitar <strong>30–50Mbps usable Upload</strong> biasanya sudah boleh digunakan, bergantung kepada Camera Bitrate.</p><h3>Remote Monitoring yang lebih berat</h3><p>Jika anda kerap:</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Melihat beberapa kamera 4K serentak</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Membenarkan beberapa pengguna mengakses CCTV</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Menggunakan Main Stream dengan Bitrate tinggi</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Membuat Remote Playback</li></ol><p>Maka <strong>50–100Mbps atau lebih Upload</strong> memberikan lebih banyak Headroom.</p><p>Maksudnya, jangan pilih Broadband hanya berdasarkan Download Speed. Padankan pelan dengan Bitrate sebenar sistem CCTV anda.</p><h2>Adakah CCTV Remote Access Memerlukan Static IP?</h2><p><strong>Tidak semestinya.</strong></p><p>Static IP boleh memudahkan sesetengah setup, tetapi ia bukan keperluan untuk semua sistem CCTV moden.</p><p>Tiga perkara utama yang perlu difahami ialah:</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Public IPv4</strong> — Router boleh dicapai dari Internet.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>DDNS</strong> — Menyambungkan Hostname kepada Public IP yang berubah.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>CGNAT</strong> — ISP berkongsi satu lapisan NAT untuk ramai pengguna, yang biasanya menghalang Inbound Port Forwarding biasa.</li></ol><p>Jika ISP memberikan Public IPv4 yang berubah-ubah, DDNS boleh digunakan untuk mengekalkan Hostname yang sama.</p><p>Contohnya:</p><p><code>cctv.example.com → Public IP Semasa Anda</code></p><p>Tetapi:</p><p><strong>DDNS + CGNAT ≠ Direct Remote Access</strong></p><p>DDNS hanya mengemaskini alamat IP. Ia tidak boleh mengatasi CGNAT pada rangkaian ISP.</p><p>(Source: TP-Link — Port Forwarding and CGNAT Troubleshooting)</p><h2>DDNS + Port Forwarding vs Manufacturer P2P / Cloud</h2><table><tbody><tr><td data-row="1">Ciri</td><td data-row="1">DDNS + Port Forwarding</td><td data-row="1">Manufacturer P2P / Cloud</td></tr><tr><td data-row="2">Tahap Setup</td><td data-row="2">Lebih kompleks</td><td data-row="2">Lebih mudah</td></tr><tr><td data-row="3">Perlukan Public IPv4</td><td data-row="3">Biasanya ya</td><td data-row="3">Selalunya tidak</td></tr><tr><td data-row="4">CGNAT</td><td data-row="4">Tidak sesuai untuk Inbound Forwarding biasa</td><td data-row="4">Banyak servis tidak memerlukan Inbound Port</td></tr><tr><td data-row="5">Port Forwarding</td><td data-row="5">Ya</td><td data-row="5">Biasanya tidak</td></tr><tr><td data-row="6">Sesuai untuk</td><td data-row="6">Advanced users</td><td data-row="6">Kebanyakan pengguna rumah</td></tr></tbody></table><p>Manufacturer P2P Service menggunakan pendekatan yang berbeza daripada DDNS + Port Forwarding. Banyak servis P2P direka supaya pengguna tidak perlu membuka Inbound Port secara manual, dan sesetengahnya boleh berfungsi di belakang CGNAT. Namun, cara ia berfungsi bergantung kepada vendor dan architecture servis tersebut.</p><p>(Source: Hikvision — Hik-Connect Remote Access Specifications)</p><h2>Cara Setup CCTV Remote Access di Rumah</h2><h3>Step 1: Semak Camera Bitrate</h3><p>Periksa tetapan Camera atau NVR:</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Resolution</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Frame Rate</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Main Stream Bitrate</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Sub-stream Bitrate</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Jumlah kamera</li></ol><p>Jangan menganggarkan penggunaan bandwidth hanya berdasarkan label “4K”.</p><h3>Step 2: Uji Actual Upload Speed</h3><p>Gunakan sambungan wired jika boleh semasa membuat Speed Test.</p><p>Jika pelan anda diiklankan dengan 50Mbps Upload tetapi actual speed jauh lebih rendah, Upload Headroom untuk CCTV juga akan berkurang.</p><h3>Step 3: Semak Sama Ada Anda Mempunyai Public IPv4</h3><p>Bandingkan WAN IP yang ditunjukkan pada Router dengan Public IP yang dilihat dari Internet.</p><p>Jika kedua-duanya berbeza, ini menunjukkan Router anda berada di belakang satu lagi NAT layer. <strong>CGNAT ialah salah satu kemungkinan.</strong></p><p>Jika WAN IP Router berada dalam julat <code>100.64.0.0/10</code>, ia merupakan petunjuk kuat bahawa anda berada di belakang CGNAT.</p><p>(Source: TP-Link — Port Forwarding and CGNAT Troubleshooting)</p><h3>Step 4: Pilih Remote Access Method</h3><p>Jika anda mempunyai Public IPv4 dan faham konfigurasi rangkaian:</p><p><strong>DDNS + Port Forwarding</strong></p><p>Jika ISP anda menggunakan CGNAT atau anda mahu setup yang lebih mudah:</p><p><strong>Manufacturer P2P / Cloud</strong></p><p>Untuk pengguna advanced yang mahu kawalan lebih baik terhadap remote access:</p><p><strong>VPN-based Remote Access</strong></p><h2>Adakah CCTV Port Forwarding Selamat?</h2><p>Port Forwarding tidak semestinya tidak selamat, tetapi ia menyebabkan service tertentu boleh terdedah kepada Public Internet.</p><p>Jika anda menggunakannya:</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Buka hanya Port yang benar-benar diperlukan.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Pastikan Firmware NVR / Camera sentiasa dikemas kini.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Gunakan password yang kuat dan unik.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Jangan dedahkan management service yang tidak diperlukan.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Gunakan HTTPS / encrypted connection jika disokong.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Pertimbangkan VPN untuk setup yang lebih terkawal.</li></ol><p>Panduan keselamatan Hikvision juga mengesyorkan supaya Internet-exposed ports diminimumkan dan Port Forwarding hanya digunakan apabila perlu.</p><p>(Source: Hikvision — Network Camera Security Guide)</p><h2>Bagaimana dengan 4G atau 5G sebagai Backup?</h2><p>Boleh.</p><p>4G/5G Backup boleh mengekalkan sambungan Internet apabila Fibre utama mengalami gangguan.</p><p>Namun, Mobile Broadband kerap menggunakan Private IP atau CGNAT. Ini bermakna traditional Inbound Port Forwarding mungkin tidak boleh digunakan.</p><p>(Source: TP-Link — Port Forwarding and CGNAT Troubleshooting)</p><p>Sebab itu, untuk CCTV yang perlu kekal boleh diakses melalui 4G/5G Backup, <strong>Manufacturer P2P / Cloud biasanya lebih praktikal berbanding Port Forwarding biasa.</strong></p><h2><br></h2><h2>NetBijak's Take</h2><p>Untuk CCTV rumah di Malaysia, <strong>jangan pilih Broadband berdasarkan Download Speed sahaja.</strong></p><p>Setup yang lebih praktikal ialah:</p><p><code>4K Cameras → Local NVR (Main Stream) → Sub-stream untuk Mobile Viewing → Home Fibre → P2P/Cloud atau DDNS</code></p><p>Sebelum anda upgrade daripada 300Mbps kepada 500Mbps atau 1Gbps, semak dahulu <strong>Upload Speed, Camera Bitrate dan Remote Access Method</strong>.</p><p>Sebagai contoh, Unifi 300Mbps kini menawarkan sehingga 50Mbps Upload, manakala 500Mbps menawarkan sehingga 100Mbps. TIME pula mempunyai beberapa pelan Fibre rumah dengan Upload Speed yang jauh lebih tinggi.</p><p>(Source: Unifi — Unifi Home Package; TIME — Our Fibre Network)</p><p><strong>Broadband terbaik untuk CCTV bukan semestinya pelan dengan Download Speed paling tinggi. Yang lebih penting ialah Upload Headroom yang mencukupi dan Remote Access Method yang sesuai dengan rangkaian ISP anda.</strong></p><p class="ql-align-center"><strong style="color: rgb(255, 255, 255); background-color: initial;"><a href="/ms/find-your-plan/" rel="noopener noreferrer" target="_blank">🎯Cari Pelan Saya →</a></strong></p><p><br></p></div>
+      
+    <section class="section-card" id="article-faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div id="article-faq-list" class="faq-list">
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="0">
+        <span>Adakah 500Mbps cukup untuk CCTV rumah?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Ya. Perkara yang lebih penting ialah Upload Speed dan Camera Bitrate. 500Mbps Download biasanya lebih daripada mencukupi untuk CCTV rumah, tetapi anda masih perlu menyemak Upload Speed pelan tersebut.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="1">
+        <span>Adakah CCTV 4K memerlukan “4K Internet”?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Tidak. Resolution 4K pada kamera tidak bermaksud Internet anda perlu mempunyai “4K speed”. Local NVR Recording boleh dilakukan sepenuhnya melalui LAN rumah.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="2">
+        <span>Bolehkah DDNS bypass CGNAT?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Tidak. DDNS hanya memastikan Hostname menunjuk kepada Public IP yang betul. Ia tidak boleh bypass CGNAT pada rangkaian ISP.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="3">
+        <span>Adakah CCTV memerlukan Static IP?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Tidak semestinya. Public Dynamic IP + DDNS boleh digunakan untuk sesetengah setup Remote Access. Manufacturer P2P juga boleh menghapuskan keperluan untuk Direct Inbound Access dalam banyak keadaan.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="4">
+        <span>Adakah Sub-stream penting untuk Remote CCTV?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Ya. Sub-stream dengan Bitrate yang lebih rendah boleh mengurangkan penggunaan Upload dengan ketara ketika melihat CCTV melalui telefon, manakala Main Stream boleh digunakan untuk Local Recording.</p></div>
+    </div></div>
+    </section>
+    </div>
+    
+    <section class="section-card" style="margin-top:1.5rem">
+      <h2>Artikel Berkaitan</h2>
+      <div class="blog-grid"><a href="/ms/blog/pembaikan-kabel-dasar-laut-kenapa-website-antarabangsa-tiba-tiba-jadi-slow/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">09/09/2026</div>
+          <div class="blog-card-title">Pembaikan Kabel Dasar Laut: Kenapa Website Antarabangsa Tiba-Tiba Jadi Slow?</div>
+          <p class="blog-card-excerpt">Kalau website Malaysia masih boleh dibuka seperti biasa tetapi website dari Amerika Syarikat, Jepun ...</p>
+        </div></a><a href="/ms/blog/cara-check-broadband-speed-anda-di-malaysia/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">08/09/2026</div>
+          <div class="blog-card-title">Cara Check Broadband Speed Anda di Malaysia</div>
+          <p class="blog-card-excerpt">Kalau nak tahu sama ada Fibre anda betul-betul dapat speed yang anda bayar, jangan terus test guna p...</p>
+        </div></a><a href="/ms/blog/unifi-vs-maxis-fibre-siapa-lebih-bagus-dari-segi-response-time-customer-service/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">07/09/2026</div>
+          <div class="blog-card-title">Unifi vs Maxis Fibre: Siapa Lebih Bagus Dari Segi Response Time Customer Service?</div>
+          <p class="blog-card-excerpt">Bila Fibre down, customer service yang reply cepat tidak semestinya bermaksud internet anda cepat pu...</p>
+        </div></a><a href="/ms/blog/pindah-rumah-ke-kawasan-tiada-coverage-fibre-apa-jadi-dengan-kontrak-internet-anda/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">06/09/2026</div>
+          <div class="blog-card-title">Pindah Rumah ke Kawasan Tiada Coverage Fibre? Apa Jadi Dengan Kontrak Internet Anda?</div>
+          <p class="blog-card-excerpt">Pindah rumah ke kawasan yang tiada Fibre Coverage tidak bermaksud anda boleh terminate kontrak broad...</p>
+        </div></a><a href="/ms/blog/maxis-naiktaraf-rangkaian-teras-naik-ke-12tbps-internet-rumah-anda-akan-makin-laju-ke/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">05/09/2026</div>
+          <div class="blog-card-title">Maxis NaikTaraf Rangkaian Teras Naik Ke 1.2Tbps: Internet Rumah Anda Akan Makin Laju Ke?</div>
+          <p class="blog-card-excerpt">Maxis telah menaik taraf rangkaian pengangkutan optik peringkat kebangsaannya menggunakan teknologi ...</p>
+        </div></a><a href="/ms/blog/cara-troubleshoot-internet-unifi-panduan-langkah-demi-langkah/" class="blog-card">
+        <div class="blog-card-img-wrap"><div class="blog-card-img blog-card-img-placeholder">📰</div><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">05/09/2026</div>
+          <div class="blog-card-title">Cara Troubleshoot Internet Unifi: Panduan Langkah demi Langkah</div>
+          <p class="blog-card-excerpt">Jika Internet Unifi anda perlahan atau tidak berfungsi, semak outage dahulu, periksa peralatan dan l...</p>
+        </div></a></div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script>const ROOT_PATH = "/"; const PAGE_TRANSLATIONS = {"zh":"/zh/blog/best-broadband-for-home-cctv-zh/","en":"/en/blog/best-broadband-for-home-cctv-remote-monitoring-in-malaysia/","ms":"/ms/blog/broadband-terbaik-untuk-cctv-rumah-dan-remote-monitoring-di-malaysia/"};</script>
+  <script src="/assets/js/tracking.js"></script>
+  <script src="/assets/js/translations.js"></script>
+  <script src="/assets/js/site.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("#article-faq-list .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#article-faq-list .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
+    });
+  </script>
+
+  <div id="mascot-widget" class="mascot-widget">
+    <button type="button" class="mascot-close-btn" id="mascot-close-btn" aria-label="Close">✕</button>
+    <a href="https://wa.me/60178835110?text=Hi%20NetBijak%2C%20I'm%20reading%20%22Broadband%20Terbaik%20untuk%20CCTV%20Rumah%20dan%20Remote%20Monitoring%20di%20Malaysia%22%20and%20have%20a%20question." target="_blank" class="mascot-avatar-link">
+      <img src="/assets/images/mascot.png" alt="NetBijak Assistant" class="mascot-avatar-img" />
+      <span class="mascot-bubble">Ada soalan?</span>
+    </a>
+  </div>
+  <script>
+    (function() {
+      var storageKey = "mascot-closed-broadband-terbaik-untuk-cctv-rumah-dan-remote-monitoring-di-malaysia";
+      var widget = document.getElementById("mascot-widget");
+      var closeBtn = document.getElementById("mascot-close-btn");
+      if (sessionStorage.getItem(storageKey)) {
+        widget.style.display = "none";
+      }
+      closeBtn.addEventListener("click", function() {
+        widget.style.display = "none";
+        sessionStorage.setItem(storageKey, "1");
+      });
+    })();
+  </script>
+</body>
+</html>
