@@ -224,6 +224,7 @@ function buildPlanPageHtml(plan, provider, banners, relatedArticles, canonicalOv
   <link rel="canonical" href="${canonicalUrl}" />
   <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
   <link rel="stylesheet" href="/assets/css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   ${buildProductSchema(plan, provider, pageUrl, approvedReviews)}
 </head>
 <body>
