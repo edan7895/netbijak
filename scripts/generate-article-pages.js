@@ -153,7 +153,11 @@ function buildArticlePageHtml(article, translations, allArticles) {
   const title = article.seo_title || `${article.title} | NetBijak.com`;
   const description = article.seo_description || "";
   const pageUrl = `https://netbijak.com/${article.language}/blog/${article.slug}/`;
-  const ogImage = article.cover_image_url || "https://netbijak.com/assets/images/logo.png";
+  const ogImage = article.cover_image_url
+    ? article.cover_image_url
+    : article.generated_image_path
+    ? `https://netbijak.com${article.generated_image_path}`
+    : "https://netbijak.com/assets/images/logo.png";
 
   const displayDate = article.publish_at || article.created_at;
   const dateStr = new Date(displayDate).toLocaleDateString("en-MY", { timeZone: "Asia/Kuala_Lumpur" });
@@ -233,7 +237,11 @@ function buildArticlePageHtml(article, translations, allArticles) {
     <div id="blog-detail-container">
       <a href="/${article.language}/blog/" class="blog-back-link">${backLabel}</a>
       <span class="blog-type-tag">${typeLabel}</span>
-      ${article.cover_image_url ? `<img src="${escapeHtml(article.cover_image_url)}" alt="${escapeHtml(article.title)}" class="blog-detail-cover" />` : ""}
+      ${article.cover_image_url
+        ? `<img src="${escapeHtml(article.cover_image_url)}" alt="${escapeHtml(article.title)}" class="blog-detail-cover" loading="lazy" width="800" height="450" />`
+        : article.generated_image_path
+        ? `<img src="${escapeHtml(article.generated_image_path)}" alt="${escapeHtml(article.title)}" class="blog-detail-cover" loading="lazy" width="800" height="450" />`
+        : ""}
       <div class="blog-detail-date">${dateStr}${article.geo_tag ? ` · ${escapeHtml(article.geo_tag)}` : ""}</div>
       <h1 class="blog-detail-title">${escapeHtml(article.title)}</h1>
       ${summaryHtml}

@@ -57,9 +57,14 @@ async function callGeminiOnce(prompt) {
   }
 
   const data = await res.json();
-  const summary = data.candidates?.[0]?.content?.parts?.[0]?.text;
-  if (!summary) throw new Error('Gemini returned no summary text');
-  return summary.trim();
+  const rawText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+  if (!rawText) throw new Error('Gemini returned no summary text');
+
+  const keywordMatch = rawText.match(/IMAGE_KEYWORDS:\s*(.+)/i);
+  const imageKeywords = keywordMatch ? keywordMatch[1].trim() : null;
+  const summary = rawText.replace(/IMAGE_KEYWORDS:\s*.+/i, '').trim();
+
+  return { summary, imageKeywords };
 }
 
 async function generateSummary(title, content, language) {
@@ -73,7 +78,10 @@ Article title: ${title}
 Article content:
 ${plainText}
 
-Write a summary in ${langName}, 5-6 sentences long, covering the key points of the article. Write in a clear, neutral, helpful tone. Do not include a heading or title, just the summary text itself. Do not use markdown formatting.`;
+Write a summary in ${langName}, 5-6 sentences long, covering the key points of the article. Write in a clear, neutral, helpful tone. Do not include a heading or title, just the summary text itself. Do not use markdown formatting.
+
+After the summary, on a new line, add exactly this format: IMAGE_KEYWORDS: keyword1, keyword2, keyword3
+The 3 keywords must be in English, describing a relevant stock photo concept for this article (e.g. "wifi router", "frustrated customer", "fiber cable"). Keep each keyword short (1-3 words).`;
 
   const maxRetries = 3;
   for (let attempt = 1; attempt <= maxRetries; attempt++) {
@@ -107,13 +115,16 @@ async function run() {
       console.log(`  Skipping "${article.title}" (content too short)`);
       continue;
     }
-    try {
+        try {
       console.log(`  Generating summary for: ${article.title} (${article.language})`);
-      const summary = await generateSummary(article.title, article.content, article.language);
-      await updateSupabase('articles', article.id, { ai_summary: summary });
+      const { summary, imageKeywords } = await generateSummary(article.title, article.content, article.language);
+      const updateData = { ai_summary: summary };
+      if (imageKeywords && !article.image_keywords) {
+        updateData.image_keywords = imageKeywords;
+      }
+      await updateSupabase('articles', article.id, updateData);
       successCount++;
-      // 避免连续请求太快触发速率限制，稍微间隔一下
-      await new Promise((resolve) => setTimeout(resolve, 4000));
+      await new Promise((resolve) => setTimeout(resolve, 6000));
     } catch (err) {
       console.error(`  Failed for "${article.title}":`, err.message);
     }
