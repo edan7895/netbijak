@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Reviews | NetBijak Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="../admin.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    .admin-page { max-width: 80rem; margin: 0 auto; padding: 2rem 1.5rem; }
+    .admin-page-topbar {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 1.5rem; color: #fff; flex-wrap: wrap; gap: 1rem;
+    }
+    .admin-page-topbar h1 { font-size: 1.3rem; font-weight: 800; }
+    .admin-back-link { color: #94a3b8; text-decoration: none; font-size: 0.85rem; }
+
+    .filter-status-buttons { display: flex; gap: 8px; margin-bottom: 1.25rem; }
+    .filter-status-btn {
+      padding: 8px 18px; background: #f1f5f9; color: #334155; border: none;
+      border-radius: 8px; font-size: 0.85rem; font-weight: 700; cursor: pointer;
+    }
+    .filter-status-btn.active { background: #14b8a6; color: #fff; }
+
+    .admin-table-wrap { background: #fff; border-radius: 16px; overflow: hidden; overflow-x: auto; }
+    table.admin-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    table.admin-table th {
+      background: #f8fafc; padding: 12px 16px; text-align: left; font-weight: 700; color: #475569;
+    }
+    table.admin-table td { padding: 12px 16px; border-top: 1px solid #f1f5f9; vertical-align: top; }
+    .btn-small {
+      padding: 6px 14px; background: #0f172a; color: #fff; border: none;
+      border-radius: 8px; font-size: 0.8rem; cursor: pointer; margin-right: 6px;
+    }
+    .btn-approve { background: #16a34a; }
+    .btn-delete { background: #dc2626; }
+    .badge-published { background: #dcfce7; color: #166534; padding: 3px 10px; border-radius: 99px; font-size: 0.75rem; font-weight: 700; }
+  </style>
+</head>
+<body>
+
+  <div class="admin-page">
+    <div class="admin-page-topbar">
+      <div>
+        <a href="../" class="admin-back-link">← Back to Admin</a>
+        <h1>Manage Reviews</h1>
+      </div>
+      <div style="display:flex; align-items:center; gap:14px;">
+        <span class="admin-email-tag" id="admin-email-display"></span>
+        <button id="admin-logout-btn" class="admin-logout-btn">Sign Out</button>
+      </div>
+    </div>
+
+    <div class="filter-status-buttons">
+      <button class="filter-status-btn active" data-status="pending">Pending Approval</button>
+      <button class="filter-status-btn" data-status="approved">Approved</button>
+      <button class="filter-status-btn" data-status="all">All</button>
+    </div>
+
+    <div class="admin-table-wrap">
+      <table class="admin-table">
+        <thead>
+          <tr>
+            <th>Plan</th>
+            <th>Rating</th>
+            <th>Reviewer</th>
+            <th>Comment</th>
+            <th>Tags</th>
+            <th>Date</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody id="reviews-table-body"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <script src="../../assets/js/supabase-client.js"></script>
+  <script src="../../assets/js/admin-auth.js"></script>
+  <script src="../../assets/js/admin-reviews.js"></script>
+</body>
+</html>
