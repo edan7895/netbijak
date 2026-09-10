@@ -33,7 +33,7 @@ function buildBlogCard(article) {
   return `
     <a href="${article.slug}/" class="blog-card">
       <div class="blog-card-img-wrap">
-        ${article.cover_image_url ? `<img src="${article.cover_image_url}" alt="${article.title}" class="blog-card-img" />` : `<div class="blog-card-img blog-card-img-placeholder">📰</div>`}
+${(article.cover_image_url || article.generated_image_path) ? `<img src="${article.cover_image_url || article.generated_image_path}" alt="${article.title}" class="blog-card-img" loading="lazy" />` : `<div class="blog-card-img blog-card-img-placeholder">📰</div>`}
         <span class="blog-card-type-badge">${typeLabel}</span>
       </div>
       <div class="blog-card-body">
