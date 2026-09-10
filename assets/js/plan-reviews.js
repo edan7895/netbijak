@@ -117,14 +117,12 @@ async function submitReview(e) {
   submitBtn.disabled = true;
   submitBtn.textContent = t("review_submitting");
 
-  const { error } = await supabaseClient.from("plan_reviews").insert({
-    plan_id: currentPlanIdForReview,
-    rating: selectedRating,
-    reviewer_name: reviewerName,
-    comment_text: commentText || null,
-    tags: selectedTags.length > 0 ? selectedTags : null,
-    turnstile_verified: !!turnstileToken,
-    is_approved: false,
+  const { error } = await supabaseClient.rpc("submit_plan_review", {
+    p_plan_id: currentPlanIdForReview,
+    p_rating: selectedRating,
+    p_reviewer_name: reviewerName,
+    p_comment_text: commentText || null,
+    p_tags: selectedTags.length > 0 ? selectedTags : null,
   });
 
   submitBtn.disabled = false;
