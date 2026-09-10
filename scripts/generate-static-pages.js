@@ -153,7 +153,8 @@ async function run() {
     const articlesHtml = latestArticles.map((a) => {
       const excerpt = (a.content || "").replace(/<[^>]*>/g, "").slice(0, 80);
       const typeLabel = a.article_type === "news" ? "News" : "Article";
-      const img = a.cover_image_url ? `<img src="${esc(a.cover_image_url)}" alt="${esc(a.title)}" />` : `<div class="latest-article-placeholder">📰</div>`;
+const imgSrc = a.cover_image_url || a.generated_image_path;
+const img = imgSrc ? `<img src="${esc(imgSrc)}" alt="${esc(a.title)}" loading="lazy" />` : `<div class="latest-article-placeholder">📰</div>`;
       return `<a href="blog/${a.slug}/" class="latest-article-card"><div class="latest-article-img-wrap">${img}<span class="latest-article-badge">${typeLabel}</span></div>
                 <div class="latest-article-body"><div class="latest-article-date">${new Date(a.publish_at || a.created_at).toLocaleDateString("en-MY", { timeZone: "Asia/Kuala_Lumpur" })}</div>
                 <div class="latest-article-title">${esc(a.title)}</div><p class="latest-article-excerpt">${esc(excerpt)}...</p></div></a>`;

@@ -126,9 +126,10 @@ function buildRelatedArticlesHtml(currentArticle, allArticles) {
     .map((a) => {
       const excerpt = (a.content || "").replace(/<[^>]*>/g, "").slice(0, 100);
       const typeLabel = a.article_type === "news" ? "News" : "Article";
-      const img = a.cover_image_url
-        ? `<img src="${escapeHtml(a.cover_image_url)}" alt="${escapeHtml(a.title)}" class="blog-card-img" />`
-        : `<div class="blog-card-img blog-card-img-placeholder">📰</div>`;
+      const imgSrc = a.cover_image_url || a.generated_image_path;
+const img = imgSrc
+  ? `<img src="${escapeHtml(imgSrc)}" alt="${escapeHtml(a.title)}" class="blog-card-img" loading="lazy" />`
+  : `<div class="blog-card-img blog-card-img-placeholder">📰</div>`;
       return `<a href="/${a.language}/blog/${a.slug}/" class="blog-card">
         <div class="blog-card-img-wrap">${img}<span class="blog-card-type-badge">${typeLabel}</span></div>
         <div class="blog-card-body">
