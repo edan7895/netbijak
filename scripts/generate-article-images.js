@@ -1,4 +1,4 @@
-// NetBijak.com - 抓取Unsplash图片、加上NetBijak浮水印、压缩成WebP（三语言共用translation_key只请求一次）
+// NetBijak.com - 抓取Unsplash图片、加上NetBijak浮水印、压缩成WebP（找不到图时自动生成标题卡片备案）
 const fs = require('fs');
 const path = require('path');
 const sharp = require('sharp');
@@ -7,7 +7,7 @@ const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
 const UNSPLASH_ACCESS_KEY = process.env.UNSPLASH_ACCESS_KEY;
 
-const MAX_REQUESTS_PER_RUN = 15; // 每次执行最多处理15组（保守，避免用光每小时50次额度）
+const MAX_REQUESTS_PER_RUN = 15;
 const WATERMARK_PATH = path.join('assets', 'images', 'watermark-logo.png');
 const OUTPUT_DIR = path.join('assets', 'images', 'articles');
 
@@ -49,6 +49,72 @@ async function fetchUnsplashImage(keywords) {
   return data.results[0].urls.regular;
 }
 
+function escapeXml(str) {
+  return String(str || '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function wrapTitleLines(title, maxCharsPerLine) {
+  const words = title.split(' ');
+  const lines = [];
+  let current = '';
+  words.forEach((word) => {
+    if ((current + ' ' + word).trim().length > maxCharsPerLine) {
+      lines.push(current.trim());
+      current = word;
+    } else {
+      current = (current + ' ' + word).trim();
+    }
+  });
+  if (current) lines.push(current.trim());
+  return lines.slice(0, 4); // 最多4行，避免文字太长挤爆
+}
+
+async function generateTitleCardImage(title, outputSlug) {
+  const width = 800;
+  const height = 450;
+  const lines = wrapTitleLines(title, 28);
+  const lineHeight = 48;
+  const startY = height / 2 - (lines.length * lineHeight) / 2 + 20;
+
+  const textSvgLines = lines
+    .map(
+      (line, i) =>
+        `<text x="60" y="${startY + i * lineHeight}" font-family="Arial, sans-serif" font-size="38" font-weight="800" fill="#ffffff">${escapeXml(line)}</text>`
+    )
+    .join('');
+
+  const svg = `
+    <svg width="${width}" height="${height}" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stop-color="#0f172a" />
+          <stop offset="50%" stop-color="#0ea5e9" />
+          <stop offset="100%" stop-color="#14b8a6" />
+        </linearGradient>
+      </defs>
+      <rect width="${width}" height="${height}" fill="url(#bg)" />
+      ${textSvgLines}
+    </svg>
+  `;
+
+  if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
+  const outputPath = path.join(OUTPUT_DIR, `${outputSlug}.webp`);
+
+  let pipeline = sharp(Buffer.from(svg));
+
+  if (fs.existsSync(WATERMARK_PATH)) {
+    const watermark = await sharp(WATERMARK_PATH).resize(80).png().toBuffer();
+    pipeline = pipeline.composite([{ input: watermark, gravity: 'southeast', blend: 'over', opacity: 0.85 }]);
+  }
+
+  await pipeline.webp({ quality: 80 }).toFile(outputPath);
+  return `/assets/images/articles/${outputSlug}.webp`;
+}
+
 async function downloadAndProcessImage(imageUrl, outputSlug) {
   const res = await fetch(imageUrl);
   if (!res.ok) throw new Error(`Failed to download image: ${res.status}`);
@@ -57,19 +123,10 @@ async function downloadAndProcessImage(imageUrl, outputSlug) {
 
   const baseImage = sharp(buffer).resize(800, 450, { fit: 'cover' });
 
-  let hasWatermark = false;
-  try {
-    if (fs.existsSync(WATERMARK_PATH)) {
-      hasWatermark = true;
-    }
-  } catch (e) {
-    hasWatermark = false;
-  }
-
   if (!fs.existsSync(OUTPUT_DIR)) fs.mkdirSync(OUTPUT_DIR, { recursive: true });
   const outputPath = path.join(OUTPUT_DIR, `${outputSlug}.webp`);
 
-  if (hasWatermark) {
+  if (fs.existsSync(WATERMARK_PATH)) {
     const watermark = await sharp(WATERMARK_PATH).resize(80).png().toBuffer();
     await baseImage
       .composite([{ input: watermark, gravity: 'southeast', blend: 'over', opacity: 0.85 }])
@@ -86,12 +143,11 @@ async function run() {
   console.log('Fetching articles with keywords but no generated image...');
   const articles = await fetchFromSupabase(
     'articles',
-    'select=id,slug,translation_key,image_keywords,generated_image_path&is_published=eq.true&image_keywords=not.is.null&generated_image_path=is.null'
+    'select=id,title,slug,translation_key,image_keywords,generated_image_path&is_published=eq.true&image_keywords=not.is.null&generated_image_path=is.null'
   );
 
   console.log(`Found ${articles.length} articles needing images.`);
 
-  // 依 translation_key 分组，同一组只请求一次Unsplash
   const groups = {};
   articles.forEach((a) => {
     const key = a.translation_key || `__single__${a.id}`;
@@ -101,26 +157,28 @@ async function run() {
 
   let requestCount = 0;
   for (const key of Object.keys(groups)) {
-    if (requestCount >= MAX_REQUESTS_PER_RUN) {
-      console.log('Reached max requests for this run, stopping (will continue next run).');
-      break;
-    }
-
     const group = groups[key];
     const representative = group[0];
+    const outputSlug = representative.translation_key || representative.slug;
 
     try {
-      console.log(`  Fetching image for group "${key}" (keywords: ${representative.image_keywords})`);
-      const imageUrl = await fetchUnsplashImage(representative.image_keywords);
-      requestCount++;
+      let generatedPath;
 
-      if (!imageUrl) {
-        console.log(`    No image found for keywords, skipping.`);
-        continue;
+      if (requestCount >= MAX_REQUESTS_PER_RUN) {
+        console.log(`  Skipping Unsplash for group "${key}" (rate limit reached this run), generating title card instead.`);
+        generatedPath = await generateTitleCardImage(representative.title, outputSlug);
+      } else {
+        console.log(`  Fetching image for group "${key}" (keywords: ${representative.image_keywords})`);
+        const imageUrl = await fetchUnsplashImage(representative.image_keywords);
+        requestCount++;
+
+        if (imageUrl) {
+          generatedPath = await downloadAndProcessImage(imageUrl, outputSlug);
+        } else {
+          console.log(`    No Unsplash result, generating title card instead.`);
+          generatedPath = await generateTitleCardImage(representative.title, outputSlug);
+        }
       }
-
-      const outputSlug = representative.translation_key || representative.slug;
-      const generatedPath = await downloadAndProcessImage(imageUrl, outputSlug);
 
       for (const article of group) {
         await updateSupabase('articles', article.id, { generated_image_path: generatedPath });
