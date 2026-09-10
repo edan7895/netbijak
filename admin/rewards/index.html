@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manage Rewards | NetBijak Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="../admin.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    .admin-page { max-width: 72rem; margin: 0 auto; padding: 2rem 1.5rem; }
+    .admin-page-topbar {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 1.5rem; color: #fff; flex-wrap: wrap; gap: 1rem;
+    }
+    .admin-page-topbar h1 { font-size: 1.3rem; font-weight: 800; }
+    .admin-back-link { color: #94a3b8; text-decoration: none; font-size: 0.85rem; }
+
+    .admin-card { background: #fff; border-radius: 16px; padding: 1.75rem; margin-bottom: 1.5rem; }
+    .admin-card h2 { font-size: 1.05rem; margin-bottom: 1rem; }
+
+    .admin-table-wrap { background: #fff; border-radius: 16px; overflow: hidden; overflow-x: auto; }
+    table.admin-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    table.admin-table th {
+      background: #f8fafc; padding: 12px 16px; text-align: left; font-weight: 700; color: #475569;
+    }
+    table.admin-table td { padding: 12px 16px; border-top: 1px solid #f1f5f9; }
+    .btn-small {
+      padding: 6px 14px; background: #0f172a; color: #fff; border: none;
+      border-radius: 8px; font-size: 0.8rem; cursor: pointer; margin-right: 6px;
+    }
+    .btn-delete { background: #64748b; }
+
+    .btn-new {
+      padding: 10px 20px; background: #14b8a6; color: #fff; border: none;
+      border-radius: 10px; font-weight: 700; font-size: 0.875rem; cursor: pointer; margin-bottom: 1.25rem;
+    }
+
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 640px) { .form-grid { grid-template-columns: 1fr; } }
+    .form-field { margin-bottom: 1rem; }
+    .form-field.full-width { grid-column: 1 / -1; }
+    .form-field label {
+      display: block; font-size: 0.8rem; font-weight: 700; color: #475569; margin-bottom: 6px;
+    }
+    .form-field input, .form-field textarea {
+      width: 100%; padding: 10px 14px; border-radius: 8px; border: 1.5px solid #cbd5e1; font-size: 0.9rem;
+    }
+    .form-field textarea { min-height: 100px; resize: vertical; font-family: monospace; }
+    .form-actions { display: flex; gap: 10px; margin-top: 1.25rem; }
+    .btn-save {
+      padding: 12px 28px; background: #14b8a6; color: #fff; border: none;
+      border-radius: 10px; font-weight: 700; cursor: pointer;
+    }
+    .btn-cancel {
+      padding: 12px 28px; background: #f1f5f9; color: #334155; border: none;
+      border-radius: 10px; font-weight: 700; cursor: pointer;
+    }
+    .form-hint { font-size: 0.75rem; color: #94a3b8; margin-bottom: 10px; }
+
+    .pin-stock-row {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 10px 14px; background: #f8fafc; border-radius: 10px; margin-bottom: 8px; font-size: 0.9rem;
+    }
+    .pin-stock-amount { font-weight: 800; color: #0f172a; }
+    .pin-stock-available { color: #16a34a; font-weight: 700; }
+    .pin-stock-used { color: #94a3b8; font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+
+  <div class="admin-page">
+    <div class="admin-page-topbar">
+      <div>
+        <a href="../" class="admin-back-link">← Back to Admin</a>
+        <h1>Manage Rewards</h1>
+      </div>
+      <div style="display:flex; align-items:center; gap:14px;">
+        <span class="admin-email-tag" id="admin-email-display"></span>
+        <button id="admin-logout-btn" class="admin-logout-btn">Sign Out</button>
+      </div>
+    </div>
+
+    <!-- Event 表单 -->
+    <div id="event-form-wrap" class="admin-card hidden">
+      <h2 id="event-form-title">New Event</h2>
+      <form id="event-form">
+        <div class="form-grid">
+          <div class="form-field full-width">
+            <label>Event Name</label>
+            <input type="text" id="event-name" required placeholder="e.g. Unifi TNG Promo Sept-Oct 2026" />
+          </div>
+          <div class="form-field">
+            <label>Start Date</label>
+            <input type="date" id="event-start-date" />
+          </div>
+          <div class="form-field">
+            <label>End Date</label>
+            <input type="date" id="event-end-date" />
+          </div>
+          <div class="form-field">
+            <label>TNG Amount (RM per customer)</label>
+            <input type="number" step="0.01" id="event-tng-amount" placeholder="e.g. 30" />
+          </div>
+          <div class="form-field full-width">
+            <label>Notes (optional)</label>
+            <input type="text" id="event-note" placeholder="e.g. Min 1 month installation, reward sent 3 months after event ends" />
+          </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn-save">Save Event</button>
+          <button type="button" id="btn-cancel-event-form" class="btn-cancel">Cancel</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Events 清单 -->
+    <div class="admin-card">
+      <h2>Events</h2>
+      <button id="btn-new-event" class="btn-new">+ New Event</button>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Event Name</th>
+              <th>Period</th>
+              <th>TNG Amount</th>
+              <th>Notes</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="events-table-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Pin码库存 -->
+    <div class="admin-card">
+      <h2>TNG Pin Stock</h2>
+      <div id="pin-stock-summary" style="margin-bottom:1.5rem"></div>
+
+      <h3 style="font-size:0.95rem; margin-bottom:0.5rem">Upload New Pins</h3>
+      <form id="pin-upload-form">
+        <div class="form-field">
+          <label>Amount (RM) for this batch</label>
+          <input type="number" step="0.01" id="pin-upload-amount" required placeholder="e.g. 30" style="max-width:200px" />
+        </div>
+        <div class="form-field">
+          <label>Pin Codes (one per line)</label>
+          <p class="form-hint">Paste your pin codes here, one per line. All pins in this batch will use the amount above.</p>
+          <textarea id="pin-upload-text" placeholder="TNG-1234-5678&#10;TNG-2345-6789&#10;TNG-3456-7890"></textarea>
+        </div>
+        <button type="submit" id="btn-upload-pins" class="btn-save">Upload Pins</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="../../assets/js/supabase-client.js"></script>
+  <script src="../../assets/js/admin-auth.js"></script>
+  <script src="../../assets/js/admin-rewards.js"></script>
+</body>
+</html>
