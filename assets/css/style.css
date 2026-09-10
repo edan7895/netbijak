@@ -1104,3 +1104,64 @@ table.compare-table tbody tr:nth-child(odd) .compare-row-label { background: #ee
 @media (max-width: 480px) {
   .plan-promo-box { flex-direction: column; text-align: center; }
 }
+
+
+/* ===== 配套详情页 Reviews 功能样式 ===== */
+.reviews-section-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 1rem; }
+
+.reviews-summary-box {
+  display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem;
+  padding: 1.25rem; background: #f8fafc; border-radius: 14px;
+}
+.reviews-summary-stars { font-size: 1.6rem; color: #f59e0b; }
+.reviews-summary-number { font-size: 1.8rem; font-weight: 800; color: #0f172a; }
+.reviews-summary-number span { font-size: 0.9rem; font-weight: 500; color: #94a3b8; }
+.reviews-summary-count { font-size: 0.85rem; color: #64748b; }
+.reviews-empty-text { color: #94a3b8; font-size: 0.9rem; }
+
+.review-item {
+  padding: 1rem 0; border-bottom: 1px solid #f1f5f9;
+}
+.review-item:last-child { border-bottom: none; }
+.review-item-header { display: flex; align-items: center; gap: 10px; margin-bottom: 6px; flex-wrap: wrap; }
+.review-item-stars { color: #f59e0b; font-size: 1rem; }
+.review-item-name { font-weight: 700; font-size: 0.9rem; color: #0f172a; }
+.review-item-date { font-size: 0.75rem; color: #94a3b8; }
+.review-item-comment { font-size: 0.9rem; color: #334155; line-height: 1.6; margin: 0 0 8px; }
+.review-item-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.review-item-tag {
+  font-size: 0.75rem; background: #f0fdfa; color: #0d9488;
+  padding: 3px 10px; border-radius: 99px; font-weight: 600;
+}
+
+.review-form-box { margin-top: 1.5rem; padding-top: 1.5rem; border-top: 2px solid #f1f5f9; }
+.review-star-picker { display: flex; gap: 6px; margin-bottom: 8px; }
+.review-star-btn {
+  background: none; border: none; font-size: 2rem; color: #cbd5e1; cursor: pointer; line-height: 1;
+}
+.review-star-btn.filled { color: #f59e0b; }
+#review-rating-label { font-size: 0.85rem; color: #64748b; margin-bottom: 1rem; }
+
+.review-tags-wrap { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 1rem; }
+.review-tag-chip {
+  display: flex; align-items: center; gap: 6px; padding: 6px 12px;
+  background: #f1f5f9; border-radius: 99px; font-size: 0.8rem; cursor: pointer;
+}
+.review-tag-chip input { width: 14px; height: 14px; }
+
+.review-name-row { display: flex; gap: 8px; align-items: center; margin-bottom: 1rem; }
+.review-name-row input { flex: 1; padding: 10px 14px; border-radius: 8px; border: 1.5px solid #cbd5e1; }
+.btn-generate-name {
+  padding: 10px 14px; background: #e0f2fe; color: #0369a1; border: none;
+  border-radius: 8px; font-size: 0.8rem; font-weight: 700; cursor: pointer; white-space: nowrap;
+}
+
+.review-comment-textarea {
+  width: 100%; padding: 10px 14px; border-radius: 8px; border: 1.5px solid #cbd5e1;
+  min-height: 80px; resize: vertical; margin-bottom: 1rem; font-family: inherit;
+}
+
+.review-thank-you-box {
+  padding: 1.5rem; background: #f0fdf4; border: 1.5px solid #86efac;
+  border-radius: 14px; text-align: center; color: #166534;
+}
