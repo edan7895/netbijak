@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reward Customers | NetBijak Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="../admin.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    .admin-page { max-width: 90rem; margin: 0 auto; padding: 2rem 1.5rem; }
+    .admin-page-topbar {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 1.5rem; color: #fff; flex-wrap: wrap; gap: 1rem;
+    }
+    .admin-page-topbar h1 { font-size: 1.3rem; font-weight: 800; }
+    .admin-back-link { color: #94a3b8; text-decoration: none; font-size: 0.85rem; }
+
+    .admin-card { background: #fff; border-radius: 16px; padding: 1.75rem; margin-bottom: 1.5rem; }
+
+    .filter-bar { display: flex; gap: 10px; flex-wrap: wrap; align-items: flex-end; margin-bottom: 1rem; }
+    .filter-field label { display: block; font-size: 0.75rem; font-weight: 700; color: #94a3b8; margin-bottom: 4px; }
+    .filter-field select, .filter-field input {
+      padding: 9px 12px; border-radius: 8px; border: 1.5px solid #cbd5e1; font-size: 0.85rem;
+    }
+    .btn-clear-filters {
+      padding: 9px 16px; background: #f1f5f9; color: #334155; border: none;
+      border-radius: 8px; font-size: 0.8rem; font-weight: 700; cursor: pointer;
+    }
+    #customer-count-label { font-size: 0.85rem; color: #64748b; font-weight: 700; margin-bottom: 1rem; }
+
+    .btn-new {
+      padding: 10px 20px; background: #14b8a6; color: #fff; border: none;
+      border-radius: 10px; font-weight: 700; font-size: 0.875rem; cursor: pointer; margin-bottom: 1.25rem;
+    }
+
+    .admin-table-wrap { background: #fff; border-radius: 16px; overflow: hidden; overflow-x: auto; }
+    table.admin-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; }
+    table.admin-table th {
+      background: #f8fafc; padding: 10px 14px; text-align: left; font-weight: 700; color: #475569; white-space: nowrap;
+    }
+    table.admin-table td { padding: 10px 14px; border-top: 1px solid #f1f5f9; white-space: nowrap; }
+    .btn-small {
+      padding: 6px 14px; background: #0f172a; color: #fff; border: none;
+      border-radius: 8px; font-size: 0.8rem; cursor: pointer;
+    }
+
+    .status-tag {
+      display: inline-block; padding: 3px 10px; border-radius: 99px; font-size: 0.72rem; font-weight: 700;
+    }
+    .status-tag-green { background: #dcfce7; color: #166534; }
+    .status-tag-orange { background: #fef3c7; color: #92400e; }
+    .status-tag-gray { background: #f1f5f9; color: #64748b; }
+    .status-tag-purple { background: #f3e8ff; color: #7c3aed; }
+
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    @media (max-width: 640px) { .form-grid { grid-template-columns: 1fr; } }
+    .form-field { margin-bottom: 1rem; }
+    .form-field.full-width { grid-column: 1 / -1; }
+    .form-field label {
+      display: block; font-size: 0.8rem; font-weight: 700; color: #475569; margin-bottom: 6px;
+    }
+    .form-field input, .form-field select {
+      width: 100%; padding: 10px 14px; border-radius: 8px; border: 1.5px solid #cbd5e1; font-size: 0.9rem;
+    }
+    .form-checkbox-row { display: flex; align-items: center; gap: 8px; margin-bottom: 1rem; }
+    .form-actions { display: flex; gap: 10px; margin-top: 1.25rem; }
+    .btn-save {
+      padding: 12px 28px; background: #14b8a6; color: #fff; border: none;
+      border-radius: 10px; font-weight: 700; cursor: pointer;
+    }
+    .btn-cancel {
+      padding: 12px 28px; background: #f1f5f9; color: #334155; border: none;
+      border-radius: 10px; font-weight: 700; cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="admin-page">
+    <div class="admin-page-topbar">
+      <div>
+        <a href="../rewards/" class="admin-back-link">← Back to Rewards</a>
+        <h1 id="page-title">Reward Customers</h1>
+      </div>
+      <div style="display:flex; align-items:center; gap:14px;">
+        <span class="admin-email-tag" id="admin-email-display"></span>
+        <button id="admin-logout-btn" class="admin-logout-btn">Sign Out</button>
+      </div>
+    </div>
+
+    <!-- Customer 表单 -->
+    <div id="customer-form-wrap" class="admin-card hidden">
+      <h2 id="customer-form-title">New Customer</h2>
+      <form id="customer-form">
+        <div class="form-grid">
+          <div class="form-field">
+            <label>Customer Name</label>
+            <input type="text" id="customer-name-input" required />
+          </div>
+          <div class="form-field">
+            <label>Email</label>
+            <input type="email" id="customer-email-input" required />
+          </div>
+          <div class="form-field">
+            <label>Event</label>
+            <select id="customer-event-id"></select>
+          </div>
+          <div class="form-field">
+            <label>Plan</label>
+            <select id="customer-plan-id"></select>
+          </div>
+          <div class="form-field">
+            <label>Application Date</label>
+            <input type="date" id="customer-application-date" />
+          </div>
+          <div class="form-field">
+            <label>Installation Date (leave blank if not yet installed)</label>
+            <input type="date" id="customer-installation-date" />
+          </div>
+        </div>
+
+        <div class="form-checkbox-row">
+          <input type="checkbox" id="customer-is-excluded" />
+          <label for="customer-is-excluded">Exclude from auto TNG flow (special gift, e.g. earbuds)</label>
+        </div>
+        <div class="form-field full-width">
+          <label>Exclude Reason (optional)</label>
+          <input type="text" id="customer-exclude-reason" placeholder="e.g. 100th customer - earbuds winner" />
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn-save">Save Customer</button>
+          <button type="button" id="btn-cancel-customer-form" class="btn-cancel">Cancel</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="admin-card">
+      <div class="filter-bar">
+        <div class="filter-field">
+          <label>Event</label>
+          <select id="filter-event"></select>
+        </div>
+        <div class="filter-field">
+          <label>Application Date From</label>
+          <input type="date" id="filter-date-start" />
+        </div>
+        <div class="filter-field">
+          <label>Application Date To</label>
+          <input type="date" id="filter-date-end" />
+        </div>
+        <button id="btn-clear-filters" class="btn-clear-filters">Clear Filters</button>
+      </div>
+      <div id="customer-count-label"></div>
+
+      <button id="btn-new-customer" class="btn-new">+ New Customer</button>
+
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Event</th>
+              <th>Plan</th>
+              <th>Applied</th>
+              <th>Installed</th>
+              <th>Status</th>
+              <th>Pin</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="customers-table-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../assets/js/supabase-client.js"></script>
+  <script src="../../assets/js/admin-auth.js"></script>
+  <script src="../../assets/js/admin-reward-customers.js"></script>
+</body>
+</html>
