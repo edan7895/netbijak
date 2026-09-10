@@ -54,13 +54,62 @@
       </div>
     <div class="detail-section"><h2>Features</h2><ul class="detail-features-list"><li>Wi-Fi 6 Combo Box</li><li>3 Months Waiver</li><li>Unlimited Data  300Mbps/50Mbps</li><li>FAST &amp; FREE   Installation</li></ul></div>
     
+    
+    <div class="detail-section" id="reviews-section">
+      <h2 class="reviews-section-title">Reviews of Unifi Home 300Mbps PrimePromo</h2>
+      <div class="reviews-summary-box" id="reviews-summary"><p class="reviews-empty-text">No reviews yet. Be the first to share your experience!</p></div>
+      <div class="reviews-list" id="reviews-list"></div>
+
+      <div class="review-form-box" id="review-form-wrap">
+        <h3>Write a Review</h3>
+        <div class="review-star-picker">
+          <button type="button" class="review-star-btn" data-star="1">☆</button>
+          <button type="button" class="review-star-btn" data-star="2">☆</button>
+          <button type="button" class="review-star-btn" data-star="3">☆</button>
+          <button type="button" class="review-star-btn" data-star="4">☆</button>
+          <button type="button" class="review-star-btn" data-star="5">☆</button>
+        </div>
+        <div id="review-rating-label">0 / 5</div>
+
+        <form id="review-submit-form">
+          <div id="review-form-fields" class="hidden">
+            <div id="review-tags-wrap" class="review-tags-wrap"></div>
+
+            <div class="review-name-row">
+              <input type="text" id="review-reviewer-name" placeholder="Enter your name" required />
+              <button type="button" id="btn-generate-name" class="btn-generate-name">Generate Name</button>
+            </div>
+
+            <textarea id="review-comment-text" class="review-comment-textarea" placeholder="Share your experience with this plan (optional)..."></textarea>
+
+            <div class="cf-turnstile" data-sitekey="0x4AAAAAAEuw3_WcwGmVO5A2" style="margin-bottom:1rem"></div>
+
+            <button type="submit" id="btn-submit-review" class="wa-btn wa-btn-large" style="display:inline-flex">Submit Review</button>
+          </div>
+        </form>
+      </div>
+
+      <div id="review-thank-you" class="review-thank-you-box hidden">
+        <strong>Thank you for your review!</strong>
+        <p>Your review has been submitted and will appear once approved.</p>
+      </div>
+    </div>
   </main>
 
   <footer id="site-footer"></footer>
 
-  <script>const ROOT_PATH = "/";</script>
+  <script>const ROOT_PATH = "/"; const CURRENT_PLAN_ID = 12;</script>
   <script src="/assets/js/tracking.js"></script>
   <script src="/assets/js/translations.js"></script>
   <script src="/assets/js/site.js"></script>
+  <script src="/assets/js/supabase-client.js"></script>
+  <script src="/assets/js/plan-reviews.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      if (typeof initPlanReviews === "function") {
+        initPlanReviews(CURRENT_PLAN_ID);
+      }
+    });
+  </script>
 </body>
 </html>
