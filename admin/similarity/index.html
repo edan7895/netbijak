@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Content Similarity | NetBijak Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="../admin.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    .admin-page { max-width: 60rem; margin: 0 auto; padding: 2rem 1.5rem; }
+    .admin-page-topbar {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 1.5rem; color: #fff; flex-wrap: wrap; gap: 1rem;
+    }
+    .admin-page-topbar h1 { font-size: 1.3rem; font-weight: 800; }
+    .admin-back-link { color: #94a3b8; text-decoration: none; font-size: 0.85rem; }
+
+    .similarity-intro {
+      color: #94a3b8; font-size: 0.85rem; margin-bottom: 1.5rem;
+    }
+
+    .similarity-card {
+      background: #fff; border-radius: 14px; padding: 1.25rem 1.5rem; margin-bottom: 1rem;
+    }
+    .similarity-card-header {
+      display: flex; align-items: center; gap: 10px; margin-bottom: 1rem;
+    }
+    .similarity-pct {
+      background: #fef3c7; color: #92400e; padding: 4px 12px; border-radius: 99px;
+      font-size: 0.85rem; font-weight: 800;
+    }
+    .lang-tag {
+      background: #e0f2fe; color: #0369a1; padding: 4px 10px; border-radius: 99px;
+      font-size: 0.75rem; font-weight: 700;
+    }
+    .btn-dismiss {
+      margin-left: auto; background: #f1f5f9; color: #334155;
+    }
+    .btn-small {
+      padding: 6px 14px; border: none; border-radius: 8px; font-size: 0.8rem; cursor: pointer;
+    }
+
+    .similarity-articles { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .similarity-article-link {
+      color: #0f172a; text-decoration: none; font-size: 0.9rem; font-weight: 600;
+      padding: 8px 14px; background: #f8fafc; border-radius: 8px;
+    }
+    .similarity-article-link:hover { background: #f0fdfa; }
+    .similarity-vs { color: #94a3b8; font-size: 0.8rem; font-weight: 700; }
+  </style>
+</head>
+<body>
+
+  <div class="admin-page">
+    <div class="admin-page-topbar">
+      <div>
+        <a href="../" class="admin-back-link">← Back to Admin</a>
+        <h1>Content Similarity Warnings</h1>
+      </div>
+      <div style="display:flex; align-items:center; gap:14px;">
+        <span class="admin-email-tag" id="admin-email-display"></span>
+        <button id="admin-logout-btn" class="admin-logout-btn">Sign Out</button>
+      </div>
+    </div>
+
+    <p class="similarity-intro">
+      Articles below share 60%+ content similarity (within the same language). This is checked automatically 3x daily.
+      Review each pair and consider differentiating the content if they're too similar. Click "Dismiss" if the overlap is acceptable.
+    </p>
+
+    <div id="similarity-warnings-wrap"></div>
+  </div>
+
+  <script src="../../assets/js/supabase-client.js"></script>
+  <script src="../../assets/js/admin-auth.js"></script>
+  <script src="../../assets/js/admin-similarity.js"></script>
+</body>
+</html>
