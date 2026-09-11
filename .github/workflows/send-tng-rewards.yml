@@ -16,7 +16,7 @@ jobs:
           node-version: '20'
 
       - name: Install dependencies
-        run: npm install archiver archiver-zip-encrypted
+        run: sudo apt-get install -y zip
 
       - name: Send rewards
         run: node scripts/send-tng-rewards.js
