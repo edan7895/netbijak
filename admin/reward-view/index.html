@@ -46,17 +46,22 @@
     <div class="admin-card">
       <p style="font-size:0.85rem; color:#94a3b8; margin-bottom:1rem">To register a new customer for this event, go to <a href="../customers/">Manage Customers</a> and select this event in the reward section.</p>
       <div id="customer-count-label"></div>
+      <div style="display:flex; gap:10px; margin-bottom:1rem">
+        <button id="btn-select-all" class="btn-small" style="background:#f1f5f9;color:#334155">Select/Deselect All</button>
+        <button id="btn-queue-selected" class="btn-small" style="background:#14b8a6">Queue Selected for TNG Send →</button>
+      </div>
       <div class="admin-table-wrap">
         <table class="admin-table">
           <thead>
             <tr>
+              <th></th>
               <th>Name</th>
               <th>Email</th>
+              <th>IC (last 2 shown)</th>
               <th>Plan</th>
               <th>Installation</th>
               <th>Status</th>
               <th>Exclude?</th>
-              <th>Reason</th>
             </tr>
           </thead>
           <tbody id="reward-customers-table-body"></tbody>
