@@ -115,7 +115,7 @@ async function saveEvent(e) {
 }
 
 function viewEventCustomers(eventId, eventName) {
-  window.location.href = `../reward-customers/?event_id=${eventId}&event_name=${encodeURIComponent(eventName)}`;
+  window.location.href = `../reward-view/?event_id=${eventId}&event_name=${encodeURIComponent(eventName)}`;
 }
 
 // ===== Pin码库存上传 =====
