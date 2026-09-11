@@ -156,7 +156,10 @@ async function loadCustomersList() {
         <td>${expiryBadge}</td>
         <td style="font-size:0.8rem">${rewardInfo}</td>
         <td><a href="${waLink}" target="_blank" class="btn-whatsapp-small">💬 WhatsApp</a></td>
-        <td><button class="btn-small" onclick="openCustomerForm(${c.id})">Edit</button></td>
+        <td>
+          <button class="btn-small" onclick="openCustomerForm(${c.id})">Edit</button>
+          <button class="btn-small btn-delete-customer" onclick="deleteCustomer(${c.id}, '${escapeHtmlCustomers(c.customer_name).replace(/'/g, "\\'")}')">Delete</button>
+        </td>
       </tr>
     `;
     })
@@ -176,7 +179,6 @@ async function openCustomerForm(customerId) {
   document.getElementById("customer-form-wrap").classList.remove("hidden");
   document.getElementById("customer-form-title-label").textContent = customerId ? "Edit Customer" : "New Customer";
   document.getElementById("customer-form").reset();
-  toggleExcludeReasonVisibility();
 
   if (customerId) {
     const { data: customer } = await supabaseClient.from("customers").select("*").eq("id", customerId).single();
@@ -236,6 +238,21 @@ async function saveCustomer(e) {
 
   alert("Customer saved successfully!");
   closeCustomerForm();
+  loadCustomersList();
+}
+
+async function deleteCustomer(customerId, customerName) {
+  const confirmed = confirm(`Are you sure you want to permanently delete "${customerName}"? This cannot be undone.`);
+  if (!confirmed) return;
+
+  const { error } = await supabaseClient.from("customers").delete().eq("id", customerId);
+
+  if (error) {
+    alert("Error deleting customer: " + error.message);
+    return;
+  }
+
+  alert("Customer deleted.");
   loadCustomersList();
 }
 

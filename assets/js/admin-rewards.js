@@ -46,7 +46,8 @@ async function loadEventsList() {
       <td style="max-width:200px">${escapeHtmlRewards(e.reward_type_note || "-")}</td>
       <td>
         <button class="btn-small" onclick="openEventForm(${e.id})">Edit</button>
-        <button class="btn-small btn-delete" onclick="viewEventCustomers(${e.id}, '${escapeHtmlRewards(e.event_name).replace(/'/g, "\\'")}')">View Customers</button>
+        <button class="btn-small" onclick="viewEventCustomers(${e.id}, '${escapeHtmlRewards(e.event_name).replace(/'/g, "\\'")}')">View Customers</button>
+        <button class="btn-small btn-delete" onclick="deleteEvent(${e.id}, '${escapeHtmlRewards(e.event_name).replace(/'/g, "\\'")}')">Delete</button>
       </td>
     </tr>
   `
@@ -116,6 +117,21 @@ async function saveEvent(e) {
 
 function viewEventCustomers(eventId, eventName) {
   window.location.href = `../reward-view/?event_id=${eventId}&event_name=${encodeURIComponent(eventName)}`;
+}
+
+async function deleteEvent(eventId, eventName) {
+  const confirmed = confirm(`Are you sure you want to permanently delete "${eventName}"? This will NOT delete customers linked to this event, but they will lose their event assignment. This cannot be undone.`);
+  if (!confirmed) return;
+
+  const { error } = await supabaseClient.from("reward_events").delete().eq("id", eventId);
+
+  if (error) {
+    alert("Error deleting event: " + error.message);
+    return;
+  }
+
+  alert("Event deleted.");
+  loadEventsList();
 }
 
 // ===== Pin码库存上传 =====
