@@ -1,10 +1,7 @@
 // NetBijak.com - 批次发送TNG Pin奖励（ZIP加密 + Resend寄信）
-const archiver = require('archiver');
-const archiverZipEncrypted = require('archiver-zip-encrypted');
 const fs = require('fs');
 const path = require('path');
-
-archiver.registerFormat('zip-encrypted', archiverZipEncrypted);
+const { execSync } = require('child_process');
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
@@ -41,19 +38,19 @@ async function assignPin(amount) {
   return pins[0];
 }
 
-async function createEncryptedZip(customerName, pinCode, amount, password, outputPath) {
-  return new Promise((resolve, reject) => {
-    const output = fs.createWriteStream(outputPath);
-    const archive = archiver('zip-encrypted', { zlib: { level: 8 }, encryptionMethod: 'aes256', password });
+async function createEncryptedZip(customerName, pinCode, amount, password, outputPath, tmpDir) {
+  const content = `NetBijak Reward - Touch 'n Go Pin\n\nDear ${customerName},\n\nCongratulations! Here is your Touch 'n Go eWallet Pin reward:\n\nAmount: RM${amount}\nPin Code: ${pinCode}\n\nThank you for choosing NetBijak!\n`;
 
-    output.on('close', () => resolve());
-    archive.on('error', (err) => reject(err));
+  const txtFileName = 'NetBijak_TNG_Reward.txt';
+  const txtPath = path.join(tmpDir, txtFileName);
+  fs.writeFileSync(txtPath, content);
 
-    archive.pipe(output);
-    const content = `NetBijak Reward - Touch 'n Go Pin\n\nDear ${customerName},\n\nCongratulations! Here is your Touch 'n Go eWallet Pin reward:\n\nAmount: RM${amount}\nPin Code: ${pinCode}\n\nThank you for choosing NetBijak!\n`;
-    archive.append(content, { name: 'NetBijak_TNG_Reward.txt' });
-    archive.finalize();
-  });
+  const absoluteZipPath = path.resolve(outputPath);
+
+  // 用系统内建的 zip 指令，-P 指定密码，-j 只放文件本身不含路径
+  execSync(`zip -P "${password}" -j "${absoluteZipPath}" "${txtPath}"`);
+
+  fs.unlinkSync(txtPath);
 }
 
 async function sendRewardEmail(toEmail, customerName, zipPath, amount) {
@@ -123,9 +120,8 @@ async function run() {
       const pin = await assignPin(amount);
       if (!pin) throw new Error(`No available pins for amount RM${amount}`);
 
-      const zipPath = path.join(tmpDir, `reward_${customer.id}.zip`);
-      await createEncryptedZip(customer.customer_name, pin.pin_code, amount, customer.ic_last6, zipPath);
-
+            const zipPath = path.join(tmpDir, `reward_${customer.id}.zip`);
+      await createEncryptedZip(customer.customer_name, pin.pin_code, amount, customer.ic_last6, zipPath, tmpDir);
       await sendRewardEmail(customer.email, customer.customer_name, zipPath, amount);
 
       await updateSupabase('reward_pins', pin.id, {
