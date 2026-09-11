@@ -192,19 +192,12 @@ async function openCustomerForm(customerId) {
 
       document.getElementById("form-customer-event-id").value = customer.reward_event_id || "";
       document.getElementById("form-customer-installation-date").value = customer.installation_date || "";
-      document.getElementById("form-customer-is-excluded").checked = customer.is_excluded || false;
-      document.getElementById("form-customer-exclude-reason").value = customer.exclude_reason || "";
-      toggleExcludeReasonVisibility();
     }
   }
 
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-function toggleExcludeReasonVisibility() {
-  const isExcluded = document.getElementById("form-customer-is-excluded").checked;
-  document.getElementById("exclude-reason-wrap").classList.toggle("hidden", !isExcluded);
-}
 
 function closeCustomerForm() {
   document.getElementById("customer-form-wrap").classList.add("hidden");
@@ -225,8 +218,6 @@ async function saveCustomer(e) {
     reminder_sent: document.getElementById("form-customer-reminder-sent").checked,
     reward_event_id: document.getElementById("form-customer-event-id").value || null,
     installation_date: document.getElementById("form-customer-installation-date").value || null,
-    is_excluded: document.getElementById("form-customer-is-excluded").checked,
-    exclude_reason: document.getElementById("form-customer-exclude-reason").value || null,
   };
 
   let result;
