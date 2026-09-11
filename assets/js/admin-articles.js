@@ -1,4 +1,4 @@
-// NetBijak.com - Admin 文章管理逻辑（Quill + Banner + Link + FAQ + WhatsApp + CTA按钮 + 表格）
+// NetBijak.com - Admin 文章管理逻辑（Quill + Banner + Link + FAQ + WhatsApp + CTA按钮 + 表格 + AI Summary）
 
 let editingArticleId = null;
 let quillEditor = null;
@@ -39,6 +39,7 @@ async function initAdminArticlesPage() {
   document.getElementById("btn-insert-table").addEventListener("click", openTableModal);
   document.getElementById("btn-insert-cta").addEventListener("click", openCtaModal);
   document.getElementById("btn-add-faq-row").addEventListener("click", () => addFAQRow());
+  document.getElementById("btn-clear-ai-summary").addEventListener("click", clearAiSummary);
 
   document.getElementById("banner-modal-insert").addEventListener("click", insertBannerIntoEditor);
   document.getElementById("banner-modal-cancel").addEventListener("click", closeBannerModal);
@@ -189,6 +190,7 @@ async function openArticleForm(articleId) {
   document.getElementById("form-article-slug").dataset.manuallyEdited = "";
   setEditorContent("");
   document.getElementById("faq-rows-wrap").innerHTML = "";
+  document.getElementById("display-ai-summary").value = "";
   faqRowCount = 0;
 
   if (articleId) {
@@ -208,6 +210,7 @@ async function openArticleForm(articleId) {
       document.getElementById("form-article-plan-id").value = article.plan_id || "";
       document.getElementById("form-article-is-published").checked = article.is_published;
       document.getElementById("form-article-publish-at").value = article.publish_at ? article.publish_at.slice(0, 16) : "";
+      document.getElementById("display-ai-summary").value = article.ai_summary || "";
 
       if (article.faq_data) {
         try {
@@ -230,6 +233,30 @@ async function openArticleForm(articleId) {
 function closeArticleForm() {
   document.getElementById("article-form-wrap").classList.add("hidden");
   editingArticleId = null;
+}
+
+// ===== AI Summary 清空功能 =====
+async function clearAiSummary() {
+  if (!editingArticleId) {
+    alert("Please save the article first before clearing the summary.");
+    return;
+  }
+
+  const confirmed = confirm("Clear the AI summary? It will be regenerated automatically on the next scheduled sync.");
+  if (!confirmed) return;
+
+  const { error } = await supabaseClient
+    .from("articles")
+    .update({ ai_summary: null })
+    .eq("id", editingArticleId);
+
+  if (error) {
+    alert("Error clearing summary: " + error.message);
+    return;
+  }
+
+  document.getElementById("display-ai-summary").value = "";
+  alert("Summary cleared. It will regenerate on the next sync.");
 }
 
 // ===== FAQ 编辑区 =====
