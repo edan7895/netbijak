@@ -184,6 +184,7 @@ async function openCustomerForm(customerId) {
       document.getElementById("form-customer-name").value = customer.customer_name || "";
       document.getElementById("form-customer-phone").value = customer.phone_number || "";
       document.getElementById("form-customer-email").value = customer.email || "";
+      document.getElementById("form-customer-ic-last6").value = customer.ic_last6 || "";
       document.getElementById("form-customer-plan-id").value = customer.plan_id || "";
       document.getElementById("form-customer-signup-date").value = customer.signup_date || "";
       document.getElementById("form-customer-end-date").value = customer.contract_end_date || "";
@@ -211,6 +212,7 @@ async function saveCustomer(e) {
     customer_name: document.getElementById("form-customer-name").value,
     phone_number: document.getElementById("form-customer-phone").value,
     email: document.getElementById("form-customer-email").value || null,
+    ic_last6: document.getElementById("form-customer-ic-last6").value || null,
     plan_id: document.getElementById("form-customer-plan-id").value || null,
     signup_date: document.getElementById("form-customer-signup-date").value || null,
     contract_end_date: document.getElementById("form-customer-end-date").value || null,

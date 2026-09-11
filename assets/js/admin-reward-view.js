@@ -1,4 +1,4 @@
-// NetBijak.com - Admin Rewards：检视某个Event底下的顾客，管理Excluded状态
+// NetBijak.com - Admin Rewards：检视某个Event底下的顾客，管理Excluded状态 + 加入发送佇列
 
 let viewingEventId = null;
 
@@ -17,6 +17,9 @@ async function initAdminRewardViewPage() {
   document.getElementById("page-title").textContent = eventName ? `Customers: ${eventName}` : "Reward Customers";
 
   await loadRewardCustomers();
+
+  document.getElementById("btn-select-all").addEventListener("click", toggleSelectAll);
+  document.getElementById("btn-queue-selected").addEventListener("click", queueSelectedCustomers);
 }
 
 function escapeHtmlRV(str) {
@@ -38,10 +41,10 @@ function getInstallStatusRV(installationDate) {
 async function loadRewardCustomers() {
   const tbody = document.getElementById("reward-customers-table-body");
   const countLabel = document.getElementById("customer-count-label");
-  tbody.innerHTML = `<tr><td colspan="7">Loading...</td></tr>`;
+  tbody.innerHTML = `<tr><td colspan="8">Loading...</td></tr>`;
 
   if (!viewingEventId) {
-    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;color:#94a3b8">No event selected.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;color:#94a3b8">No event selected.</td></tr>`;
     return;
   }
 
@@ -52,7 +55,7 @@ async function loadRewardCustomers() {
     .order("signup_date", { ascending: false });
 
   if (error || !customers || customers.length === 0) {
-    tbody.innerHTML = `<tr><td colspan="7" style="text-align:center;color:#94a3b8">No customers registered for this event yet.</td></tr>`;
+    tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;color:#94a3b8">No customers registered for this event yet.</td></tr>`;
     countLabel.textContent = "0 customers";
     return;
   }
@@ -69,10 +72,17 @@ async function loadRewardCustomers() {
         ? `<span class="badge-ok">TNG Sent</span>`
         : `<span class="badge-soon">Pending</span>`;
 
+      const canQueue = !c.is_excluded && c.reward_status !== "sent";
+      const missingInfo = !c.email || !c.ic_last6;
+
       return `
       <tr>
+        <td>
+          ${canQueue ? `<input type="checkbox" class="reward-select-checkbox" value="${c.id}" ${missingInfo ? "disabled title='Missing email or IC'" : ""} />` : ""}
+        </td>
         <td>${escapeHtmlRV(c.customer_name)}</td>
-        <td>${escapeHtmlRV(c.email || "-")}</td>
+        <td>${escapeHtmlRV(c.email || "⚠️ missing")}</td>
+        <td>${c.ic_last6 ? "••••" + escapeHtmlRV(c.ic_last6.slice(-2)) : "⚠️ missing"}</td>
         <td>${escapeHtmlRV(planName)}</td>
         <td>${c.installation_date || "-"} ${installStatus}</td>
         <td>${statusBadge}</td>
@@ -82,15 +92,42 @@ async function loadRewardCustomers() {
             Excluded
           </label>
         </td>
-        <td>
-          <input type="text" value="${escapeHtmlRV(c.exclude_reason || "")}" placeholder="Reason..." 
-                 style="width:140px; padding:5px 8px; border-radius:6px; border:1px solid #cbd5e1; font-size:0.75rem"
-                 onblur="saveExcludeReason(${c.id}, this.value)" />
-        </td>
       </tr>
     `;
     })
     .join("");
+}
+
+function toggleSelectAll() {
+  const checkboxes = document.querySelectorAll(".reward-select-checkbox:not(:disabled)");
+  const allChecked = Array.from(checkboxes).every((cb) => cb.checked);
+  checkboxes.forEach((cb) => (cb.checked = !allChecked));
+}
+
+async function queueSelectedCustomers() {
+  const selected = Array.from(document.querySelectorAll(".reward-select-checkbox:checked")).map((cb) =>
+    parseInt(cb.value, 10)
+  );
+
+  if (selected.length === 0) {
+    alert("Please select at least one customer.");
+    return;
+  }
+
+  const confirmed = confirm(`Queue ${selected.length} customer(s) for TNG reward sending? You'll need to trigger the send job in GitHub Actions afterward.`);
+  if (!confirmed) return;
+
+  const rows = selected.map((customerId) => ({ customer_id: customerId, status: "queued" }));
+
+  const { error } = await supabaseClient.from("reward_send_queue").insert(rows);
+
+  if (error) {
+    alert("Error queueing customers: " + error.message);
+    return;
+  }
+
+  alert(`${selected.length} customer(s) queued! Go to GitHub Actions and run "Send TNG Rewards" to process them.`);
+  loadRewardCustomers();
 }
 
 async function toggleExcluded(customerId, isExcluded) {
@@ -103,10 +140,6 @@ async function toggleExcluded(customerId, isExcluded) {
     alert("Error updating: " + error.message);
     loadRewardCustomers();
   }
-}
-
-async function saveExcludeReason(customerId, reason) {
-  await supabaseClient.from("customers").update({ exclude_reason: reason || null }).eq("id", customerId);
 }
 
 document.addEventListener("DOMContentLoaded", initAdminRewardViewPage);
