@@ -1,7 +1,10 @@
 // NetBijak.com - 批次发送TNG Pin奖励（ZIP加密 + Resend寄信）
 const archiver = require('archiver');
+const archiverZipEncrypted = require('archiver-zip-encrypted');
 const fs = require('fs');
 const path = require('path');
+
+archiver.registerFormat('zip-encrypted', archiverZipEncrypted);
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
 const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
@@ -41,7 +44,7 @@ async function assignPin(amount) {
 async function createEncryptedZip(customerName, pinCode, amount, password, outputPath) {
   return new Promise((resolve, reject) => {
     const output = fs.createWriteStream(outputPath);
-    const archive = archiver.create('zip-encrypted', { zlib: { level: 8 }, encryptionMethod: 'aes256', password });
+    const archive = archiver('zip-encrypted', { zlib: { level: 8 }, encryptionMethod: 'aes256', password });
 
     output.on('close', () => resolve());
     archive.on('error', (err) => reject(err));
