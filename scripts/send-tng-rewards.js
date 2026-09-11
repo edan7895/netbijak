@@ -100,15 +100,20 @@ async function run() {
   if (!fs.existsSync(tmpDir)) fs.mkdirSync(tmpDir);
 
   for (const item of queueItems) {
-    try {
-      const customers = await fetchFromSupabase('customers', `id=eq.${item.customer_id}&select=*,reward_events(tng_amount)`);
+        try {
+      const customers = await fetchFromSupabase('customers', `id=eq.${item.customer_id}&select=*`);
       const customer = customers[0];
 
       if (!customer) throw new Error('Customer not found');
       if (!customer.email || !customer.ic_last6) throw new Error('Missing email or IC number');
-      if (!customer.reward_events || !customer.reward_events.tng_amount) throw new Error('Event has no TNG amount configured');
+      if (!customer.reward_event_id) throw new Error('Customer has no reward event assigned');
 
-      const amount = customer.reward_events.tng_amount;
+      const events = await fetchFromSupabase('reward_events', `id=eq.${customer.reward_event_id}&select=tng_amount`);
+      const event = events[0];
+
+      if (!event || !event.tng_amount) throw new Error('Event has no TNG amount configured');
+
+      const amount = event.tng_amount;
 
       console.log(`  Processing: ${customer.customer_name} (RM${amount})`);
 
