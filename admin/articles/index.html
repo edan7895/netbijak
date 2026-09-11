@@ -126,6 +126,20 @@
     .table-modal-cell {
       flex: 1; padding: 7px 10px; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 0.8rem; min-width: 0;
     }
+
+    .ai-summary-display-section {
+      margin: 1.5rem 0; padding: 1.25rem; background: #f0fdfa;
+      border-radius: 12px; border: 1.5px solid #99f6e4;
+    }
+    .ai-summary-display-section h3 { font-size: 0.95rem; margin-bottom: 6px; color: #0f172a; }
+    .ai-summary-display-section textarea {
+      width: 100%; padding: 10px 14px; border-radius: 8px; border: 1.5px solid #cbd5e1;
+      font-size: 0.85rem; background: #fff; margin: 8px 0; resize: vertical; color: #64748b;
+    }
+    .btn-clear-summary {
+      padding: 8px 16px; background: #fee2e2; color: #991b1b; border: none;
+      border-radius: 8px; font-size: 0.8rem; font-weight: 700; cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -209,7 +223,14 @@
             <button type="button" id="btn-insert-table" class="btn-editor-tool">📊 Insert Table</button>
             <button type="button" id="btn-insert-cta" class="btn-editor-tool">🎯 Insert Find Plan / Compare Button</button>
           </div>
-          <div id="quill-editor"></div>
+                    <div id="quill-editor"></div>
+        </div>
+
+        <div class="ai-summary-display-section">
+          <h3>AI Summary (auto-generated)</h3>
+          <p class="form-hint">This summary is shown on the article page. If you edit the content above, click "Clear" so the system regenerates it on the next sync.</p>
+          <textarea id="display-ai-summary" rows="3" readonly placeholder="(Not yet generated)"></textarea>
+          <button type="button" id="btn-clear-ai-summary" class="btn-clear-summary">Clear (regenerate on next sync)</button>
         </div>
 
         <div class="faq-section">
