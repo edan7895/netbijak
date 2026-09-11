@@ -36,6 +36,17 @@ async function initAdminRewardCustomersPage() {
   document.getElementById("filter-date-start").addEventListener("change", loadCustomersList);
   document.getElementById("filter-date-end").addEventListener("change", loadCustomersList);
   document.getElementById("btn-clear-filters").addEventListener("click", clearFilters);
+
+  let searchTimeout;
+  document.getElementById("existing-customer-search").addEventListener("input", (e) => {
+    clearTimeout(searchTimeout);
+    const query = e.target.value.trim();
+    if (query.length < 2) {
+      document.getElementById("existing-customer-results").classList.add("hidden");
+      return;
+    }
+    searchTimeout = setTimeout(() => searchExistingCustomers(query), 300);
+  });
 }
 
 function escapeHtmlRC(str) {
@@ -209,6 +220,47 @@ async function saveCustomer(e) {
   alert("Customer saved!");
   closeCustomerForm();
   loadCustomersList();
+}
+
+async function searchExistingCustomers(query) {
+  const resultsWrap = document.getElementById("existing-customer-results");
+
+  const { data: matches } = await supabaseClient
+    .from("customers")
+    .select("id, customer_name, phone_number, email, plan_id, plans(name, providers(name))")
+    .or(`customer_name.ilike.%${query}%,phone_number.ilike.%${query}%,email.ilike.%${query}%`)
+    .limit(8);
+
+  if (!matches || matches.length === 0) {
+    resultsWrap.innerHTML = `<div class="existing-customer-item" style="color:#94a3b8">No matches found.</div>`;
+    resultsWrap.classList.remove("hidden");
+    return;
+  }
+
+  resultsWrap.innerHTML = matches
+    .map((c) => {
+      const planName = c.plans ? `${c.plans.providers ? c.plans.providers.name + " - " : ""}${c.plans.name}` : "";
+      return `
+      <div class="existing-customer-item" onclick='fillFromExistingCustomer(${JSON.stringify({
+        name: c.customer_name,
+        email: c.email || "",
+        plan_id: c.plan_id || "",
+      }).replace(/'/g, "&apos;")})'>
+        <strong>${escapeHtmlRC(c.customer_name)}</strong><br />
+        <span>${escapeHtmlRC(c.phone_number || "")} ${c.email ? "· " + escapeHtmlRC(c.email) : ""} ${planName ? "· " + escapeHtmlRC(planName) : ""}</span>
+      </div>
+    `;
+    })
+    .join("");
+  resultsWrap.classList.remove("hidden");
+}
+
+function fillFromExistingCustomer(data) {
+  document.getElementById("customer-name-input").value = data.name || "";
+  document.getElementById("customer-email-input").value = data.email || "";
+  if (data.plan_id) document.getElementById("customer-plan-id").value = data.plan_id;
+  document.getElementById("existing-customer-results").classList.add("hidden");
+  document.getElementById("existing-customer-search").value = "";
 }
 
 document.addEventListener("DOMContentLoaded", initAdminRewardCustomersPage);
