@@ -4,13 +4,13 @@ const path = require('path');
 const { execSync } = require('child_process');
 
 const SUPABASE_URL = process.env.SUPABASE_URL;
-const SUPABASE_ANON_KEY = process.env.SUPABASE_ANON_KEY;
+const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
 const RESEND_API_KEY = process.env.RESEND_API_KEY;
 
 async function fetchFromSupabase(table, query) {
   const url = `${SUPABASE_URL}/rest/v1/${table}?${query}`;
   const res = await fetch(url, {
-    headers: { apikey: SUPABASE_ANON_KEY, Authorization: `Bearer ${SUPABASE_ANON_KEY}` },
+    headers: { apikey: SUPABASE_SERVICE_ROLE_KEY, Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}` },
   });
   if (!res.ok) throw new Error(`Fetch failed: ${res.status} ${await res.text()}`);
   return res.json();
@@ -21,8 +21,8 @@ async function updateSupabase(table, id, data) {
   const res = await fetch(url, {
     method: 'PATCH',
     headers: {
-      apikey: SUPABASE_ANON_KEY,
-      Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+      apikey: SUPABASE_SERVICE_ROLE_KEY,
+      Authorization: `Bearer ${SUPABASE_SERVICE_ROLE_KEY}`,
       'Content-Type': 'application/json',
       Prefer: 'return=representation',
     },
