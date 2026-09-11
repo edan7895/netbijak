@@ -73,6 +73,13 @@
       padding: 12px 28px; background: #f1f5f9; color: #334155; border: none;
       border-radius: 10px; font-weight: 700; cursor: pointer;
     }
+    .existing-customer-item {
+      padding: 10px 14px; cursor: pointer; border-bottom: 1px solid #f1f5f9; font-size: 0.85rem;
+    }
+    .existing-customer-item:last-child { border-bottom: none; }
+    .existing-customer-item:hover { background: #f8fafc; }
+    .existing-customer-item strong { color: #0f172a; }
+    .existing-customer-item span { color: #94a3b8; font-size: 0.75rem; }
   </style>
 </head>
 <body>
@@ -93,6 +100,12 @@
     <div id="customer-form-wrap" class="admin-card hidden">
       <h2 id="customer-form-title">New Customer</h2>
       <form id="customer-form">
+       <div class="form-field full-width" style="background:#f0fdfa; padding:1rem; border-radius:10px; margin-bottom:1.25rem;">
+          <label>Search Existing Customer (optional — search by name, phone or email)</label>
+          <input type="text" id="existing-customer-search" placeholder="Type name, phone, or email..." />
+          <div id="existing-customer-results" class="hidden" style="margin-top:8px; max-height:200px; overflow-y:auto; background:#fff; border-radius:8px; border:1px solid #cbd5e1;"></div>
+        </div>
+
         <div class="form-grid">
           <div class="form-field">
             <label>Customer Name</label>
