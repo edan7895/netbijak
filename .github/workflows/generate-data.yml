@@ -72,6 +72,12 @@ jobs:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
           SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
 
+      - name: Generate social media cards
+        run: node scripts/generate-social-cards.js
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+
       - name: Generate article images
         run: node scripts/generate-article-images.js
         env:
@@ -107,6 +113,6 @@ jobs:
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          git add data/ */*/index.html en/blog/*/index.html zh/blog/*/index.html ms/blog/*/index.html en/index.html zh/index.html ms/index.html en/find-your-plan/index.html zh/find-your-plan/index.html ms/find-your-plan/index.html en/compare/index.html zh/compare/index.html ms/compare/index.html en/broadband-home/index.html zh/broadband-home/index.html ms/broadband-home/index.html en/broadband-business/index.html zh/broadband-business/index.html ms/broadband-business/index.html unifi/index.html maxis/index.html celcomdigi/index.html time/index.html yes/index.html umobile/index.html unifi-business/index.html maxis-business/index.html time-business/index.html assets/images/articles/
+          git add data/ */*/index.html en/blog/*/index.html zh/blog/*/index.html ms/blog/*/index.html en/index.html zh/index.html ms/index.html en/find-your-plan/index.html zh/find-your-plan/index.html ms/find-your-plan/index.html en/compare/index.html zh/compare/index.html ms/compare/index.html en/broadband-home/index.html zh/broadband-home/index.html ms/broadband-home/index.html en/broadband-business/index.html zh/broadband-business/index.html ms/broadband-business/index.html unifi/index.html maxis/index.html celcomdigi/index.html time/index.html yes/index.html umobile/index.html unifi-business/index.html maxis-business/index.html time-business/index.html assets/images/articles/ assets/images/social/
           git diff --quiet && git diff --staged --quiet || git commit -m "Auto-update static data"
           git push
