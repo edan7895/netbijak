@@ -3,21 +3,28 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>免费网速测试 | NetBijak.com</title>
-  <meta name="description" content="免费测试您的网络下载、上传速度及延迟。如果不满意，可比较马来西亚宽频配套。" />
+  <title>马来西亚宽带测速：检查并看懂你的 Internet 速度</title>
+  <meta name="description" content="使用宽带测速检查你的 Internet 速度，并了解 Mbps 测速结果是否正常，以及 WiFi、网线和设备可能造成的速度限制。" />
   <link rel="stylesheet" href="../../assets/css/style.css" />
-<!-- zh/speedtest/index.html -->
   <link rel="canonical" href="https://netbijak.com/zh/speedtest/" />
   <link rel="alternate" hreflang="en" href="https://netbijak.com/en/speedtest/" />
   <link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/speedtest/" />
   <link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/speedtest/" />
   <link rel="alternate" hreflang="x-default" href="https://netbijak.com/en/speedtest/" />
-
+  <meta name="geo.region" content="MY" />
+  <meta name="geo.placename" content="Malaysia" />
+  <meta property="og:title" content="马来西亚宽带测速：检查并看懂你的 Internet 速度" />
+  <meta property="og:description" content="使用宽带测速检查你的 Internet 速度，并了解 Mbps 测速结果是否正常，以及 WiFi、网线和设备可能造成的速度限制。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://netbijak.com/assets/images/logo.png" />
+  <meta property="og:url" content="https://netbijak.com/zh/speedtest/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Speed Test - NetBijak",
+    "name": "测速 - NetBijak",
     "applicationCategory": "UtilitiesApplication",
     "operatingSystem": "Web",
     "url": "https://netbijak.com/zh/speedtest/",
@@ -26,7 +33,7 @@
       "price": "0",
       "priceCurrency": "MYR"
     },
-    "description": "Free internet speed test tool to check your download, upload speed and ping."
+    "description": "免费网速测试工具，检查你的下载、上传速度和延迟。"
   }
   </script>
 </head>
@@ -47,20 +54,66 @@
       <p id="st-cta"></p>
       <a href="../" class="btn-primary" id="st-cta-btn"></a>
     </div>
+
+    <div id="speedtest-content-wrap" style="margin-top:1.5rem"><!--SSG:content--><!--/SSG:content--></div>
+
+    <section class="section-card">
+      <h2 id="st-faq-title"></h2>
+      <p class="section-sub" id="st-faq-subtitle"></p>
+      <div id="st-faq-list" class="faq-list"></div>
+    </section>
   </main>
 
   <footer id="site-footer"></footer>
 
-<script>const ROOT_PATH = "../../";</script>
+  <script>const ROOT_PATH = "../../";</script>
+  <script src="../../assets/js/tracking.js"></script>
   <script src="../../assets/js/translations.js"></script>
   <script src="../../assets/js/site.js"></script>
+  <script src="../../assets/js/seo-meta.js"></script>
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("st-title").textContent = t("speedtest_title");
       document.getElementById("st-subtitle").textContent = t("speedtest_subtitle");
       document.getElementById("st-cta").textContent = t("speedtest_cta");
       document.getElementById("st-cta-btn").textContent = t("speedtest_cta_btn");
+      document.getElementById("st-faq-title").textContent = t("speedtest_faq_title");
+      document.getElementById("st-faq-subtitle").textContent = t("speedtest_faq_subtitle");
+      buildSpeedtestFAQ();
     });
+
+    function buildSpeedtestFAQ() {
+      const faqList = document.getElementById("st-faq-list");
+      const questionKeys = ["st_faq_q1", "st_faq_q2", "st_faq_q3", "st_faq_q4", "st_faq_q5", "st_faq_q6", "st_faq_q7"];
+      const answerKeys = ["st_faq_a1", "st_faq_a2", "st_faq_a3", "st_faq_a4", "st_faq_a5", "st_faq_a6", "st_faq_a7"];
+
+      faqList.innerHTML = questionKeys
+        .map(
+          (qKey, i) => `
+        <div class="faq-item">
+          <button type="button" class="faq-question" data-index="${i}">
+            <span>${t(qKey)}</span>
+            <span class="faq-toggle-icon">+</span>
+          </button>
+          <div class="faq-answer"><p>${t(answerKeys[i])}</p></div>
+        </div>
+      `
+        )
+        .join("");
+
+      faqList.querySelectorAll(".faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          faqList.querySelectorAll(".faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
+
+      if (typeof injectFAQSchema === "function") {
+        injectFAQSchema("st-faq-list");
+      }
+    }
   </script>
 </body>
 </html>
