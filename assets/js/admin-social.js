@@ -40,7 +40,7 @@ async function loadSocialArticles() {
     .select("id, title, slug, language, social_caption, social_cards_generated_path, social_fb_posted, social_ig_posted, publish_at, created_at")
     .eq("is_published", true)
     .not("social_caption", "is", null)
-    .order("publish_at", { ascending: false, nullsFirst: false });
+    .order("created_at", { ascending: false });
 
   if (error || !articles) {
     wrap.innerHTML = `<p style="color:#dc2626">Error loading articles.</p>`;

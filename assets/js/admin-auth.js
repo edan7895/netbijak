@@ -19,9 +19,13 @@ async function handleAdminLogout() {
 }
 
 async function initAdminPage() {
-  const loginForm = document.getElementById("admin-login-form");
   const loginSection = document.getElementById("admin-login-section");
   const dashboardSection = document.getElementById("admin-dashboard-section");
+
+  // 如果页面上根本没有登入区块（子页面，不是Admin首页），直接跳过，不执行任何逻辑
+  if (!loginSection || !dashboardSection) return;
+
+  const loginForm = document.getElementById("admin-login-form");
   const loginError = document.getElementById("admin-login-error");
   const logoutBtn = document.getElementById("admin-logout-btn");
   const adminEmailDisplay = document.getElementById("admin-email-display");
