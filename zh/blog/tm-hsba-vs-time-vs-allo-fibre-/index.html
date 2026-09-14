@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TM HSBA vs TIME vs Allo：马来西亚共享 Fibre 与自建网络有什么区别？</title>
+  <meta name="description" content="TM HSBA、TIME 和 Allo 的 Fibre 网络到底有什么不同？了解 Wholesale 网络、自建 Fibre、Peak Hours 拥堵，以及真正影响马来西亚宽带速度的因素。" />
+  <meta name="geo.region" content="MY" />
+  <meta name="geo.placename" content="Malaysia" />
+  <meta property="og:title" content="TM HSBA vs TIME vs Allo：马来西亚共享 Fibre 与自建网络有什么区别？" />
+  <meta property="og:description" content="TM HSBA、TIME 和 Allo 的 Fibre 网络到底有什么不同？了解 Wholesale 网络、自建 Fibre、Peak Hours 拥堵，以及真正影响马来西亚宽带速度的因素。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://netbijak.com/assets/images/articles/tm-hsba-vs-time-vs-allo-understanding-shared.webp" />
+  <meta property="og:url" content="https://netbijak.com/zh/blog/tm-hsba-vs-time-vs-allo-fibre-/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://netbijak.com/zh/blog/tm-hsba-vs-time-vs-allo-fibre-/" />
+  <link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/blog/tm-hsba-vs-time-vs-allo-memahami-perbezaan-rangkaian-fibre-shared-dan-owned/" />
+  <link rel="alternate" hreflang="en" href="https://netbijak.com/en/blog/tm-hsba-vs-time-vs-allo-understanding-shared-vs-owned-fibre-networks/" />
+  <link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/blog/tm-hsba-vs-time-vs-allo-fibre-/" />
+  <link rel="alternate" hreflang="x-default" href="https://netbijak.com/en/blog/tm-hsba-vs-time-vs-allo-understanding-shared-vs-owned-fibre-networks/" />
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"TM HSBA 是不是就是 Unifi？","acceptedAnswer":{"@type":"Answer","text":"不是。\nTM HSBA 是 Wholesale network access service，而 Unifi 是 TM 面向消费者提供的 Retail Broadband 服务。\n其他 ISP 也可以通过 Wholesale 安排使用 TM 的 Fibre 网络。"}},{"@type":"Question","name":"使用 TM HSBA，晚上一定会慢吗？","acceptedAnswer":{"@type":"Answer","text":"不一定。\nPeak-Hour Performance 取决于整个网络路径的容量，而不是单独由 TM HSBA 决定。"}},{"@type":"Question","name":"TIME 自己拥有 Fibre，所以一定比 TM 快吗？","acceptedAnswer":{"@type":"Answer","text":"不能这样说。\nTIME 拥有自己的 Fibre Network，意味着它对 Access Network 有更大的控制权，但实际速度仍然取决于 ISP Core、Peering、International Transit 和目标服务器。"}},{"@type":"Question","name":"Allo 是不是共享网络？","acceptedAnswer":{"@type":"Answer","text":"Allo 是 Open Access Fibre Network。\n其他服务商可以使用 Allo 的基础设施。Open Access 本身并不代表网络一定慢。"}},{"@type":"Question","name":"同一个 ISP 为什么不同地区体验可能不同？","acceptedAnswer":{"@type":"Answer","text":"因为不同地址可能使用不同的 Underlying Fibre Network。\n例如 Maxis 官方资料就列出了 TM-HSBA、Allo、TIME 等多个网络提供商。"}},{"@type":"Question","name":"怎么知道我的 Fibre 到底走 TM、TIME 还是 Allo？","acceptedAnswer":{"@type":"Answer","text":"直接问 ISP：\n“For my address, which underlying Fibre network will be used — TM HSBA, TIME, Allo or your own network?”\n如果 ISP 能提供答案，再比较价格和速度，才有意义。"}}]}</script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="main">
+    <div id="blog-detail-container">
+      <a href="/zh/blog/" class="blog-back-link">← 返回部落格</a>
+      <span class="blog-type-tag">Article</span>
+      <img src="/assets/images/articles/tm-hsba-vs-time-vs-allo-understanding-shared.webp" alt="TM HSBA vs TIME vs Allo：了解共享与自建 Fibre 网络的区别" class="blog-detail-cover" loading="lazy" width="800" height="450" />
+      <div class="blog-detail-date">15/09/2026</div>
+      <h1 class="blog-detail-title">TM HSBA vs TIME vs Allo：了解共享与自建 Fibre 网络的区别</h1>
+      
+    <section class="ai-summary-box">
+      <div class="ai-summary-badge">✨ NetBijak AI 智能摘要</div>
+      <p>在马来西亚选择宽带时，决定网速和稳定性的关键不仅在于ISP品牌，更在于你家接入的是哪种底层光纤网络。TM HSBA、TIME与Allo代表了三种不同的运营模式，分别涵盖了全覆盖批发服务、全链路自建网络及开放式基础设施模式。网络所有权决定了运营商在底层链路上的控制力与扩容效率，但并不意味着自建网络就一定完全不拥堵。实际的上网体验受访问网络容量、ISP核心网、路由优化及国际带宽等多种因素共同影响，而非单一因素决定。因此，消费者在对比套餐时，应跳出单纯的带宽数字，重点考量该地址底层的网络归属以及ISP在高峰期的带宽规划与路由表现。最理想的评估方式是综合考察你的地理位置、具体光纤接入方以及该ISP提供的上游网络质量。</p>
+    </section>
+      <div class="blog-detail-content"><p>同样是 <strong>500Mbps Fibre</strong>，实际用起来却可能不一样。原因不一定是 ISP 的套餐，而是你家背后的 <strong>Fibre 网络是谁在运营</strong>。</p><p>在马来西亚，常见的网络模式包括 <strong>TM HSBA Wholesale、TIME 自建 Fibre，以及 Allo 的开放式 Fibre 网络</strong>。</p><p>真正值得比较的，不只是“谁的 Mbps 比较高”，而是：</p><p><strong>谁负责你家到网络节点的 Fibre？ISP 又如何把这条连接接入自己的 Core Network 和 Internet？</strong></p><h2>TM HSBA 是什么？</h2><p><strong>HSBA（High-Speed Broadband Access）</strong> 是 TM 提供的 Wholesale 网络接入服务。</p><p>简单来说，其他 ISP 不需要自己在每个住宅区重新铺一套 Fibre，而可以通过 TM 的 HSBB 网络提供 Broadband 服务。</p><p>Maxis 官方的 Fibre 网络资料就直接列出 <strong>TM-HSBA、Allo 和 TIME</strong> 等不同的网络提供商，并说明 TM-HSBA 是 Telekom Malaysia 提供的 High-Speed Broadband Access 网络。</p><p><strong>Source: Maxis — List of Providers</strong></p><p><a href="https://fibre.maxis.com.my/hc/en-us/articles/11222952818457-List-of-Providers" rel="noopener noreferrer nofollow" target="_blank">Maxis 官方网络提供商资料</a></p><p>这也解释了为什么：</p><p><strong>你订的是 Maxis / CelcomDigi 等品牌，不代表你家门口的 Fibre 一定是这个品牌自己铺的。</strong></p><p>同一个 ISP，在不同地址甚至可能使用不同的底层网络。</p><h2>TM HSBA = 高峰期一定塞车？</h2><p><strong>不是。</strong></p><p>这是这篇文章最需要厘清的地方。</p><p>很多人会把：</p><blockquote>TM Wholesale → 多个 ISP 共用 → 晚上一定拥堵</blockquote><p>直接画上等号。</p><p>但网络实际上没有这么简单。</p><p>你的 Fibre 连接可以大致理解为：</p><p><strong>Home → Access Network → Aggregation → ISP Core → Peering / Internet Exchange → International Network → Website / Game Server / Streaming Service</strong></p><p>任何一个环节容量不足，都可能影响你的体验。</p><p>例如：</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Access Network 容量不足</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>ISP Aggregation 出现拥堵</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>ISP Core Network 容量不足</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>International Transit 不够</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Peering 路由不理想</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>某个 CDN 或游戏服务器本身出现问题</li></ol><p>因此，即使你使用的是 TM HSBA，也不能直接说晚上一定慢。</p><p>反过来也一样：</p><p><strong>自建 Fibre 也不代表绝对不会拥堵。</strong></p><h1>TIME：自己拥有 Fibre 网络</h1><p>TIME 与 TM HSBA 最大的区别之一，是 TIME 在其覆盖范围内运营自己的 Fibre 基础设施。</p><p>TIME 官方明确表示，其 Home Fibre 使用 <strong>100% 自有 Fibre Network</strong>，并强调拥有完整网络控制权。</p><p><strong>Source: TIME — Our Fibre Network</strong></p><p><a href="https://www.time.com.my/for-home/our-fibre-network" rel="noopener noreferrer nofollow" target="_blank">TIME 官方 Fibre Network 页面</a></p><p>TIME 的企业资料也指出，其完整 Fibre 网络以 <strong>Cross Peninsular Cable System（CPCS）</strong> 为核心，构成其全国 Fibre 网络的一部分。</p><p><strong>Source: TIME — Who We Are</strong></p><p><a href="https://corporate.time.com.my/" rel="noopener noreferrer nofollow" target="_blank">TIME 官方企业资料</a></p><p>这带来的主要优势不是一句“速度比较快”这么简单。</p><p>而是：</p><p><strong>TIME 对更多网络环节拥有直接控制权。</strong></p><p>包括：</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Access Network</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Network Capacity</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Network Upgrade</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Fault Management</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Network Engineering</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>部分流量优化</li></ol><p>TIME 也明确宣传其网络针对 Peak Hours 和 Heavy Usage 进行监控与优化。</p><p>但消费者要注意：</p><p><strong>“拥有自己的 Fibre 网络” ≠ “任何时候都不会塞车”。</strong></p><p>Internet 最终仍然需要连接到其他网络、CDN、Data Centre、Peering 和 International Transit。</p><h1>Allo：自己的 Fibre 基础设施，但采用 Open Access</h1><p>Allo 又是另一种模式。</p><p>Allo 并不是单纯的 Retail ISP。它运营的是 <strong>Open Access Fibre Infrastructure</strong>，其他服务商也可以使用其网络。</p><p>Maxis 的网络资料也把 Allo 列为 Fibre network provider，并说明 Allo 是 TNB 的 Fibre network。</p><p><strong>Source: Maxis — List of Providers</strong></p><p><a href="https://fibre.maxis.com.my/hc/en-us/articles/11222952818457-List-of-Providers" rel="noopener noreferrer nofollow" target="_blank">Maxis 官方网络提供商资料</a></p><p>Allo 官方的 Wholesale 页面则显示，其网络依托 TNB 的基础设施，并拥有约 <strong>25,000km TNB assets</strong> 的网络覆盖资源。</p><p><strong>Source: Allo — Wholesale</strong></p><p><a href="https://www.allo.my/allo-fibre-business/wholesale/" rel="noopener noreferrer nofollow" target="_blank">Allo 官方 Wholesale 网络资料</a></p><p>所以 Allo 的重点在于：</p><p><strong>Allo 自己建设/运营 Fibre 基础设施，同时允许其他服务商使用。</strong></p><p>这和“一个 ISP 自己铺 Fibre、只卖给自己的客户”是不同商业模式。</p><h1>为什么 Network Ownership 对 Peak Hours 有影响？</h1><p>假设三个用户都是 500Mbps：</p><p><strong>用户 A：</strong> ISP 使用 TM HSBA</p><p><strong>用户 B：</strong> ISP 使用 TIME Fibre</p><p><strong>用户 C：</strong> ISP 使用 Allo Fibre</p><p>白天进行 Speed Test，三个人都可能接近 500Mbps。</p><p>但到了晚上 9 点，体验可能开始出现差异。</p><p>原因是：</p><p><strong>500Mbps 只是你家 Broadband Access 的速度。</strong></p><p>它不代表整个 Internet Pathway 永远都有 500Mbps 的独享容量。</p><p>可以把它理解成高速公路：</p><p><strong>你家 → Fibre Access → Aggregation → ISP Core → Internet Exchange / Peering → International Transit → 目标服务器</strong></p><p>如果堵车发生在 ISP Core，换 TM / TIME / Allo 都不一定解决。</p><p>如果问题发生在 Access Network，那么拥有更多基础设施控制权的网络运营商就更容易直接进行 Network Upgrade 或 Capacity Management。</p><p>这才是 <strong>Network Ownership 真正重要的地方</strong>。</p><h1>TIME 和 Allo 会不会完全没有 Peak-Hour Congestion？</h1><p><strong>不能这样保证。</strong></p><p>TIME 官方确实强调其自有 Fibre 网络能够在 Peak Hours 和 Heavy Usage 下提供稳定表现。</p><p>Allo 也强调其网络基础设施、容量和稳定性，并在企业网络服务中提供高容量连接和 SLA。</p><p><strong>Source: Allo — Wholesale</strong></p><p><a href="https://www.allo.my/allo-fibre-business/wholesale/" rel="noopener noreferrer nofollow" target="_blank">Allo 官方 Wholesale 网络资料</a></p><p>但消费者不要把这些理解成：</p><blockquote>TIME = 永远不卡</blockquote><blockquote>Allo = 永远不卡</blockquote><blockquote>TM = 一定会卡</blockquote><p>这三个结论都过度简化。</p><p>实际表现仍然取决于：</p><ol><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span>Local Access Capacity</li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span>Aggregation Capacity</li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span>ISP Core Network</li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span>International Bandwidth</li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span>Peering</li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span>CDN</li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span>Routing</li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span>Destination Server</li></ol><h1>为什么同一个 ISP，在不同地区表现可能不同？</h1><p>因为 <strong>ISP 品牌不一定等于底层 Fibre 网络</strong>。</p><p>Maxis 官方资料目前就列出了多个 Fibre network providers，包括：</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>TM-HSBA</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Allo</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>TIME</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Maxis-NGBB</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>其他地区网络提供商</li></ol><p><strong>Source: Maxis — List of Providers</strong></p><p><a href="https://fibre.maxis.com.my/hc/en-us/articles/11222952818457-List-of-Providers" rel="noopener noreferrer nofollow" target="_blank">Maxis 官方 Fibre 网络提供商列表</a></p><p>所以如果你问：</p><blockquote>“Maxis Fibre 好不好？”</blockquote><p>其实还不够准确。</p><p>更有价值的问题应该是：</p><blockquote><strong>“我这个地址的 Maxis Fibre 是走哪一个底层网络？”</strong></blockquote><p>这也是为什么 Broadband 比较不能只看 ISP Logo。</p><h1>TM HSBA vs TIME vs Allo：到底有什么区别？</h1><table><tbody><tr><td data-row="1">网络</td><td data-row="1">模式</td><td data-row="1">Fibre Access 谁控制？</td><td data-row="1">Wholesale</td><td data-row="1">最大特点</td></tr><tr><td data-row="2"><strong>TM HSBA</strong></td><td data-row="2">Wholesale HSBB</td><td data-row="2">TM</td><td data-row="2">有</td><td data-row="2">覆盖广、基础设施成熟</td></tr><tr><td data-row="3"><strong>TIME</strong></td><td data-row="3">自建 Fibre</td><td data-row="3">TIME</td><td data-row="3">有</td><td data-row="3">对自己的 Access Network 拥有较高控制权</td></tr><tr><td data-row="4"><strong>Allo</strong></td><td data-row="4">Open Access Fibre</td><td data-row="4">Allo</td><td data-row="4">有</td><td data-row="4">依托 TNB 基础设施，并开放给其他服务商使用</td></tr></tbody></table><p>所以真正的区别不是：</p><p><strong>“谁的 500Mbps 比较快？”</strong></p><p>而是：</p><p><strong>“谁控制你家下面那条 Fibre，以及 ISP 如何把它连接到整个 Internet？”</strong></p><h1>消费者应该怎么选？</h1><h3>如果你的地址主要只有 TM HSBA</h3><p>不代表不能选。</p><p>重点看：</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>ISP 的 Peak-Hour 表现</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>International Speed</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Gaming Latency</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Peering</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Customer Service</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Price</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Contract</li></ol><p>如果 ISP 自己的网络容量规划做得好，TM HSBA 一样可以提供很好的体验。</p><h3>如果 TIME 自有 Fibre 有覆盖</h3><p>TIME 的优势在于其对 Access Network 拥有更高控制权。</p><p>对于：</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Gaming</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Cloud Backup</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Video Upload</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Work From Home</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>大量 Upload</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>家庭多设备使用</li></ol><p>这类用户，可以把 TIME 纳入比较。</p><h3>如果 Allo 网络覆盖</h3><p>不要因为它是 Open Access 就直接认为性能差。</p><p>真正应该比较的是：</p><p><strong>Allo Network + 具体 Retail ISP + Capacity + Routing</strong></p><p>而不是只看 Allo 这个名字。</p><h1>NetBijak's Take</h1><p><strong>不要只看 ISP Logo，也不要只看 Mbps。</strong></p><p>真正值得问的是：</p><blockquote><strong>“我家使用哪一个 Fibre Network，以及这个 ISP 的上游容量和 Routing 怎么样？”</strong></blockquote><p>TM HSBA 的价值在于让不同 ISP 可以通过 TM 的 Fibre 基础设施提供服务，而不需要自己重新建设完整的 Access Network。</p><p>TIME 的优势则是拥有自己的 Fibre 网络，因此可以对更多底层网络环节进行控制。</p><p>Allo 则采取 Open Access 模式，运营基于 TNB 网络资源的 Fibre 基础设施，并向其他服务商开放。</p><p>但最终：</p><p><strong>Network Ownership 只是影响 Broadband Experience 的其中一个因素。</strong></p><p>真正决定你晚上 9 点能不能稳定使用 Internet 的，是：</p><p><strong>Access Network + ISP Capacity + Peering + Routing + International Connectivity</strong></p><p>所以以后比较 Malaysia Fibre，不要只问：</p><p><strong>“100Mbps、300Mbps 还是 1Gbps？”</strong></p><p>更专业的比较方式应该是：</p><p><strong>Retail ISP → Underlying Fibre Network → Network Capacity → Peering/Routing → 实际体验</strong></p><p>这才是 Fibre 套餐背后真正的差别。</p><p class="ql-align-center"><strong style="color: rgb(255, 255, 255); background-color: initial;"><a href="/zh/find-your-plan/" rel="noopener noreferrer" target="_blank">🎯为我找配套 →</a></strong></p><h2><br></h2></div>
+      
+    <section class="section-card" id="article-faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div id="article-faq-list" class="faq-list">
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="0">
+        <span>TM HSBA 是不是就是 Unifi？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>不是。
+TM HSBA 是 Wholesale network access service，而 Unifi 是 TM 面向消费者提供的 Retail Broadband 服务。
+其他 ISP 也可以通过 Wholesale 安排使用 TM 的 Fibre 网络。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="1">
+        <span>使用 TM HSBA，晚上一定会慢吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>不一定。
+Peak-Hour Performance 取决于整个网络路径的容量，而不是单独由 TM HSBA 决定。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="2">
+        <span>TIME 自己拥有 Fibre，所以一定比 TM 快吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>不能这样说。
+TIME 拥有自己的 Fibre Network，意味着它对 Access Network 有更大的控制权，但实际速度仍然取决于 ISP Core、Peering、International Transit 和目标服务器。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="3">
+        <span>Allo 是不是共享网络？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Allo 是 Open Access Fibre Network。
+其他服务商可以使用 Allo 的基础设施。Open Access 本身并不代表网络一定慢。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="4">
+        <span>同一个 ISP 为什么不同地区体验可能不同？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>因为不同地址可能使用不同的 Underlying Fibre Network。
+例如 Maxis 官方资料就列出了 TM-HSBA、Allo、TIME 等多个网络提供商。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="5">
+        <span>怎么知道我的 Fibre 到底走 TM、TIME 还是 Allo？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>直接问 ISP：
+“For my address, which underlying Fibre network will be used — TM HSBA, TIME, Allo or your own network?”
+如果 ISP 能提供答案，再比较价格和速度，才有意义。</p></div>
+    </div></div>
+    </section>
+    </div>
+    
+    <section class="section-card" style="margin-top:1.5rem">
+      <h2>相关文章</h2>
+      <div class="blog-grid"><a href="/zh/blog/student-broadband-guide-cheap-internet-zh/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/student-broadband-guide-cheap-internet.webp" alt="马来西亚大学生宽带推荐：合租房便宜 Fibre 配套怎么选" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">11/09/2026</div>
+          <div class="blog-card-title">马来西亚大学生宽带推荐：合租房便宜 Fibre 配套怎么选</div>
+          <p class="blog-card-excerpt">如果你是在马来西亚大学附近租房，和 4–8 名学生一起合租，选 Broadband 不应该只看 Mbps；合约多久、Fibre 覆盖、Upload Speed、Wi-Fi 和每个人实际分摊多少钱，同样...</p>
+        </div></a><a href="/zh/blog/best-broadband-for-home-cctv-zh/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/best-broadband-for-home-cctv.webp" alt="马来西亚家庭 CCTV 远程监控宽带怎么选？" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">10/09/2026</div>
+          <div class="blog-card-title">马来西亚家庭 CCTV 远程监控宽带怎么选？</div>
+          <p class="blog-card-excerpt">如果你在马来西亚安装家庭 CCTV，真正影响远程监控体验的往往不是 Download Speed，而是 Upload Speed。500Mbps 的 Fibre 对大多数家庭 CCTV 已经绰绰有余，...</p>
+        </div></a><a href="/zh/blog/unifi-vs-maxis-fibre/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/unifi-vs-maxis-fibre-who-has-the-better-customer-service.webp" alt="Unifi vs Maxis Fibre：谁的客服响应和维修速度更好？" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">07/09/2026</div>
+          <div class="blog-card-title">Unifi vs Maxis Fibre：谁的客服响应和维修速度更好？</div>
+          <p class="blog-card-excerpt">Fibre 断线时，客服回复得快，不等于网络修得快。对马来西亚用户来说，真正重要的是投诉提交后，Ticket 怎么走、谁负责维修，以及最终多久恢复网络。NetBijak 独家判断：别只看谁回复快比较 ...</p>
+        </div></a><a href="/zh/blog/find-my-plan-buying-guide-zh/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/find-my-plan-buying-guide.webp" alt="如何在马来西亚为您的家庭选择合适的宽频配套" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">21/08/2026</div>
+          <div class="blog-card-title">如何在马来西亚为您的家庭选择合适的宽频配套</div>
+          <p class="blog-card-excerpt">马来西亚家庭宽频怎么选？先看你的实际使用需求选择家庭 Broadband，不应该从“最快的是哪一个”开始。真正应该先看的是家里怎么用 Internet、平时什么时候最忙，以及你遇到的问题到底来自 Br...</p>
+        </div></a><a href="/zh/blog/compare-plans-buying-guide-zh/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/compare-plans-buying-guide.webp" alt="如何在马来西亚比较宽频配套" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">21/08/2026</div>
+          <div class="blog-card-title">如何在马来西亚比较宽频配套</div>
+          <p class="blog-card-excerpt">1. 比较每月价格 先从最直接的开始——每个配套每月要多少钱？但别就此打住，单看价格无法告诉您这个配套是否真的划算。2. 比较网络速度 查看您考虑的每个配套的下载速度。速度越快，通常代表串流越流畅、下...</p>
+        </div></a><a href="/zh/blog/business-broadband-buying-guide-zh/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/business-broadband-buying-guide.webp" alt="如何在马来西亚选择最佳的商用宽频" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">21/08/2026</div>
+          <div class="blog-card-title">如何在马来西亚选择最佳的商用宽频</div>
+          <p class="blog-card-excerpt">1. 了解您企业的网络需求 不同企业的网络需求差异很大。一间只需处理电邮与网页浏览的小型办公室，与拥有POS销售系统的零售店、提供线上订餐的餐厅、居家创业、处理客户资料的专业服务，或是跨多个工作站运行...</p>
+        </div></a></div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script>const ROOT_PATH = "/"; const PAGE_TRANSLATIONS = {"ms":"/ms/blog/tm-hsba-vs-time-vs-allo-memahami-perbezaan-rangkaian-fibre-shared-dan-owned/","en":"/en/blog/tm-hsba-vs-time-vs-allo-understanding-shared-vs-owned-fibre-networks/","zh":"/zh/blog/tm-hsba-vs-time-vs-allo-fibre-/"};</script>
+  <script src="/assets/js/tracking.js"></script>
+  <script src="/assets/js/translations.js"></script>
+  <script src="/assets/js/site.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("#article-faq-list .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#article-faq-list .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
+    });
+  </script>
+
+  <div id="mascot-widget" class="mascot-widget">
+    <button type="button" class="mascot-close-btn" id="mascot-close-btn" aria-label="Close">✕</button>
+    <a href="https://wa.me/60178835110?text=Hi%20NetBijak%2C%20I'm%20reading%20%22TM%20HSBA%20vs%20TIME%20vs%20Allo%EF%BC%9A%E4%BA%86%E8%A7%A3%E5%85%B1%E4%BA%AB%E4%B8%8E%E8%87%AA%E5%BB%BA%20Fibre%20%E7%BD%91%E7%BB%9C%E7%9A%84%E5%8C%BA%E5%88%AB%22%20and%20have%20a%20question." target="_blank" class="mascot-avatar-link">
+      <img src="/assets/images/mascot.png" alt="NetBijak Assistant" class="mascot-avatar-img" />
+      <span class="mascot-bubble">有问题吗？</span>
+    </a>
+  </div>
+  <script>
+    (function() {
+      var storageKey = "mascot-closed-tm-hsba-vs-time-vs-allo-fibre-";
+      var widget = document.getElementById("mascot-widget");
+      var closeBtn = document.getElementById("mascot-close-btn");
+      if (sessionStorage.getItem(storageKey)) {
+        widget.style.display = "none";
+      }
+      closeBtn.addEventListener("click", function() {
+        widget.style.display = "none";
+        sessionStorage.setItem(storageKey, "1");
+      });
+    })();
+  </script>
+</body>
+</html>
