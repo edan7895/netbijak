@@ -1,0 +1,31 @@
+name: Check Content Similarity (Weekly)
+
+on:
+  schedule:
+    # 每周一 马来西亚时间 03:00 = UTC 19:00 (周日)
+    - cron: '0 19 * * 0'
+  workflow_dispatch:
+
+jobs:
+  check-similarity:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Check content similarity
+        run: node scripts/check-content-similarity.js
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+
+      - name: Check plan similarity
+        run: node scripts/check-plan-similarity.js
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
