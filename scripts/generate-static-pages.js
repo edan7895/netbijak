@@ -239,6 +239,14 @@ const img = imgSrc ? `<img src="${esc(imgSrc)}" alt="${esc(a.title)}" loading="l
       html = inject(html, "content", articleFullHtml(article));
       writeIfExists(coverageFile, html);
     }
+
+    const speedtestFile = `${lang}/speedtest/index.html`;
+    if (fs.existsSync(speedtestFile)) {
+      let html = fs.readFileSync(speedtestFile, 'utf-8');
+      const article = articles.find((a) => a.slug === `speedtest-buying-guide-${lang}`);
+      html = inject(html, "content", articleFullHtml(article));
+      writeIfExists(speedtestFile, html);
+    }
   }
 
   console.log('Done.');
