@@ -44,6 +44,13 @@ function escapeXml(str) {
     .replace(/"/g, '&quot;');
 }
 
+function getFontFamily(language) {
+  if (language === 'zh') {
+    return "'Noto Sans CJK SC', 'Noto Sans SC', sans-serif";
+  }
+  return "Arial, sans-serif";
+}
+
 function wrapLines(text, maxCharsPerLine, maxLines) {
   const words = text.split(' ');
   const lines = [];
@@ -60,7 +67,8 @@ function wrapLines(text, maxCharsPerLine, maxLines) {
   return lines.slice(0, maxLines);
 }
 
-function buildTitleCardSvg(title) {
+function buildTitleCardSvg(title, language) {
+  const fontFamily = getFontFamily(language);
   const lines = wrapLines(title, 18, 5);
   const lineHeight = 66;
   const startY = CARD_SIZE / 2 - (lines.length * lineHeight) / 2 + 24;
@@ -68,7 +76,7 @@ function buildTitleCardSvg(title) {
   const textLines = lines
     .map(
       (line, i) =>
-        `<text x="${CARD_SIZE / 2}" y="${startY + i * lineHeight}" font-family="Arial, sans-serif" font-size="56" font-weight="900" fill="#ffffff" text-anchor="middle">${escapeXml(line)}</text>`
+        `<text x="${CARD_SIZE / 2}" y="${startY + i * lineHeight}" font-family="${fontFamily}" font-size="56" font-weight="900" fill="#ffffff" text-anchor="middle">${escapeXml(line)}</text>`
     )
     .join('');
 
@@ -88,7 +96,8 @@ function buildTitleCardSvg(title) {
   `;
 }
 
-function buildPointCardSvg(pointNumber, pointText) {
+function buildPointCardSvg(pointNumber, pointText, language) {
+  const fontFamily = getFontFamily(language);
   const lines = wrapLines(pointText, 22, 5);
   const lineHeight = 58;
   const startY = CARD_SIZE / 2 - (lines.length * lineHeight) / 2 + 24;
@@ -96,7 +105,7 @@ function buildPointCardSvg(pointNumber, pointText) {
   const textLines = lines
     .map(
       (line, i) =>
-        `<text x="${CARD_SIZE / 2}" y="${startY + i * lineHeight}" font-family="Arial, sans-serif" font-size="46" font-weight="700" fill="#0f172a" text-anchor="middle">${escapeXml(line)}</text>`
+        `<text x="${CARD_SIZE / 2}" y="${startY + i * lineHeight}" font-family="${fontFamily}" font-size="46" font-weight="700" fill="#0f172a" text-anchor="middle">${escapeXml(line)}</text>`
     )
     .join('');
 
@@ -111,7 +120,8 @@ function buildPointCardSvg(pointNumber, pointText) {
   `;
 }
 
-function buildCtaCardSvg(ctaText) {
+function buildCtaCardSvg(ctaText, language) {
+  const fontFamily = getFontFamily(language);
   const lines = wrapLines(ctaText, 20, 4);
   const lineHeight = 60;
   const startY = CARD_SIZE / 2 - (lines.length * lineHeight) / 2;
@@ -119,7 +129,7 @@ function buildCtaCardSvg(ctaText) {
   const textLines = lines
     .map(
       (line, i) =>
-        `<text x="${CARD_SIZE / 2}" y="${startY + i * lineHeight}" font-family="Arial, sans-serif" font-size="50" font-weight="800" fill="#ffffff" text-anchor="middle">${escapeXml(line)}</text>`
+        `<text x="${CARD_SIZE / 2}" y="${startY + i * lineHeight}" font-family="${fontFamily}" font-size="50" font-weight="800" fill="#ffffff" text-anchor="middle">${escapeXml(line)}</text>`
     )
     .join('');
 
@@ -159,11 +169,13 @@ async function generateCardsForArticle(article) {
   const outputDir = path.join(OUTPUT_BASE_DIR, article.slug);
   if (!fs.existsSync(outputDir)) fs.mkdirSync(outputDir, { recursive: true });
 
-  await renderCardToFile(buildTitleCardSvg(cardTexts.title), path.join(outputDir, 'card-1.webp'));
-  await renderCardToFile(buildPointCardSvg(1, cardTexts.points[0]), path.join(outputDir, 'card-2.webp'));
-  await renderCardToFile(buildPointCardSvg(2, cardTexts.points[1]), path.join(outputDir, 'card-3.webp'));
-  await renderCardToFile(buildPointCardSvg(3, cardTexts.points[2]), path.join(outputDir, 'card-4.webp'));
-  await renderCardToFile(buildCtaCardSvg(cardTexts.cta), path.join(outputDir, 'card-5.webp'));
+  const lang = article.language;
+
+  await renderCardToFile(buildTitleCardSvg(cardTexts.title, lang), path.join(outputDir, 'card-1.webp'));
+  await renderCardToFile(buildPointCardSvg(1, cardTexts.points[0], lang), path.join(outputDir, 'card-2.webp'));
+  await renderCardToFile(buildPointCardSvg(2, cardTexts.points[1], lang), path.join(outputDir, 'card-3.webp'));
+  await renderCardToFile(buildPointCardSvg(3, cardTexts.points[2], lang), path.join(outputDir, 'card-4.webp'));
+  await renderCardToFile(buildCtaCardSvg(cardTexts.cta, lang), path.join(outputDir, 'card-5.webp'));
 
   return `/assets/images/social/${article.slug}/`;
 }
@@ -172,7 +184,7 @@ async function run() {
   console.log('Fetching articles with social card texts but no generated cards...');
   const articles = await fetchFromSupabase(
     'articles',
-    'select=id,slug,social_card_texts,social_cards_generated_path&is_published=eq.true&social_card_texts=not.is.null&social_cards_generated_path=is.null'
+    'select=id,slug,language,social_card_texts,social_cards_generated_path&is_published=eq.true&social_card_texts=not.is.null&social_cards_generated_path=is.null'
   );
 
   console.log(`Found ${articles.length} articles needing social cards.`);
