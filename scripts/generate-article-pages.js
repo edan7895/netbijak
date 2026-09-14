@@ -104,24 +104,39 @@ function buildFAQHtml(faqs) {
     </section>`;
 }
 
-// ===== 相关文章推荐（6篇） =====
+// ===== 相关文章推荐（6篇，优先同分类，不足才补最新文章） =====
 function buildRelatedArticlesHtml(currentArticle, allArticles) {
   const sameLangOthers = allArticles.filter(
     (a) => a.id !== currentArticle.id && a.language === currentArticle.language
   );
 
-  const sameType = sameLangOthers
-    .filter((a) => a.article_type === currentArticle.article_type)
-    .sort((a, b) => new Date(b.publish_at || b.created_at) - new Date(a.publish_at || a.created_at));
+  let related = [];
 
-  const otherType = sameLangOthers
-    .filter((a) => a.article_type !== currentArticle.article_type)
-    .sort((a, b) => new Date(b.publish_at || b.created_at) - new Date(a.publish_at || a.created_at));
+  if (currentArticle.category) {
+    const sameCategory = sameLangOthers
+      .filter((a) => a.category === currentArticle.category)
+      .sort((a, b) => new Date(b.publish_at || b.created_at) - new Date(a.publish_at || a.created_at));
+    related = sameCategory.slice(0, 6);
+  }
 
-  const related = [...sameType, ...otherType].slice(0, 6);
+  // 同分类文章不足6篇时，用其他文章（优先同类型，再来最新）补满
+  if (related.length < 6) {
+    const alreadyUsedIds = new Set(related.map((a) => a.id));
+    const remaining = sameLangOthers.filter((a) => !alreadyUsedIds.has(a.id));
+
+    const sameType = remaining
+      .filter((a) => a.article_type === currentArticle.article_type)
+      .sort((a, b) => new Date(b.publish_at || b.created_at) - new Date(a.publish_at || a.created_at));
+
+    const otherType = remaining
+      .filter((a) => a.article_type !== currentArticle.article_type)
+      .sort((a, b) => new Date(b.publish_at || b.created_at) - new Date(a.publish_at || a.created_at));
+
+    const fillers = [...sameType, ...otherType].slice(0, 6 - related.length);
+    related = [...related, ...fillers];
+  }
 
   if (related.length === 0) return "";
-
   const cardsHtml = related
     .map((a) => {
       const excerpt = (a.content || "").replace(/<[^>]*>/g, "").slice(0, 100);
