@@ -105,25 +105,43 @@ async function run() {
   console.log('Fetching articles with summary but no category...');
   const articles = await fetchFromSupabase(
     'articles',
-    'select=id,title,ai_summary,category&is_published=eq.true&ai_summary=not.is.null&category=is.null'
+    'select=id,title,ai_summary,category,translation_key,language&is_published=eq.true&ai_summary=not.is.null&category=is.null'
   );
 
   console.log(`Found ${articles.length} articles needing categories.`);
 
+  // 依 translation_key 分组，同一组只判断一次，结果同步给整组
+  const groups = {};
+  articles.forEach((a) => {
+    const key = a.translation_key || `__single__${a.id}`;
+    if (!groups[key]) groups[key] = [];
+    groups[key].push(a);
+  });
+
+  console.log(`Grouped into ${Object.keys(groups).length} translation groups.`);
+
   let successCount = 0;
-  for (const article of articles) {
+  for (const key of Object.keys(groups)) {
+    const group = groups[key];
+    // 优先用英文版当代表，没有英文版就用第一个
+    const representative = group.find((a) => a.language === 'en') || group[0];
+
     try {
-      console.log(`  Classifying: ${article.title}`);
-      const category = await classifyArticle(article.title, article.ai_summary);
-      await updateSupabase('articles', article.id, { category });
-      successCount++;
+      console.log(`  Classifying group "${key}" using: ${representative.title} (${representative.language})`);
+      const category = await classifyArticle(representative.title, representative.ai_summary);
+
+      for (const article of group) {
+        await updateSupabase('articles', article.id, { category });
+      }
+
+      successCount += group.length;
       await new Promise((resolve) => setTimeout(resolve, 6000));
     } catch (err) {
-      console.error(`  Failed for "${article.title}":`, err.message);
+      console.error(`  Failed for group "${key}":`, err.message);
     }
   }
 
-  console.log(`Done. Classified ${successCount} articles.`);
+  console.log(`Done. Classified ${successCount} articles across ${Object.keys(groups).length} groups.`);
 }
 
 run().catch((err) => {
