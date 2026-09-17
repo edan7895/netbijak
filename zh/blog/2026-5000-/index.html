@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Malaysia Day 2026：为什么 5,000 人上网需要的不只是 1Gbps？</title>
+  <meta name="description" content="2026 年马来西亚日庆典在古晋启用额外 Access Point，并把网络容量从 800Mbps 提高到 2Gbps。了解这次活动说明了什么，以及家庭 1Gbps、2Gbps 网络应该如何找出真正的瓶颈。" />
+  <meta name="geo.region" content="MY" />
+  <meta name="geo.placename" content="Malaysia" />
+  <meta property="og:title" content="Malaysia Day 2026：为什么 5,000 人上网需要的不只是 1Gbps？" />
+  <meta property="og:description" content="2026 年马来西亚日庆典在古晋启用额外 Access Point，并把网络容量从 800Mbps 提高到 2Gbps。了解这次活动说明了什么，以及家庭 1Gbps、2Gbps 网络应该如何找出真正的瓶颈。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://netbijak.com/assets/images/articles/malaysias-internet-coverage-reaches-9975.webp" />
+  <meta property="og:url" content="https://netbijak.com/zh/blog/2026-5000-/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://netbijak.com/zh/blog/2026-5000-/" />
+  <link rel="alternate" hreflang="en" href="https://netbijak.com/en/blog/malaysias-internet-coverage-reaches-9975-so-why-cant-everyone-get-fibre/" />
+  <link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/blog/liputan-internet-malaysia-cecah-9975-jadi-kenapa-masih-ada-rumah-tak-boleh-pasang-fibre/" />
+  <link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/blog/malaysias-internet-coverage-reaches-9975-/" />
+  <link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/blog/malaysia-day-2026-apa-yang-5000-pengguna-dalam-satu-venue-ajarkan-tentang-network-congestion/" />
+  <link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/blog/2026-5000-/" />
+  <link rel="alternate" hreflang="x-default" href="https://netbijak.com/en/blog/malaysias-internet-coverage-reaches-9975-so-why-cant-everyone-get-fibre/" />
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么 Malaysia Day 2026 需要 2Gbps 和额外 Access Point？","acceptedAnswer":{"@type":"Answer","text":"BCCK 活动预计有超过 5,000 名宾客和工作人员。MCMC 表示现场部署了临时网络设备和额外 AP，而 TM 也把原本要求的 800Mbps 容量提高到 2Gbps。"}},{"@type":"Question","name":"2Gbps Internet 是不是代表每台 Wi-Fi 设备都能跑 2Gbps？","acceptedAnswer":{"@type":"Answer","text":"不是。2Gbps 是共享的网络容量，每台设备的实际速度还受到 AP、无线环境、客户端和有线网络影响。"}},{"@type":"Question","name":"为什么 Fibre 很快，Wi-Fi 还是会慢？","acceptedAnswer":{"@type":"Answer","text":"Wi-Fi 还有 Airtime、Channel Utilisation、Client Density 和 AP Placement 等限制。Cisco 的高密度无线设计资料也把 Airtime 视为独立的重要资源。"}},{"@type":"Question","name":"家里加一个 AP，会不会比升级宽带更有效？","acceptedAnswer":{"@type":"Answer","text":"如果真正的瓶颈在 Wi-Fi Coverage 或 Client Density，增加 AP 确实可能比继续提高 Fibre 速度更直接。但如果 Fibre 本身就没有达到配套速度，增加 AP 也解决不了上游问题。"}},{"@type":"Question","name":"2Gbps Fibre 用户最应该先检查什么？","acceptedAnswer":{"@type":"Answer","text":"先看四层：Internet → Ethernet → Wi-Fi Coverage → Wi-Fi Load"}},{"@type":"Question","name":"Wi-Fi 8 会不会自动解决 Wi-Fi Congestion？","acceptedAnswer":{"@type":"Answer","text":"不会。802.11bn 正在研究 Multi-AP Coordination、Coordinated Spatial Reuse 和 Interference Mitigation 等机制，但 AP Placement、Ethernet 和整体网络设计仍然重要。"}},{"@type":"Question","name":"大型活动的网络设计为什么和家庭不同？","acceptedAnswer":{"@type":"Answer","text":"因为大型活动会在非常小的区域内集中大量未知客户端。Cisco 将这类场景视为 High-Density WLAN，需要专门的无线规划。"}},{"@type":"Question","name":"家里的 Wi-Fi 很慢，应该先升级什么？","acceptedAnswer":{"@type":"Answer","text":"先确定瓶颈。如果网线测速已经不正常，查 Broadband；如果网线正常但远处 Wi-Fi 很差，查 AP Coverage；如果多人同时使用时才明显变慢，检查 Wi-Fi Load 和 Airtime。"}}]}</script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="main">
+    <div id="blog-detail-container">
+      <a href="/zh/blog/" class="blog-back-link">← 返回部落格</a>
+      <span class="blog-type-tag">News</span>
+      <img src="/assets/images/articles/malaysias-internet-coverage-reaches-9975.webp" alt="2026 马来西亚日：为什么 5,000 人同时上网，不只是需要更快的网络" class="blog-detail-cover" loading="lazy" width="800" height="450" />
+      <div class="blog-detail-date">17/09/2026</div>
+      <h1 class="blog-detail-title">2026 马来西亚日：为什么 5,000 人同时上网，不只是需要更快的网络</h1>
+      
+    <section class="ai-summary-box">
+      <div class="ai-summary-badge">✨ NetBijak AI 智能摘要</div>
+      <p>2026年马来西亚日庆典的网络保障工作，向我们揭示了网络性能的本质区别：互联网出口带宽与Wi-Fi吞吐容量并非一回事。虽然庆典活动将上游容量从800Mbps提升至2Gbps，但若缺乏足够的接入点来分担无线流量，设备依然会因为争抢无线信道而变慢。这一逻辑同样适用于家庭环境，当家里连接设备变多时，一味升级宽带套餐未必能解决Wi-Fi拥堵问题。家庭用户应先通过网线直连测试排查瓶颈，确认是宽带端、有线链路端，还是无线覆盖与负载端的问题。通过优化设备摆放或增加Mesh节点，往往比单纯追求更高速率的配套更能有效改善上网体验。</p>
+    </section>
+      <div class="blog-detail-content"><p>如果超过 5,000 人同时集中在一个场地，网络最容易暴露的一个问题就是：</p><p><strong>Internet 很快，不代表 Wi-Fi 能同时服务这么多人。</strong></p><p>2026 年马来西亚日庆典在古晋 Borneo Convention Centre Kuching（BCCK）举行前，MCMC 和多家电讯商部署了临时网络设备，并增加 Access Point，以应付活动期间的大量网络使用。(<a href="https://sarawaktok.bernama.com/news.php?c=02&amp%3Bid=2608095" rel="noopener noreferrer nofollow" target="_blank">BERNAMA</a>) <a href="https://sarawaktok.bernama.com/news.php?c=02&amp%3Bid=2608095" rel="noopener noreferrer nofollow" target="_blank">BERNAMA – Malaysia Day 2026 Network Preparation</a></p><p>原本向 Telekom Malaysia（TM）提出的网络容量需求是 <strong>800Mbps</strong>，但 TM 最终把容量提高到 <strong>2Gbps</strong>。通讯副部长 Teo Nie Ching 也在活动相关说明中提到这一安排。(<a href="https://sarawaktok.bernama.com/news.php?c=02&amp%3Bid=2608095" rel="noopener noreferrer nofollow" target="_blank">BERNAMA</a>) <a href="https://sarawaktok.bernama.com/news.php?c=02&amp%3Bid=2608095" rel="noopener noreferrer nofollow" target="_blank">BERNAMA – Malaysia Day 2026 Connectivity</a></p><p>这里真正值得家庭用户学的，不是简单的“人多，所以买更快的宽带”。</p><p>而是：</p><p><strong>Internet 容量和 Wi-Fi 容量，是两回事。</strong></p><h2>2Gbps 不代表每台设备都有 2Gbps Wi-Fi</h2><p>把网络容量从 800Mbps 提高到 2Gbps，解决的是<strong>进入活动场地的上游容量</strong>。</p><p>但现场同时增加了 Access Point。(<a href="https://sarawaktok.bernama.com/news.php?c=02&amp%3Bid=2608095" rel="noopener noreferrer nofollow" target="_blank">BERNAMA</a>)</p><p>为什么两样都需要？</p><p>因为大量设备同时使用 Wi-Fi 时，还有一个资源需要管理：</p><p><strong>无线 Airtime。</strong></p><p>Cisco 的高密度 Wi-Fi 设计资料指出，大量客户端集中在小范围内时，会增加 Airtime Utilisation，因此频道和无线电资源规划变得非常重要。(<a href="https://www.cisco.com/c/en/us/td/docs/wireless/controller/technotes/8-7/b_wireless_high_client_density_design_guide.html" rel="noopener noreferrer nofollow" target="_blank">Cisco</a>) <a href="https://www.cisco.com/c/en/us/td/docs/wireless/controller/technotes/8-7/b_wireless_high_client_density_design_guide.html" rel="noopener noreferrer nofollow" target="_blank">Cisco – Wireless High Client Density Design Guide</a></p><p>所以即使一个场地有 <strong>2Gbps Internet Connection</strong>，如果大量设备都挤在少数 AP 上，Wi-Fi 依然可能成为瓶颈。</p><h2>为什么需要额外的 Access Point？</h2><p>Wi-Fi 使用的是共享的无线频谱。</p><p>当大量设备集中在一个区域，它们实际上是在争夺相同的无线资源。</p><p>Cisco 的高密度无线设计建议指出，客户端密度提高会增加 Airtime Utilisation，因此需要合理规划 Channel、Radio 和客户端分布。(<a href="https://www.cisco.com/c/en/us/td/docs/wireless/controller/technotes/8-7/b_wireless_high_client_density_design_guide.html" rel="noopener noreferrer nofollow" target="_blank">Cisco</a>) <a href="https://www.cisco.com/c/en/us/td/docs/wireless/controller/technotes/8-7/b_wireless_high_client_density_design_guide.html" rel="noopener noreferrer nofollow" target="_blank">Cisco – High Client Density Design</a></p><p>所以大型场馆不会简单地：</p><p><strong>中间放一台超强 Router → 让几千台手机一起连。</strong></p><p>更合理的设计是把客户端分散到多个 AP，让无线负载分开处理。</p><p>MCMC 为 Malaysia Day 2026 所做的准备，也采用了增加 AP 和临时网络设备的方式。(<a href="https://sarawaktok.bernama.com/news.php?c=02&amp%3Bid=2608095" rel="noopener noreferrer nofollow" target="_blank">BERNAMA</a>) <a href="https://sarawaktok.bernama.com/news.php?c=02&amp%3Bid=2608095" rel="noopener noreferrer nofollow" target="_blank">BERNAMA – Malaysia Day 2026 Connectivity</a></p><h2>真正的瓶颈，有时候是 Airtime</h2><p>这也是为什么单看 Speed Test 不能判断 Wi-Fi 是否健康。</p><p>你的 Internet Line 可能还有很多余量，但设备可能需要等待无线传输机会。</p><p>Cisco 的高密度无线设计资料把 Airtime Utilisation 列为重要设计因素，并建议根据客户端密度和 Radio 资源进行规划。(<a href="https://www.cisco.com/c/en/us/td/docs/wireless/controller/technotes/8-7/b_wireless_high_client_density_design_guide.html" rel="noopener noreferrer nofollow" target="_blank">Cisco</a>) <a href="https://www.cisco.com/c/en/us/td/docs/wireless/controller/technotes/8-7/b_wireless_high_client_density_design_guide.html" rel="noopener noreferrer nofollow" target="_blank">Cisco – High-Density Wireless Planning</a></p><p>对于家庭来说，规模当然远小于大型活动，但原理一样。</p><p>设备越来越多后，**“我的 Fibre 很快”<strong>和</strong>“我的 Wi-Fi 很快”**不是同一个问题。</p><h2>大型活动和家庭 Wi-Fi 有什么关系？</h2><p>Malaysia Day 是一个极端案例。</p><p>Cisco 将会议厅、体育场、讲堂等大量客户端集中在有限空间的环境视为 High-Density WLAN，需要不同于一般家庭网络的设计方式。(<a href="https://www.cisco.com/c/en/us/support/docs/wireless/catalyst-9800-series-wireless-controllers/222000-design-guide-cx-wireless-for-large-pub.html" rel="noopener noreferrer nofollow" target="_blank">Cisco</a>) <a href="https://www.cisco.com/c/en/us/support/docs/wireless/catalyst-9800-series-wireless-controllers/222000-design-guide-cx-wireless-for-large-pub.html" rel="noopener noreferrer nofollow" target="_blank">Cisco – Wireless for Large Public Venues</a></p><p>家里当然没有 5,000 人。</p><p>但如果几十台设备全部集中在一台位置摆放不理想的 AP 附近，也可能出现类似的无线拥塞问题。</p><p>区别只在于<strong>规模不同</strong>。</p><h2>800Mbps 升到 2Gbps 到底代表什么？</h2><p>从 <strong>800Mbps → 2Gbps</strong>，代表活动网络的上游容量增加了 <strong>2.5 倍</strong>。(<a href="https://sarawaktok.bernama.com/news.php?c=02&amp%3Bid=2608095" rel="noopener noreferrer nofollow" target="_blank">BERNAMA</a>) <a href="https://sarawaktok.bernama.com/news.php?c=02&amp%3Bid=2608095" rel="noopener noreferrer nofollow" target="_blank">BERNAMA – Malaysia Day 2026 Network Preparation</a></p><p>但这不代表每一位参加者可以拿到 2Gbps。</p><p>这是整个场地共享的网络容量。</p><p>每个人实际拿到多少，仍然取决于 Wi-Fi、Access Point、客户端设备以及网络如何分配流量。</p><p>所以：</p><p><strong>2Gbps Backhaul ≠ 每台设备 2Gbps。</strong></p><p>这也是为什么增加 AP 和提升上游容量需要同时进行。</p><h2>家庭网络瓶颈 4 步自查</h2><p>家里的 Wi-Fi 变慢，不要马上升级 Fibre。</p><p>先找出究竟是哪一层出问题。</p><table><tbody><tr><td data-row="1"><strong>步骤</strong></td><td data-row="1"><strong>检查什么</strong></td><td data-row="1"><strong>结果代表什么</strong></td></tr><tr><td data-row="2"><strong>1. Internet</strong></td><td data-row="2">用网线直接测速</td><td data-row="2">看 Fibre 本身有没有达到应有表现</td></tr><tr><td data-row="3"><strong>2. Ethernet</strong></td><td data-row="3">检查 WAN / LAN Port 速度</td><td data-row="3">发现 2Gbps 配套是否被 1GbE 卡住</td></tr><tr><td data-row="4"><strong>3. Wi-Fi Coverage</strong></td><td data-row="4">在靠近和远离 AP 的位置测试</td><td data-row="4">判断距离、墙体或 AP 摆放是否影响速度</td></tr><tr><td data-row="5"><strong>4. Wi-Fi Load</strong></td><td data-row="5">多台设备同时使用时测试</td><td data-row="5">判断是否在高负载下出现无线拥塞</td></tr></tbody></table><p>这个顺序可以把：</p><p><strong>宽带容量 → 有线容量 → Wi-Fi 覆盖 → 无线拥塞</strong></p><p>分开检查。</p><h3>一个简单例子</h3><p>假设你的 2Gbps Fibre 用网线测速正常。</p><p>但楼上的房间只有 300Mbps，而且家里同时有人看电视、打游戏、使用电脑。</p><p>这时候增加 Fibre 带宽，并不会直接解决楼上 Wi-Fi 的问题。</p><p>更值得检查的是：</p><p><strong>AP 摆放位置、额外 AP 或 Mesh 节点。</strong></p><p>反过来，如果直接用网线测速已经明显低于你的配套速度，那么先查 Fibre 或有线链路，换 Wi-Fi Router 不一定有帮助。</p><h2>为什么这件事对马来西亚 1Gbps 和 2Gbps 用户越来越重要？</h2><p>马来西亚家庭开始使用 1Gbps 和 2Gbps Fibre 后，网络瓶颈不一定还发生在 Broadband Line。</p><p>例如：</p><p><strong>2Gbps Fibre</strong></p><p>↓</p><p><strong>2.5GbE / Multi-Gig Router</strong></p><p>↓</p><p><strong>Wi-Fi 7 / Wi-Fi 8 AP</strong></p><p>↓</p><p><strong>兼容的 Client Device</strong></p><p>如果 WAN 只有 1GbE，那么 2Gbps Fibre 在进入无线网络之前已经遇到瓶颈。</p><p>如果 Ethernet 没问题，但多个设备共享同一个 AP 时表现变差，那么问题又可能转移到无线层。</p><p>所以升级网络时，<strong>先找瓶颈比先买更快的 Package 更重要。</strong></p><h2>Wi-Fi 8 能解决这种问题吗？</h2><p>Wi-Fi 8 所对应的 IEEE P802.11bn 项目，目前重点之一就是 <strong>Ultra High Reliability</strong>，技术工作包含 Multi-AP Coordination、Coordinated Spatial Reuse 和 Interference Mitigation。(<a href="https://www.ieee802.org/11/Reports/802.11_Timelines.htm" rel="noopener noreferrer nofollow" target="_blank">IEEE</a>) <a href="https://www.ieee802.org/11/Reports/802.11_Timelines.htm" rel="noopener noreferrer nofollow" target="_blank">IEEE 802.11bn Project Timeline</a></p><p>这些方向与高密度无线环境确实有关系。</p><p>但 Wi-Fi 8 不是一颗可以自动消除拥塞的“魔法药”。</p><p>如果 AP 摆放不对、Ethernet 不够快，或者整个网络架构本身有问题，换上 Wi-Fi 8 也不会自动把这些问题消失。</p><p><strong>无线技术升级和网络设计，是两回事。</strong></p><h2>Malaysia Day 2026 给家庭用户的真正启示</h2><p>这次活动的网络准备其实很清楚：</p><p><strong>800Mbps 原始需求</strong></p><p>↓</p><p><strong>2Gbps 上游容量</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><br></li></ol><p><strong>更多 Access Point</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><br></li></ol><p><strong>临时网络设备</strong></p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><br></li></ol><p><strong>网络管理与监控</strong></p><p>MCMC 表示，这些措施是为了应付 BCCK 超过 5,000 名宾客和工作人员带来的高网络使用量。(<a href="https://sarawaktok.bernama.com/news.php?c=02&amp%3Bid=2608095" rel="noopener noreferrer nofollow" target="_blank">BERNAMA</a>) <a href="https://sarawaktok.bernama.com/news.php?c=02&amp%3Bid=2608095" rel="noopener noreferrer nofollow" target="_blank">BERNAMA – MCMC and Telcos Ensure Connectivity</a></p><p>重点不是“2Gbps 很快”。</p><p>重点是：</p><p><strong>容量增加之后，还必须有足够的无线基础设施把这些容量分配出去。</strong></p><h2>NetBijak's Take</h2><p>Malaysia Day 2026 展示的是一个很基本、但家庭用户经常忽略的事实：</p><p><strong>Internet Bandwidth 和 Wi-Fi Capacity 不是同一个东西。</strong></p><p>如果网络变慢，先找出瓶颈在哪一层，再决定是升级 Fibre、Ethernet、AP 还是整套 Wi-Fi 系统。</p><p class="ql-align-center"><strong style="color: rgb(255, 255, 255); background-color: initial;"><a href="/zh/find-your-plan/" rel="noopener noreferrer" target="_blank">🎯为我找配套 →</a></strong></p><h3><br></h3></div>
+      
+    <section class="section-card" id="article-faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div id="article-faq-list" class="faq-list">
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="0">
+        <span>为什么 Malaysia Day 2026 需要 2Gbps 和额外 Access Point？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>BCCK 活动预计有超过 5,000 名宾客和工作人员。MCMC 表示现场部署了临时网络设备和额外 AP，而 TM 也把原本要求的 800Mbps 容量提高到 2Gbps。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="1">
+        <span>2Gbps Internet 是不是代表每台 Wi-Fi 设备都能跑 2Gbps？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>不是。2Gbps 是共享的网络容量，每台设备的实际速度还受到 AP、无线环境、客户端和有线网络影响。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="2">
+        <span>为什么 Fibre 很快，Wi-Fi 还是会慢？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Wi-Fi 还有 Airtime、Channel Utilisation、Client Density 和 AP Placement 等限制。Cisco 的高密度无线设计资料也把 Airtime 视为独立的重要资源。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="3">
+        <span>家里加一个 AP，会不会比升级宽带更有效？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>如果真正的瓶颈在 Wi-Fi Coverage 或 Client Density，增加 AP 确实可能比继续提高 Fibre 速度更直接。但如果 Fibre 本身就没有达到配套速度，增加 AP 也解决不了上游问题。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="4">
+        <span>2Gbps Fibre 用户最应该先检查什么？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>先看四层：Internet → Ethernet → Wi-Fi Coverage → Wi-Fi Load</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="5">
+        <span>Wi-Fi 8 会不会自动解决 Wi-Fi Congestion？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>不会。802.11bn 正在研究 Multi-AP Coordination、Coordinated Spatial Reuse 和 Interference Mitigation 等机制，但 AP Placement、Ethernet 和整体网络设计仍然重要。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="6">
+        <span>大型活动的网络设计为什么和家庭不同？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>因为大型活动会在非常小的区域内集中大量未知客户端。Cisco 将这类场景视为 High-Density WLAN，需要专门的无线规划。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="7">
+        <span>家里的 Wi-Fi 很慢，应该先升级什么？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>先确定瓶颈。如果网线测速已经不正常，查 Broadband；如果网线正常但远处 Wi-Fi 很差，查 AP Coverage；如果多人同时使用时才明显变慢，检查 Wi-Fi Load 和 Airtime。</p></div>
+    </div></div>
+    </section>
+    </div>
+    
+    <section class="section-card" style="margin-top:1.5rem">
+      <h2>相关文章</h2>
+      <div class="blog-grid"><a href="/zh/blog/wifi-6-vs-wifi-72026-broadband-router-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/wifi-6-vs-wifi-7-do-you-need.webp" alt="WiFi 6 vs WiFi 7：2026 年到底需要升级 Broadband Router 吗？" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">13/09/2026</div>
+          <div class="blog-card-title">WiFi 6 vs WiFi 7：2026 年到底需要升级 Broadband Router 吗？</div>
+          <p class="blog-card-excerpt">如果你已经使用 1Gbps 或 2Gbps Fibre，WiFi 7 确实有机会让你的无线网络跑得更快、更稳定，但这并不代表所有 WiFi 6 用户都需要马上换 Router。WiFi 7 真正值得关...</p>
+        </div></a><a href="/zh/blog/-tiktoknetflix-fibre/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/how-to-stop-your-kids-tiktok-scrolling.webp" alt="孩子一直刷 TikTok，Netflix 一直卡？先别急着升级 Fibre" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">04/09/2026</div>
+          <div class="blog-card-title">孩子一直刷 TikTok，Netflix 一直卡？先别急着升级 Fibre</div>
+          <p class="blog-card-excerpt">为什么孩子刷 TikTok，Netflix 就开始卡？如果孩子一刷 TikTok，你的 Netflix 就开始 Buffer，先不要急着升级 Fibre 配套。问题可能是家里的 网络拥塞、WiFi 干...</p>
+        </div></a><a href="/zh/blog/melakano-microwave-policy-telco-tower-microwave-fibre/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/melakas-no-microwave-policy.webp" alt="Melaka「No Microwave Policy」是什么？为什么 Telco 正在把 Tower 从 Microwave 转向 Fibre？" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">News</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">28/08/2026</div>
+          <div class="blog-card-title">Melaka「No Microwave Policy」是什么？为什么 Telco 正在把 Tower 从 Microwave 转向 Fibre？</div>
+          <p class="blog-card-excerpt">Melaka 为什么要逐步淘汰 Microwave？马六甲正在推动更加以 Fibre 为基础的 Telecommunications Infrastructure。2026 年 8 月 27 日，《T...</p>
+        </div></a><a href="/zh/blog/tm-unifi-fibrewifi-streamyx/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/tm-continues-copper-broadband-phase-out.webp" alt="TM 持续淘汰铜线宽频：旧网络用户可升级 Unifi Fibre，WiFi 体验或将更稳定" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">News</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">23/08/2026</div>
+          <div class="blog-card-title">TM 持续淘汰铜线宽频：旧网络用户可升级 Unifi Fibre，WiFi 体验或将更稳定</div>
+          <p class="blog-card-excerpt">资料来源：Unifi / TM 官方公告本文报道的是 TM 持续进行中的铜线宽频退役计划，并非表示该计划于本文发布日期当天才首次宣布。TM 持续淘汰旧铜线宽频马来西亚的传统铜线宽频网络正在逐步退出市场...</p>
+        </div></a><a href="/zh/blog/mcmc-unifi-maxis-zh/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/mcmc-reviews-malaysias-msap-rules-unifi-vs-maxis.webp" alt="MCMC 审查 MSAP，Unifi 与 Maxis 再度过招！未来马来西亚家用光纤会更便宜吗？" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">News</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">22/08/2026</div>
+          <div class="blog-card-title">MCMC 审查 MSAP，Unifi 与 Maxis 再度过招！未来马来西亚家用光纤会更便宜吗？</div>
+          <p class="blog-card-excerpt">MCMC 审查 MSAP，马来西亚家用 Fibre 宽频会迎来新一轮价格战吗？马来西亚宽频用户近期可能需要关注一个重要变化——马来西亚通讯及多媒体委员会（MCMC）正在推进新一轮 Mandatory ...</p>
+        </div></a><a href="/zh/blog/malaysias-internet-coverage-reaches-9975-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/malaysias-internet-coverage-reaches-9975.webp" alt="马来西亚网络覆盖率达99.75%，为什么还是有人装不到 Fibre？" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">17/09/2026</div>
+          <div class="blog-card-title">马来西亚网络覆盖率达99.75%，为什么还是有人装不到 Fibre？</div>
+          <p class="blog-card-excerpt">截至2026年7月31日，马来西亚人口聚集区的互联网及通信覆盖率已经达到 99.75%。但这并不代表99.75%的家庭都可以马上申请 Fibre Broadband。真正需要分清楚的是：Network...</p>
+        </div></a></div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script>const ROOT_PATH = "/"; const PAGE_TRANSLATIONS = {"en":"/en/blog/malaysias-internet-coverage-reaches-9975-so-why-cant-everyone-get-fibre/","ms":"/ms/blog/malaysia-day-2026-apa-yang-5000-pengguna-dalam-satu-venue-ajarkan-tentang-network-congestion/","zh":"/zh/blog/2026-5000-/"};</script>
+  <script src="/assets/js/tracking.js"></script>
+  <script src="/assets/js/translations.js"></script>
+  <script src="/assets/js/site.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("#article-faq-list .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#article-faq-list .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
+    });
+  </script>
+
+  <div id="mascot-widget" class="mascot-widget">
+    <button type="button" class="mascot-close-btn" id="mascot-close-btn" aria-label="Close">✕</button>
+    <a href="https://wa.me/60178835110?text=Hi%20NetBijak%2C%20I'm%20reading%20%222026%20%E9%A9%AC%E6%9D%A5%E8%A5%BF%E4%BA%9A%E6%97%A5%EF%BC%9A%E4%B8%BA%E4%BB%80%E4%B9%88%205%2C000%20%E4%BA%BA%E5%90%8C%E6%97%B6%E4%B8%8A%E7%BD%91%EF%BC%8C%E4%B8%8D%E5%8F%AA%E6%98%AF%E9%9C%80%E8%A6%81%E6%9B%B4%E5%BF%AB%E7%9A%84%E7%BD%91%E7%BB%9C%22%20and%20have%20a%20question." target="_blank" class="mascot-avatar-link">
+      <img src="/assets/images/mascot.png" alt="NetBijak Assistant" class="mascot-avatar-img" />
+      <span class="mascot-bubble">有问题吗？</span>
+    </a>
+  </div>
+  <script>
+    (function() {
+      var storageKey = "mascot-closed-2026-5000-";
+      var widget = document.getElementById("mascot-widget");
+      var closeBtn = document.getElementById("mascot-close-btn");
+      if (sessionStorage.getItem(storageKey)) {
+        widget.style.display = "none";
+      }
+      closeBtn.addEventListener("click", function() {
+        widget.style.display = "none";
+        sessionStorage.setItem(storageKey, "1");
+      });
+    })();
+  </script>
+</body>
+</html>
