@@ -1,8 +1,10 @@
 // NetBijak.com - Admin 配套管理逻辑
 
 let allProvidersCache = [];
+let allTermsCache = [];
 let editingPlanId = null;
 let planQuillEditor = null;
+let announcementQuillEditor = null;
 
 async function initAdminPlansPage() {
   const session = await checkAdminAuth();
@@ -14,7 +16,9 @@ async function initAdminPlansPage() {
   document.getElementById("admin-logout-btn").addEventListener("click", handleAdminLogout);
 
   initPlanQuillEditor();
+  initAnnouncementQuillEditor();
   await loadProviderOptions();
+  await loadTermsOptions();
   await loadPlansList();
 
   document.getElementById("filter-provider").addEventListener("change", loadPlansList);
@@ -23,6 +27,7 @@ async function initAdminPlansPage() {
   document.getElementById("btn-cancel-form").addEventListener("click", closePlanForm);
   document.getElementById("btn-add-banner").addEventListener("click", addBannerRow);
   document.getElementById("form-promo-enabled").addEventListener("change", togglePromoFieldsVisibility);
+  document.getElementById("form-announcement-enabled").addEventListener("change", toggleAnnouncementFieldsVisibility);
 }
 
 function initPlanQuillEditor() {
@@ -41,9 +46,35 @@ function initPlanQuillEditor() {
   });
 }
 
+function initAnnouncementQuillEditor() {
+  announcementQuillEditor = new Quill("#announcement-quill-editor", {
+    theme: "snow",
+    modules: {
+      toolbar: [
+        [{ header: [2, 3, false] }],
+        ["bold", "italic", "underline"],
+        [{ list: "ordered" }, { list: "bullet" }],
+        ["link"],
+        ["clean"],
+      ],
+    },
+    placeholder: "Write the promotion announcement content (prize breakdown, steps, notes)...",
+  });
+}
+
 function togglePromoFieldsVisibility() {
   const enabled = document.getElementById("form-promo-enabled").checked;
   const wrap = document.getElementById("promo-fields-wrap");
+  if (enabled) {
+    wrap.classList.remove("hidden");
+  } else {
+    wrap.classList.add("hidden");
+  }
+}
+
+function toggleAnnouncementFieldsVisibility() {
+  const enabled = document.getElementById("form-announcement-enabled").checked;
+  const wrap = document.getElementById("announcement-fields-wrap");
   if (enabled) {
     wrap.classList.remove("hidden");
   } else {
@@ -65,6 +96,20 @@ async function loadProviderOptions() {
   const optionsHtml = allProvidersCache.map((p) => `<option value="${p.id}">${p.name}</option>`).join("");
   filterSelect.innerHTML = `<option value="">All Providers</option>` + optionsHtml;
   formSelect.innerHTML = optionsHtml;
+}
+
+async function loadTermsOptions() {
+  const { data: terms } = await supabaseClient
+    .from("promo_terms")
+    .select("id, name")
+    .order("name", { ascending: true });
+
+  allTermsCache = terms || [];
+
+  const select = document.getElementById("form-promo-terms-id");
+  select.innerHTML =
+    `<option value="">— Select T&C template —</option>` +
+    allTermsCache.map((t) => `<option value="${t.id}">${t.name}</option>`).join("");
 }
 
 async function loadPlansList() {
@@ -114,6 +159,7 @@ async function openPlanForm(planId) {
   document.getElementById("plan-form").reset();
   document.getElementById("banners-list").innerHTML = "";
   planQuillEditor.root.innerHTML = "";
+  announcementQuillEditor.root.innerHTML = "";
 
   if (planId) {
     const { data: plan } = await supabaseClient.from("plans").select("*").eq("id", planId).single();
@@ -143,12 +189,19 @@ async function openPlanForm(planId) {
       planQuillEditor.root.innerHTML = plan.deep_analysis || "";
       togglePromoFieldsVisibility();
 
+      document.getElementById("form-announcement-enabled").checked = plan.promo_announcement_enabled || false;
+      announcementQuillEditor.root.innerHTML = plan.promo_announcement_content || "";
+      document.getElementById("form-promo-terms-id").value = plan.promo_terms_id || "";
+      toggleAnnouncementFieldsVisibility();
+
       await loadBannersForPlan(planId);
     }
   } else {
     document.getElementById("form-is-published").checked = true;
     document.getElementById("form-promo-enabled").checked = false;
+    document.getElementById("form-announcement-enabled").checked = false;
     togglePromoFieldsVisibility();
+    toggleAnnouncementFieldsVisibility();
   }
 
   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -164,6 +217,9 @@ async function savePlan(e) {
 
   const deepAnalysisHtml = planQuillEditor.root.innerHTML.trim();
   const isEmptyEditor = deepAnalysisHtml === "<p><br></p>" || deepAnalysisHtml === "";
+
+  const announcementHtml = announcementQuillEditor.root.innerHTML.trim();
+  const isAnnouncementEmpty = announcementHtml === "<p><br></p>" || announcementHtml === "";
 
   const planData = {
     provider_id: document.getElementById("form-provider-id").value || null,
@@ -189,6 +245,9 @@ async function savePlan(e) {
     promo_image_name: document.getElementById("form-promo-image-name").value || null,
     promo_text: document.getElementById("form-promo-text").value || null,
     deep_analysis: isEmptyEditor ? null : deepAnalysisHtml,
+    promo_announcement_enabled: document.getElementById("form-announcement-enabled").checked,
+    promo_announcement_content: isAnnouncementEmpty ? null : announcementHtml,
+    promo_terms_id: document.getElementById("form-promo-terms-id").value || null,
   };
 
   const appTypeSlug = (planData.new_and_transfer || "").toLowerCase().includes("new")
