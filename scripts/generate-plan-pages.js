@@ -185,6 +185,13 @@ function buildPlanPageHtml(plan, provider, banners, relatedArticles, canonicalOv
       </div>`
     : "";
 
+  const announcementHtml = plan.promo_announcement_enabled && plan.promo_announcement_content
+    ? `<div class="plan-announcement-box">
+        ${plan.promo_announcement_content}
+        ${plan.promo_terms_slug ? `<p class="plan-announcement-terms-link"><a href="/terms/${escapeHtml(plan.promo_terms_slug)}/" target="_blank">👉 Click here to read full Terms & Conditions</a></p>` : ""}
+      </div>`
+    : "";
+
   let overviewHtml = "";
   if (plan.deep_analysis && plan.deep_analysis.trim().length > 0) {
     overviewHtml = `<div class="plan-deep-analysis">${plan.deep_analysis}</div>`;
@@ -257,6 +264,7 @@ function buildPlanPageHtml(plan, provider, banners, relatedArticles, canonicalOv
       </div>
     </div>
     ${promoHtml}
+    ${announcementHtml}
     ${overviewHtml}
     ${featuresHtml}
     ${articlesHtml}
@@ -309,8 +317,12 @@ async function generatePlanPages() {
   console.log('Fetching data...');
   const plans = await fetchFromSupabase(
     'plans',
-    'select=*,providers(id,name,slug,color_hex,logo_url),plan_banners(*)&is_published=eq.true'
+    'select=*,providers(id,name,slug,color_hex,logo_url),plan_banners(*),promo_terms(slug)&is_published=eq.true'
   );
+
+  plans.forEach((p) => {
+    p.promo_terms_slug = p.promo_terms ? p.promo_terms.slug : null;
+  });
   const articles = await fetchFromSupabase('articles', 'select=*&is_published=eq.true');
   const allReviews = await fetchFromSupabase(
     'plan_reviews',
