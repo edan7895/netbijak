@@ -96,6 +96,12 @@
       padding: 8px 16px; background: #e0f2fe; color: #0369a1; border: none;
       border-radius: 8px; font-size: 0.8rem; font-weight: 700; cursor: pointer;
     }
+
+    .announcement-section {
+      margin-top: 1.5rem; border-top: 2px solid #f1f5f9; padding-top: 1.25rem;
+    }
+    .announcement-section h3 { font-size: 1rem; margin-bottom: 0.5rem; }
+    #announcement-quill-editor { min-height: 260px; background: #fff; font-size: 0.9rem; }
   </style>
 </head>
 <body>
@@ -217,6 +223,22 @@
             <div class="form-field">
               <label>Promo Text</label>
               <textarea id="form-promo-text" placeholder="e.g. Free Samsung Galaxy Buds worth RM399 when you sign up!"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="announcement-section">
+          <div class="form-checkbox-row">
+            <input type="checkbox" id="form-announcement-enabled" />
+            <label for="form-announcement-enabled">Enable Promotion Announcement (shown below the banner)</label>
+          </div>
+          <div id="announcement-fields-wrap" class="hidden">
+            <p class="form-hint">Write the full campaign announcement (prize breakdown, how to participate, campaign notes). This appears directly below the banner on the plan page.</p>
+            <div id="announcement-quill-editor"></div>
+            <div class="form-field" style="margin-top:1rem">
+              <label>Link to Terms & Conditions</label>
+              <select id="form-promo-terms-id"></select>
+              <p class="form-hint">A "Click here to read full Terms & Conditions" link will be added automatically, pointing to this template's page.</p>
             </div>
           </div>
         </div>
