@@ -1165,3 +1165,22 @@ table.compare-table tbody tr:nth-child(odd) .compare-row-label { background: #ee
   padding: 1.5rem; background: #f0fdf4; border: 1.5px solid #86efac;
   border-radius: 14px; text-align: center; color: #166534;
 }
+
+
+/* ===== 配套详情页：促销公告区块 ===== */
+.plan-announcement-box {
+  background: #fffbeb; border: 2px solid #fbbf24; border-radius: 16px;
+  padding: 1.75rem; margin: 1.25rem 0; color: #78350f; line-height: 1.8;
+}
+.plan-announcement-box h1, .plan-announcement-box h2 { font-size: 1.2rem; margin: 1.25rem 0 0.75rem; color: #78350f; }
+.plan-announcement-box h1:first-child, .plan-announcement-box h2:first-child { margin-top: 0; }
+.plan-announcement-box h3 { font-size: 1.05rem; margin: 1rem 0 0.5rem; color: #78350f; }
+.plan-announcement-box p { margin-bottom: 0.9rem; }
+.plan-announcement-box ul, .plan-announcement-box ol { margin: 0 0 1rem 1.25rem; }
+.plan-announcement-box strong { color: #92400e; }
+.plan-announcement-terms-link {
+  margin-top: 1.25rem !important; padding-top: 1rem; border-top: 1px solid #fbbf24;
+}
+.plan-announcement-terms-link a {
+  color: #b45309; font-weight: 700; text-decoration: underline;
+}
