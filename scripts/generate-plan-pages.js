@@ -175,12 +175,13 @@ function buildPlanPageHtml(plan, provider, banners, relatedArticles, canonicalOv
     ? `<div class="detail-banner">${activeBanner.link_url ? `<a href="${escapeHtml(activeBanner.link_url)}" target="_blank">` : ""}<img src="${escapeHtml(activeBanner.image_url)}" alt="Promotion" />${activeBanner.link_url ? `</a>` : ""}</div>`
     : "";
 
+  const promoTextWithBreaks = escapeHtml(plan.promo_text || "").replace(/\n/g, "<br>");
   const promoHtml = plan.promo_enabled
     ? `<div class="plan-promo-box">
         ${plan.promo_image_name ? `<img src="/assets/images/promos/${escapeHtml(plan.promo_image_name)}" alt="Promotion" class="plan-promo-image" />` : ""}
         <div class="plan-promo-text">
           <h3>🎁 Promotion</h3>
-          <p>${escapeHtml(plan.promo_text || "")}</p>
+          <p>${promoTextWithBreaks}</p>
         </div>
       </div>`
     : "";
