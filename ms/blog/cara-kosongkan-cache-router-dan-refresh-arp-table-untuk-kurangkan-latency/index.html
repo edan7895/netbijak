@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cara Clear Cache Router dan Refresh ARP Table untuk Kurangkan Ping</title>
+  <meta name="description" content="Ketahui apa yang sebenarnya berlaku apabila router di-reboot, bagaimana ARP dan connection state berfungsi, serta sama ada reboot automatik setiap minggu boleh membantu masalah latency." />
+  <meta name="geo.region" content="MY" />
+  <meta name="geo.placename" content="Malaysia" />
+  <meta property="og:title" content="Cara Clear Cache Router dan Refresh ARP Table untuk Kurangkan Ping" />
+  <meta property="og:description" content="Ketahui apa yang sebenarnya berlaku apabila router di-reboot, bagaimana ARP dan connection state berfungsi, serta sama ada reboot automatik setiap minggu boleh membantu masalah latency." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://netbijak.com/assets/images/articles/how-to-clear-router-cache.webp" />
+  <meta property="og:url" content="https://netbijak.com/ms/blog/cara-kosongkan-cache-router-dan-refresh-arp-table-untuk-kurangkan-latency/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://netbijak.com/ms/blog/cara-kosongkan-cache-router-dan-refresh-arp-table-untuk-kurangkan-latency/" />
+  <link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/blog/cara-kosongkan-cache-router-dan-refresh-arp-table-untuk-kurangkan-latency/" />
+  <link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/blog/-arp-/" />
+  <link rel="alternate" hreflang="en" href="https://netbijak.com/en/blog/how-to-clear-router-cache-and-refresh-arp-tables-for-better-latency/" />
+  <link rel="alternate" hreflang="x-default" href="https://netbijak.com/en/blog/how-to-clear-router-cache-and-refresh-arp-tables-for-better-latency/" />
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Adakah reboot router betul-betul boleh kurangkan Ping?","acceptedAnswer":{"@type":"Answer","text":"Boleh, tetapi hanya jika router itu sendiri menyumbang kepada masalah. Reboot boleh reset state sementara dan membantu router yang mengalami masalah software atau resource. Ia tidak akan menghapuskan latency yang berpunca daripada routing ISP, jarak server, congestion atau bahagian lain dalam network path."}},{"@type":"Question","name":"Adakah reboot akan clear ARP cache?","acceptedAnswer":{"@type":"Answer","text":"Reboot akan menyebabkan state ARP sementara dibina semula apabila peranti kembali berkomunikasi. Cara sebenar bergantung kepada firmware router. Peralatan networking tertentu juga mempunyai fungsi khusus untuk membuang dynamic ARP entries."}},{"@type":"Question","name":"Adakah reboot akan padam password Wi-Fi?","acceptedAnswer":{"@type":"Answer","text":"Tidak. Reboot biasa mengekalkan konfigurasi yang telah disimpan. Factory Reset ialah tindakan yang akan memadam konfigurasi tersebut."}},{"@type":"Question","name":"Perlu ke reboot router setiap minggu?","acceptedAnswer":{"@type":"Answer","text":"Tidak wajib. Scheduled reboot ialah langkah maintenance pilihan, dan lebih berguna pada router yang memang mempunyai sejarah masalah selepas uptime panjang. ASUS menyediakan fungsi Scheduled Reboot pada model yang disokong."}},{"@type":"Question","name":"Apa perlu dibuat kalau Ping masih tinggi selepas reboot?","acceptedAnswer":{"@type":"Answer","text":"Bandingkan Ping ke router dengan Ping ke destinasi luar. Jika router sendiri stabil tetapi destinasi Internet masih mempunyai latency tinggi, puncanya mungkin berada di luar rangkaian rumah. Gunakan Ping dan Traceroute untuk mengecilkan lokasi masalah."}}]}</script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="main">
+    <div id="blog-detail-container">
+      <a href="/ms/blog/" class="blog-back-link">← Kembali ke Blog</a>
+      <span class="blog-type-tag">Article</span>
+      <img src="/assets/images/articles/how-to-clear-router-cache.webp" alt="Cara Kosongkan Cache Router dan Refresh ARP Table untuk Kurangkan Latency" class="blog-detail-cover" loading="lazy" width="800" height="450" />
+      <div class="blog-detail-date">20/09/2026</div>
+      <h1 class="blog-detail-title">Cara Kosongkan Cache Router dan Refresh ARP Table untuk Kurangkan Latency</h1>
+      
+    <section class="ai-summary-box">
+      <div class="ai-summary-badge">✨ Ringkasan AI NetBijak</div>
+      <p>Ramai pengguna sering menyangka bahawa melakukan reboot atau mengosongkan cache router akan serta-merta menurunkan nilai Ping. Sebenarnya, tindakan ini hanya berfungsi untuk memulakan semula sistem operasi dan menyusun semula memori sementara router bagi menyelesaikan masalah perisian. Sebelum terus melakukan reboot, adalah lebih baik untuk menguji sama ada punca masalah datang daripada rangkaian dalaman rumah atau laluan Internet luar. Anda boleh menggunakan ujian Ping mudah ke arah router dan destinasi Internet untuk mengenal pasti punca sebenar kelewatan tersebut. Jika router memang mengalami masalah teknikal sementara, reboot biasanya dapat memulihkan prestasi sistem ke tahap normal. Walau bagaimanapun, reboot tidak akan memendekkan laluan Internet ISP anda atau menurunkan nilai Ping secara drastik jika masalahnya berpunca daripada trafik di luar rumah anda.</p>
+    </section>
+      <div class="blog-detail-content"><p>Kalau Ping mula tidak stabil selepas router digunakan berterusan untuk tempoh yang lama, <strong>reboot memang patut dicuba</strong>. Tetapi anggapan bahawa “clear cache router akan terus turunkan Ping” tidak tepat dari sudut teknikal.</p><p>Reboot hanya reset sebahagian daripada keadaan sementara yang sedang digunakan oleh router. Sama ada latency benar-benar bertambah baik bergantung pada punca masalah — router, rangkaian dalam rumah, atau laluan Internet selepas trafik keluar daripada rumah.</p><p>Sebab itu, NetBijak lebih suka <strong>uji punca dahulu sebelum reboot</strong>, bukannya terus restart setiap kali Ping naik.</p><h2>Apa Sebenarnya yang Ada dalam “Router Cache”?</h2><p>“Router cache” bukan satu cache tunggal.</p><p>Router rumah menyimpan beberapa jenis maklumat sementara semasa ia beroperasi, termasuk maklumat ARP, status sambungan aktif dan data yang digunakan oleh proses router.</p><p>ARP digunakan untuk memadankan alamat IPv4 pada rangkaian tempatan dengan alamat perkakasan peranti. Cisco menerangkan bahawa entri ARP dinamik boleh dikosongkan dan dipelajari semula.</p><p><a href="https://www.cisco.com/c/en/us/td/docs/routers/ios-xe/ip-addressing/ip-addressing/m_arp-config-arp-0.html" rel="noopener noreferrer nofollow" target="_blank">Sumber: Cisco – ARP Configuration</a></p><p>Setiap fungsi ini berbeza:</p><table><tbody><tr><td data-row="1">State</td><td data-row="1">Fungsi</td><td data-row="1">Apa berlaku selepas reboot</td></tr><tr><td data-row="2">ARP Cache</td><td data-row="2">Memadankan IP tempatan dengan alamat MAC peranti</td><td data-row="2">Entri dinamik dibina semula</td></tr><tr><td data-row="3">Connection State</td><td data-row="3">Menjejak sambungan aktif untuk NAT dan fungsi firewall</td><td data-row="3">State sementara dibuang dan sambungan baharu dibina</td></tr><tr><td data-row="4">Runtime Memory</td><td data-row="4">Digunakan oleh proses dan servis router</td><td data-row="4">Diperuntukkan semula selepas restart</td></tr><tr><td data-row="5">Routing / Forwarding State</td><td data-row="5">Menentukan ke mana paket perlu dihantar</td><td data-row="5">Diinisialisasi semula</td></tr><tr><td data-row="6">Saved Configuration</td><td data-row="6">Tetapan Wi-Fi, WAN, LAN dan firewall</td><td data-row="6">Biasanya dikekalkan</td></tr></tbody></table><p>Jadi, istilah “clear router cache” sebenarnya terlalu umum untuk menerangkan apa yang berlaku dalam router.</p><h2>Apa yang Berlaku Bila Router Di-Reboot?</h2><p>Reboot biasa akan memulakan semula sistem operasi dan servis rangkaian router. State sementara kemudian dibina semula.</p><p>Bagi pengguna rumah, tiga perkara lebih relevan.</p><p><strong>Maklumat ARP akan dipelajari semula.</strong></p><p>Apabila peranti mula berkomunikasi semula, router akan membina semula pemetaan IP dan MAC yang diperlukan.</p><p><a href="https://www.cisco.com/c/en/us/td/docs/routers/ios-xe/ip-addressing/ip-addressing/m_arp-config-arp-0.html" rel="noopener noreferrer nofollow" target="_blank">Sumber: Cisco – ARP Configuration</a></p><p><strong>Sambungan aktif perlu dibina semula.</strong></p><p>Router yang menggunakan NAT dan stateful firewall menyimpan maklumat mengenai sambungan rangkaian yang sedang aktif. Selepas reboot, state sementara tersebut tidak lagi aktif dan sambungan baharu akan diwujudkan.</p><p><strong>Memory router akan diperuntukkan semula.</strong></p><p>ASUS menyatakan bahawa reboot boleh melepaskan penggunaan RAM sementara dan membantu prestasi sistem router pada peranti yang disokong.</p><p><a href="https://www.asus.com/support/faq/1011431/" rel="noopener noreferrer nofollow" target="_blank">Sumber: ASUS – How to Reboot Your Router</a></p><p>Ini menjelaskan kenapa sesetengah router yang mula menunjukkan tingkah laku pelik selepas uptime yang panjang boleh kembali normal selepas reboot.</p><p>Tetapi router yang sihat memang direka untuk berjalan berterusan. <strong>Uptime yang panjang bukan bukti bahawa router mesti direboot setiap minggu.</strong></p><h2>Cara Tentukan Sama Ada Router Memang Menjadi Punca</h2><p>Jangan reboot dahulu.</p><p>Buat dua ujian mudah.</p><h3>1. Ping router anda</h3><p>Dalam Windows, anda boleh Ping default Gateway seperti:</p><p><code>192.168.1.1</code></p><p>Alamat sebenar bergantung kepada konfigurasi rangkaian rumah anda.</p><h3>2. Ping destinasi di Internet</h3><p>Sebagai contoh, <code>1.1.1.1</code>, iaitu salah satu alamat public DNS resolver Cloudflare yang diterbitkan secara rasmi.</p><p><a href="https://developers.cloudflare.com/1.1.1.1/ip-addresses/" rel="noopener noreferrer nofollow" target="_blank">Sumber: Cloudflare – 1.1.1.1 IP Addresses</a></p><p>Kemudian lihat perbezaannya:</p><table><tbody><tr><td data-row="1">Keputusan</td><td data-row="1">Kemungkinan punca</td></tr><tr><td data-row="2">Ping ke router sendiri tinggi / tidak stabil</td><td data-row="2">Wi-Fi, Ethernet, router atau LAN</td></tr><tr><td data-row="3">Ping ke router stabil tetapi Internet tinggi</td><td data-row="3">Masalah lebih berkemungkinan berlaku di luar LAN</td></tr><tr><td data-row="4">Kedua-duanya pulih selepas reboot</td><td data-row="4">Router mungkin menyumbang kepada masalah</td></tr><tr><td data-row="5">Tiada perubahan selepas reboot</td><td data-row="5">Router mungkin bukan punca utama</td></tr></tbody></table><p>Ping digunakan untuk mengukur masa pergi balik sesuatu trafik. Cisco juga menyenaraikan Ping dan Traceroute sebagai alat asas untuk mengesan masalah rangkaian dan mengenal pasti di mana kelewatan berlaku.</p><p><a href="https://www.cisco.com/c/en-us/support/docs/ios-nx-os-software/ios-software-releases-121-mainline/12778-ping-traceroute.html" rel="noopener noreferrer nofollow" target="_blank">Sumber: Cisco – Using Ping and Traceroute</a></p><p>Ini lebih berguna daripada reboot dahulu dan hanya membuat keputusan berdasarkan “rasa Internet macam lebih laju”.</p><h2>Kenapa Reboot Kadang-kadang Membantu?</h2><p>Reboot memberikan router satu permulaan runtime yang bersih.</p><p>State sementara dibina semula, servis rangkaian dimulakan semula dan memory untuk proses router diperuntukkan semula.</p><p>ASUS menyatakan bahawa reboot boleh melepaskan RAM dan membantu prestasi sistem pada router yang disokong.</p><p><a href="https://www.asus.com/support/faq/1011431/" rel="noopener noreferrer nofollow" target="_blank">Sumber: ASUS – Router Reboot</a></p><p>Maklumat ARP dinamik juga akan dipelajari semula apabila peranti mula berkomunikasi selepas restart.</p><p><a href="https://www.cisco.com/c/en/us/td/docs/routers/ios-xe/ip-addressing/ip-addressing/m_arp-config-arp-0.html" rel="noopener noreferrer nofollow" target="_blank">Sumber: Cisco – ARP Configuration</a></p><p>Jadi reboot boleh membantu apabila router mengalami masalah software sementara, state sambungan yang pelik atau masalah pengurusan sumber.</p><p>Tetapi:</p><p><strong>Reboot boleh memulihkan router kepada keadaan normal. Ia bukan cara untuk menjadikan laluan broadband ISP anda lebih pendek.</strong></p><p>Kalau Ping ke server tertentu biasanya 10ms, membersihkan state router bukan alasan yang kukuh untuk menjangka ia automatik turun ke 5ms.</p><h2>Cara Reboot Router Dengan Betul</h2><p>Untuk kebanyakan router rumah, anda tidak perlu mencari fungsi khas bernama “Clear Cache”.</p><h3>1. Rekod masalah dahulu</h3><p>Buat ujian Ping ke router dan satu destinasi Internet.</p><h3>2. Gunakan Reboot atau Restart</h3><p>Masuk ke aplikasi atau web interface router dan pilih <strong>Reboot</strong>, <strong>Restart</strong> atau fungsi yang setara.</p><p>ASUS menyatakan reboot biasa tidak mengubah tetapan router yang telah disimpan.</p><p><a href="https://www.asus.com/support/faq/1053498/" rel="noopener noreferrer nofollow" target="_blank">Sumber: ASUS – Router Reboot</a></p><h3>3. Tunggu WAN kembali sepenuhnya</h3><p>Jangan terus buat ujian sebaik sahaja Wi-Fi muncul. Tunggu sambungan Internet stabil.</p><h3>4. Sambung semula peranti yang bermasalah</h3><p>Jika hanya satu PC, telefon atau konsol mengalami masalah, disconnect dan reconnect sambungan rangkaiannya.</p><h3>5. Ulang ujian yang sama</h3><p>Gunakan peranti, kaedah sambungan dan destinasi yang sama.</p><p>Barulah perbandingan sebelum dan selepas reboot mempunyai makna.</p><h2>ARP Tidak Semestinya Punca Ping Tinggi</h2><p>ARP memang penting, tetapi ia terutama digunakan dalam <strong>rangkaian tempatan</strong>.</p><p>Ia membantu peranti mencari alamat perkakasan yang berkaitan dengan alamat IP pada rangkaian setempat. Entri dinamik boleh dikosongkan dan dipelajari semula.</p><p><a href="https://www.cisco.com/c/en/us/td/docs/routers/ios-xe/ip-addressing/ip-addressing/m_arp-config-arp-0.html" rel="noopener noreferrer nofollow" target="_blank">Sumber: Cisco – ARP Configuration</a></p><p>ARP lebih relevan apabila:</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Satu peranti tiba-tiba tidak dapat berkomunikasi dengan peranti lain dalam LAN.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Peranti bertukar interface rangkaian.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Rangkaian tempatan mula menunjukkan masalah selepas perkakasan disambung semula.</li></ol><p>Tetapi untuk masalah seperti <strong>Ping tinggi ke server game luar negara</strong>, menjadikan ARP sebagai suspek utama biasanya tidak cukup berasas.</p><h2>Salah Faham Biasa: Reboot Tidak “Refresh” Laluan Internet</h2><p>Router rumah anda mempunyai routing dan forwarding state sendiri, tetapi trafik Internet tidak berhenti di router rumah.</p><p>Selepas keluar dari rumah, trafik mungkin melalui ISP dan beberapa rangkaian lain sebelum sampai ke destinasi.</p><p>Jadi, <strong>reboot router rumah tidak akan mengosongkan routing table ISP atau memaksa seluruh Internet membina semula laluan.</strong></p><p>Cisco mengesyorkan Ping dan Traceroute untuk mengenal pasti bahagian rangkaian yang menyebabkan masalah, bukannya terus menganggap router di rumah sebagai punca.</p><p><a href="https://www.cisco.com/c/en-us/support/docs/ios-nx-os-software/ios-software-releases-121-mainline/12778-ping-traceroute.html" rel="noopener noreferrer nofollow" target="_blank">Sumber: Cisco – Using Ping and Traceroute</a></p><p>Begitu juga, reboot tidak semestinya menyelesaikan:</p><p><strong>Gangguan Wi-Fi:</strong> Signal lemah, interference dan retransmission boleh meningkatkan latency.</p><p><strong>Penggunaan Internet yang berat:</strong> Upload atau download besar boleh menghasilkan queueing delay.</p><p><strong>Routing ISP:</strong> Jika kelewatan datang daripada ISP atau upstream network, restart router tidak mengubah struktur rangkaian tersebut.</p><p><strong>Jarak server:</strong> Server yang jauh masih memerlukan laluan rangkaian yang lebih panjang.</p><p><strong>Masalah fibre atau hardware:</strong> Kabel Ethernet rosak, ONT/BTU bermasalah atau gangguan fibre tidak akan pulih hanya kerana cache dibersihkan.</p><p>Dan jangan terus anggap banyak ARP entries atau active connections bermaksud router sudah “penuh”. Semua itu merupakan fungsi normal router yang sedang bekerja.</p><h2>Perlukah Reboot Automatik Setiap Minggu?</h2><p><strong>Tiada peraturan umum yang mewajibkan router rumah reboot sekali seminggu.</strong></p><p>Tetapi jika model router anda menyokong Scheduled Reboot, fungsi itu boleh digunakan sebagai langkah penyelenggaraan.</p><p>ASUS menyediakan Scheduled Reboot pada model yang disokong dan membolehkan pengguna memilih hari serta masa restart.</p><p><a href="https://www.asus.com/support/faq/1049258/" rel="noopener noreferrer nofollow" target="_blank">Sumber: ASUS – Scheduled Reboot</a></p><p>Untuk penggunaan rumah, waktu seperti ini masuk akal:</p><p><strong>Sekali seminggu — 3:00 pagi atau 4:00 pagi</strong></p><p>Pilih waktu ketika tiada sesiapa memerlukan Internet.</p><p>Router yang stabil selama berbulan-bulan tidak semestinya perlu direboot hanya kerana sudah cukup tujuh hari.</p><p>Tetapi jika router anda memang kerap mula perlahan, reconnect atau menunjukkan masalah pelik selepas uptime panjang, scheduled reboot boleh menjadi langkah penyelenggaraan yang praktikal.</p><h2>Reboot vs Factory Reset</h2><p>Dua perkara ini sangat berbeza.</p><table><tbody><tr><td data-row="1">Tindakan</td><td data-row="1">State sementara</td><td data-row="1">Tetapan disimpan</td><td data-row="1">Kegunaan</td></tr><tr><td data-row="2">Reboot</td><td data-row="2">Dimulakan semula</td><td data-row="2">Kekal</td><td data-row="2">Maintenance dan troubleshooting</td></tr><tr><td data-row="3">Factory Reset</td><td data-row="3">Dikosongkan</td><td data-row="3">Dipadam</td><td data-row="3">Bina semula konfigurasi</td></tr></tbody></table><p>ASUS juga membezakan reboot biasa dengan factory reset. Reboot tidak memadam tetapan yang telah disimpan.</p><p><a href="https://www.asus.com/support/faq/1053498/" rel="noopener noreferrer nofollow" target="_blank">Sumber: ASUS – Router Reboot</a></p><p>Jadi, untuk masalah Ping tinggi, <strong>jangan terus buat Factory Reset</strong>.</p><h2>NetBijak's Take</h2><p>NetBijak tidak akan menggunakan kaedah:</p><p><strong>Ping tinggi → reboot → harap jadi lebih laju.</strong></p><p>Kaedah yang lebih berguna ialah:</p><p><strong>Ping router → Ping destinasi Internet → reboot → ulang kedua-dua ujian.</strong></p><p>Jika Ping ke router sendiri sudah tidak stabil, periksa rangkaian tempatan dahulu.</p><p>Jika router kekal stabil tetapi Ping ke Internet masih tinggi, mengosongkan router cache berulang kali mungkin bukan penyelesaiannya.</p><p>Jika kedua-dua ujian pulih selepas reboot, barulah router patut dianggap sebagai salah satu suspek utama.</p><p>Itulah sebabnya “clear cache untuk turunkan Ping” terlalu mudah sebagai nasihat troubleshooting. <strong>Ukur dahulu, kemudian buat keputusan.</strong></p><p class="ql-align-center"><strong style="color: rgb(255, 255, 255); background-color: initial;"><a href="/ms/compare/" rel="noopener noreferrer" target="_blank">⚖️Bandingkan Pelan →</a></strong></p><h3><br></h3></div>
+      
+    <section class="section-card" id="article-faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div id="article-faq-list" class="faq-list">
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="0">
+        <span>Adakah reboot router betul-betul boleh kurangkan Ping?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Boleh, tetapi hanya jika router itu sendiri menyumbang kepada masalah. Reboot boleh reset state sementara dan membantu router yang mengalami masalah software atau resource. Ia tidak akan menghapuskan latency yang berpunca daripada routing ISP, jarak server, congestion atau bahagian lain dalam network path.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="1">
+        <span>Adakah reboot akan clear ARP cache?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Reboot akan menyebabkan state ARP sementara dibina semula apabila peranti kembali berkomunikasi. Cara sebenar bergantung kepada firmware router. Peralatan networking tertentu juga mempunyai fungsi khusus untuk membuang dynamic ARP entries.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="2">
+        <span>Adakah reboot akan padam password Wi-Fi?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Tidak. Reboot biasa mengekalkan konfigurasi yang telah disimpan. Factory Reset ialah tindakan yang akan memadam konfigurasi tersebut.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="3">
+        <span>Perlu ke reboot router setiap minggu?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Tidak wajib. Scheduled reboot ialah langkah maintenance pilihan, dan lebih berguna pada router yang memang mempunyai sejarah masalah selepas uptime panjang. ASUS menyediakan fungsi Scheduled Reboot pada model yang disokong.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="4">
+        <span>Apa perlu dibuat kalau Ping masih tinggi selepas reboot?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Bandingkan Ping ke router dengan Ping ke destinasi luar. Jika router sendiri stabil tetapi destinasi Internet masih mempunyai latency tinggi, puncanya mungkin berada di luar rangkaian rumah. Gunakan Ping dan Traceroute untuk mengecilkan lokasi masalah.</p></div>
+    </div></div>
+    </section>
+    </div>
+    
+    <section class="section-card" style="margin-top:1.5rem">
+      <h2>Artikel Berkaitan</h2>
+      <div class="blog-grid"><a href="/ms/blog/pembaikan-kabel-dasar-laut-kenapa-website-antarabangsa-tiba-tiba-jadi-slow/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/submarine-cable-repairs.webp" alt="Pembaikan Kabel Dasar Laut: Kenapa Website Antarabangsa Tiba-Tiba Jadi Slow?" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">09/09/2026</div>
+          <div class="blog-card-title">Pembaikan Kabel Dasar Laut: Kenapa Website Antarabangsa Tiba-Tiba Jadi Slow?</div>
+          <p class="blog-card-excerpt">Kalau website Malaysia masih boleh dibuka seperti biasa tetapi website dari Amerika Syarikat, Jepun ...</p>
+        </div></a><a href="/ms/blog/cara-troubleshoot-internet-unifi-panduan-langkah-demi-langkah/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/how-to-troubleshoot-unifi-internet-problems.webp" alt="Cara Troubleshoot Internet Unifi: Panduan Langkah demi Langkah" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">05/09/2026</div>
+          <div class="blog-card-title">Cara Troubleshoot Internet Unifi: Panduan Langkah demi Langkah</div>
+          <p class="blog-card-excerpt">Jika Internet Unifi anda perlahan atau tidak berfungsi, semak outage dahulu, periksa peralatan dan l...</p>
+        </div></a><a href="/ms/blog/kenapa-internet-saya-perlahan/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/why-is-my-internet-slow.webp" alt="Kenapa Internet Saya Perlahan?" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">31/08/2026</div>
+          <div class="blog-card-title">Kenapa Internet Saya Perlahan?</div>
+          <p class="blog-card-excerpt">Kenapa Internet Saya Perlahan?Internet yang perlahan tidak semestinya bermaksud pelan broadband anda...</p>
+        </div></a><a href="/ms/blog/cara-elak-kontrak-broadband-reset-24-bulan-semasa-ownership-transfer/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/transferring-broadband-ownership-how-to-avoid-contract.webp" alt="Cara Elak Kontrak Broadband Reset 24 Bulan Semasa Ownership Transfer" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">19/09/2026</div>
+          <div class="blog-card-title">Cara Elak Kontrak Broadband Reset 24 Bulan Semasa Ownership Transfer</div>
+          <p class="blog-card-excerpt">Menukar nama pemilik akaun Fibre Broadband tidak semestinya bermaksud kontrak, promosi dan komitmen ...</p>
+        </div></a><a href="/ms/blog/tp-link-wi-fi-8-kini-di-malaysia-apa-yang-sebenarnya-berubah/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/tp-link-wi-fi-8-arrives-in-malaysia.webp" alt="TP-Link Wi-Fi 8 Kini di Malaysia: Apa Yang Sebenarnya Berubah?" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">18/09/2026</div>
+          <div class="blog-card-title">TP-Link Wi-Fi 8 Kini di Malaysia: Apa Yang Sebenarnya Berubah?</div>
+          <p class="blog-card-excerpt">TP-Link sudah memperkenalkan Wi-Fi 8 di Malaysia, tetapi perkara yang lebih penting bukan angka kela...</p>
+        </div></a><a href="/ms/blog/liputan-internet-malaysia-cecah-9975-jadi-kenapa-masih-ada-rumah-tak-boleh-pasang-fibre/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/malaysias-internet-coverage-reaches-9975.webp" alt="Liputan Internet Malaysia Cecah 99.75% — Jadi Kenapa Masih Ada Rumah Tak Boleh Pasang Fibre?" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">17/09/2026</div>
+          <div class="blog-card-title">Liputan Internet Malaysia Cecah 99.75% — Jadi Kenapa Masih Ada Rumah Tak Boleh Pasang Fibre?</div>
+          <p class="blog-card-excerpt">Setakat 31 Julai 2026, liputan internet dan komunikasi di kawasan berpenduduk Malaysia telah mencapa...</p>
+        </div></a></div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script>const ROOT_PATH = "/"; const PAGE_TRANSLATIONS = {"ms":"/ms/blog/cara-kosongkan-cache-router-dan-refresh-arp-table-untuk-kurangkan-latency/","zh":"/zh/blog/-arp-/","en":"/en/blog/how-to-clear-router-cache-and-refresh-arp-tables-for-better-latency/"};</script>
+  <script src="/assets/js/tracking.js"></script>
+  <script src="/assets/js/translations.js"></script>
+  <script src="/assets/js/site.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("#article-faq-list .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#article-faq-list .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
+    });
+  </script>
+
+  <div id="mascot-widget" class="mascot-widget">
+    <button type="button" class="mascot-close-btn" id="mascot-close-btn" aria-label="Close">✕</button>
+    <a href="https://wa.me/60178835110?text=Hi%20NetBijak%2C%20I'm%20reading%20%22Cara%20Kosongkan%20Cache%20Router%20dan%20Refresh%20ARP%20Table%20untuk%20Kurangkan%20Latency%22%20and%20have%20a%20question." target="_blank" class="mascot-avatar-link">
+      <img src="/assets/images/mascot.png" alt="NetBijak Assistant" class="mascot-avatar-img" />
+      <span class="mascot-bubble">Ada soalan?</span>
+    </a>
+  </div>
+  <script>
+    (function() {
+      var storageKey = "mascot-closed-cara-kosongkan-cache-router-dan-refresh-arp-table-untuk-kurangkan-latency";
+      var widget = document.getElementById("mascot-widget");
+      var closeBtn = document.getElementById("mascot-close-btn");
+      if (sessionStorage.getItem(storageKey)) {
+        widget.style.display = "none";
+      }
+      closeBtn.addEventListener("click", function() {
+        widget.style.display = "none";
+        sessionStorage.setItem(storageKey, "1");
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Clear Router Cache and Refresh ARP Tables for Better Latency</title>
+  <meta name="description" content="Learn what a router reboot actually clears, how to refresh ARP and temporary connection state, and how to tell whether your router is really causing high latency." />
+  <meta name="geo.region" content="MY" />
+  <meta name="geo.placename" content="Malaysia" />
+  <meta property="og:title" content="How to Clear Router Cache and Refresh ARP Tables for Better Latency" />
+  <meta property="og:description" content="Learn what a router reboot actually clears, how to refresh ARP and temporary connection state, and how to tell whether your router is really causing high latency." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://netbijak.com/assets/images/articles/how-to-clear-router-cache.webp" />
+  <meta property="og:url" content="https://netbijak.com/en/blog/how-to-clear-router-cache-and-refresh-arp-tables-for-better-latency/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://netbijak.com/en/blog/how-to-clear-router-cache-and-refresh-arp-tables-for-better-latency/" />
+  <link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/blog/cara-kosongkan-cache-router-dan-refresh-arp-table-untuk-kurangkan-latency/" />
+  <link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/blog/-arp-/" />
+  <link rel="alternate" hreflang="en" href="https://netbijak.com/en/blog/how-to-clear-router-cache-and-refresh-arp-tables-for-better-latency/" />
+  <link rel="alternate" hreflang="x-default" href="https://netbijak.com/en/blog/how-to-clear-router-cache-and-refresh-arp-tables-for-better-latency/" />
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can rebooting my router lower ping?","acceptedAnswer":{"@type":"Answer","text":"Sometimes, but only when the router itself is contributing to the problem. A reboot can clear temporary runtime state and recover normal operation, but it will not remove latency caused by ISP routing, server distance, congestion or problems elsewhere in the network path. Ping is useful for comparing round-trip delay before and after the restart."}},{"@type":"Question","name":"Does rebooting clear the ARP cache?","acceptedAnswer":{"@type":"Answer","text":"It rebuilds temporary ARP state as the router and connected devices start communicating again. Enterprise networking equipment can also provide explicit commands for clearing dynamic ARP entries."}},{"@type":"Question","name":"Will rebooting erase my Wi-Fi settings?","acceptedAnswer":{"@type":"Answer","text":"A normal reboot does not erase the saved configuration. A factory reset is the operation that returns the router to its default settings."}},{"@type":"Question","name":"Should I reboot my router every week?","acceptedAnswer":{"@type":"Answer","text":"There is no universal requirement. Weekly scheduled reboot is an optional maintenance measure for compatible routers, particularly when a device has a history of temporary instability. ASUS supports scheduled reboot on compatible models and allows users to choose the day and time."}},{"@type":"Question","name":"What should I check when rebooting does not fix the latency?","acceptedAnswer":{"@type":"Answer","text":"Compare the latency to your local router with the latency to an external destination. If the router remains responsive but the external destination is still slow, the problem is less likely to be the router itself. Ping and traceroute are standard tools for narrowing down where network delay occurs."}}]}</script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="main">
+    <div id="blog-detail-container">
+      <a href="/en/blog/" class="blog-back-link">← Back to Blog</a>
+      <span class="blog-type-tag">Article</span>
+      <img src="/assets/images/articles/how-to-clear-router-cache.webp" alt="How to Clear Router Cache and Refresh ARP Tables for Better Latency" class="blog-detail-cover" loading="lazy" width="800" height="450" />
+      <div class="blog-detail-date">20/09/2026</div>
+      <h1 class="blog-detail-title">How to Clear Router Cache and Refresh ARP Tables for Better Latency</h1>
+      
+    <section class="ai-summary-box">
+      <div class="ai-summary-badge">✨ NetBijak AI Summary</div>
+      <p>If your internet ping feels unstable, rebooting your router is a common first step, but it is not a universal fix for all latency issues. To determine if a restart will actually help, you should perform a simple ping test to both your local router and an external destination. This comparison helps you identify whether the bottleneck is within your home network or originating from your ISP's path. While a reboot clears temporary memory and resets active network states, it does not magically boost your broadband speed or clear ISP-side routing issues. It is important to distinguish between local ARP table errors and external latency problems to avoid unnecessary troubleshooting. Ultimately, if your router requires daily reboots, you may be dealing with deeper hardware or firmware issues rather than a simple cache problem.</p>
+    </section>
+      <div class="blog-detail-content"><p>If your ping becomes unstable after the router has been running for a long time, a reboot is worth trying. But <strong>“clear the router cache to lower ping” is not a technically precise explanation</strong>.</p><p>A restart mainly resets temporary state inside your router. Whether that improves latency depends on where the delay is coming from.</p><p>For NetBijak, the useful test is simple: <strong>check the router first, then check the Internet path.</strong> That tells you whether a reboot is actually relevant.</p><h2>What a Home Router Can Actually Clear</h2><p>There is no single universal “router cache”.</p><p>A home router may maintain temporary ARP information, active connection state and data held by its running processes. ARP entries, for example, can be cleared and relearned on network equipment. Cisco documents <code>clear arp-cache</code> specifically for removing dynamic ARP entries. (<a href="https://www.cisco.com/c/en/us/td/docs/routers/ios-xe/ip-addressing/ip-addressing/m_arp-config-arp-0.html" rel="noopener noreferrer nofollow" target="_blank">Cisco</a>)</p><p>These functions do different jobs:</p><table><tbody><tr><td data-row="1">State</td><td data-row="1">What it is used for</td><td data-row="1">Effect of a normal reboot</td></tr><tr><td data-row="2">ARP cache</td><td data-row="2">Local IP-to-device address mapping</td><td data-row="2">Temporary entries are rebuilt</td></tr><tr><td data-row="3">Connection state</td><td data-row="3">Tracks active network sessions</td><td data-row="3">Active state is restarted</td></tr><tr><td data-row="4">Runtime memory</td><td data-row="4">Used by router processes</td><td data-row="4">Reclaimed as the system restarts</td></tr><tr><td data-row="5">Routing state</td><td data-row="5">Used for packet forwarding</td><td data-row="5">Reinitialised during startup</td></tr><tr><td data-row="6">Saved configuration</td><td data-row="6">Wi-Fi, WAN, LAN and firewall settings</td><td data-row="6">Normally retained</td></tr></tbody></table><p>That is why calling everything “cache” can lead to the wrong diagnosis.</p><h2>The Better Way to Decide Whether a Reboot Will Help</h2><p>Before restarting the router, run one simple comparison.</p><p><strong>Test 1: Ping your home router.</strong></p><p>On Windows, this is commonly the router's LAN address, such as <code>192.168.1.1</code>. The exact gateway address depends on your network configuration.</p><p><strong>Test 2: Ping an external destination.</strong></p><p>You can use a stable public IP such as Cloudflare's <code>1.1.1.1</code>, which Cloudflare documents as its public DNS resolver address. (<a href="https://developers.cloudflare.com/1.1.1.1/ip-addresses/" rel="noopener noreferrer nofollow" target="_blank">Cloudflare</a>)</p><p>Then compare the results.</p><table><tbody><tr><td data-row="1">Result</td><td data-row="1">What it suggests</td></tr><tr><td data-row="2">High or unstable ping to the router itself</td><td data-row="2">Look at Wi-Fi, Ethernet, router load or the local network</td></tr><tr><td data-row="3">Router ping is stable, external ping is high</td><td data-row="3">The problem is more likely beyond the local LAN</td></tr><tr><td data-row="4">Both improve after reboot</td><td data-row="4">The router may have been contributing to the problem</td></tr><tr><td data-row="5">Nothing changes after reboot</td><td data-row="5">Rebooting is probably not addressing the actual cause</td></tr></tbody></table><p>Ping measures round-trip time, and Cisco recommends using ping as a basic tool for identifying reachability and RTT when troubleshooting network problems. (<a href="https://www.cisco.com/c/en/us/support/docs/ios-nx-os-software/ios-software-releases-121-mainline/12778-ping-traceroute.html" rel="noopener noreferrer nofollow" target="_blank">Cisco</a>)</p><p>This is more useful than rebooting first and trying to guess what changed.</p><h2>Why a Reboot Can Sometimes Fix a Slow-Feeling Router</h2><p>A restart gives the router a clean runtime environment.</p><p>ASUS states that restarting its routers can release temporary RAM usage and improve system performance, while also preserving the existing configuration. (<a href="https://www.asus.com/support/faq/1011431/" rel="noopener noreferrer nofollow" target="_blank">ASUS</a>)</p><p>It also removes the router's current runtime state and starts the networking services again. ARP information is then learned again as devices communicate with the router. (<a href="https://www.cisco.com/c/en/us/td/docs/routers/ios-xe/ip-addressing/ip-addressing/m_arp-config-arp-0.html" rel="noopener noreferrer nofollow" target="_blank">Cisco</a>)</p><p>That can be useful when the router has developed a temporary software or networking problem.</p><p>But there is an important distinction:</p><p><strong>A reboot can restore a router's normal behaviour. It does not upgrade the quality of the broadband line.</strong></p><p>If your connection normally gives a stable 10 ms to a particular destination, restarting the router should not be expected to turn that into 5 ms simply because its cache is “clean”.</p><h2>How to Refresh the Router Without Losing Your Settings</h2><p>For a normal home router, use the built-in <strong>Reboot</strong> or <strong>Restart</strong> function.</p><p>Do not use the factory-reset button unless you actually want to erase the configuration.</p><p>ASUS explicitly distinguishes restarting from restoring factory defaults, and states that a normal reboot does not change the router's settings. (<a href="https://www.asus.com/support/faq/1053498/" rel="noopener noreferrer nofollow" target="_blank">ASUS</a>)</p><p>A practical sequence is:</p><p><strong>1. Record the problem first.</strong></p><p>Check the router ping and one external destination.</p><p><strong>2. Reboot the router normally.</strong></p><p>Use the router's app or web interface.</p><p><strong>3. Wait for the broadband connection to recover completely.</strong></p><p>Do not judge the result while the WAN connection is still coming back.</p><p><strong>4. Repeat the same tests.</strong></p><p>Use the same device, preferably under the same connection conditions.</p><p><strong>5. Compare before and after.</strong></p><p>A change is meaningful only when the test conditions are comparable.</p><h2>The ARP Part Is Usually Smaller Than People Think</h2><p>ARP matters primarily to the <strong>local network</strong>.</p><p>If a PC needs to communicate with another device on the same IPv4 network, the router or host needs the relevant hardware address. Dynamic ARP information can be refreshed or cleared on equipment that exposes the appropriate controls. (<a href="https://www.cisco.com/c/en/us/td/docs/routers/ios-xe/ip-addressing/ip-addressing/m_arp-config-arp-0.html" rel="noopener noreferrer nofollow" target="_blank">Cisco</a>)</p><p>That makes ARP worth checking when you have symptoms such as:</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>One device suddenly cannot reach another local device.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>A device changed network interfaces.</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Local connectivity behaves incorrectly after reconnecting hardware.</li></ol><p>It is much harder to justify ARP as the explanation for <strong>high Internet ping to a remote server</strong>.</p><p>That distinction is important for broadband troubleshooting. Otherwise, users end up clearing something that was never causing the problem.</p><h2>Troubleshooting Misconceptions</h2><h3>“Rebooting refreshes my ISP route”</h3><p>Not in the broad sense.</p><p>Your home router has its own forwarding information, but Internet traffic continues through other routers after it leaves your network. Restarting your router does not clear or rebuild the routing state of your ISP's network.</p><p>Cisco's troubleshooting guidance recommends ping and traceroute as ways to isolate where delay appears along a network path rather than assuming the first router is responsible. (<a href="https://www.cisco.com/c/en-us/support/docs/ios-nx-os-software/ios-software-releases-121-mainline/12778-ping-traceroute.html" rel="noopener noreferrer nofollow" target="_blank">Cisco</a>)</p><h3>“More cache means more ping”</h3><p>Not automatically.</p><p>ARP entries and active networking state are normal parts of a functioning router. Their existence alone is not evidence that the router is causing latency.</p><h3>“If rebooting fixed it once, I should reboot every day”</h3><p>Also not necessarily.</p><p>If the same router repeatedly needs a restart to remain usable, the recurring fault is more interesting than the reboot itself. Firmware, hardware condition, overheating, configuration problems or an underlying network issue may deserve investigation.</p><h2>Should You Schedule a Weekly Reboot?</h2><p>This is where automatic reboot makes sense: <strong>as maintenance for a router that actually benefits from it, not as a universal latency treatment.</strong></p><p>ASUS supports scheduled reboot on compatible routers and lets users select the day and time. ASUS's documented examples use overnight restart times and note that the network will be disconnected during the reboot. (<a href="https://www.asus.com/support/faq/1049258/" rel="noopener noreferrer nofollow" target="_blank">ASUS</a>)</p><p>A practical home setting is:</p><p><strong>Once a week at 3:00 AM or 4:00 AM</strong></p><p>Choose a period when nobody needs the connection.</p><p>The exact feature depends on the router model and firmware. Do not assume an ISP-supplied router has the same scheduling options as a retail ASUS or TP-Link router.</p><p>For a router that is stable for months, there is no strong reason to restart it merely because seven days have passed.</p><p>For one that gradually becomes sluggish or occasionally develops strange connectivity behaviour, a scheduled restart is reasonable.</p><h2>NetBijak's Router Check</h2><p>Our preferred approach is not:</p><p><strong>High ping → reboot → hope.</strong></p><p>Use this order instead:</p><p><strong>Ping the router → ping the external destination → reboot → repeat both tests.</strong></p><p>If the router itself shows unstable latency, the local network deserves attention.</p><p>If the router stays stable but the external destination remains high, spending time repeatedly clearing the router is unlikely to solve the problem.</p><p>If both measurements improve after the restart, then the router has earned its place on the suspect list.</p><p>That is a much more useful conclusion than simply saying “rebooting clears the cache”.</p><h2>Reboot or Factory Reset?</h2><p>Use <strong>Reboot</strong> for temporary problems.</p><p>Use <strong>Factory Reset</strong> only when there is a specific reason to rebuild the configuration.</p><p>A normal ASUS router reboot preserves the existing settings; a factory reset returns the router to its default state. (<a href="https://www.asus.com/support/faq/1053498/" rel="noopener noreferrer nofollow" target="_blank">ASUS</a>)</p><p>A factory reset is therefore not the next step just because ping is high.</p><h2>NetBijak's Take</h2><p>The useful part of a router reboot is not some magical “cache cleaning” effect.</p><p>It resets the router's running environment, rebuilds temporary networking state and can recover a router that has developed a temporary software or resource problem. ASUS explicitly documents RAM-related performance benefits from restarting its routers. (<a href="https://www.asus.com/support/faq/1011431/" rel="noopener noreferrer nofollow" target="_blank">ASUS</a>)</p><p>ARP is real, but it is primarily a local address-resolution mechanism. It should not be used as a catch-all explanation for high Internet latency. Cisco's documentation confirms that dynamic ARP entries can be cleared and relearned. (<a href="https://www.cisco.com/c/en/us/td/docs/routers/ios-xe/ip-addressing/ip-addressing/m_arp-config-arp-0.html" rel="noopener noreferrer nofollow" target="_blank">Cisco</a>)</p><p>For troubleshooting, <strong>measurement is more useful than ritual</strong>.</p><p>Check the local router first. Check the external path second. Reboot only when the evidence points back toward the router.</p><p>A weekly 3–4 AM scheduled reboot is reasonable for a router that benefits from regular restarts, provided the model supports it. ASUS documents scheduled reboot on compatible routers. (<a href="https://www.asus.com/support/faq/1049258/" rel="noopener noreferrer nofollow" target="_blank">ASUS</a>)</p><p class="ql-align-center"><strong style="color: rgb(255, 255, 255); background-color: initial;"><a href="/en/compare/" rel="noopener noreferrer" target="_blank">⚖️Compare Plans →</a></strong></p><h3><br></h3></div>
+      
+    <section class="section-card" id="article-faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div id="article-faq-list" class="faq-list">
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="0">
+        <span>Can rebooting my router lower ping?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Sometimes, but only when the router itself is contributing to the problem. A reboot can clear temporary runtime state and recover normal operation, but it will not remove latency caused by ISP routing, server distance, congestion or problems elsewhere in the network path. Ping is useful for comparing round-trip delay before and after the restart.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="1">
+        <span>Does rebooting clear the ARP cache?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>It rebuilds temporary ARP state as the router and connected devices start communicating again. Enterprise networking equipment can also provide explicit commands for clearing dynamic ARP entries.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="2">
+        <span>Will rebooting erase my Wi-Fi settings?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>A normal reboot does not erase the saved configuration. A factory reset is the operation that returns the router to its default settings.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="3">
+        <span>Should I reboot my router every week?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>There is no universal requirement. Weekly scheduled reboot is an optional maintenance measure for compatible routers, particularly when a device has a history of temporary instability. ASUS supports scheduled reboot on compatible models and allows users to choose the day and time.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="4">
+        <span>What should I check when rebooting does not fix the latency?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Compare the latency to your local router with the latency to an external destination. If the router remains responsive but the external destination is still slow, the problem is less likely to be the router itself. Ping and traceroute are standard tools for narrowing down where network delay occurs.</p></div>
+    </div></div>
+    </section>
+    </div>
+    
+    <section class="section-card" style="margin-top:1.5rem">
+      <h2>Related Articles</h2>
+      <div class="blog-grid"><a href="/en/blog/submarine-cable-repairs-why-international-sites-slow-down-suddenly/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/submarine-cable-repairs.webp" alt="Submarine Cable Repairs: Why International Sites Slow Down Suddenly" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">09/09/2026</div>
+          <div class="blog-card-title">Submarine Cable Repairs: Why International Sites Slow Down Suddenly</div>
+          <p class="blog-card-excerpt">When overseas websites suddenly become slow but Malaysian websites and your local speed test still l...</p>
+        </div></a><a href="/en/blog/how-to-troubleshoot-unifi-internet-problems-a-simple-step-by-step-guide/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/how-to-troubleshoot-unifi-internet-problems.webp" alt="How to Troubleshoot Unifi Internet Problems: A Simple Step-by-Step Guide" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">05/09/2026</div>
+          <div class="blog-card-title">How to Troubleshoot Unifi Internet Problems: A Simple Step-by-Step Guide</div>
+          <p class="blog-card-excerpt">If your Unifi Internet is slow or not working, check for an outage first, check your equipment and i...</p>
+        </div></a><a href="/en/blog/why-is-my-internet-slow-a-step-by-step-guide-to-troubleshooting-slow-broadband/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/why-is-my-internet-slow.webp" alt="Why Is My Internet Slow? A Step-by-Step Guide to Troubleshooting Slow Broadband" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">31/08/2026</div>
+          <div class="blog-card-title">Why Is My Internet Slow? A Step-by-Step Guide to Troubleshooting Slow Broadband</div>
+          <p class="blog-card-excerpt">Why Is My Internet Slow?A slow Internet connection does not necessarily mean that your broadband pla...</p>
+        </div></a><a href="/en/blog/transferring-broadband-ownership-how-to-avoid-contract-reset-traps/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/transferring-broadband-ownership-how-to-avoid-contract.webp" alt="Transferring Broadband Ownership: How to Avoid Contract Reset Traps" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">19/09/2026</div>
+          <div class="blog-card-title">Transferring Broadband Ownership: How to Avoid Contract Reset Traps</div>
+          <p class="blog-card-excerpt">Changing the name on a broadband account does not automatically mean that every existing contract, p...</p>
+        </div></a><a href="/en/blog/tp-link-wi-fi-8-arrives-in-malaysia-what-it-actually-changes-for-home-users/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/tp-link-wi-fi-8-arrives-in-malaysia.webp" alt="TP-Link Wi-Fi 8 Arrives in Malaysia: What It Actually Changes for Home Users" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">18/09/2026</div>
+          <div class="blog-card-title">TP-Link Wi-Fi 8 Arrives in Malaysia: What It Actually Changes for Home Users</div>
+          <p class="blog-card-excerpt">TP-Link has introduced Wi-Fi 8 in Malaysia, but the important part is not the headline speed.At its ...</p>
+        </div></a><a href="/en/blog/how-to-file-an-mcmc-cfm-complaint-when-your-isp-ignores-support-tickets/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/how-to-file-an-mcmc-cfm-complaint.webp" alt="How to File an MCMC CFM Complaint When Your ISP Ignores Support Tickets" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">16/09/2026</div>
+          <div class="blog-card-title">How to File an MCMC CFM Complaint When Your ISP Ignores Support Tickets</div>
+          <p class="blog-card-excerpt">If your ISP keeps closing support tickets without fixing the problem, stop relying on repeated calls...</p>
+        </div></a></div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script>const ROOT_PATH = "/"; const PAGE_TRANSLATIONS = {"ms":"/ms/blog/cara-kosongkan-cache-router-dan-refresh-arp-table-untuk-kurangkan-latency/","zh":"/zh/blog/-arp-/","en":"/en/blog/how-to-clear-router-cache-and-refresh-arp-tables-for-better-latency/"};</script>
+  <script src="/assets/js/tracking.js"></script>
+  <script src="/assets/js/translations.js"></script>
+  <script src="/assets/js/site.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("#article-faq-list .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#article-faq-list .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
+    });
+  </script>
+
+  <div id="mascot-widget" class="mascot-widget">
+    <button type="button" class="mascot-close-btn" id="mascot-close-btn" aria-label="Close">✕</button>
+    <a href="https://wa.me/60178835110?text=Hi%20NetBijak%2C%20I'm%20reading%20%22How%20to%20Clear%20Router%20Cache%20and%20Refresh%20ARP%20Tables%20for%20Better%20Latency%22%20and%20have%20a%20question." target="_blank" class="mascot-avatar-link">
+      <img src="/assets/images/mascot.png" alt="NetBijak Assistant" class="mascot-avatar-img" />
+      <span class="mascot-bubble">Need help?</span>
+    </a>
+  </div>
+  <script>
+    (function() {
+      var storageKey = "mascot-closed-how-to-clear-router-cache-and-refresh-arp-tables-for-better-latency";
+      var widget = document.getElementById("mascot-widget");
+      var closeBtn = document.getElementById("mascot-close-btn");
+      if (sessionStorage.getItem(storageKey)) {
+        widget.style.display = "none";
+      }
+      closeBtn.addEventListener("click", function() {
+        widget.style.display = "none";
+        sessionStorage.setItem(storageKey, "1");
+      });
+    })();
+  </script>
+</body>
+</html>
