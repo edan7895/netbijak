@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>室外 5G CPE 怎么安装？解决室内只有 1 格 5G 信号</title>
+  <meta name="description" content="家里的 5G 路由器只有 1 格信号？先检查 RSRP 和 SINR，再判断是否值得安装室外 5G CPE，并了解如何通过 Ethernet 和 PoE 把连接带回室内。" />
+  <meta name="geo.region" content="MY" />
+  <meta name="geo.placename" content="Malaysia" />
+  <meta property="og:title" content="室外 5G CPE 怎么安装？解决室内只有 1 格 5G 信号" />
+  <meta property="og:description" content="家里的 5G 路由器只有 1 格信号？先检查 RSRP 和 SINR，再判断是否值得安装室外 5G CPE，并了解如何通过 Ethernet 和 PoE 把连接带回室内。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://netbijak.com/assets/images/articles/outdoor-5g-cpe-antenna-installation-boosting.webp" />
+  <meta property="og:url" content="https://netbijak.com/zh/blog/-5g-cpe-5g-/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://netbijak.com/zh/blog/-5g-cpe-5g-/" />
+  <link rel="alternate" hreflang="en" href="https://netbijak.com/en/blog/outdoor-5g-cpe-antenna-installation-boosting-weak-home-5g-signals/" />
+  <link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/blog/-5g-cpe-5g-/" />
+  <link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/blog/pemasangan-outdoor-5g-cpe-cara-atasi-isyarat-5g-lemah-dalam-rumah/" />
+  <link rel="alternate" hreflang="x-default" href="https://netbijak.com/en/blog/outdoor-5g-cpe-antenna-installation-boosting-weak-home-5g-signals/" />
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Outdoor CPE 和外接 5G 天线有什么区别？","acceptedAnswer":{"@type":"Answer","text":"外接天线通常把 Modem 留在室内，再用 RF 线连接屋外天线；Outdoor CPE 则把 5G 设备本身搬到屋外，再通过 Ethernet 把连接带回室内。"}},{"@type":"Question","name":"RSRP 和 SINR 应该怎么看？","acceptedAnswer":{"@type":"Answer","text":"作为实用参考，RSRP 在 -70 至 -90 dBm、SINR 在 20 至 30 dB 属于较好的范围；低于约 -100 dBm RSRP 或 10 dB SINR 则属于较差情况。不过不同运营商和环境不能直接套用固定数字。"}},{"@type":"Question","name":"窗边测试没有明显改善，还值得买 Outdoor CPE 吗？","acceptedAnswer":{"@type":"Answer","text":"通常不应该马上买。先检查覆盖、干扰、频段选择和网络状况，再决定是否需要室外硬件。"}},{"@type":"Question","name":"2.5GbE 是不是必须？","acceptedAnswer":{"@type":"Answer","text":"不是。只有在 5G 实际连接和室内网络都可能超过 1Gbps 时，2.5GbE 才比较有价值。现在已经有采用 2.5GbE PoE 的 Outdoor 5G CPE。"}},{"@type":"Question","name":"Outdoor CPE 装好后，家里的 Wi-Fi 会自动变强吗？","acceptedAnswer":{"@type":"Answer","text":"不会。Outdoor CPE 负责改善 5G 到你家的连接；屋内 Wi-Fi 覆盖还是由 Router、Access Point 或 Mesh 系统负责。"}},{"@type":"Question","name":"Outdoor CPE 一定要装在屋顶吗？","acceptedAnswer":{"@type":"Answer","text":"不一定。外墙、楼上外墙等位置都可以先测试。真正重要的是实际 RSRP、SINR 和连接稳定性，而不是单纯追求最高安装位置。"}}]}</script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="main">
+    <div id="blog-detail-container">
+      <a href="/zh/blog/" class="blog-back-link">← 返回部落格</a>
+      <span class="blog-type-tag">Article</span>
+      <img src="/assets/images/articles/outdoor-5g-cpe-antenna-installation-boosting.webp" alt="室外 5G CPE 安装：解决家里室内 5G 信号太弱的问题" class="blog-detail-cover" loading="lazy" width="800" height="450" />
+      <div class="blog-detail-date">21/09/2026</div>
+      <h1 class="blog-detail-title">室外 5G CPE 安装：解决家里室内 5G 信号太弱的问题</h1>
+      
+    <section class="ai-summary-box">
+      <div class="ai-summary-badge">✨ NetBijak AI 智能摘要</div>
+      <p>如果你的 5G 路由器室内信号微弱，不必急着购买昂贵的设备，首先应通过后台监测 RSRP 和 SINR 指标。这些参数比单纯看信号格数更能准确反映网络质量。你可以通过将路由器移至窗边观察数值是否有显著改善，若无变化则说明问题源于网络覆盖或干扰，而非建筑物遮挡。如果窗边表现良好，则可考虑安装 Outdoor CPE，通过将接收端置于户外并配合 PoE 网线连接室内，从而大幅提升网络稳定性。最后，在部署时还需注意设备的网口规格（如 2.5GbE）及线路防水规划，以确保 5G 潜力得到完全发挥。</p>
+    </section>
+      <div class="blog-detail-content"><p>如果你的 5G 路由器在屋里只有 1 格信号，<strong>先不要急着买室外天线。</strong></p><p>先确认是不是建筑物本身挡住了 5G 信号。把同一台 5G 路由器从房间中央移到窗边，然后比较 <strong>RSRP 和 SINR</strong>。这两个数据比单纯看信号格数更有参考价值。现有 FWA 技术指引也会使用 RSRP 和 SINR 来判断无线信号强度和质量。</p><p><a href="https://mysupport.zyxel.com/hc/en-us/articles/26554438670226-Zyxel-Nebula-5G-Routers-FWA-Series-Advinced-Troubleshooting-and-Improving-LTE-5G-Signal-Quality" rel="noopener noreferrer nofollow" target="_blank">来源：Zyxel – 5G Signal Quality and Placement</a></p><h2>Outdoor CPE 和外接天线不是同一种东西</h2><p>简单来说：</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>External Antenna：</strong> 5G Modem 继续放在室内，室外天线通过 RF / 同轴线接回 Modem。</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Outdoor CPE：</strong> 5G Modem 和天线一起放到屋外，再通过 Ethernet，通常配合 PoE，把网络连接带回室内。</li></ol><p>结构就是：</p><p><strong>5G 网络 → Outdoor CPE → Ethernet / PoE → 室内路由器 → 家庭网络</strong></p><p>Outdoor CPE 的重点不是“网线让 5G 信号变强”，而是<strong>直接把 5G 接收设备搬到无线环境较好的位置</strong>，再用 Ethernet 处理室内的网络连接。相关 FWA 研究也将 Outdoor CPE 视为减少建筑物信号衰减的一种部署方式。</p><p><a href="https://www.ericsson.com/en/reports-and-papers/ericsson-technology-review/articles/leveraging-lte-and-5g-nr-networks-for-fixed-wireless-access" rel="noopener noreferrer nofollow" target="_blank">来源：Ericsson – Fixed Wireless Access</a></p><h2>真正要看的两个数字</h2><p>进入 5G 路由器后台，先找：</p><p><strong>RSRP</strong>：看接收到的信号强度。</p><p><strong>SINR</strong>：看信号相对于干扰和噪声的质量。</p><p>根据一份 FWA 参考范围：</p><table><tbody><tr><td data-row="1">指标</td><td data-row="1">实用参考范围</td><td data-row="1">怎么看</td></tr><tr><td data-row="2"><strong>RSRP</strong></td><td data-row="2">-70 至 -90 dBm：较好；-90 至 -100 dBm：不错；低于 -100 dBm：较差</td><td data-row="2">数值越不负，信号越强</td></tr><tr><td data-row="3"><strong>SINR</strong></td><td data-row="3">20 至 30 dB：较好；10 至 20 dB：不错；低于 10 dB：较差</td><td data-row="3">数值越高，信号通常越干净</td></tr></tbody></table><p>这些是<strong>参考范围，不是马来西亚所有 5G 网络统一规定的标准</strong>。实际表现还会受到频段、网络配置和周围无线环境影响。</p><p><a href="https://mysupport.zyxel.com/hc/en-us/articles/26554438670226-Zyxel-Nebula-5G-Routers-FWA-Series-Advinced-Troubleshooting-and-Improving-LTE-5G-Signal-Quality" rel="noopener noreferrer nofollow" target="_blank">来源：Zyxel – FWA Signal Quality</a></p><h3>用一个实际对比来判断</h3><table><tbody><tr><td data-row="1">位置</td><td data-row="1">RSRP</td><td data-row="1">SINR</td><td data-row="1">判断</td></tr><tr><td data-row="2">房间中央</td><td data-row="2">-105 dBm</td><td data-row="2">8 dB</td><td data-row="2">室内接收较差</td></tr><tr><td data-row="3">窗边</td><td data-row="3">-95 dBm</td><td data-row="3">18 dB</td><td data-row="3">有明显改善</td></tr><tr><td data-row="4">屋外</td><td data-row="4">相近或更好</td><td data-row="4">相近或更好</td><td data-row="4">值得考虑 Outdoor CPE</td></tr></tbody></table><p>这些数字只是<strong>判断案例，不是安装必须达到的门槛</strong>。</p><p>公开的 FWA 测试也记录过类似变化：设备从房间中央移到窗边后，RSRP 从约 <strong>-102 dBm 改善至 -92 dBm</strong>，NR SINR 从 <strong>10 dB 提高到 18 dB</strong>。</p><p><a href="https://mysupport.zyxel.com/hc/en-us/articles/26554438670226-Zyxel-Nebula-5G-Routers-FWA-Series-Advinced-Troubleshooting-and-Improving-LTE-5G-Signal-Quality" rel="noopener noreferrer nofollow" target="_blank">来源：Zyxel – 5G Signal Quality and Placement</a></p><h2>一个可以帮你省钱的判断</h2><p>你真正需要知道的只有一件事：</p><p><strong>把 5G 路由器移到窗边后，RSRP 和 SINR 有没有明显改善？</strong></p><h3>有明显改善</h3><p>这说明建筑物或室内摆放位置很可能是问题的一部分。</p><p>这时候才值得进一步测试屋外位置，并考虑 Outdoor CPE。Outdoor CPE 特别适合室内墙体、树木、建筑物等影响无线传播的环境。</p><p><a href="https://www.ericsson.com/496b90/assets/local/fwa/doc/mar-2026/fwa-insight-8-2026-web.pdf" rel="noopener noreferrer nofollow" target="_blank">来源：Ericsson – Fixed Wireless Access</a></p><h3>几乎没有改善</h3><p>先不要花钱。</p><p>如果从房间中央移到窗边后，RSRP 和 SINR 几乎不动，问题可能来自覆盖范围、干扰、频段选择或网络本身，而不是墙体。FWA 排障也会把这些因素分开检查。</p><p><a href="https://mysupport.zyxel.com/hc/en-us/articles/27935465185298-How-to-Contact-Zyxel-Technical-Support-FWA505-FWA510-FWA710" rel="noopener noreferrer nofollow" target="_blank">来源：Zyxel – FWA Troubleshooting</a></p><p><strong>窗边都没有改善 → 先查网络，不要急着买 Outdoor CPE。</strong></p><h2>Outdoor CPE 应该装在哪里？</h2><p>已经确认屋外比较好之后，再找安装位置。</p><p>可以按这个顺序测试：</p><p><strong>外墙 → 楼上外墙 → 杆位或屋顶</strong></p><p>不要简单认为“越高越好”。</p><p>如果 CPE 是定向设计，也需要调整朝向，同时观察 RSRP、SINR 和实际速度。相关安装指引也建议通过实际测量来决定位置和方向。</p><p><a href="https://mysupport.zyxel.com/hc/en-us/articles/26554438670226-Zyxel-Nebula-5G-Routers-FWA-Series-Advinced-Troubleshooting-and-Improving-LTE-5G-Signal-Quality" rel="noopener noreferrer nofollow" target="_blank">来源：Zyxel – 5G Signal Optimisation</a></p><h2>为什么要注意 2.5GbE？</h2><p>如果 5G 实际速度可以超过 1Gbps，CPE 的 Ethernet 接口也可能成为瓶颈。</p><p>目前已经有 Outdoor 5G CPE 配备 <strong>2.5GbE + PoE</strong>，例如部分 Zyxel FWA 型号。</p><p><a href="https://www.zyxel.com/service-provider/apac/en/products/5g-nr4g-lte-cpe/5g-nr-cpe/odus/nr7301nr7302nr7303-series" rel="noopener noreferrer nofollow" target="_blank">来源：Zyxel – Outdoor 5G CPE</a></p><p>但并不是每个家庭都需要 2.5GbE。</p><p>真正需要检查的是整条线路：</p><p><strong>5G → CPE → Ethernet → Router WAN → Switch / Wi-Fi</strong></p><p>如果 CPE 有 2.5GbE，但室内 Router WAN 只有 1GbE，最终还是会卡在 1Gbps 链路。</p><h2>PoE 是室外安装的关键</h2><p>很多 Outdoor CPE 使用 PoE，让同一条 Ethernet 线同时承担网络和供电。</p><p>常见结构：</p><p><strong>Outdoor CPE</strong></p><p>↓</p><p><strong>Ethernet + PoE</strong></p><p>↓</p><p><strong>室内 PoE 设备</strong></p><p>↓</p><p><strong>Router / Switch / Mesh</strong></p><p>具体 PoE 方式要按照 CPE 型号的安装说明，不要默认任何 PoE Injector 都可以互换。部分户外 5G CPE 已经直接支持 2.5GbE PoE。</p><p><a href="https://mysupport.zyxel.com/hc/en-us/articles/26078145930130-Zyxel-FWA710-Nebula-5G-Router-FWA-Series-Initial-Setup-and-Web-Interface-Access-for-Zyxel-FWA710" rel="noopener noreferrer nofollow" target="_blank">来源：Zyxel – FWA710 Installation</a></p><h2>墙上的网线入口别随便处理</h2><p>Outdoor CPE 本身可以设计成户外使用，但墙上的进线孔依然需要做好防水。</p><p>户外设备的安装资料通常会规定适用的 Ethernet Cable、固定方式和接口密封方法。</p><p><a href="https://mysupport.zyxel.com/hc/en-us/articles/26078145930130-Zyxel-FWA710-Nebula-5G-Router-FWA-Series-Initial-Setup-and-Web-Interface-Access-for-Zyxel-FWA710" rel="noopener noreferrer nofollow" target="_blank">来源：Zyxel – Outdoor CPE Installation</a></p><p>安装前应该一起规划：</p><p><strong>CPE 位置 + 固定方式 + 网线路线 + 墙体进线 + 室内 PoE 位置</strong></p><p>不要装完 CPE 才发现网线根本进不了屋。</p><h2>最简单的判断流程</h2><h3>1. 房间中央</h3><p>记录 <strong>RSRP + SINR</strong>。</p><h3>2. 窗边</h3><p>用同一台设备再次测量。</p><h3>3. 看变化</h3><p><strong>明显改善</strong></p><p>→ 墙体可能是主要问题</p><p>→ 测试屋外位置</p><p>→ 考虑 Outdoor CPE</p><p><strong>几乎没变化</strong></p><p>→ 暂时不要买</p><p>→ 检查频段、干扰、覆盖和网络状况</p><h3>4. 确认值得升级后</h3><p>选择：</p><p><strong>合适的 5G 频段 + 足够快的 Ethernet + 兼容的 PoE</strong></p><h3>5. 安装后重新测试</h3><p>完成 Outdoor CPE、Ethernet 和室内网络连接后，再比较安装前后的 RSRP、SINR、速度和稳定性。</p><h2>NetBijak's Take</h2><p>室内只有 1 格 5G，<strong>并不等于你一定需要更强的天线</strong>。</p><p>最便宜的测试就是把现有 5G 路由器移到窗边，然后看 RSRP 和 SINR 有没有明显变化。公开 FWA 测试已经证明，单纯改变设备位置，就可能带来明显的无线参数变化。</p><p><a href="https://mysupport.zyxel.com/hc/en-us/articles/26554438670226-Zyxel-Nebula-5G-Routers-FWA-Series-Advinced-Troubleshooting-and-Improving-LTE-5G-Signal-Quality" rel="noopener noreferrer nofollow" target="_blank">来源：Zyxel – 5G Signal Quality and Placement</a></p><p>如果窗边明显更好，Outdoor CPE 才有明确的升级逻辑：</p><p><strong>把 5G 接收设备搬到屋外 → Ethernet / PoE 拉回屋内。</strong></p><p>如果窗边的 RSRP 和 SINR 几乎没变化，就先查网络条件，不要把钱花在 Outdoor 硬件上。</p><p>购买时也别只看 5G 下载峰值。高速 5G 配上 1GbE WAN，最终还是会被 1GbE 限制；目前市场上已经有 2.5GbE PoE 的 Outdoor CPE。</p><p><a href="https://www.zyxel.com/service-provider/apac/en/products/5g-nr4g-lte-cpe/5g-nr-cpe/odus/nr7301nr7302nr7303-series" rel="noopener noreferrer nofollow" target="_blank">来源：Zyxel – 2.5GbE Outdoor 5G CPE</a></p><h3><a href="https://netbijak.com/zh/speedtest/" rel="noopener noreferrer" target="_blank">NetBijak Speed Test</a></h3></div>
+      
+    <section class="section-card" id="article-faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div id="article-faq-list" class="faq-list">
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="0">
+        <span>Outdoor CPE 和外接 5G 天线有什么区别？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>外接天线通常把 Modem 留在室内，再用 RF 线连接屋外天线；Outdoor CPE 则把 5G 设备本身搬到屋外，再通过 Ethernet 把连接带回室内。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="1">
+        <span>RSRP 和 SINR 应该怎么看？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>作为实用参考，RSRP 在 -70 至 -90 dBm、SINR 在 20 至 30 dB 属于较好的范围；低于约 -100 dBm RSRP 或 10 dB SINR 则属于较差情况。不过不同运营商和环境不能直接套用固定数字。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="2">
+        <span>窗边测试没有明显改善，还值得买 Outdoor CPE 吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>通常不应该马上买。先检查覆盖、干扰、频段选择和网络状况，再决定是否需要室外硬件。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="3">
+        <span>2.5GbE 是不是必须？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>不是。只有在 5G 实际连接和室内网络都可能超过 1Gbps 时，2.5GbE 才比较有价值。现在已经有采用 2.5GbE PoE 的 Outdoor 5G CPE。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="4">
+        <span>Outdoor CPE 装好后，家里的 Wi-Fi 会自动变强吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>不会。Outdoor CPE 负责改善 5G 到你家的连接；屋内 Wi-Fi 覆盖还是由 Router、Access Point 或 Mesh 系统负责。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="5">
+        <span>Outdoor CPE 一定要装在屋顶吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>不一定。外墙、楼上外墙等位置都可以先测试。真正重要的是实际 RSRP、SINR 和连接稳定性，而不是单纯追求最高安装位置。</p></div>
+    </div></div>
+    </section>
+    </div>
+    
+    <section class="section-card" style="margin-top:1.5rem">
+      <h2>相关文章</h2>
+      <div class="blog-grid"><a href="/zh/blog/malaysias-internet-coverage-reaches-9975-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/malaysias-internet-coverage-reaches-9975.webp" alt="马来西亚网络覆盖率达99.75%，为什么还是有人装不到 Fibre？" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">17/09/2026</div>
+          <div class="blog-card-title">马来西亚网络覆盖率达99.75%，为什么还是有人装不到 Fibre？</div>
+          <p class="blog-card-excerpt">截至2026年7月31日，马来西亚人口聚集区的互联网及通信覆盖率已经达到 99.75%。但这并不代表99.75%的家庭都可以马上申请 Fibre Broadband。真正需要分清楚的是：Network...</p>
+        </div></a><a href="/zh/blog/fibre-installation-crossing-neighbour-properties-zh/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/fibre-installation-crossing-neighbour-properties.webp" alt="Fibre 安装跨过邻居屋顶怎么办？马来西亚消费者如何解决纠纷" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">14/09/2026</div>
+          <div class="blog-card-title">Fibre 安装跨过邻居屋顶怎么办？马来西亚消费者如何解决纠纷</div>
+          <p class="blog-card-excerpt">如果 Fibre 安装人员告诉你，要把 Fibre cable 拉过邻居屋顶、树木甚至私人范围才能接入你家，不要急着和邻居吵，也不要马上接受这个路线。 先要求 ISP 记录施工情况，并检查是否可以通过...</p>
+        </div></a><a href="/zh/blog/community-broadband-smart-rural-clinics-zh/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/community-broadband-smart-rural-clinics.webp" alt="社区宽带与智慧乡区诊所：马来西亚政府无线网络计划" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">12/09/2026</div>
+          <div class="blog-card-title">社区宽带与智慧乡区诊所：马来西亚政府无线网络计划</div>
+          <p class="blog-card-excerpt">如果你住在 Kampung、偏远地区或网络覆盖较弱的地方，JENDELA 和 NADI 解决的是两个不同的问题：JENDELA 负责改善网络基础设施，而 NADI 提供一个让居民实际使用 Intern...</p>
+        </div></a><a href="/zh/blog/check-fibre-coverage-buying-guide-zh/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/check-fibre-coverage-buying-guide-zh.webp" alt="为什么光纤宽带是否能安装，取决于你的具体地址？" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">02/09/2026</div>
+          <div class="blog-card-title">为什么光纤宽带是否能安装，取决于你的具体地址？</div>
+          <p class="blog-card-excerpt">为什么光纤宽带是否能安装，取决于你的具体地址？因为光纤服务是否能够接入，会受到大楼基础设施、内部布线、现有网络容量以及安装条件等因素影响。所以，即使附近的住宅已经有 Fibre，你自己的房子或单位也不...</p>
+        </div></a><a href="/zh/blog/-broadband-port-availability-fibre-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/what-is-port-availability.webp" alt="什么是 Broadband Port Availability？为什么申请 Fibre 时它很重要？" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">01/09/2026</div>
+          <div class="blog-card-title">什么是 Broadband Port Availability？为什么申请 Fibre 时它很重要？</div>
+          <p class="blog-card-excerpt">如果你申请 Fibre Broadband 时被告知 “Port Full”，意思通常不是你家完全没有 Fibre，而是目前负责连接你单位的 Fibre 网络没有可用容量。真正重要的问题不是“哪一家 ...</p>
+        </div></a><a href="/zh/blog/condo-unifi/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/condo-management-blocked-unifi-installation.webp" alt="Condo 管理层阻止你安装 Unifi？你有哪些权利？" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">28/08/2026</div>
+          <div class="blog-card-title">Condo 管理层阻止你安装 Unifi？你有哪些权利？</div>
+          <p class="blog-card-excerpt">Condo Management 真的可以不让你安装 Unifi 吗？假设你已经检查过地址。Unifi Fibre 有覆盖。你也已经申请了配套。到了安装当天，Unifi installer 来到 Co...</p>
+        </div></a></div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script>const ROOT_PATH = "/"; const PAGE_TRANSLATIONS = {"en":"/en/blog/outdoor-5g-cpe-antenna-installation-boosting-weak-home-5g-signals/","zh":"/zh/blog/-5g-cpe-5g-/","ms":"/ms/blog/pemasangan-outdoor-5g-cpe-cara-atasi-isyarat-5g-lemah-dalam-rumah/"};</script>
+  <script src="/assets/js/tracking.js"></script>
+  <script src="/assets/js/translations.js"></script>
+  <script src="/assets/js/site.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("#article-faq-list .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#article-faq-list .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
+    });
+  </script>
+
+  <div id="mascot-widget" class="mascot-widget">
+    <button type="button" class="mascot-close-btn" id="mascot-close-btn" aria-label="Close">✕</button>
+    <a href="https://wa.me/60178835110?text=Hi%20NetBijak%2C%20I'm%20reading%20%22%E5%AE%A4%E5%A4%96%205G%20CPE%20%E5%AE%89%E8%A3%85%EF%BC%9A%E8%A7%A3%E5%86%B3%E5%AE%B6%E9%87%8C%E5%AE%A4%E5%86%85%205G%20%E4%BF%A1%E5%8F%B7%E5%A4%AA%E5%BC%B1%E7%9A%84%E9%97%AE%E9%A2%98%22%20and%20have%20a%20question." target="_blank" class="mascot-avatar-link">
+      <img src="/assets/images/mascot.png" alt="NetBijak Assistant" class="mascot-avatar-img" />
+      <span class="mascot-bubble">有问题吗？</span>
+    </a>
+  </div>
+  <script>
+    (function() {
+      var storageKey = "mascot-closed--5g-cpe-5g-";
+      var widget = document.getElementById("mascot-widget");
+      var closeBtn = document.getElementById("mascot-close-btn");
+      if (sessionStorage.getItem(storageKey)) {
+        widget.style.display = "none";
+      }
+      closeBtn.addEventListener("click", function() {
+        widget.style.display = "none";
+        sessionStorage.setItem(storageKey, "1");
+      });
+    })();
+  </script>
+</body>
+</html>
