@@ -339,6 +339,8 @@ const translations = {
     st_faq_a6: "They are different units. Mbps means megabits per second, while MB/s means megabytes per second. There are 8 bits in 1 byte.",
     st_faq_q7: "Why are two speed tests giving different results?",
     st_faq_a7: "Speed tests can use different servers and network paths, while internet traffic and server conditions also change. Small variations between tests are therefore normal.",
+
+    search_results_articles_heading: "Related Articles",
   },
   zh: {
     nav_home: "首页",
@@ -679,6 +681,8 @@ const translations = {
     st_faq_a6: "因为它们是不同单位。Mbps 是 megabits per second，而 MB/s 是 megabytes per second。1 byte 等于8 bits。",
     st_faq_q7: "为什么两次测速结果不一样？",
     st_faq_a7: "不同测速时间、服务器和网络路径都会影响结果。网络流量和服务器负载也会变化，因此出现一定差异是正常的。",
+
+    search_results_articles_heading: "相关文章",
   },
   ms: {
     nav_home: "Laman Utama",
@@ -1019,6 +1023,8 @@ const translations = {
     st_faq_a6: "Kerana kedua-duanya menggunakan unit yang berbeza. Mbps ialah megabit sesaat, manakala MB/s ialah megabait sesaat. 1 byte bersamaan 8 bits.",
     st_faq_q7: "Kenapa keputusan dua speed test tidak sama?",
     st_faq_a7: "Masa ujian, lokasi server, laluan rangkaian dan beban server boleh berubah. Jadi sedikit perbezaan antara ujian adalah perkara biasa.",
+
+    search_results_articles_heading: "Artikel Berkaitan",
   },
 };
 
