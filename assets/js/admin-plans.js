@@ -28,6 +28,8 @@ async function initAdminPlansPage() {
   document.getElementById("btn-add-banner").addEventListener("click", addBannerRow);
   document.getElementById("form-promo-enabled").addEventListener("change", togglePromoFieldsVisibility);
   document.getElementById("form-announcement-enabled").addEventListener("change", toggleAnnouncementFieldsVisibility);
+  document.getElementById("form-promo-faq-enabled").addEventListener("change", togglePromoFaqFieldsVisibility);
+  document.getElementById("btn-add-promo-faq-row").addEventListener("click", () => addPromoFaqRow());
 }
 
 function initPlanQuillEditor() {
@@ -80,6 +82,39 @@ function toggleAnnouncementFieldsVisibility() {
   } else {
     wrap.classList.add("hidden");
   }
+}
+
+function togglePromoFaqFieldsVisibility() {
+  const enabled = document.getElementById("form-promo-faq-enabled").checked;
+  const wrap = document.getElementById("promo-faq-fields-wrap");
+  if (enabled) {
+    wrap.classList.remove("hidden");
+  } else {
+    wrap.classList.add("hidden");
+  }
+}
+
+function addPromoFaqRow(question, answer) {
+  const wrap = document.getElementById("promo-faq-rows-wrap");
+  const row = document.createElement("div");
+  row.className = "faq-edit-row";
+  row.innerHTML = `
+    <input type="text" placeholder="Question" class="promo-faq-question" value="${question ? question.replace(/"/g, "&quot;") : ""}" />
+    <textarea placeholder="Answer" class="promo-faq-answer">${answer || ""}</textarea>
+    <button type="button" class="btn-remove-faq" onclick="this.parentElement.remove()">✕ Remove</button>
+  `;
+  wrap.appendChild(row);
+}
+
+function collectPromoFaqData() {
+  const rows = document.querySelectorAll("#promo-faq-rows-wrap .faq-edit-row");
+  const faqs = [];
+  rows.forEach((row) => {
+    const q = row.querySelector(".promo-faq-question").value.trim();
+    const a = row.querySelector(".promo-faq-answer").value.trim();
+    if (q && a) faqs.push({ q, a });
+  });
+  return faqs.length > 0 ? JSON.stringify(faqs) : null;
 }
 
 async function loadProviderOptions() {
@@ -194,14 +229,29 @@ async function openPlanForm(planId) {
       document.getElementById("form-promo-terms-id").value = plan.promo_terms_id || "";
       toggleAnnouncementFieldsVisibility();
 
+      document.getElementById("form-promo-faq-enabled").checked = plan.promo_faq_enabled || false;
+      document.getElementById("promo-faq-rows-wrap").innerHTML = "";
+      if (plan.promo_faq_data) {
+        try {
+          const faqs = JSON.parse(plan.promo_faq_data);
+          faqs.forEach((f) => addPromoFaqRow(f.q, f.a));
+        } catch (e) {
+          console.error("Failed to parse promo_faq_data", e);
+        }
+      }
+      togglePromoFaqFieldsVisibility();
+
       await loadBannersForPlan(planId);
     }
   } else {
     document.getElementById("form-is-published").checked = true;
     document.getElementById("form-promo-enabled").checked = false;
     document.getElementById("form-announcement-enabled").checked = false;
+    document.getElementById("form-promo-faq-enabled").checked = false;
+    document.getElementById("promo-faq-rows-wrap").innerHTML = "";
     togglePromoFieldsVisibility();
     toggleAnnouncementFieldsVisibility();
+    togglePromoFaqFieldsVisibility();
   }
 
   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -248,6 +298,8 @@ async function savePlan(e) {
     promo_announcement_enabled: document.getElementById("form-announcement-enabled").checked,
     promo_announcement_content: isAnnouncementEmpty ? null : announcementHtml,
     promo_terms_id: document.getElementById("form-promo-terms-id").value || null,
+    promo_faq_enabled: document.getElementById("form-promo-faq-enabled").checked,
+    promo_faq_data: collectPromoFaqData(),
   };
 
   const appTypeSlug = (planData.new_and_transfer || "").toLowerCase().includes("new")
