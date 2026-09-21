@@ -194,9 +194,10 @@ function buildPlanPageHtml(plan, provider, banners, relatedArticles, canonicalOv
     : "";
 
   let promoFaqHtml = "";
-  if (plan.promo_faq_enabled && plan.promo_faq_data) {
+  const faqSourceData = plan.promo_faqs ? plan.promo_faqs.faq_data : plan.promo_faq_data;
+  if (plan.promo_faq_enabled && faqSourceData) {
     try {
-      const faqs = JSON.parse(plan.promo_faq_data);
+      const faqs = JSON.parse(faqSourceData);
       if (faqs.length > 0) {
         const faqItems = faqs
           .map(
@@ -355,7 +356,7 @@ async function generatePlanPages() {
   console.log('Fetching data...');
   const plans = await fetchFromSupabase(
     'plans',
-    'select=*,providers(id,name,slug,color_hex,logo_url),plan_banners(*),promo_terms(slug)&is_published=eq.true'
+    'select=*,providers(id,name,slug,color_hex,logo_url),plan_banners(*),promo_terms(slug),promo_faqs(faq_data)&is_published=eq.true'
   );
 
   plans.forEach((p) => {
