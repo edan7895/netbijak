@@ -31,24 +31,52 @@ async function performSearch() {
   resultsSection.scrollIntoView({ behavior: "smooth" });
 
   const allPlans = await fetchStaticData("plans");
+  const allArticles = await fetchStaticData("articles");
+  const lang = getCurrentLang();
 
-  const matched = allPlans
+  const matchedPlans = allPlans
     .filter((p) => isPlanCurrentlyPublished(p))
     .filter((p) => {
       const name = (p.name || "").toLowerCase();
       const tagline = (p.tagline || "").toLowerCase();
-      return name.includes(keyword) || tagline.includes(keyword);
+      const features = (p.features || "").toLowerCase();
+      const downloadSpeed = (p.download_speed || "").toLowerCase();
+      return name.includes(keyword) || tagline.includes(keyword) || features.includes(keyword) || downloadSpeed.includes(keyword);
     })
     .sort((a, b) => a.promo_price - b.promo_price)
-    .slice(0, 24);
+    .slice(0, 12);
 
-  if (matched.length === 0) {
+  const matchedArticles = allArticles
+    .filter((a) => a.language === lang)
+    .filter((a) => {
+      const title = (a.title || "").toLowerCase();
+      const content = (a.content || "").replace(/<[^>]*>/g, " ").toLowerCase();
+      const summary = (a.ai_summary || "").toLowerCase();
+      return title.includes(keyword) || content.includes(keyword) || summary.includes(keyword);
+    })
+    .sort((a, b) => new Date(b.publish_at || b.created_at) - new Date(a.publish_at || a.created_at))
+    .slice(0, 8);
+
+  if (matchedPlans.length === 0 && matchedArticles.length === 0) {
     resultsGrid.innerHTML = `<p style="color:#94a3b8;padding:2rem;text-align:center">${t("no_results")}</p>`;
     return;
   }
 
-  const lowestPrice = Math.min(...matched.map((p) => p.promo_price));
-  resultsGrid.innerHTML = matched.map((plan) => buildResultCard(plan, plan.promo_price === lowestPrice)).join("");
+  let html = "";
+
+  if (matchedPlans.length > 0) {
+    const lowestPrice = Math.min(...matchedPlans.map((p) => p.promo_price));
+    html += `<div class="search-results-plans">${matchedPlans.map((plan) => buildResultCard(plan, plan.promo_price === lowestPrice)).join("")}</div>`;
+  }
+
+  if (matchedArticles.length > 0) {
+    html += `
+      <h3 class="search-results-articles-heading">${t("search_results_articles_heading")}</h3>
+      <div class="search-results-articles">${matchedArticles.map((a) => buildArticleMiniCard(a)).join("")}</div>
+    `;
+  }
+
+  resultsGrid.innerHTML = html;
 }
 
 async function renderProviderGrid() {
@@ -114,17 +142,7 @@ async function renderLatestArticles() {
 }
 
 function buildArticleMiniCard(article) {
-  // ⭕ 1. 优先拿 publish_at，没有才拿 created_at
-  const dateSource = article.publish_at || article.created_at;
-  
-  // ⭕ 2. 强制锁定马来西亚 UTC+8 时区
-  const dateStr = new Date(dateSource).toLocaleDateString("en-US", {
-    timeZone: "Asia/Kuala_Lumpur",
-    year: "numeric",
-    month: "numeric",
-    day: "numeric"
-  });
-
+  const dateStr = new Date(article.created_at).toLocaleDateString();
   const excerpt = (article.content || "").replace(/<[^>]*>/g, "").slice(0, 80);
   const typeLabel = article.article_type === "news" ? "News" : "Article";
 
@@ -141,7 +159,6 @@ function buildArticleMiniCard(article) {
       </div>
     </a>
   `;
-}
 }
 
 function buildResultCard(plan, isBest) {
