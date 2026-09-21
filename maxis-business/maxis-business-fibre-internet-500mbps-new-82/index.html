@@ -50,6 +50,7 @@
     </div>
     
     
+    
     <div class="plan-overview-box">
         <div class="plan-overview-badge">✨ NetBijak's Take</div>
         <p>This plan is an excellent choice for home-based entrepreneurs or small office setups that cannot afford downtime, as the inclusion of a 4G wireless backup provides a critical safety net during fibre outages. While the 24-month contract requires a longer commitment than some entry-level options, the added value of the WiFi 6 router and unlimited calls makes it a cost-effective solution for those who rely heavily on connectivity for both business and leisure. Before signing up, ensure your workspace is positioned to receive a decent 4G signal, as the effectiveness of the backup feature depends entirely on the mobile network strength in your specific location.</p>
@@ -111,6 +112,14 @@
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>

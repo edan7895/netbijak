@@ -50,6 +50,7 @@
     </div>
     
     
+    
     <div class="plan-overview-box">
         <div class="plan-overview-badge">✨ NetBijak's Take</div>
         <p>This plan hits a sweet spot for medium-sized households where multiple people are simultaneously streaming 4K content, attending video calls, and gaming. The inclusion of a Wi-Fi 6 router is a significant benefit, as it ensures you have the necessary hardware to actually distribute those speeds throughout your home without a bottleneck. While the three-month waiver provides excellent upfront savings, remember that you are committing to a two-year lock-in period, so ensure your current residence is stable before signing up. If you anticipate your internet needs growing significantly in the next few years, verify if the provider offers a seamless upgrade path to gigabit tiers later on, as switching mid-contract can often be complicated.</p>
@@ -111,6 +112,14 @@
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>

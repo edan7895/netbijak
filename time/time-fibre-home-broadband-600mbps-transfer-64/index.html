@@ -50,6 +50,7 @@
     </div>
     
     
+    
     <div class="plan-overview-box">
         <div class="plan-overview-badge">✨ NetBijak's Take</div>
         <p>This plan is an excellent fit for modern households with several heavy users who prioritize consistent performance for 4K streaming and low-latency cloud gaming. While the inclusion of a Wi-Fi 7 router offers great future-proofing, keep in mind that you are committing to a 24-month contract, so ensure your current living situation is stable before signing up. The promotional pricing makes this one of the most cost-effective tiers in the Time lineup, but you should verify that your home devices actually support Wi-Fi 7 to truly benefit from the hardware upgrade.</p>
@@ -111,6 +112,14 @@
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>

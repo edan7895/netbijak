@@ -50,6 +50,7 @@
     </div>
     
     
+    
     <div class="plan-overview-box">
         <div class="plan-overview-badge">✨ NetBijak's Take</div>
         <p>This plan is an ideal entry-level choice for small home offices or solo entrepreneurs who prioritize consistent connectivity, as the included 4G backup provides a crucial safety net against fiber outages. While the monthly cost is competitive, remember that you are committing to a two-year contract, so ensure this address is your long-term base before signing. If you have a household with multiple heavy streamers or gamers, you may eventually find the 100Mbps ceiling limiting and might want to consider if the ISP offers a seamless upgrade path to higher tiers later on.</p>
@@ -111,6 +112,14 @@
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>

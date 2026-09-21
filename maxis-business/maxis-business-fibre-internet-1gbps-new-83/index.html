@@ -50,6 +50,7 @@
     </div>
     
     
+    
     <div class="plan-overview-box">
         <div class="plan-overview-badge">✨ NetBijak's Take</div>
         <p>This plan is an excellent choice for home-based entrepreneurs or power users who require uninterrupted connectivity, as the integrated 4G backup offers critical peace of mind during unexpected fibre outages. While the 1Gbps throughput is generous, you should only consider this if your home network setup, including your cables and devices, is capable of actually handling such high speeds to avoid paying for performance you cannot fully utilize. Be mindful that the 24-month contract is a significant commitment, so ensure your business or household stability justifies the long-term investment before signing on.</p>
@@ -111,6 +112,14 @@
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>

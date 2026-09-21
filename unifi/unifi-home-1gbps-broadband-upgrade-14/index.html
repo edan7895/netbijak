@@ -50,6 +50,7 @@
     </div>
     
     
+    
     <div class="plan-overview-box">
         <div class="plan-overview-badge">✨ NetBijak's Take</div>
         <p>This plan is an excellent choice for large households or power users who frequently juggle 4K streaming, heavy cloud backups, and competitive gaming simultaneously. While the inclusion of Wi-Fi 6 mesh hardware significantly boosts coverage in multi-room homes, keep in mind that you are locked into a two-year commitment, making it a serious long-term investment. If your household has fewer than five active users, you might find more cost-effective value in the lower-tier plans, as you likely will not saturate this level of bandwidth. Before signing, ensure your devices actually support Wi-Fi 6 standards, otherwise, you may not experience the full performance benefits promised by the new router.</p>
@@ -111,6 +112,14 @@
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>

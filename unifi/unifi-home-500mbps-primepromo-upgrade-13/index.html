@@ -50,6 +50,7 @@
     </div>
     
     
+    
     <div class="plan-overview-box">
         <div class="plan-overview-badge">✨ NetBijak's Take</div>
         <p>This plan strikes a sweet spot for large households or heavy remote-working families who need reliable bandwidth without paying premium prices. While the three-month waiver makes the initial entry very attractive, be mindful that you are committing to a 27-month contract, so ensure your living situation is stable before signing up. The inclusion of the Wi-Fi 6 router is a significant practical upgrade that helps manage traffic for multiple simultaneous users, but keep in mind that the upload speed is capped at 100Mbps, which may be a slight bottleneck if you frequently upload large video files or host local servers.</p>
@@ -111,6 +112,14 @@
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>

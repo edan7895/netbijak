@@ -50,6 +50,7 @@
     </div>
     
     
+    
     <div class="plan-overview-box">
         <div class="plan-overview-badge">✨ NetBijak's Take</div>
         <p>This high-performance package is best suited for power users, large households, or creators who frequently handle massive file transfers and require stable connectivity across many devices simultaneously. While the inclusion of a 75-inch smart TV and mesh hardware adds significant value, the 36-month commitment is a long-term obligation that warrants careful consideration of your future living arrangements. Before signing up, ensure you have Wi-Fi 6 compatible devices at home to actually benefit from the increased bandwidth, as older hardware will not be able to fully utilize this top-tier speed.</p>
@@ -111,6 +112,14 @@
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>

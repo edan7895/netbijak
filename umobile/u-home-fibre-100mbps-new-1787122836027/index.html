@@ -50,6 +50,7 @@
     </div>
     
     
+    
     <div class="plan-overview-box">
         <div class="plan-overview-badge">✨ NetBijak's Take</div>
         <p>This plan is a strong contender for small households or budget-conscious renters who need reliable connectivity for streaming and remote work without overpaying. While the monthly rebate makes it one of the most accessible entry-level options on the market, keep in mind that you are locking yourself into a two-year commitment, so ensure your living situation is stable before signing. It hits a sweet spot for casual browsing and HD video conferencing, but if you have heavy gamers or multiple 4K streamers in the house, you may find the upload speed limiting over time. Before committing, verify your specific address to confirm U Mobile infrastructure stability in your area to avoid potential downtime during your contract period.</p>
@@ -111,6 +112,14 @@
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>

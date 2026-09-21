@@ -50,6 +50,7 @@
     </div>
     
     
+    
     <div class="plan-overview-box">
         <div class="plan-overview-badge">✨ NetBijak's Take</div>
         <p>This plan is an excellent choice for small businesses or home offices that rely on constant uptime, as the integrated 4G backup is a rare and valuable feature at this entry-level price point. While the 100Mbps speed is perfectly adequate for standard tasks like video conferencing and cloud document syncing, users should be mindful that the 24-month contract limits flexibility if your connectivity needs scale up quickly. Given the inclusion of a WiFi 6 router, you will get strong signal efficiency for your workspace, but keep in mind that this is specifically a business-tier product which may have different service level agreements compared to standard residential plans. If you prioritize reliability over raw bandwidth, this represents a highly stable foundation for a professional environment.</p>
@@ -111,6 +112,14 @@
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>

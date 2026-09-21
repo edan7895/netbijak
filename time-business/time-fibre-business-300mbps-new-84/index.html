@@ -50,6 +50,7 @@
     </div>
     
     
+    
     <div class="plan-overview-box">
         <div class="plan-overview-badge">✨ NetBijak's Take</div>
         <p>This plan is an excellent choice for small business owners or home-based professionals who need consistent, symmetrical bandwidth for heavy cloud-based tasks and video conferencing without the premium cost of higher-tier packages. While the inclusion of a WiFi 6 router is a solid value-add for modern device compatibility, keep in mind that the two-year contract is a significant commitment that may not suit those seeking short-term flexibility. Before signing up, ensure your specific office or residential unit is within a TIME-enabled building, as their coverage is more selective than other major providers in Malaysia.</p>
@@ -111,6 +112,14 @@
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>

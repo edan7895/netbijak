@@ -50,6 +50,7 @@
     </div>
     
     
+    
     <div class="plan-overview-box">
         <div class="plan-overview-badge">✨ NetBijak's Take</div>
         <p>This high-performance plan is the gold standard for power-user households where multiple members are simultaneously streaming 4K content, gaming, and working from home without any bandwidth bottlenecks. While the future-proof Wi-Fi 7 technology offers incredible wireless efficiency, keep in mind that you are committing to a two-year contract, so ensure your current living situation is stable before signing up. To get the most out of this investment, verify that your home devices actually support Wi-Fi 7 or are hardwired via Cat6 cables, otherwise, you may not experience the full potential of these speeds in every corner of your house.</p>
@@ -111,6 +112,14 @@
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>

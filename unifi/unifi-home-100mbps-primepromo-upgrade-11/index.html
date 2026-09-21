@@ -50,6 +50,7 @@
     </div>
     
     
+    
     <div class="plan-overview-box">
         <div class="plan-overview-badge">✨ NetBijak's Take</div>
         <p>This entry-level offer is a solid choice for small households or light-usage couples who primarily stream content and browse the web without heavy gaming or cloud-heavy professional workloads. While the three-month waiver makes it an attractive budget-friendly entry, keep in mind that you are committing to a 27-month contract, which is slightly longer than the standard industry norm. Before signing up, verify that your home layout is suitable for the included Wi-Fi 6 hardware, as this equipment performs best in open-plan spaces where signal obstruction is kept to a minimum.</p>
@@ -111,6 +112,14 @@
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>

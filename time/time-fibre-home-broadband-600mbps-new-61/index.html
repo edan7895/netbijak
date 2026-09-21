@@ -50,6 +50,7 @@
     </div>
     
     
+    
     <div class="plan-overview-box">
         <div class="plan-overview-badge">✨ NetBijak's Take</div>
         <p>This plan is an excellent fit for medium-sized households where multiple people are streaming, gaming, or working from home simultaneously without causing network congestion. While the inclusion of a Wi-Fi 7 router offers excellent future-proofing for your home connectivity, keep in mind that you are locking into a two-year commitment to secure the discounted introductory rate. If your home has a large footprint, consider investing in a mesh system to fully leverage the Wi-Fi 7 capabilities, as a single router may struggle to maintain top-tier performance in every corner of a larger residence.</p>
@@ -111,6 +112,14 @@
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>

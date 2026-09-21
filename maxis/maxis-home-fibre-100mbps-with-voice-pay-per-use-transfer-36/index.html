@@ -50,6 +50,7 @@
     </div>
     
     
+    
     <div class="plan-overview-box">
         <div class="plan-overview-badge">✨ NetBijak's Take</div>
         <p>This plan is an excellent entry-level choice for small households or light internet users who prioritize a stable connection for daily browsing and standard-definition streaming without overpaying for bandwidth they do not need. While the three-month waiver and included WiFi 6 router offer great upfront value, be mindful that you are committing to a two-year contract, so ensure your current address is stable before signing up. For most users, this speed is perfectly adequate for simultaneous usage on a few devices, but if you frequently transfer large files or engage in high-demand gaming, you may want to consider whether a higher tier provides better long-term scalability for your needs.</p>
@@ -111,6 +112,14 @@
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>

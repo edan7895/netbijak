@@ -50,6 +50,7 @@
     </div>
     
     
+    
     <div class="plan-overview-box">
         <div class="plan-overview-badge">✨ NetBijak's Take</div>
         <p>This plan is tailored for high-intensity commercial environments or tech-heavy households where multiple users engage in massive file transfers, 8K streaming, or heavy cloud-based operations simultaneously. While the bandwidth is exceptionally generous, the two-year contract means you should be certain about your long-term location stability before committing. Before signing up, ensure your internal hardware, such as your network switches and devices, actually supports 2.5Gbps port connections, otherwise, you might not be able to fully utilize the total capacity provided.</p>
@@ -111,6 +112,14 @@
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>

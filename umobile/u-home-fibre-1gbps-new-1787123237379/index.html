@@ -50,6 +50,7 @@
     </div>
     
     
+    
     <div class="plan-overview-box">
         <div class="plan-overview-badge">✨ NetBijak's Take</div>
         <p>NetBijak's Take: This plan is a powerhouse designed for power users, large households, or hybrid work setups where multiple people are simultaneously streaming 4K content, gaming, and attending video conferences without any slowdown. While the RM20 monthly rebate helps soften the cost, keep in mind that you are committing to a long-term 24-month contract, so ensure your area has consistent U Mobile fiber coverage before locking in. If your household has fewer than five active users, you might find more cost-effective value in lower speed tiers, as 1Gbps is likely overkill for light daily browsing.</p>
@@ -111,6 +112,14 @@
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>

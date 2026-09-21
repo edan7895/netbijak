@@ -50,6 +50,7 @@
     </div>
     
     
+    
     <div class="plan-overview-box">
         <div class="plan-overview-badge">✨ NetBijak's Take</div>
         <p>This plan is an excellent fit for small office environments or home-based businesses that require reliable, high-bandwidth uploads for tasks like video conferencing, cloud backups, and digital content creation. While the inclusion of mesh hardware is a significant value add for eliminating dead zones, users should be mindful that the two-year lock-in period requires a solid commitment to your business location. Before signing up, verify that your premises are covered by TIME’s infrastructure, as their network footprint is more targeted than other major providers in Malaysia. If your daily operations demand consistent stability over raw speed, this mid-tier option offers a balanced professional setup without the premium cost of gigabit-plus plans.</p>
@@ -111,6 +112,14 @@
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>

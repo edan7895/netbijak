@@ -50,6 +50,7 @@
     </div>
     
     
+    
     <div class="plan-overview-box">
         <div class="plan-overview-badge">✨ NetBijak's Take</div>
         <p>This plan is an ideal match for medium-sized households where multiple people are simultaneously streaming 4K content, gaming, or working from home. While the Wi-Fi 6 router included helps manage these concurrent connections efficiently, keep in mind that you are locked into a two-year commitment to secure the promotional pricing. Before signing up, check your specific area for CelcomDigi coverage reliability, as the value proposition relies heavily on having a stable connection that can consistently handle the advertised speeds.</p>
@@ -111,6 +112,14 @@
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>

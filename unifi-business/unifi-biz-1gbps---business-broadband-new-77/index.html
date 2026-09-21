@@ -50,6 +50,7 @@
     </div>
     
     
+    
     <div class="plan-overview-box">
         <div class="plan-overview-badge">✨ NetBijak's Take</div>
         <p>This plan is an excellent choice for home-based entrepreneurs, creative professionals, or small offices that rely heavily on cloud synchronization and large file transfers, as the 500Mbps upload speed is a significant asset for productivity. While the Wi-Fi 7 hardware future-proofs your connection, ensure your office or home layout can actually benefit from this newer standard, as you will need compatible devices to experience the full potential of that bandwidth. Keep in mind that the 24-month commitment is a long-term investment, so verify that your business location has a stable fibre track record before locking in. If your daily workflow does not involve massive data movement, you may find that mid-tier plans offer better cost-efficiency without sacrificing noticeable performance for standard office tasks.</p>
@@ -111,6 +112,14 @@
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>

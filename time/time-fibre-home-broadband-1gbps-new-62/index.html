@@ -50,6 +50,7 @@
     </div>
     
     
+    
     <div class="plan-overview-box">
         <div class="plan-overview-badge">✨ NetBijak's Take</div>
         <p>This plan is the gold standard for power users and large households where multiple members are simultaneously streaming 4K content, gaming, or handling large cloud backups. While the inclusion of a Wi-Fi 7 router provides future-proof wireless performance, keep in mind that you need compatible Wi-Fi 7 devices to actually feel the difference in speed around your home. The 24-month commitment is a standard but significant obligation, so ensure Time has verified your building's infrastructure coverage before signing up to avoid potential installation delays. Ultimately, this tier offers excellent value for those who prioritize a lag-free experience, provided you have a high-demand home environment to justify the monthly investment.</p>
@@ -111,6 +112,14 @@
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>

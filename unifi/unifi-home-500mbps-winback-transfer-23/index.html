@@ -50,6 +50,7 @@
     </div>
     
     
+    
     <div class="plan-overview-box">
         <div class="plan-overview-badge">✨ NetBijak's Take</div>
         <p>NetBijak’s Take: This plan is an excellent choice for a busy mid-sized household where multiple people are simultaneously streaming 4K content, gaming, and attending video calls. While the bundled 65-inch Smart TV offers significant upfront value, ensure your home is genuinely prepared for the 36-month commitment, as this is longer than the industry standard of 24 months. If you are settled in your current residence and looking to upgrade your home entertainment setup alongside your connectivity, the cost-to-benefit ratio here is hard to beat. Just keep in mind that the asymmetrical upload speed is better suited for media consumption than heavy content creation or constant large file uploads.</p>
@@ -111,6 +112,14 @@
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>

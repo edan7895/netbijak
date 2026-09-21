@@ -50,6 +50,7 @@
     </div>
     
     
+    
     <div class="plan-overview-box">
         <div class="plan-overview-badge">✨ NetBijak's Take</div>
         <p>This plan is an excellent choice for large households or heavy power users who frequently handle high-bandwidth tasks like 4K streaming and large file transfers simultaneously. While the inclusion of Wi-Fi 6 mesh hardware significantly boosts coverage in multi-room homes, keep in mind that the 30-month contract is longer than the industry standard, so ensure you are settled in your residence before committing. Since the first six months are free, the effective monthly cost over the life of the contract is quite competitive, making it a strong value proposition if you intend to stay with Unifi for the long haul. Before signing up, verify if your home network setup is capable of supporting gigabit speeds, as you will need Cat6 cables and compatible devices to actually experience the full performance this plan offers.</p>
@@ -111,6 +112,14 @@
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>

@@ -50,6 +50,7 @@
     </div>
     
     
+    
     <div class="plan-overview-box">
         <div class="plan-overview-badge">✨ NetBijak's Take</div>
         <p>This plan is an excellent choice for smaller households or studio apartment dwellers who want high-speed 5G connectivity without the hassle of fiber installation cables. While the heavy discount on the router offers significant entry-level savings, be mindful that you are locked into a 12-month commitment, so verify your area's 5G signal consistency before signing up. The 500GB 4G data backup is a thoughtful inclusion, but since it is not unlimited, power users should monitor their consumption if they frequently venture out of 5G coverage zones. Given the 7-day return policy, we recommend testing the connection across different rooms during the first week to ensure the router placement provides optimal signal strength.</p>
@@ -111,6 +112,14 @@
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>

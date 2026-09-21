@@ -50,6 +50,7 @@
     </div>
     
     
+    
     <div class="plan-overview-box">
         <div class="plan-overview-badge">✨ NetBijak's Take</div>
         <p>This plan is an excellent choice for a busy household where multiple members are simultaneously streaming 4K content, gaming, or working from home. While the bundled smart TV adds significant value, be mindful that you are committing to a lengthy 36-month contract, which limits your ability to switch providers or upgrade your package if your needs change soon. Before signing up, ensure your residence has stable Unifi fibre coverage and check that your current networking hardware can fully leverage the Wi-Fi 6 capabilities provided with this bundle.</p>
@@ -111,6 +112,14 @@
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>

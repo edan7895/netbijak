@@ -50,6 +50,7 @@
     </div>
     
     
+    
     <div class="plan-overview-box">
         <div class="plan-overview-badge">✨ NetBijak's Take</div>
         <p>This plan is best suited for large, high-traffic households where multiple users are simultaneously streaming 4K content, gaming, and managing smart home devices. While the inclusion of Netflix and upgraded Wi-Fi 6 hardware offers great convenience, you should be prepared for the two-year lock-in period, which requires a firm commitment to the monthly investment. Before signing up, ensure your devices are actually capable of utilizing Wi-Fi 6 technology to truly benefit from the high-speed bandwidth, as older hardware may not see a significant performance boost over cheaper plans.</p>
@@ -111,6 +112,14 @@
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>

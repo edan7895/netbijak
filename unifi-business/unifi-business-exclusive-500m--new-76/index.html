@@ -50,6 +50,7 @@
     </div>
     
     
+    
     <div class="plan-overview-box">
         <div class="plan-overview-badge">✨ NetBijak's Take</div>
         <p>The Unifi Business Exclusive 500M is an excellent middle-ground solution for small offices or home-based businesses that rely heavily on cloud applications and video conferencing. While the 100Mbps upload speed is adequate for typical business tasks, keep in mind that the 24-month commitment is a long-term investment, so ensure your business location is stable before signing up. The inclusion of Wi-Fi 6 mesh hardware significantly boosts coverage for larger office layouts, making this a high-value package if you need reliable connectivity across multiple rooms. Before finalizing, verify the total cost of ownership against lower-tier plans, as you might find a 300Mbps plan sufficient if your daily operations do not involve heavy large-file transfers.</p>
@@ -111,6 +112,14 @@
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>

@@ -50,6 +50,7 @@
     </div>
     
     
+    
     <div class="plan-overview-box">
         <div class="plan-overview-badge">✨ NetBijak's Take</div>
         <p>This plan is a powerhouse designed for power-user households with multiple simultaneous 4K streamers, competitive gamers, and smart home enthusiasts who need to eliminate any hint of bandwidth congestion. While the download speeds are industry-leading, the upload speed remains relatively modest, which may be a consideration if you frequently upload massive video files or work heavily with cloud-based creative tools. Given the two-year commitment and the premium price point, ensure your existing home networking equipment is actually capable of supporting such high throughput, otherwise, you may not fully realize the benefits of this high-speed connection. It is essentially a future-proof investment for heavy digital traffic, provided your daily habits justify jumping above the standard 500Mbps or 1Gbps tiers.</p>
@@ -111,6 +112,14 @@
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>

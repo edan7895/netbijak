@@ -50,6 +50,7 @@
     </div>
     
     
+    
     <div class="plan-overview-box">
         <div class="plan-overview-badge">✨ NetBijak's Take</div>
         <p>This plan is an excellent choice for home-based entrepreneurs, heavy content creators, or households with multiple power users who demand consistent bandwidth for cloud-based workflows and large file transfers. While the WiFi 7 hardware future-proofs your home network, be aware that you are committing to a 24-month contract, so ensure your location has a stable TIME infrastructure record before locking in. If your daily operations don't involve massive data uploads, you might find more cost-efficient tiers within the TIME lineup, but for those who prioritize uptime and symmetric-like performance, this package offers a premium, fuss-free experience.</p>
@@ -111,6 +112,14 @@
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>

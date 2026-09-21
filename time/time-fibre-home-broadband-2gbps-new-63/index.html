@@ -50,6 +50,7 @@
     </div>
     
     
+    
     <div class="plan-overview-box">
         <div class="plan-overview-badge">✨ NetBijak's Take</div>
         <p>This plan is a power-user's dream, specifically designed for large households or pro-sumers juggling multiple 4K streams, heavy cloud syncing, and high-bandwidth gaming simultaneously. While the speed is impressive, it is worth noting that you will need to ensure your home networking equipment—such as your ethernet cables and device network cards—is rated for multi-gigabit connections to actually experience those speeds wirelessly or wired. Because of the long-term contract and premium monthly cost, you should only opt for this tier if your daily usage genuinely demands a massive pipeline, otherwise, the 500Mbps or 1Gbps plans often offer better value for the average family.</p>
@@ -111,6 +112,14 @@
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>

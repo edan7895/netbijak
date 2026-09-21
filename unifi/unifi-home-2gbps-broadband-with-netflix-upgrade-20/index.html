@@ -50,6 +50,7 @@
     </div>
     
     
+    
     <div class="plan-overview-box">
         <div class="plan-overview-badge">✨ NetBijak's Take</div>
         <p>This plan is an ideal match for large, hyper-connected households where multiple users are simultaneously streaming 4K content, gaming, and managing smart home devices without any bandwidth bottlenecks. While the bundled Netflix subscription and high-end mesh hardware add significant convenience, the two-year commitment is a serious consideration, so you should only lock in if you are certain about your long-term housing situation. Before signing up, ensure your internal home networking equipment, such as your ethernet cables and computer network cards, are capable of supporting multi-gigabit throughput to avoid hardware-induced speed caps.</p>
@@ -111,6 +112,14 @@
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>

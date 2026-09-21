@@ -50,6 +50,7 @@
     </div>
     
     
+    
     <div class="plan-overview-box">
         <div class="plan-overview-badge">✨ NetBijak's Take</div>
         <p>This entry-level fibre package is an excellent choice for small households, young couples, or remote workers who need a stable, dedicated connection for standard streaming and video conferencing. While the 24-month commitment is standard for the industry, you should confirm if your area has consistent CelcomDigi coverage before locking in, as switching providers early can incur significant penalty fees. Because the upload speed is capped at 50Mbps, heavy content creators or those who frequently back up large files to the cloud might eventually find this tier limiting compared to the 300Mbps alternatives. Overall, if your primary goal is reliable daily browsing without overpaying for bandwidth you do not use, this plan offers a cost-effective entry point into modern Wi-Fi 6 connectivity.</p>
@@ -111,6 +112,14 @@
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>
