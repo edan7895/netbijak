@@ -97,6 +97,23 @@
       border-radius: 8px; font-size: 0.8rem; font-weight: 700; cursor: pointer;
     }
 
+    .btn-add-faq {
+      padding: 8px 16px; background: #e0f2fe; color: #0369a1; border: none;
+      border-radius: 8px; font-size: 0.8rem; font-weight: 700; cursor: pointer;
+    }
+    .faq-edit-row {
+      background: #f8fafc; border-radius: 10px; padding: 12px; margin-bottom: 10px;
+      display: grid; grid-template-columns: 1fr; gap: 8px;
+    }
+    .faq-edit-row input, .faq-edit-row textarea {
+      padding: 8px 12px; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 0.85rem;
+    }
+    .faq-edit-row textarea { min-height: 60px; resize: vertical; }
+    .btn-remove-faq {
+      justify-self: start; padding: 6px 14px; background: #fee2e2; color: #991b1b;
+      border: none; border-radius: 6px; font-size: 0.75rem; cursor: pointer;
+    }
+
     .announcement-section {
       margin-top: 1.5rem; border-top: 2px solid #f1f5f9; padding-top: 1.25rem;
     }
@@ -240,6 +257,18 @@
               <select id="form-promo-terms-id"></select>
               <p class="form-hint">A "Click here to read full Terms & Conditions" link will be added automatically, pointing to this template's page.</p>
             </div>
+          </div>
+        </div>
+
+        <div class="announcement-section">
+          <div class="form-checkbox-row">
+            <input type="checkbox" id="form-promo-faq-enabled" />
+            <label for="form-promo-faq-enabled">Enable Promotion FAQ (shown below the promotion announcement)</label>
+          </div>
+          <div id="promo-faq-fields-wrap" class="hidden">
+            <p class="form-hint">Add questions specific to this promotion (e.g. "When will I receive my TNG Pin?", "How is the winner verified?").</p>
+            <div id="promo-faq-rows-wrap"></div>
+            <button type="button" id="btn-add-promo-faq-row" class="btn-add-faq">+ Add FAQ</button>
           </div>
         </div>
 
