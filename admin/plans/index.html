@@ -266,9 +266,11 @@
             <label for="form-promo-faq-enabled">Enable Promotion FAQ (shown below the promotion announcement)</label>
           </div>
           <div id="promo-faq-fields-wrap" class="hidden">
-            <p class="form-hint">Add questions specific to this promotion (e.g. "When will I receive my TNG Pin?", "How is the winner verified?").</p>
-            <div id="promo-faq-rows-wrap"></div>
-            <button type="button" id="btn-add-promo-faq-row" class="btn-add-faq">+ Add FAQ</button>
+            <div class="form-field">
+              <label>FAQ Template</label>
+              <select id="form-promo-faq-id"></select>
+              <p class="form-hint">Manage FAQ templates in <a href="../promo-faqs/" target="_blank">Promotion FAQ Templates</a>. Multiple plans can share the same template — edit it once, all linked plans update together.</p>
+            </div>
           </div>
         </div>
 
