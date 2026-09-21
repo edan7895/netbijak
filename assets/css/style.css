@@ -1225,3 +1225,9 @@ table.compare-table tbody tr:nth-child(odd) .compare-row-label { background: #ee
   margin: 1.25rem 0; padding: 1.5rem; background: #fff; border-radius: 16px; border: 1px solid #e2e8f0;
 }
 .plan-promo-faq-section h3 { font-size: 1.05rem; margin-bottom: 1rem; color: #0f172a; }
+.plan-promo-faq-section .faq-item {
+  background: #f8fafc; border: 1px solid #e2e8f0;
+}
+.plan-promo-faq-section .faq-item.open { border-color: #14b8a6; }
+.plan-promo-faq-section .faq-question { color: #0f172a; }
+.plan-promo-faq-section .faq-answer p { color: #475569; }
