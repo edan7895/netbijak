@@ -1185,3 +1185,31 @@ table.compare-table tbody tr:nth-child(odd) .compare-row-label { background: #ee
 .plan-announcement-terms-link a {
   color: #b45309; font-weight: 700; text-decoration: underline;
 }
+
+/* ===== 首页 Promotion Banner 轮播 ===== */
+.homepage-banner-carousel {
+  position: relative; max-width: 900px; margin: 0 auto 1rem; border-radius: 16px;
+  overflow: hidden; aspect-ratio: 3 / 1;
+}
+.homepage-banner-track {
+  display: flex; height: 100%; transition: transform 0.5s ease;
+}
+.homepage-banner-slide {
+  flex: 0 0 100%; height: 100%; display: block;
+}
+.homepage-banner-slide img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.homepage-banner-dots {
+  position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
+  display: flex; gap: 8px;
+}
+.homepage-banner-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: rgba(255,255,255,0.5);
+  cursor: pointer; transition: background 0.2s;
+}
+.homepage-banner-dot.active { background: #fff; }
+
+@media (max-width: 640px) {
+  .homepage-banner-carousel { aspect-ratio: 16 / 9; border-radius: 12px; }
+}
