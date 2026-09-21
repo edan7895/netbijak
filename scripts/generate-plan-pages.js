@@ -193,6 +193,34 @@ function buildPlanPageHtml(plan, provider, banners, relatedArticles, canonicalOv
       </div>`
     : "";
 
+  let promoFaqHtml = "";
+  if (plan.promo_faq_enabled && plan.promo_faq_data) {
+    try {
+      const faqs = JSON.parse(plan.promo_faq_data);
+      if (faqs.length > 0) {
+        const faqItems = faqs
+          .map(
+            (f, i) => `
+          <div class="faq-item">
+            <button type="button" class="faq-question" data-index="promo-${i}">
+              <span>${escapeHtml(f.q)}</span>
+              <span class="faq-toggle-icon">+</span>
+            </button>
+            <div class="faq-answer"><p>${escapeHtml(f.a)}</p></div>
+          </div>`
+          )
+          .join("");
+        promoFaqHtml = `
+          <div class="plan-promo-faq-section" id="plan-promo-faq-section">
+            <h3>🎁 Promotion FAQ</h3>
+            <div class="faq-list">${faqItems}</div>
+          </div>`;
+      }
+    } catch (e) {
+      promoFaqHtml = "";
+    }
+  }
+
   let overviewHtml = "";
   if (plan.deep_analysis && plan.deep_analysis.trim().length > 0) {
     overviewHtml = `<div class="plan-deep-analysis">${plan.deep_analysis}</div>`;
@@ -266,6 +294,7 @@ function buildPlanPageHtml(plan, provider, banners, relatedArticles, canonicalOv
     </div>
     ${promoHtml}
     ${announcementHtml}
+    ${promoFaqHtml}
     ${overviewHtml}
     ${featuresHtml}
     ${articlesHtml}
@@ -285,6 +314,14 @@ function buildPlanPageHtml(plan, provider, banners, relatedArticles, canonicalOv
       if (typeof initPlanReviews === "function") {
         initPlanReviews(CURRENT_PLAN_ID);
       }
+      document.querySelectorAll("#plan-promo-faq-section .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#plan-promo-faq-section .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
     });
   </script>
 </body>
