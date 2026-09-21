@@ -19,6 +19,7 @@ async function initAdminPlansPage() {
   initAnnouncementQuillEditor();
   await loadProviderOptions();
   await loadTermsOptions();
+  await loadPromoFaqOptions();
   await loadPlansList();
 
   document.getElementById("filter-provider").addEventListener("change", loadPlansList);
@@ -29,7 +30,6 @@ async function initAdminPlansPage() {
   document.getElementById("form-promo-enabled").addEventListener("change", togglePromoFieldsVisibility);
   document.getElementById("form-announcement-enabled").addEventListener("change", toggleAnnouncementFieldsVisibility);
   document.getElementById("form-promo-faq-enabled").addEventListener("change", togglePromoFaqFieldsVisibility);
-  document.getElementById("btn-add-promo-faq-row").addEventListener("click", () => addPromoFaqRow());
 }
 
 function initPlanQuillEditor() {
@@ -147,6 +147,18 @@ async function loadTermsOptions() {
     allTermsCache.map((t) => `<option value="${t.id}">${t.name}</option>`).join("");
 }
 
+async function loadPromoFaqOptions() {
+  const { data: faqTemplates } = await supabaseClient
+    .from("promo_faqs")
+    .select("id, name")
+    .order("name", { ascending: true });
+
+  const select = document.getElementById("form-promo-faq-id");
+  select.innerHTML =
+    `<option value="">— Select FAQ template —</option>` +
+    (faqTemplates || []).map((f) => `<option value="${f.id}">${f.name}</option>`).join("");
+}
+
 async function loadPlansList() {
   const tbody = document.getElementById("plans-table-body");
   tbody.innerHTML = `<tr><td colspan="6">Loading...</td></tr>`;
@@ -230,15 +242,7 @@ async function openPlanForm(planId) {
       toggleAnnouncementFieldsVisibility();
 
       document.getElementById("form-promo-faq-enabled").checked = plan.promo_faq_enabled || false;
-      document.getElementById("promo-faq-rows-wrap").innerHTML = "";
-      if (plan.promo_faq_data) {
-        try {
-          const faqs = JSON.parse(plan.promo_faq_data);
-          faqs.forEach((f) => addPromoFaqRow(f.q, f.a));
-        } catch (e) {
-          console.error("Failed to parse promo_faq_data", e);
-        }
-      }
+      document.getElementById("form-promo-faq-id").value = plan.promo_faq_id || "";
       togglePromoFaqFieldsVisibility();
 
       await loadBannersForPlan(planId);
@@ -248,7 +252,6 @@ async function openPlanForm(planId) {
     document.getElementById("form-promo-enabled").checked = false;
     document.getElementById("form-announcement-enabled").checked = false;
     document.getElementById("form-promo-faq-enabled").checked = false;
-    document.getElementById("promo-faq-rows-wrap").innerHTML = "";
     togglePromoFieldsVisibility();
     toggleAnnouncementFieldsVisibility();
     togglePromoFaqFieldsVisibility();
@@ -299,7 +302,7 @@ async function savePlan(e) {
     promo_announcement_content: isAnnouncementEmpty ? null : announcementHtml,
     promo_terms_id: document.getElementById("form-promo-terms-id").value || null,
     promo_faq_enabled: document.getElementById("form-promo-faq-enabled").checked,
-    promo_faq_data: collectPromoFaqData(),
+    promo_faq_id: document.getElementById("form-promo-faq-id").value || null,
   };
 
   const appTypeSlug = (planData.new_and_transfer || "").toLowerCase().includes("new")
