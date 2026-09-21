@@ -6,7 +6,7 @@ const sharp = require('sharp');
 const SOURCE_DIR = path.join('assets', 'images', 'homepage-banners');
 const PROCESSED_DIR = path.join('assets', 'images', 'homepage-banners', 'processed');
 const TARGET_WIDTH = 1200;
-const TARGET_HEIGHT = 400;
+const TARGET_HEIGHT = 675;
 
 async function run() {
   if (!fs.existsSync(SOURCE_DIR)) {
