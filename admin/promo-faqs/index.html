@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Promotion FAQ Templates | NetBijak Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="../admin.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    .admin-page { max-width: 72rem; margin: 0 auto; padding: 2rem 1.5rem; }
+    .admin-page-topbar {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 1.5rem; color: #fff; flex-wrap: wrap; gap: 1rem;
+    }
+    .admin-page-topbar h1 { font-size: 1.3rem; font-weight: 800; }
+    .admin-back-link { color: #94a3b8; text-decoration: none; font-size: 0.85rem; }
+    .admin-card { background: #fff; border-radius: 16px; padding: 1.75rem; margin-bottom: 1.5rem; }
+    .btn-new {
+      padding: 10px 20px; background: #14b8a6; color: #fff; border: none;
+      border-radius: 10px; font-weight: 700; font-size: 0.875rem; cursor: pointer; margin-bottom: 1.25rem;
+    }
+    .admin-table-wrap { background: #fff; border-radius: 16px; overflow: hidden; overflow-x: auto; }
+    table.admin-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    table.admin-table th { background: #f8fafc; padding: 12px 16px; text-align: left; font-weight: 700; color: #475569; }
+    table.admin-table td { padding: 12px 16px; border-top: 1px solid #f1f5f9; }
+    .btn-small { padding: 6px 14px; background: #0f172a; color: #fff; border: none; border-radius: 8px; font-size: 0.8rem; cursor: pointer; }
+
+    .form-field { margin-bottom: 1rem; }
+    .form-field label { display: block; font-size: 0.8rem; font-weight: 700; color: #475569; margin-bottom: 6px; }
+    .form-field input { width: 100%; padding: 10px 14px; border-radius: 8px; border: 1.5px solid #cbd5e1; font-size: 0.9rem; }
+    .form-actions { display: flex; gap: 10px; margin-top: 1.25rem; }
+    .btn-save { padding: 12px 28px; background: #14b8a6; color: #fff; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; }
+    .btn-cancel { padding: 12px 28px; background: #f1f5f9; color: #334155; border: none; border-radius: 10px; font-weight: 700; cursor: pointer; }
+
+    .faq-edit-row {
+      background: #f8fafc; border-radius: 10px; padding: 12px; margin-bottom: 10px;
+      display: grid; grid-template-columns: 1fr; gap: 8px;
+    }
+    .faq-edit-row input, .faq-edit-row textarea {
+      padding: 8px 12px; border-radius: 6px; border: 1px solid #cbd5e1; font-size: 0.85rem;
+    }
+    .faq-edit-row textarea { min-height: 60px; resize: vertical; }
+    .btn-remove-faq {
+      justify-self: start; padding: 6px 14px; background: #fee2e2; color: #991b1b;
+      border: none; border-radius: 6px; font-size: 0.75rem; cursor: pointer;
+    }
+    .btn-add-faq {
+      padding: 8px 16px; background: #e0f2fe; color: #0369a1; border: none;
+      border-radius: 8px; font-size: 0.8rem; font-weight: 700; cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="admin-page">
+    <div class="admin-page-topbar">
+      <div>
+        <a href="../" class="admin-back-link">← Back to Admin</a>
+        <h1>Promotion FAQ Templates</h1>
+      </div>
+      <div style="display:flex; align-items:center; gap:14px;">
+        <span class="admin-email-tag" id="admin-email-display"></span>
+        <button id="admin-logout-btn" class="admin-logout-btn">Sign Out</button>
+      </div>
+    </div>
+
+    <div id="faq-template-form-wrap" class="admin-card hidden">
+      <h2 id="faq-template-form-title">New FAQ Template</h2>
+      <form id="faq-template-form">
+        <div class="form-field">
+          <label>Template Name</label>
+          <input type="text" id="faq-template-name-input" required placeholder="e.g. TNG Promo FAQ - 300Mbps Campaign" />
+        </div>
+        <div id="faq-template-rows-wrap"></div>
+        <button type="button" id="btn-add-faq-template-row" class="btn-add-faq">+ Add FAQ</button>
+        <div class="form-actions">
+          <button type="submit" class="btn-save">Save Template</button>
+          <button type="button" id="btn-cancel-faq-template-form" class="btn-cancel">Cancel</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="admin-card">
+      <button id="btn-new-faq-template" class="btn-new">+ New FAQ Template</button>
+      <div class="admin-table-wrap">
+        <table class="admin-table">
+          <thead><tr><th>Name</th><th>Questions</th><th></th></tr></thead>
+          <tbody id="faq-templates-table-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <script src="../../assets/js/supabase-client.js"></script>
+  <script src="../../assets/js/admin-auth.js"></script>
+  <script src="../../assets/js/admin-promo-faqs.js"></script>
+</body>
+</html>
