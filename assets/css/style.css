@@ -1211,5 +1211,5 @@ table.compare-table tbody tr:nth-child(odd) .compare-row-label { background: #ee
 .homepage-banner-dot.active { background: #fff; }
 
 @media (max-width: 640px) {
-  .homepage-banner-carousel { aspect-ratio: 16 / 9; border-radius: 12px; }
+  .homepage-banner-carousel { border-radius: 12px; }
 }
