@@ -36,7 +36,7 @@ async function loadBannersList() {
     .map(
       (b) => `
     <tr>
-      <td><img src="/assets/images/homepage-banners/${b.image_name}" style="width:80px;height:40px;object-fit:cover;border-radius:6px" /></td>
+      <td><img src="/assets/images/homepage-banners/processed/${b.image_name}" style="width:80px;height:40px;object-fit:cover;border-radius:6px" /></td>
       <td style="font-size:0.8rem">${b.link_url}</td>
       <td>${b.sort_order}</td>
       <td>${b.is_active ? '<span class="badge-published">Active</span>' : '<span class="badge-unpublished">Inactive</span>'}</td>
