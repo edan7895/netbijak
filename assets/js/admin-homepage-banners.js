@@ -36,7 +36,7 @@ async function loadBannersList() {
     .map(
       (b) => `
     <tr>
-      <td><img src="${b.image_url}" style="width:80px;height:40px;object-fit:cover;border-radius:6px" /></td>
+      <td><img src="/assets/images/homepage-banners/${b.image_name}" style="width:80px;height:40px;object-fit:cover;border-radius:6px" /></td>
       <td style="font-size:0.8rem">${b.link_url}</td>
       <td>${b.sort_order}</td>
       <td>${b.is_active ? '<span class="badge-published">Active</span>' : '<span class="badge-unpublished">Inactive</span>'}</td>
@@ -71,7 +71,7 @@ async function openBannerForm(bannerId) {
   if (bannerId) {
     const { data: banner } = await supabaseClient.from("homepage_banners").select("*").eq("id", bannerId).single();
     if (banner) {
-      document.getElementById("banner-image-url").value = banner.image_url || "";
+      document.getElementById("banner-image-name").value = banner.image_name || "";
       document.getElementById("banner-link-url").value = banner.link_url || "";
       document.getElementById("banner-sort-order").value = banner.sort_order || 0;
       document.getElementById("banner-is-active").checked = banner.is_active;
@@ -95,7 +95,7 @@ async function saveBanner(e) {
   e.preventDefault();
 
   const bannerData = {
-    image_url: document.getElementById("banner-image-url").value,
+    image_name: document.getElementById("banner-image-name").value,
     link_url: document.getElementById("banner-link-url").value,
     sort_order: parseInt(document.getElementById("banner-sort-order").value) || 0,
     is_active: document.getElementById("banner-is-active").checked,
