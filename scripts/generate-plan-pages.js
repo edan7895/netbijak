@@ -290,7 +290,7 @@ function buildPlanPageHtml(plan, provider, banners, relatedArticles, canonicalOv
           <div class="detail-speed-box"><span class="detail-speed-label">Upload</span><span class="detail-speed-value">${escapeHtml(plan.upload_speed)}</span></div>
           <div class="detail-speed-box"><span class="detail-speed-label">Contract</span><span class="detail-speed-value">${plan.contract_months} months</span></div>
         </div>
-        <a href="${waLink}" target="_blank" class="wa-btn wa-btn-large">Apply via NetBijak</a>
+        <a href="${waLink}" target="_blank" class="wa-btn wa-btn-large plan-detail-apply-btn">Apply via NetBijak</a>
       </div>
     </div>
     ${promoHtml}
