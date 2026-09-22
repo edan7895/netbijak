@@ -1240,3 +1240,20 @@ table.compare-table tbody tr:nth-child(odd) .compare-row-label { background: #ee
 .plan-promo-faq-section .faq-item.open { border-color: #14b8a6; }
 .plan-promo-faq-section .faq-question { color: #0f172a; }
 .plan-promo-faq-section .faq-answer p { color: #475569; }
+
+/* ===== 配套详情页：手机版 Apply 按钮悬浮在底部 ===== */
+@media (max-width: 640px) {
+  .plan-detail-apply-btn {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 80;
+    border-radius: 0;
+    margin: 0;
+    box-shadow: 0 -4px 16px rgba(0,0,0,0.15);
+  }
+  .main {
+    padding-bottom: 90px;
+  }
+}
