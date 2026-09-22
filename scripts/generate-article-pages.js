@@ -1,4 +1,4 @@
-// NetBijak.com - 为每篇文章产生独立的静态HTML页面（含完整内容 + FAQ Schema + Hreflang + nofollow外链 + 相关文章）
+// NetBijak.com - 为每篇文章产生独立的静态HTML页面（含完整内容 + FAQ Schema + Hreflang + nofollow外链 + 相关文章 + Promotion Banner）
 const fs = require('fs');
 const path = require('path');
 
@@ -261,6 +261,7 @@ function buildArticlePageHtml(article, translations, allArticles) {
       <div class="blog-detail-date">${dateStr}${article.geo_tag ? ` · ${escapeHtml(article.geo_tag)}` : ""}</div>
       <h1 class="blog-detail-title">${escapeHtml(article.title)}</h1>
       ${summaryHtml}
+      <div id="homepage-banner-carousel" class="homepage-banner-carousel hidden"></div>
       <div class="blog-detail-content">${processedContent || ""}</div>
       ${buildFAQHtml(faqs)}
     </div>
@@ -271,8 +272,11 @@ function buildArticlePageHtml(article, translations, allArticles) {
 
   <script>const ROOT_PATH = "/"; const PAGE_TRANSLATIONS = ${translationMapJson};</script>
   <script src="/assets/js/tracking.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/assets/js/supabase-client.js"></script>
   <script src="/assets/js/translations.js"></script>
   <script src="/assets/js/site.js"></script>
+  <script src="/assets/js/homepage-banner.js"></script>
   ${faqs.length > 0 ? `<script>
     document.addEventListener("DOMContentLoaded", () => {
       document.querySelectorAll("#article-faq-list .faq-question").forEach((btn) => {
