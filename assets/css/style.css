@@ -1198,14 +1198,14 @@ table.compare-table tbody tr:nth-child(odd) .compare-row-label { background: #ee
 .promo-banner-track::-webkit-scrollbar-thumb { background: rgba(148,163,184,0.4); border-radius: 99px; }
 
 .promo-banner-card {
-  flex: 0 0 calc(33.333% - 8px);
+  flex: 0 0 60%;
   scroll-snap-align: start;
   border-radius: 14px;
   overflow: hidden;
   display: block;
   position: relative;
   height: 0;
-  padding-bottom: 56.25%; /* 16:9 = 9/16 = 0.5625 = 56.25% */
+  padding-bottom: 33.75%; /* 60% 宽度时，套用16:9比例算出的对应值 */
 }
 .promo-banner-card img {
   position: absolute;
@@ -1217,10 +1217,10 @@ table.compare-table tbody tr:nth-child(odd) .compare-row-label { background: #ee
 }
 
 @media (max-width: 900px) {
-  .promo-banner-card { flex: 0 0 calc(50% - 6px); }
+  .promo-banner-card { flex: 0 0 75%; padding-bottom: 42.19%; }
 }
 @media (max-width: 640px) {
-  .promo-banner-card { flex: 0 0 85%; }
+  .promo-banner-card { flex: 0 0 85%; padding-bottom: 47.81%; }
 }
 
 .search-results-articles-heading {
