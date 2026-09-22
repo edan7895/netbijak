@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>为什么基站越多，手机网络还是会断？</title>
+  <meta name="description" content="Puncak Borneo 已有 35 座新的 JENDELA 基站，但电信设施遭到破坏后，当地网络仍会中断。问题可能不在基站数量，而在基站背后的网络连接。" />
+  <meta name="geo.region" content="MY" />
+  <meta name="geo.placename" content="Malaysia" />
+  <meta property="og:title" content="为什么基站越多，手机网络还是会断？" />
+  <meta property="og:description" content="Puncak Borneo 已有 35 座新的 JENDELA 基站，但电信设施遭到破坏后，当地网络仍会中断。问题可能不在基站数量，而在基站背后的网络连接。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://netbijak.com/assets/images/articles/why-more-mobile-towers-do-not-always-mean-better.webp" />
+  <meta property="og:url" content="https://netbijak.com/zh/blog/puncak-borneo-/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://netbijak.com/zh/blog/puncak-borneo-/" />
+  <link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/blog/mengapa-lebih-banyak-menara-tidak-semestinya-bermaksud-internet-lebih-stabil-kes-puncak-borneo/" />
+  <link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/blog/puncak-borneo-/" />
+  <link rel="alternate" hreflang="en" href="https://netbijak.com/en/blog/why-more-mobile-towers-do-not-always-mean-better-connectivity-the-puncak-borneo-case/" />
+  <link rel="alternate" hreflang="x-default" href="https://netbijak.com/en/blog/why-more-mobile-towers-do-not-always-mean-better-connectivity-the-puncak-borneo-case/" />
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么手机信号很强，却完全上不了网？","acceptedAnswer":{"@type":"Answer","text":"因为手机到基站的无线连接可能正常，但基站后面的 Backhaul 或其他上游网络组件可能发生故障。GSMA 指出，Backhaul 负责把基站流量连接到运营商更大的网络。"}},{"@type":"Question","name":"Puncak Borneo 最近的网络中断是人为破坏造成的吗？","acceptedAnswer":{"@type":"Answer","text":"根据《Sarawak Tribune》报道，Kampung Gerung 的一次网络中断经过 MCMC 检查后，被追查到与电信设施遭到破坏有关；Willie Mongin 同时表示，一个受损的互联设施可能影响多个基站。"}},{"@type":"Question","name":"基站越多，网络一定越稳定吗？","acceptedAnswer":{"@type":"Answer","text":"不一定。增加基站可以改善无线覆盖，但网络稳定性还取决于 Backhaul、传输基础设施以及故障时有没有其他可用路径。"}}]}</script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="main">
+    <div id="blog-detail-container">
+      <a href="/zh/blog/" class="blog-back-link">← 返回部落格</a>
+      <span class="blog-type-tag">Article</span>
+      <img src="/assets/images/articles/why-more-mobile-towers-do-not-always-mean-better.webp" alt="为什么基站越来越多，网络还是会断？Puncak Borneo 的真实案例" class="blog-detail-cover" loading="lazy" width="800" height="450" />
+      <div class="blog-detail-date">22/09/2026</div>
+      <h1 class="blog-detail-title">为什么基站越来越多，网络还是会断？Puncak Borneo 的真实案例</h1>
+      
+    <section class="ai-summary-box">
+      <div class="ai-summary-badge">✨ NetBijak AI 智能摘要</div>
+      <p>基站数量的增加确实能提升覆盖范围，但这并不等同于网络就不会发生中断。正如Puncak Borneo的案例所示，即便基础设施建设完善，人为的设施破坏仍会严重影响网络连接。问题的核心在于“回传网络”（Backhaul），它是连接基站与运营商核心网络的关键链路。如果这一链路的某个关键节点受损，即使周边的基站依然运作，用户的手机也无法连接互联网。因此，网络覆盖和网络韧性是两个不同的概念，单一增加基站数量并不能完全解决网络脆弱性问题。用户在评估网络质量时，应更关注基础设施的连接方式及故障后的恢复能力。</p>
+    </section>
+      <div id="homepage-banner-carousel" class="homepage-banner-carousel hidden"></div>
+      <div class="blog-detail-content"><p>基站增加可以改善覆盖，但<strong>不代表网络就不会发生大范围中断</strong>。</p><p>Puncak Borneo 就是一个现实案例。根据《Sarawak Tribune》2026 年 9 月 21 日报道，当地 35 座新的 JENDELA 电信塔已经投入运作，但电信设施遭到蓄意破坏的情况仍会影响网络连接。Puncak Borneo 国会议员 Datuk Willie Mongin 表示，由于电信基础设施彼此相连，一个设施受损可能影响多个基站；Kampung Gerung 最近一次网络中断，也被查出与设施遭到破坏有关。 <a href="https://www.sarawaktribune.com/vandalism-disrupts-puncak-borneo-connectivity/" rel="noopener noreferrer nofollow" target="_blank">Sarawak Tribune：Vandalism Disrupts Puncak Borneo Connectivity</a></p><p>问题的关键不是“附近到底有多少座塔”。</p><p>而是：<strong>这些塔后面是怎么连接到运营商网络的。</strong></p><h2>为什么一个设施受损，会影响多个基站？</h2><p>手机先通过无线信号连接附近的 Cell Site，但基站还必须通过 <strong>Backhaul（回传网络）</strong> 把数据送进运营商的核心网络。</p><p>GSMA 将 Mobile Backhaul 定义为连接无线接入网（RAN）与移动核心网络的传输网络，常见技术包括 Fibre 和 Microwave。 <a href="https://www.gsma.com/solutions-and-impact/technologies/networks/gsma_resources/mobile-backhaul-an-overview/" rel="noopener noreferrer nofollow" target="_blank">GSMA：Mobile Backhaul – An Overview</a></p><p>简单来看：</p><p><strong>手机 → 基站 → Backhaul → 运营商网络 → Internet</strong></p><p>这也是 Puncak Borneo 这起事件最值得关注的地方。Mongin 指出，当地电信设施之间存在连接，因此一个关键设施受损，可能影响多个站点。公开报道没有说明这次具体损坏的是哪一个 Fibre、Microwave 或其他传输组件，因此不能自行断定具体故障点。 <a href="https://www.sarawaktribune.com/vandalism-disrupts-puncak-borneo-connectivity/" rel="noopener noreferrer nofollow" target="_blank">Sarawak Tribune：Puncak Borneo Connectivity Disruption</a></p><p>换句话说，<strong>基站本身还在工作，不代表基站后面的网络还通。</strong></p><h2>Puncak Borneo 并不是“基站不够多”</h2><p>这一点尤其值得注意。</p><p>根据《Sarawak Tribune》引用的 JENDELA 数据，Puncak Borneo 目前共有 <strong>140 个电信结构</strong>，包括 35 座新的 JENDELA 塔、36 座现有 MCMC Universal Service Provision 塔、41 座商业电信塔、7 座 5G 塔，以及 21 座 Sarawak Multimedia Authority Rural Telecommunication 塔。</p><p>同一份报道也指出，当地已经完成 <strong>172 个 4G 基站升级项目</strong>。 <a href="https://www.sarawaktribune.com/vandalism-disrupts-puncak-borneo-connectivity/" rel="noopener noreferrer nofollow" target="_blank">Sarawak Tribune：Puncak Borneo Infrastructure Figures</a></p><p>但网络连接仍然可能因为设施遭到破坏而中断。</p><p>这说明 <strong>Network Expansion 和 Network Resilience 是两回事</strong>。</p><p>增加基站主要解决的是无线覆盖问题；它不会自动让所有 Backhaul 都拥有备用路径，也不会让共享的基础设施免受物理破坏。</p><h2>覆盖范围，不等于网络韧性</h2><p>Coverage Map 主要告诉你：</p><p><strong>这里能不能收到移动信号？</strong></p><p>但真正发生故障时，另一个问题更重要：</p><p><strong>其中一个网络设施坏掉之后，其他站点还能不能继续把流量送出去？</strong></p><p>GSMA 指出，移动网络除了无线接入部分，还需要 Backhaul、传输和其他核心网络基础设施才能把用户连接到更广泛的网络。Fibre、Microwave 等不同 Backhaul 技术会根据当地部署条件使用。 <a href="https://www.gsma.com/solutions-and-impact/connectivity-for-good/public-policy/wp-content/uploads/2025/03/Mobile-Infrastructure-Investment-Landscape-1.pdf" rel="noopener noreferrer nofollow" target="_blank">GSMA：Mobile Network Infrastructure</a></p><p>所以，当农村地区出现网络问题时，继续增加一座基站并不一定能解决真正的瓶颈。</p><h2>对普通用户有什么意义？</h2><p>不要只看电信商宣传的：</p><p><strong>“这里新增了多少座基站。”</strong></p><p>基站当然重要，但你的手机真正能够上网，还取决于<strong>基站后面的 Backhaul、传输网络，以及关键设施出现故障后的恢复能力</strong>。</p><p>Puncak Borneo 的情况已经说明这一点：当地拥有大量电信基础设施，35 座新的 JENDELA 塔也已经投入服务，但设施之间的连接一旦受到破坏，网络仍可能受到影响。 <a href="https://www.sarawaktribune.com/vandalism-disrupts-puncak-borneo-connectivity/" rel="noopener noreferrer nofollow" target="_blank">Sarawak Tribune：Vandalism Disrupts Puncak Borneo Connectivity</a></p><p>所以，判断一个农村地区的移动网络，不应该只问：</p><p><strong>“这里有多少座塔？”</strong></p><p>更应该问：</p><p><strong>“这些基站是怎么连接的？其中一个关键设施坏掉后，其他站点还能不能继续运作？”</strong></p><h3><br></h3><h3>NetBijak’s Take</h3><p>选移动网络时，别只看宣传里写了“新增多少座基站”。</p><p>尤其在偏远地区，<strong>基站后面的回传链路、基础设施保护，以及发生故障后能不能快速恢复，同样决定你实际能不能上网。</strong></p><p><a href="https://netbijak.com/zh/speedtest/" rel="noopener noreferrer" target="_blank">NetBijak测速</a></p></div>
+      
+    <section class="section-card" id="article-faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div id="article-faq-list" class="faq-list">
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="0">
+        <span>为什么手机信号很强，却完全上不了网？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>因为手机到基站的无线连接可能正常，但基站后面的 Backhaul 或其他上游网络组件可能发生故障。GSMA 指出，Backhaul 负责把基站流量连接到运营商更大的网络。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="1">
+        <span>Puncak Borneo 最近的网络中断是人为破坏造成的吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>根据《Sarawak Tribune》报道，Kampung Gerung 的一次网络中断经过 MCMC 检查后，被追查到与电信设施遭到破坏有关；Willie Mongin 同时表示，一个受损的互联设施可能影响多个基站。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="2">
+        <span>基站越多，网络一定越稳定吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>不一定。增加基站可以改善无线覆盖，但网络稳定性还取决于 Backhaul、传输基础设施以及故障时有没有其他可用路径。</p></div>
+    </div></div>
+    </section>
+    </div>
+    
+    <section class="section-card" style="margin-top:1.5rem">
+      <h2>相关文章</h2>
+      <div class="blog-grid"><a href="/zh/blog/-arp-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/how-to-clear-router-cache.webp" alt="如何清除路由器缓存并刷新 ARP 表，改善网络延迟" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">20/09/2026</div>
+          <div class="blog-card-title">如何清除路由器缓存并刷新 ARP 表，改善网络延迟</div>
+          <p class="blog-card-excerpt">如果你的 Ping 在路由器长时间运行后开始变得不稳定，重启路由器值得尝试。但“清除路由器缓存就能降低 Ping”并不是一个准确的技术解释。重启主要是重置路由器内部的临时运行状态。到底能不能改善延迟，...</p>
+        </div></a><a href="/zh/blog/submarine-cable-repairs-zh/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/submarine-cable-repairs.webp" alt="海底光缆维修：为什么国外网站会突然变慢？" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">09/09/2026</div>
+          <div class="blog-card-title">海底光缆维修：为什么国外网站会突然变慢？</div>
+          <p class="blog-card-excerpt">如果你发现 马来西亚本地网站正常，但美国、日本或其他海外网站突然变慢，问题不一定出在你家的 Fibre Broadband。国际海底光缆发生故障或进行维修时，ISP 可用的国际传输容量可能减少。ISP...</p>
+        </div></a><a href="/zh/blog/unifi-internet-troubleshooting-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/how-to-troubleshoot-unifi-internet-problems.webp" alt="Unifi Internet 出问题怎么办？官方 Troubleshooting 步骤" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">05/09/2026</div>
+          <div class="blog-card-title">Unifi Internet 出问题怎么办？官方 Troubleshooting 步骤</div>
+          <p class="blog-card-excerpt">如果你的 Unifi Internet 很慢或者完全无法使用，先检查有没有 Outage，再检查设备和指示灯，然后重启设备，最后使用 EasyFix 自助排查。1. 先检查有没有 Outage 或 M...</p>
+        </div></a><a href="/zh/blog/-internet-troubleshooting-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/why-is-my-internet-slow.webp" alt="为什么我的 Internet 很慢？马来西亚家庭宽带 Troubleshooting 指南" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">31/08/2026</div>
+          <div class="blog-card-title">为什么我的 Internet 很慢？马来西亚家庭宽带 Troubleshooting 指南</div>
+          <p class="blog-card-excerpt">为什么我的 Internet 很慢？Internet 很慢，不一定代表你的 Broadband Plan 不够快。实际使用速度可能受到 Wi-Fi、Router 位置、连接设备数量、网络拥堵、设备能力...</p>
+        </div></a><a href="/zh/blog/auto-renewal-clause-traps-in-malaysian-24/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/auto-renewal-clause-traps-in-malaysian.webp" alt="马来西亚家用宽带合约的自动续约陷阱：24个月后你真正要注意什么" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">22/09/2026</div>
+          <div class="blog-card-title">马来西亚家用宽带合约的自动续约陷阱：24个月后你真正要注意什么</div>
+          <p class="blog-card-excerpt">你的 24 个月宽带合约快到期了，网络可能完全不会断，但原本的优惠价可能已经结束。这才是很多用户真正容易忽略的地方。合约达到最低订阅期限，并不代表你一定自动签下了另一个 24 个月合约。到期后会发生什...</p>
+        </div></a><a href="/zh/blog/-5g-cpe-5g-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/outdoor-5g-cpe-antenna-installation-boosting.webp" alt="室外 5G CPE 安装：解决家里室内 5G 信号太弱的问题" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">21/09/2026</div>
+          <div class="blog-card-title">室外 5G CPE 安装：解决家里室内 5G 信号太弱的问题</div>
+          <p class="blog-card-excerpt">如果你的 5G 路由器在屋里只有 1 格信号，先不要急着买室外天线。先确认是不是建筑物本身挡住了 5G 信号。把同一台 5G 路由器从房间中央移到窗边，然后比较 RSRP 和 SINR。这两个数据比单...</p>
+        </div></a></div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script>const ROOT_PATH = "/"; const PAGE_TRANSLATIONS = {"ms":"/ms/blog/mengapa-lebih-banyak-menara-tidak-semestinya-bermaksud-internet-lebih-stabil-kes-puncak-borneo/","zh":"/zh/blog/puncak-borneo-/","en":"/en/blog/why-more-mobile-towers-do-not-always-mean-better-connectivity-the-puncak-borneo-case/"};</script>
+  <script src="/assets/js/tracking.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/assets/js/supabase-client.js"></script>
+  <script src="/assets/js/translations.js"></script>
+  <script src="/assets/js/site.js"></script>
+  <script src="/assets/js/homepage-banner.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("#article-faq-list .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#article-faq-list .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
+    });
+  </script>
+
+  <div id="mascot-widget" class="mascot-widget">
+    <button type="button" class="mascot-close-btn" id="mascot-close-btn" aria-label="Close">✕</button>
+    <a href="https://wa.me/60178835110?text=Hi%20NetBijak%2C%20I'm%20reading%20%22%E4%B8%BA%E4%BB%80%E4%B9%88%E5%9F%BA%E7%AB%99%E8%B6%8A%E6%9D%A5%E8%B6%8A%E5%A4%9A%EF%BC%8C%E7%BD%91%E7%BB%9C%E8%BF%98%E6%98%AF%E4%BC%9A%E6%96%AD%EF%BC%9FPuncak%20Borneo%20%E7%9A%84%E7%9C%9F%E5%AE%9E%E6%A1%88%E4%BE%8B%22%20and%20have%20a%20question." target="_blank" class="mascot-avatar-link">
+      <img src="/assets/images/mascot.png" alt="NetBijak Assistant" class="mascot-avatar-img" />
+      <span class="mascot-bubble">有问题吗？</span>
+    </a>
+  </div>
+  <script>
+    (function() {
+      var storageKey = "mascot-closed-puncak-borneo-";
+      var widget = document.getElementById("mascot-widget");
+      var closeBtn = document.getElementById("mascot-close-btn");
+      if (sessionStorage.getItem(storageKey)) {
+        widget.style.display = "none";
+      }
+      closeBtn.addEventListener("click", function() {
+        widget.style.display = "none";
+        sessionStorage.setItem(storageKey, "1");
+      });
+    })();
+  </script>
+</body>
+</html>
