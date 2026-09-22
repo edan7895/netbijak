@@ -142,7 +142,7 @@ async function renderLatestArticles() {
 }
 
 function buildArticleMiniCard(article) {
-  const dateStr = new Date(article.created_at).toLocaleDateString();
+  const dateStr = new Date(article.publish_at || article.created_at).toLocaleDateString();
   const excerpt = (article.content || "").replace(/<[^>]*>/g, "").slice(0, 80);
   const typeLabel = article.article_type === "news" ? "News" : "Article";
 
