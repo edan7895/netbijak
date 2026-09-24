@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Broadband Needs for Smart Homes with 50+ IoT Devices in Malaysia</title>
+  <meta name="description" content="Do 50+ smart home devices require 1Gbps broadband? Learn when the real bottleneck is Fibre speed, 2.4GHz Wi-Fi, Mesh capacity, Matter, Thread or Zigbee." />
+  <meta name="geo.region" content="MY" />
+  <meta name="geo.placename" content="Malaysia" />
+  <meta property="og:title" content="Broadband Needs for Smart Homes with 50+ IoT Devices in Malaysia" />
+  <meta property="og:description" content="Do 50+ smart home devices require 1Gbps broadband? Learn when the real bottleneck is Fibre speed, 2.4GHz Wi-Fi, Mesh capacity, Matter, Thread or Zigbee." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://netbijak.com/assets/images/articles/broadband-needs-for-smart-homes.webp" />
+  <meta property="og:url" content="https://netbijak.com/en/blog/broadband-needs-for-smart-homes-with-50-iot-devices-matterzigbee/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://netbijak.com/en/blog/broadband-needs-for-smart-homes-with-50-iot-devices-matterzigbee/" />
+  <link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/blog/50-iot-matterzigbee-wi-fi-/" />
+  <link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/blog/keperluan-broadband-untuk-smart-home-dengan-50-peranti-iot/" />
+  <link rel="alternate" hreflang="en" href="https://netbijak.com/en/blog/broadband-needs-for-smart-homes-with-50-iot-devices-matterzigbee/" />
+  <link rel="alternate" hreflang="x-default" href="https://netbijak.com/en/blog/broadband-needs-for-smart-homes-with-50-iot-devices-matterzigbee/" />
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Does 50 smart-home devices mean I need 1Gbps broadband?","acceptedAnswer":{"@type":"Answer","text":"No. Device count alone does not determine broadband speed. Many sensors and switches generate very little Internet traffic."}},{"@type":"Question","name":"Is 2.4GHz still suitable for IoT?","acceptedAnswer":{"@type":"Answer","text":"Yes. Many IoT devices use 2.4GHz because of its coverage characteristics and device ecosystem. The problem is not that 2.4GHz is automatically unsuitable; it is that a large number of clients can increase airtime contention and interference."}},{"@type":"Question","name":"Should I create a separate 2.4GHz IoT SSID?","acceptedAnswer":{"@type":"Answer","text":"It is useful for separating and managing IoT devices, particularly older 2.4GHz equipment. However, it does not create additional radio capacity if it runs on the same physical 2.4GHz radio."}},{"@type":"Question","name":"Is Mesh necessary for 50+ IoT devices?","acceptedAnswer":{"@type":"Answer","text":"Not necessarily. A well-designed single AP may handle a particular installation. Mesh or additional APs become more useful when the house has multiple floors, difficult coverage areas or too many clients concentrated around one AP."}},{"@type":"Question","name":"Are Matter devices Wi-Fi devices?","acceptedAnswer":{"@type":"Answer","text":"Not always. Matter can operate over Wi-Fi, Thread and Ethernet. Therefore, a Matter device may not be a Wi-Fi client at all."}},{"@type":"Question","name":"Is Thread better than Wi-Fi for smart-home sensors?","acceptedAnswer":{"@type":"Answer","text":"They serve different purposes. Thread is specifically designed as a low-power mesh for IoT, while Wi-Fi is designed for much higher-bandwidth applications. Thread is therefore well suited to compatible sensors, locks and switches, while Wi-Fi remains appropriate for devices that need higher throughput."}}]}</script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="main">
+    <div id="blog-detail-container">
+      <a href="/en/blog/" class="blog-back-link">← Back to Blog</a>
+      <span class="blog-type-tag">Article</span>
+      <img src="/assets/images/articles/broadband-needs-for-smart-homes.webp" alt="Broadband Needs for Smart Homes with 50+ IoT Devices (Matter/Zigbee)" class="blog-detail-cover" loading="lazy" width="800" height="450" />
+      <div class="blog-detail-date">25/09/2026</div>
+      <h1 class="blog-detail-title">Broadband Needs for Smart Homes with 50+ IoT Devices (Matter/Zigbee)</h1>
+      
+    <section class="ai-summary-box">
+      <div class="ai-summary-badge">✨ NetBijak AI Summary</div>
+      <p>Managing a smart home with over 50 IoT devices requires more than just a faster broadband plan. Most smart devices consume very little data, so the real challenge is managing Wi-Fi radio airtime rather than bandwidth capacity. When too many devices share the same 2.4GHz frequency, they compete for airtime, which often leads to network instability. To optimize your home network, you should prioritize separating high-bandwidth traffic like streaming onto 5GHz bands while offloading IoT devices to Zigbee, Thread, or dedicated access points. Using a wired Mesh system can also help distribute the workload across different radios, preventing bottlenecks. Ultimately, a reliable smart home relies on efficient radio management rather than simply increasing your fibre speed.</p>
+    </section>
+      <div id="homepage-banner-carousel" class="homepage-banner-carousel hidden"></div>
+      <div class="blog-detail-content"><p>If your smart home has 50 or more connected devices, <strong>upgrading to 1Gbps is not automatically the solution</strong>. Most sensors, switches and smart plugs use very little Internet bandwidth; the bigger problem is often having too many Wi-Fi devices competing for the same 2.4GHz radio.</p><h2>50 IoT Devices Can Use Less Bandwidth Than One 4K TV</h2><p>A smart switch does not continuously consume the same bandwidth as a laptop, CCTV camera or 4K TV.</p><p>For many IoT devices, network traffic consists mainly of small control messages: a motion sensor reporting an event, a smart plug receiving an on/off command, or a temperature sensor sending a reading.</p><p>That changes how you should assess broadband requirements.</p><table><tbody><tr><td data-row="1">Device</td><td data-row="1">Main network requirement</td></tr><tr><td data-row="2">Smart switch</td><td data-row="2">Low bandwidth, reliable connection</td></tr><tr><td data-row="3">Door / motion sensor</td><td data-row="3">Low bandwidth, coverage</td></tr><tr><td data-row="4">Smart plug</td><td data-row="4">Low bandwidth, stable 2.4GHz connection</td></tr><tr><td data-row="5">Smart lock</td><td data-row="5">Low bandwidth, reliability</td></tr><tr><td data-row="6">Smart speaker</td><td data-row="6">Wi-Fi stability</td></tr><tr><td data-row="7">IP camera</td><td data-row="7">Much higher traffic, especially upload</td></tr><tr><td data-row="8">Smart TV</td><td data-row="8">High downstream bandwidth</td></tr><tr><td data-row="9">PC / laptop</td><td data-row="9">High and variable bandwidth</td></tr></tbody></table><p>A home with <strong>60 switches and sensors</strong> can therefore place less demand on the Fibre connection than a home with six people streaming, gaming and backing up files simultaneously.</p><p>The first question should not be <em>“How many devices do I have?”</em></p><p>It should be:</p><p><strong>“How many of them actually use Wi-Fi, and how many are generating significant traffic?”</strong></p><h2>The 20-Device Router Limit Is a Myth</h2><p>There is no universal technical limit where a home router suddenly becomes unusable at 20 connected devices.</p><p>A router handling 20 mostly idle smart plugs is dealing with a very different workload from one handling 20 phones, laptops, cameras and streaming devices.</p><p>The more important issue for a large Wi-Fi IoT installation is <strong>airtime</strong>.</p><p>Wi-Fi clients share radio airtime. A weak or slow client can consume more airtime to transmit the same amount of data than a client operating at a higher data rate. Cisco's wireless deployment documentation describes this relationship between client data rates and channel utilisation. <a href="https://www.cisco.com/c/en/us/td/docs/wireless/controller/technotes/8-3/b_cisco_aironet_series_2800_3800_access_point_deployment_guide/b_cisco_aironet_series_2800_3800_access_point_deployment_guide_chapter_01001.html" rel="noopener noreferrer nofollow" target="_blank">Cisco wireless deployment guide</a></p><p>This matters particularly on 2.4GHz.</p><p>Cisco notes that the 2.4GHz band has only three non-overlapping channels and is also used by other technologies, making interference and channel reuse important considerations in dense deployments. <a href="https://www.cisco.com/c/en/us/support/docs/wireless/catalyst-9800-series-wireless-controllers/222000-design-guide-cx-wireless-for-large-pub.html" rel="noopener noreferrer nofollow" target="_blank">Cisco 2.4GHz design guidance</a></p><p>So a smart home can become unreliable <strong>without coming anywhere close to using up its Fibre bandwidth</strong>.</p><h2>The Real Problem: Too Many Wi-Fi IoT Devices on One Radio</h2><p>Suppose a house has:</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>25 smart switches</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>10 smart plugs</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>8 sensors</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>4 smart speakers</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>3 cameras</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>5 phones and computers</li></ol><p>The total is already more than 50 connected devices.</p><p>But the network load is not evenly distributed.</p><p>The switches and sensors may generate tiny amounts of traffic. The cameras, computers and entertainment devices are much more demanding.</p><p>If most of those IoT devices are Wi-Fi 2.4GHz clients connected to one AP, the issue becomes <strong>radio contention and coverage</strong>, not whether the Fibre plan is 300Mbps or 1Gbps.</p><p>This is why simply buying a faster broadband package can leave the original problem untouched.</p><h2>Use 5GHz for High-Bandwidth Devices</h2><p>A practical smart-home layout should avoid putting everything on 2.4GHz.</p><p>Use:</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>5GHz / 6GHz:</strong> phones, laptops, TVs and other high-throughput devices</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>2.4GHz:</strong> older smart-home devices and IoT equipment that requires it</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Ethernet:</strong> desktops, TVs, NAS, NVRs and other fixed high-bandwidth devices</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Thread:</strong> compatible low-power Matter devices</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Zigbee:</strong> compatible sensors, switches and automation devices through a Zigbee coordinator or hub</li></ol><p>This separates the devices according to what they actually need instead of forcing the entire house onto one Wi-Fi radio.</p><h2>A Separate 2.4GHz IoT SSID Helps — But It Does Not Create More Airtime</h2><p>Creating an <strong>IoT SSID</strong> is useful for managing smart-home devices.</p><p>You can place devices such as smart plugs, switches and older 2.4GHz-only products on a dedicated network rather than mixing them with laptops, phones and other personal devices.</p><p>Cisco specifically recommends considering a separate SSID when 2.4GHz Wi-Fi needs to be retained for IoT or legacy devices in dense environments. <a href="https://www.cisco.com/c/en/us/support/docs/wireless/catalyst-9800-series-wireless-controllers/222000-design-guide-cx-wireless-for-large-pub.html" rel="noopener noreferrer nofollow" target="_blank">Cisco wireless design guidance</a></p><p>But there is an important limitation:</p><p><strong>A separate SSID is logical separation, not physical RF separation.</strong></p><p>If the main SSID and IoT SSID are both running on the same 2.4GHz radio, they still share the same physical airtime.</p><p>So:</p><blockquote><strong>Separate SSID = better organisation and control.</strong></blockquote><blockquote><strong>Additional AP/radio = additional wireless capacity.</strong></blockquote><p>That distinction is important when troubleshooting a 50+ device home.</p><h2>Mesh Is Useful When One AP Is Doing Too Much</h2><p>For a larger house, adding another access point or Mesh node can distribute clients across different radios and locations.</p><p>The ideal arrangement is <strong>Ethernet backhaul</strong> where cabling is available.</p><p>With Ethernet backhaul, the Mesh node connects to the main router through a physical Ethernet cable instead of using Wi-Fi as its inter-node connection. TP-Link's current EasyMesh documentation describes wired backhaul as providing a faster and more stable connection between Mesh nodes. <a href="https://www.tp-link.com/us/support/faq/3731/" rel="noopener noreferrer nofollow" target="_blank">TP-Link EasyMesh Ethernet Backhaul guide</a></p><p>This matters because a wireless Mesh node still has to use wireless airtime for its backhaul.</p><p>A wired design can therefore look like:</p><table><tbody><tr><td data-row="1">Network layer</td><td data-row="1">Role</td></tr><tr><td data-row="2">Fibre</td><td data-row="2">Internet connection</td></tr><tr><td data-row="3">Main router</td><td data-row="3">Routing and network management</td></tr><tr><td data-row="4">Ethernet</td><td data-row="4">Mesh/AP backhaul</td></tr><tr><td data-row="5">AP 1</td><td data-row="5">Main living area</td></tr><tr><td data-row="6">AP 2</td><td data-row="6">Upstairs / remote area</td></tr><tr><td data-row="7">2.4GHz IoT SSID</td><td data-row="7">Wi-Fi smart-home devices</td></tr><tr><td data-row="8">5GHz / 6GHz</td><td data-row="8">Phones, laptops and high-speed devices</td></tr><tr><td data-row="9">Thread / Zigbee</td><td data-row="9">Low-power IoT mesh</td></tr></tbody></table><p>The objective is not simply to add more Wi-Fi coverage.</p><p>It is to <strong>stop one radio from becoming the bottleneck for the whole house</strong>.</p><h2>Matter Does Not Mean Every Device Uses Wi-Fi</h2><p>This is where many smart-home discussions become technically confusing.</p><p><strong>Matter is an application-layer smart-home standard. It is not a Wi-Fi replacement.</strong></p><p>The Connectivity Standards Alliance states that Matter uses existing networking technologies including <strong>Wi-Fi, Thread and Ethernet</strong>, while Bluetooth Low Energy has traditionally been used for device commissioning. <a href="https://csa-iot.org/all-solutions/matter/matter-faq/" rel="noopener noreferrer nofollow" target="_blank">Connectivity Standards Alliance — Matter FAQ</a></p><p>So two Matter-certified devices can have very different network requirements.</p><h3>Matter over Wi-Fi</h3><p>A Matter device using Wi-Fi becomes a normal Wi-Fi client.</p><p>If you have dozens of Wi-Fi Matter switches and sensors, they still contribute to the load on your Wi-Fi infrastructure.</p><h3>Matter over Thread</h3><p>Thread is a separate low-power mesh network based on IEEE 802.15.4.</p><p>Thread Group describes Thread as an IP-based, low-power mesh protocol designed specifically for IoT and smart-home devices. A Thread Border Router connects the Thread network to the home's IP network. <a href="https://threadgroup.org/BUILT-FOR-IOT/Smart-Home" rel="noopener noreferrer nofollow" target="_blank">Thread Group — Thread in Homes</a></p><p>That means compatible Matter-over-Thread sensors and switches do not need to become individual Wi-Fi clients.</p><p>This is one reason a large smart home does not necessarily need an increasingly large Wi-Fi client list.</p><h2>Where Zigbee Fits</h2><p>Zigbee is another low-power wireless technology commonly used for smart-home sensors, switches and automation devices.</p><p>A Zigbee installation normally uses a coordinator or hub, with compatible devices forming their own Zigbee network rather than connecting each device directly to the home's Wi-Fi router.</p><p>For a large smart home, this can keep dozens of low-bandwidth automation devices away from the main Wi-Fi client pool.</p><p>The result is a more distributed architecture:</p><p><strong>Fibre → Router → Wi-Fi devices</strong></p><p>alongside</p><p><strong>Router / Border Router → Thread devices</strong></p><p>and</p><p><strong>Router / Hub → Zigbee devices</strong></p><p>The Internet connection is still shared where cloud access is required, but the local wireless network is no longer dependent on putting every IoT device directly onto Wi-Fi.</p><h2>So How Much Broadband Does a 50+ IoT Home Need?</h2><p>There is no useful rule saying “50 devices = 1Gbps”.</p><p>A better approach is to calculate the <strong>normal household traffic first</strong>, then make sure the Wi-Fi architecture can handle the number and location of clients.</p><table><tbody><tr><td data-row="1">Home scenario</td><td data-row="1">What matters most</td></tr><tr><td data-row="2">50+ sensors and switches</td><td data-row="2">Wi-Fi / Thread / Zigbee architecture</td></tr><tr><td data-row="3">50+ IoT + normal family usage</td><td data-row="3">Fibre speed + Wi-Fi capacity</td></tr><tr><td data-row="4">IoT + several 4K streams</td><td data-row="4">Fibre bandwidth + 5GHz/6GHz capacity</td></tr><tr><td data-row="5">IoT + multiple IP cameras</td><td data-row="5">Upload bandwidth + Wi-Fi/Ethernet</td></tr><tr><td data-row="6">Large two-storey smart home</td><td data-row="6">AP placement + Mesh/backhaul</td></tr><tr><td data-row="7">50+ devices mostly using Thread/Zigbee</td><td data-row="7">Wi-Fi client count may remain relatively low</td></tr></tbody></table><p>For many households, <strong>300Mbps can already provide plenty of Internet bandwidth for the IoT portion of the network</strong>. Moving to 1Gbps becomes more relevant when the household's other traffic justifies it.</p><p>The exact broadband tier should therefore be based on the family's actual usage, not the number printed beside “connected devices” in the router interface.</p><h2>A Better Upgrade Order</h2><p>If a 50+ device smart home is already experiencing delayed automation, random disconnections or unstable IoT devices, check the network in this order:</p><ol><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span><strong>Identify the protocol</strong> — Wi-Fi, Thread or Zigbee.</li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span><strong>Count actual Wi-Fi clients</strong> — not all smart-home devices.</li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span><strong>Check the 2.4GHz environment</strong> — channel utilisation and interference matter.</li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span><strong>Separate IoT from high-bandwidth clients</strong> — use 2.4GHz IoT SSID where appropriate.</li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span><strong>Add another AP/Mesh node if one location is overloaded or poorly covered.</strong></li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span><strong>Use Ethernet backhaul where possible.</strong></li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span><strong>Only then decide whether the Fibre connection itself is too slow.</strong></li></ol><p>This prevents an expensive broadband upgrade from being used to solve a Wi-Fi architecture problem.</p><h2>NetBijak’s Take</h2><p>For a 50+ IoT home, <strong>design the wireless network before upgrading the Fibre plan</strong>.</p><p>Keep high-bandwidth devices on 5GHz/6GHz or Ethernet, put Wi-Fi-only IoT on a controlled 2.4GHz network, and use Thread or Zigbee for compatible low-power devices. If one AP is carrying too many clients, adding AP capacity and using Ethernet backhaul can address the actual bottleneck more directly than moving from 300Mbps to 1Gbps.</p><p class="ql-align-center"><strong style="color: rgb(255, 255, 255); background-color: initial;"><a href="/en/find-your-plan/" rel="noopener noreferrer" target="_blank">🎯Find My Plan →</a></strong></p><h2><br></h2></div>
+      
+    <section class="section-card" id="article-faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div id="article-faq-list" class="faq-list">
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="0">
+        <span>Does 50 smart-home devices mean I need 1Gbps broadband?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>No. Device count alone does not determine broadband speed. Many sensors and switches generate very little Internet traffic.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="1">
+        <span>Is 2.4GHz still suitable for IoT?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Yes. Many IoT devices use 2.4GHz because of its coverage characteristics and device ecosystem. The problem is not that 2.4GHz is automatically unsuitable; it is that a large number of clients can increase airtime contention and interference.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="2">
+        <span>Should I create a separate 2.4GHz IoT SSID?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>It is useful for separating and managing IoT devices, particularly older 2.4GHz equipment. However, it does not create additional radio capacity if it runs on the same physical 2.4GHz radio.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="3">
+        <span>Is Mesh necessary for 50+ IoT devices?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Not necessarily. A well-designed single AP may handle a particular installation. Mesh or additional APs become more useful when the house has multiple floors, difficult coverage areas or too many clients concentrated around one AP.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="4">
+        <span>Are Matter devices Wi-Fi devices?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Not always. Matter can operate over Wi-Fi, Thread and Ethernet. Therefore, a Matter device may not be a Wi-Fi client at all.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="5">
+        <span>Is Thread better than Wi-Fi for smart-home sensors?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>They serve different purposes. Thread is specifically designed as a low-power mesh for IoT, while Wi-Fi is designed for much higher-bandwidth applications. Thread is therefore well suited to compatible sensors, locks and switches, while Wi-Fi remains appropriate for devices that need higher throughput.</p></div>
+    </div></div>
+    </section>
+    </div>
+    
+    <section class="section-card" style="margin-top:1.5rem">
+      <h2>Related Articles</h2>
+      <div class="blog-grid"><a href="/en/blog/tp-link-wi-fi-8-arrives-in-malaysia-what-it-actually-changes-for-home-users/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/tp-link-wi-fi-8-arrives-in-malaysia.webp" alt="TP-Link Wi-Fi 8 Arrives in Malaysia: What It Actually Changes for Home Users" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">18/09/2026</div>
+          <div class="blog-card-title">TP-Link Wi-Fi 8 Arrives in Malaysia: What It Actually Changes for Home Users</div>
+          <p class="blog-card-excerpt">TP-Link has introduced Wi-Fi 8 in Malaysia, but the important part is not the headline speed.At its ...</p>
+        </div></a><a href="/en/blog/malaysia-day-2026-what-5000-people-in-one-venue-teaches-us-about-network-congestion/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/malaysia-day-2026-what-5000-people.webp" alt="Malaysia Day 2026: What 5,000 People in One Venue Teaches Us About Network Congestion" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">News</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">17/09/2026</div>
+          <div class="blog-card-title">Malaysia Day 2026: What 5,000 People in One Venue Teaches Us About Network Congestion</div>
+          <p class="blog-card-excerpt">More than 5,000 people gathering inside one venue can expose a networking problem that a normal home...</p>
+        </div></a><a href="/en/blog/wifi-6-vs-wifi-7-do-you-need-to-upgrade-your-broadband-router-in-2026/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/wifi-6-vs-wifi-7-do-you-need.webp" alt="WiFi 6 vs WiFi 7: Do You Need to Upgrade Your Broadband Router in 2026?" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">13/09/2026</div>
+          <div class="blog-card-title">WiFi 6 vs WiFi 7: Do You Need to Upgrade Your Broadband Router in 2026?</div>
+          <p class="blog-card-excerpt">If you already have 1Gbps or 2Gbps Fibre, WiFi 7 can help remove the wireless bottleneck — but upgra...</p>
+        </div></a><a href="/en/blog/how-to-stop-your-kids-tiktok-scrolling-from-freezing-your-netflix-stream/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/how-to-stop-your-kids-tiktok-scrolling.webp" alt="How to Stop Your Kids’ TikTok Scrolling From Freezing Your Netflix Stream" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">04/09/2026</div>
+          <div class="blog-card-title">How to Stop Your Kids’ TikTok Scrolling From Freezing Your Netflix Stream</div>
+          <p class="blog-card-excerpt">Why Does TikTok Make Netflix Freeze?If your Netflix stream freezes whenever the kids start scrolling...</p>
+        </div></a><a href="/en/blog/home-broadband-for-heavy-p2p-torrent-downloaders-in-malaysia/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/home-broadband-for-heavy-p2p.webp" alt="Home Broadband for Heavy P2P Torrent Downloaders in Malaysia" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">24/09/2026</div>
+          <div class="blog-card-title">Home Broadband for Heavy P2P Torrent Downloaders in Malaysia</div>
+          <p class="blog-card-excerpt">If you regularly download large files through BitTorrent, your broadband speed is only part of the e...</p>
+        </div></a><a href="/en/blog/what-is-a-fibre-distribution-point-dp-box-and-where-is-yours-located/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/what-is-a-fibre-distribution-point-dp-box.webp" alt="What Is a Fibre Distribution Point (DP) Box and Where Is Yours Located?" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">23/09/2026</div>
+          <div class="blog-card-title">What Is a Fibre Distribution Point (DP) Box and Where Is Yours Located?</div>
+          <p class="blog-card-excerpt">If you are waiting for a Fibre installation or trying to explain your connection to a technician, kn...</p>
+        </div></a></div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script>const ROOT_PATH = "/"; const PAGE_TRANSLATIONS = {"zh":"/zh/blog/50-iot-matterzigbee-wi-fi-/","ms":"/ms/blog/keperluan-broadband-untuk-smart-home-dengan-50-peranti-iot/","en":"/en/blog/broadband-needs-for-smart-homes-with-50-iot-devices-matterzigbee/"};</script>
+  <script src="/assets/js/tracking.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/assets/js/supabase-client.js"></script>
+  <script src="/assets/js/translations.js"></script>
+  <script src="/assets/js/site.js"></script>
+  <script src="/assets/js/homepage-banner.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("#article-faq-list .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#article-faq-list .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
+    });
+  </script>
+
+  <div id="mascot-widget" class="mascot-widget">
+    <button type="button" class="mascot-close-btn" id="mascot-close-btn" aria-label="Close">✕</button>
+    <a href="https://wa.me/60178835110?text=Hi%20NetBijak%2C%20I'm%20reading%20%22Broadband%20Needs%20for%20Smart%20Homes%20with%2050%2B%20IoT%20Devices%20(Matter%2FZigbee)%22%20and%20have%20a%20question." target="_blank" class="mascot-avatar-link">
+      <img src="/assets/images/mascot.png" alt="NetBijak Assistant" class="mascot-avatar-img" />
+      <span class="mascot-bubble">Need help?</span>
+    </a>
+  </div>
+  <script>
+    (function() {
+      var storageKey = "mascot-closed-broadband-needs-for-smart-homes-with-50-iot-devices-matterzigbee";
+      var widget = document.getElementById("mascot-widget");
+      var closeBtn = document.getElementById("mascot-close-btn");
+      if (sessionStorage.getItem(storageKey)) {
+        widget.style.display = "none";
+      }
+      closeBtn.addEventListener("click", function() {
+        widget.style.display = "none";
+        sessionStorage.setItem(storageKey, "1");
+      });
+    })();
+  </script>
+</body>
+</html>

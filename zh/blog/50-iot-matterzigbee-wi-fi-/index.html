@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>50+ IoT 智能家居需要多少宽带？马来西亚家庭网络规划</title>
+  <meta name="description" content="家里有 50 个以上智能家居设备，不代表一定需要 1Gbps。了解真正的瓶颈是 Fibre、2.4GHz Wi-Fi、Mesh、Matter、Thread 还是 Zigbee。" />
+  <meta name="geo.region" content="MY" />
+  <meta name="geo.placename" content="Malaysia" />
+  <meta property="og:title" content="50+ IoT 智能家居需要多少宽带？马来西亚家庭网络规划" />
+  <meta property="og:description" content="家里有 50 个以上智能家居设备，不代表一定需要 1Gbps。了解真正的瓶颈是 Fibre、2.4GHz Wi-Fi、Mesh、Matter、Thread 还是 Zigbee。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://netbijak.com/assets/images/articles/broadband-needs-for-smart-homes.webp" />
+  <meta property="og:url" content="https://netbijak.com/zh/blog/50-iot-matterzigbee-wi-fi-/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://netbijak.com/zh/blog/50-iot-matterzigbee-wi-fi-/" />
+  <link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/blog/50-iot-matterzigbee-wi-fi-/" />
+  <link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/blog/keperluan-broadband-untuk-smart-home-dengan-50-peranti-iot/" />
+  <link rel="alternate" hreflang="en" href="https://netbijak.com/en/blog/broadband-needs-for-smart-homes-with-50-iot-devices-matterzigbee/" />
+  <link rel="alternate" hreflang="x-default" href="https://netbijak.com/en/blog/broadband-needs-for-smart-homes-with-50-iot-devices-matterzigbee/" />
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"50 个 Smart Home Device 一定需要 1Gbps 吗？","acceptedAnswer":{"@type":"Answer","text":"不一定。设备数量本身不能决定 Fibre Speed。很多 Sensor 和 Switch 的 Internet 流量非常低。"}},{"@type":"Question","name":"2.4GHz 还适合 Smart Home 吗？","acceptedAnswer":{"@type":"Answer","text":"适合。很多 IoT Device 仍然使用 2.4GHz。真正需要注意的是大量 Client 共享同一个 Radio 后产生的 airtime contention 和 interference。"}},{"@type":"Question","name":"应该建立独立的 2.4GHz IoT SSID 吗？","acceptedAnswer":{"@type":"Answer","text":"可以。它方便管理和隔离 Smart Home Device，但如果 Main SSID 和 IoT SSID 使用同一个 2.4GHz Radio，并不会因此增加实际无线容量。"}},{"@type":"Question","name":"50+ IoT 一定要用 Mesh 吗？","acceptedAnswer":{"@type":"Answer","text":"不一定。关键看房屋面积、AP Placement、Client 分布和无线环境。如果大量设备集中在一个 AP，增加 AP 或 Mesh 才有意义。"}},{"@type":"Question","name":"Matter Device 都是 Wi-Fi Device 吗？","acceptedAnswer":{"@type":"Answer","text":"不是。Matter 可以运行在 Wi-Fi、Thread 和 Ethernet 上，因此 Matter Device 不一定会成为 Wi-Fi Client。"}},{"@type":"Question","name":"Thread 比 Wi-Fi 更适合 Smart Sensor 吗？","acceptedAnswer":{"@type":"Answer","text":"两者用途不同。Thread 针对低功耗 IoT Mesh 设计，而 Wi-Fi 可以提供更高的吞吐量。对于兼容的 Sensor、Switch 和其他低流量设备，Thread 可以减少它们对 Wi-Fi Client Pool 的依赖。"}}]}</script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="main">
+    <div id="blog-detail-container">
+      <a href="/zh/blog/" class="blog-back-link">← 返回部落格</a>
+      <span class="blog-type-tag">Article</span>
+      <img src="/assets/images/articles/broadband-needs-for-smart-homes.webp" alt="50+ IoT 智能家居需要多少宽带？Matter、Zigbee 与 Wi-Fi 怎么规划" class="blog-detail-cover" loading="lazy" width="800" height="450" />
+      <div class="blog-detail-date">25/09/2026</div>
+      <h1 class="blog-detail-title">50+ IoT 智能家居需要多少宽带？Matter、Zigbee 与 Wi-Fi 怎么规划</h1>
+      
+    <section class="ai-summary-box">
+      <div class="ai-summary-badge">✨ NetBijak AI 智能摘要</div>
+      <p>家中拥有超过 50 个智能家居设备并不代表必须升级到 1Gbps 的光纤宽带，因为大多数传感器和开关产生的实际数据流量极小。真正的性能瓶颈往往源于大量的 Wi-Fi 设备挤在同一个 2.4GHz 频段，导致无线信号干扰和空口资源争抢。要改善智能家居的稳定性，建议将高流量设备如电视和电脑分配至 5GHz 或 6GHz 频段，并优先利用 Thread 或 Zigbee 技术来连接低功耗 IoT 设备。同时，利用以太网回程（Ethernet Backhaul）组建 Mesh 网络，比单纯增加宽带带宽更能有效解决断线问题。只有在确认家庭内部网络架构优化后，若仍无法满足视频流媒体或云端备份需求，才需要考虑升级宽带配套。</p>
+    </section>
+      <div id="homepage-banner-carousel" class="homepage-banner-carousel hidden"></div>
+      <div class="blog-detail-content"><p>如果家里已经有 50 个以上的智能家居设备，<strong>先别急着升级到 1Gbps</strong>。大多数 Smart Switch、Sensor 和 Smart Plug 实际产生的 Internet 流量非常少；真正容易出问题的，往往是几十个 Wi-Fi IoT 设备同时挤在同一个 2.4GHz 无线网络上。</p><h2>50 个 IoT 设备，不等于 50 个高流量连接</h2><p>Smart Switch 不会像 Laptop、CCTV Camera 或 4K TV 一样持续消耗大量 bandwidth。</p><p>很多 IoT 设备传输的只是很小的控制数据，例如：</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Motion Sensor 回报一次侦测结果</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Smart Plug 接收一个开关指令</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Temperature Sensor 上传一次温度读数</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Smart Lock 回传状态</li></ol><p>所以，一间屋子有 60 个 Sensor 和 Switch，并不代表它会比一家 5 个人同时看 Netflix、开 Zoom、Gaming 和 Cloud Backup 的家庭更吃 Fibre。</p><p>可以先这样分类：</p><table><tbody><tr><td data-row="1">设备</td><td data-row="1">主要网络需求</td></tr><tr><td data-row="2">Smart Switch</td><td data-row="2">低流量，重点是连接稳定</td></tr><tr><td data-row="3">Door / Motion Sensor</td><td data-row="3">低流量，重点是覆盖</td></tr><tr><td data-row="4">Smart Plug</td><td data-row="4">低流量，通常依赖 2.4GHz</td></tr><tr><td data-row="5">Smart Lock</td><td data-row="5">低流量，重点是可靠性</td></tr><tr><td data-row="6">Smart Speaker</td><td data-row="6">Wi-Fi 稳定性</td></tr><tr><td data-row="7">IP Camera</td><td data-row="7">较高流量，尤其是上传</td></tr><tr><td data-row="8">Smart TV</td><td data-row="8">较高 Download bandwidth</td></tr><tr><td data-row="9">PC / Laptop</td><td data-row="9">流量变化大，可能很高</td></tr></tbody></table><p>因此，真正应该问的不是：</p><p><strong>“我有多少个 IoT？”</strong></p><p>而是：</p><p><strong>“这些设备里面，有多少个真的使用 Wi-Fi？又有多少个会产生大量流量？”</strong></p><h2>“超过 20 个设备，Router 就会死”不是通用规则</h2><p>没有一个适用于所有家庭 Router 的技术规则，说连接超过 20 个设备就一定会瘫痪。</p><p>一台 Router 同时处理 20 个几乎处于 Idle 状态的 Smart Plug，和处理 20 台 Phone、Laptop、Camera、TV，负载完全不同。</p><p>大型 Wi-Fi 网络更值得注意的是 <strong>airtime</strong>。</p><p>Wi-Fi Client 必须共享无线 airtime。低速或信号较弱的 Client，为了传送相同的数据量，可能需要占用更多 airtime。Cisco 的无线部署资料也说明，Client 的数据传输速率会直接影响无线 Channel Utilisation。(<a href="https://www.cisco.com/c/en/us/td/docs/wireless/controller/technotes/8-3/b_cisco_aironet_series_2800_3800_access_point_deployment_guide/b_cisco_aironet_series_2800_3800_access_point_deployment_guide_chapter_01001.html" rel="noopener noreferrer nofollow" target="_blank">Cisco</a>)</p><p>2.4GHz 更值得注意。Cisco 指出，2.4GHz 可使用的非重叠 Channel 数量有限，而且还会受到其他无线设备和干扰源影响；在高密度环境下，Channel Reuse 和 interference 都需要考虑。(<a href="https://www.cisco.com/c/en/us/support/docs/wireless/catalyst-9800-series-wireless-controllers/222000-design-guide-cx-wireless-for-large-pub.html" rel="noopener noreferrer nofollow" target="_blank">Cisco 2.4GHz Design Guidance</a>)</p><p>所以，一个 Smart Home 完全可能在 <strong>Fibre 还没有跑满之前，Wi-Fi 已经开始不稳定</strong>。</p><h2>真正容易出问题的是：太多 Wi-Fi IoT 挤在一个 Radio</h2><p>例如一间家庭可能有：</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>25 个 Smart Switch</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>10 个 Smart Plug</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>8 个 Sensor</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>4 个 Smart Speaker</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>3 个 Camera</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>5 台 Phone 和 Computer</li></ol><p>超过 50 个设备很容易。</p><p>但这些设备的网络负载并不一样。</p><p>Switch 和 Sensor 可能只传送非常少的数据；Camera、Computer 和 Streaming Device 才会产生较明显的流量。</p><p>如果大量 IoT 都直接连接同一个 2.4GHz AP，问题更可能出现在 <strong>RF airtime、interference 和 coverage</strong>，而不是 Fibre 只有 300Mbps。</p><p>这也是为什么单纯从 300Mbps 升级到 1Gbps，有时候完全解决不了 Smart Home 的断线问题。</p><h2>高流量设备应该尽量离开 2.4GHz</h2><p>比较合理的家庭网络分配可以是：</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>5GHz / 6GHz：</strong> Phone、Laptop、TV 和其他高流量设备</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>2.4GHz：</strong> 必须使用 2.4GHz 的旧款 IoT</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Ethernet：</strong> Desktop、TV、NAS、NVR 等固定设备</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Thread：</strong> 支持的低功耗 Matter 设备</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Zigbee：</strong> 通过 Zigbee Hub / Coordinator 运作的设备</li></ol><p>目的不是让所有设备都“跑更快”，而是避免所有设备争抢同一个无线资源。</p><h2>独立 2.4GHz IoT SSID 有用，但它不会凭空增加 Wi-Fi 容量</h2><p>为 Smart Home 建立一个独立的 <strong>2.4GHz IoT SSID</strong> 是有实际用途的。</p><p>你可以把 Smart Plug、Switch、Sensor 等设备放到 IoT Network，不必与个人 Phone、Laptop 混在同一个 SSID。</p><p>Cisco 的无线设计资料也提到，在需要保留 2.4GHz 给 IoT 或 Legacy Device 的高密度环境中，可以考虑使用独立 SSID。(<a href="https://www.cisco.com/c/en/us/support/docs/wireless/catalyst-9800-series-wireless-controllers/222000-design-guide-cx-wireless-for-large-pub.html" rel="noopener noreferrer nofollow" target="_blank">Cisco</a>)</p><p>但这里有一个很容易搞错的地方：</p><p><strong>独立 SSID 是逻辑分流，不是物理 Radio 分流。</strong></p><p>如果 Main SSID 和 IoT SSID 都由同一个 2.4GHz Radio 提供，它们仍然共享同一套 RF airtime。</p><p>简单来说：</p><blockquote><strong>独立 SSID = 更容易管理和隔离设备。</strong></blockquote><blockquote><strong>增加 AP / Radio = 才是真正增加无线容量。</strong></blockquote><h2>Mesh 的价值，不只是把 Wi-Fi “打远一点”</h2><p>如果房子比较大，或者大量 IoT 集中在不同楼层，可以考虑增加 Mesh Node 或额外 AP，把 Client 分散到不同的位置。</p><p>如果房子已经有 Ethernet 布线，<strong>Ethernet Backhaul 通常比 Wireless Backhaul 更适合这种场景</strong>。</p><p>Ethernet Backhaul 会让 Mesh Node 通过网线连接主 Router，而不是再用 Wi-Fi 来连接其他 Mesh Node。TP-Link 的 EasyMesh 文件也说明，Ethernet Backhaul 可以提供更快、更稳定的 Mesh Node 之间连接。(<a href="https://www.tp-link.com/us/support/faq/3731/" rel="noopener noreferrer nofollow" target="_blank">TP-Link</a>)</p><p>例如：</p><table><tbody><tr><td data-row="1">网络层</td><td data-row="1">用途</td></tr><tr><td data-row="2">Fibre</td><td data-row="2">Internet Connection</td></tr><tr><td data-row="3">Main Router</td><td data-row="3">Routing / Network Management</td></tr><tr><td data-row="4">Ethernet</td><td data-row="4">Mesh / AP Backhaul</td></tr><tr><td data-row="5">AP 1</td><td data-row="5">客厅及主要活动区域</td></tr><tr><td data-row="6">AP 2</td><td data-row="6">楼上或信号较弱区域</td></tr><tr><td data-row="7">2.4GHz IoT SSID</td><td data-row="7">Wi-Fi Smart Home 设备</td></tr><tr><td data-row="8">5GHz / 6GHz</td><td data-row="8">Phone、Laptop、TV</td></tr><tr><td data-row="9">Thread / Zigbee</td><td data-row="9">低功耗 IoT Mesh</td></tr></tbody></table><p>重点不是单纯增加“Wi-Fi 覆盖范围”，而是<strong>避免所有 Client 都集中在一颗 AP 上</strong>。</p><h2>Matter 不等于 Wi-Fi</h2><p>Smart Home 设备越来越多使用 Matter，但 Matter 本身不是 Wi-Fi 技术。</p><p>Connectivity Standards Alliance 说明，Matter 可以运行在 <strong>Wi-Fi、Thread 和 Ethernet</strong> 上，而 Bluetooth Low Energy 主要用于设备配对与 commissioning。(<a href="https://csa-iot.org/all-solutions/matter/matter-faq/" rel="noopener noreferrer nofollow" target="_blank">Connectivity Standards Alliance — Matter FAQ</a>)</p><p>所以，同样是 Matter Device，网络架构可能完全不同。</p><h3>Matter over Wi-Fi</h3><p>如果 Matter Device 使用 Wi-Fi，它就是一个普通的 Wi-Fi Client。</p><p>家里如果有几十个 Wi-Fi Matter Switch 和 Sensor，它们仍然会增加 Wi-Fi Client 数量，并共享 Wi-Fi Radio 的 airtime。</p><h3>Matter over Thread</h3><p>Thread 是专门针对低功耗 IoT 设计的 IP-based Mesh Network。</p><p>Thread Group 将 Thread 定义为一种低功耗、IP-based Mesh 技术，适用于 Smart Home 等 IoT 环境；Thread Border Router 则负责把 Thread Network 连接到家庭的 IP Network。(<a href="https://threadgroup.org/BUILT-FOR-IOT/Smart-Home" rel="noopener noreferrer nofollow" target="_blank">Thread Group</a>)</p><p>因此，兼容的 Matter-over-Thread Sensor 或 Switch 不需要每一个都直接成为 Wi-Fi Client。</p><p>对于大型 Smart Home，这一点很重要：<strong>设备数量增加，不一定代表 Wi-Fi Client 数量也按同样速度增加。</strong></p><h2>Zigbee 又是另一套网络</h2><p>Zigbee 同样是低功耗无线技术，常用于 Sensor、Switch、Light 和其他 Smart Home Automation 设备。</p><p>Zigbee Network 通常通过 Coordinator 或 Hub 建立，兼容设备在 Zigbee 网络中互相组成 Mesh，而不是每一台设备都直接连接家里的 Wi-Fi Router。</p><p>所以，一个规模较大的 Smart Home 可以形成这样的结构：</p><p><strong>Fibre → Router → Wi-Fi Devices</strong></p><p>同时：</p><p><strong>Router / Border Router → Thread Devices</strong></p><p>以及：</p><p><strong>Router / Hub → Zigbee Devices</strong></p><p>这样做的好处是，不需要把所有低流量 IoT 设备都塞进同一个 Wi-Fi Network。</p><h2>50+ IoT 家庭到底需要多少 Mbps？</h2><p>没有一个可靠的公式可以说：</p><p><strong>50 个设备 = 1Gbps</strong></p><p>应该先计算家庭本身的正常 Internet 使用量，再看 Wi-Fi Infrastructure 是否能够承受这些 Client。</p><table><tbody><tr><td data-row="1">家庭情况</td><td data-row="1">主要需要关注什么</td></tr><tr><td data-row="2">50+ Sensor / Switch</td><td data-row="2">Wi-Fi / Thread / Zigbee 架构</td></tr><tr><td data-row="3">50+ IoT + 一般家庭使用</td><td data-row="3">Fibre Speed + Wi-Fi Capacity</td></tr><tr><td data-row="4">IoT + 多个 4K Streaming</td><td data-row="4">Fibre Bandwidth + 5GHz / 6GHz</td></tr><tr><td data-row="5">IoT + 多个 IP Camera</td><td data-row="5">Upload Bandwidth + Wi-Fi / Ethernet</td></tr><tr><td data-row="6">大型双层或多层住宅</td><td data-row="6">AP Placement + Mesh / Backhaul</td></tr><tr><td data-row="7">大部分 IoT 使用 Thread / Zigbee</td><td data-row="7">Wi-Fi Client 数量可能相对较少</td></tr></tbody></table><p>对很多家庭来说，<strong>300Mbps 已经足够应付 IoT 本身的 Internet 流量</strong>。</p><p>如果需要升级到 1Gbps，通常应该是因为家庭还有大量 Streaming、Cloud Backup、Gaming、Camera Upload 或其他高流量需求，而不是单纯因为 Router 显示“50 Devices Connected”。</p><h2>升级之前，先检查这 7 项</h2><p>如果 Smart Home 已经出现设备延迟、Random Disconnect 或 Automation 偶尔失灵，可以按这个顺序检查：</p><ol><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span><strong>确认设备使用什么 Protocol</strong>：Wi-Fi、Thread 还是 Zigbee。</li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span><strong>只计算 Wi-Fi Client</strong>：不要把 Thread / Zigbee 设备全部算进去。</li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span><strong>检查 2.4GHz 环境</strong>：看 Channel Utilisation 和 interference。</li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span><strong>把 IoT 与高流量设备分开</strong>：适合的设备放进独立 2.4GHz IoT SSID。</li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span><strong>检查 AP Placement</strong>：不要让整间屋子的设备都挤在一个 AP。</li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span><strong>有网线就优先使用 Ethernet Backhaul。</strong></li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span><strong>最后才判断 Fibre Speed 是否真的不足。</strong></li></ol><p>这样可以避免花钱升级更快的 Fibre，却留下原本的 Wi-Fi bottleneck。</p><h2>NetBijak’s Take</h2><p>50+ IoT 家庭首先要解决的是<strong>网络架构，而不是 Fibre Mbps</strong>。</p><p>高流量设备放 5GHz / 6GHz 或 Ethernet；Wi-Fi-only IoT 可以独立使用 2.4GHz IoT SSID；支持的低功耗设备则可以考虑 Thread 或 Zigbee。遇到大量设备集中在同一个 AP 时，增加 AP / Mesh 并采用 Ethernet Backhaul，往往比单纯升级 Fibre 更直接。</p><p class="ql-align-center"><strong style="color: rgb(255, 255, 255); background-color: initial;"><a href="/zh/find-your-plan/" rel="noopener noreferrer" target="_blank">🎯为我找配套 →</a></strong></p><h3><br></h3></div>
+      
+    <section class="section-card" id="article-faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div id="article-faq-list" class="faq-list">
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="0">
+        <span>50 个 Smart Home Device 一定需要 1Gbps 吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>不一定。设备数量本身不能决定 Fibre Speed。很多 Sensor 和 Switch 的 Internet 流量非常低。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="1">
+        <span>2.4GHz 还适合 Smart Home 吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>适合。很多 IoT Device 仍然使用 2.4GHz。真正需要注意的是大量 Client 共享同一个 Radio 后产生的 airtime contention 和 interference。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="2">
+        <span>应该建立独立的 2.4GHz IoT SSID 吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>可以。它方便管理和隔离 Smart Home Device，但如果 Main SSID 和 IoT SSID 使用同一个 2.4GHz Radio，并不会因此增加实际无线容量。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="3">
+        <span>50+ IoT 一定要用 Mesh 吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>不一定。关键看房屋面积、AP Placement、Client 分布和无线环境。如果大量设备集中在一个 AP，增加 AP 或 Mesh 才有意义。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="4">
+        <span>Matter Device 都是 Wi-Fi Device 吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>不是。Matter 可以运行在 Wi-Fi、Thread 和 Ethernet 上，因此 Matter Device 不一定会成为 Wi-Fi Client。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="5">
+        <span>Thread 比 Wi-Fi 更适合 Smart Sensor 吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>两者用途不同。Thread 针对低功耗 IoT Mesh 设计，而 Wi-Fi 可以提供更高的吞吐量。对于兼容的 Sensor、Switch 和其他低流量设备，Thread 可以减少它们对 Wi-Fi Client Pool 的依赖。</p></div>
+    </div></div>
+    </section>
+    </div>
+    
+    <section class="section-card" style="margin-top:1.5rem">
+      <h2>相关文章</h2>
+      <div class="blog-grid"><a href="/zh/blog/-p2p-bittorrent-isp-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/home-broadband-for-heavy-p2p.webp" alt="马来西亚重度 P2P 用户的家用宽带怎么选？BitTorrent、端口转发与 ISP 限制" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">24/09/2026</div>
+          <div class="blog-card-title">马来西亚重度 P2P 用户的家用宽带怎么选？BitTorrent、端口转发与 ISP 限制</div>
+          <p class="blog-card-excerpt">如果你经常通过 BitTorrent 下载大型合法文件，宽带套餐标示的下载速度并不是唯一决定因素。真正值得检查的是三个东西：ISP 有没有对 P2P 流量进行管理、Torrent Client 能不能...</p>
+        </div></a><a href="/zh/blog/tp-link-wi-fi-8-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/tp-link-wi-fi-8-arrives-in-malaysia.webp" alt="TP-Link Wi-Fi 8 登陆马来西亚：它到底改变了什么？" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">18/09/2026</div>
+          <div class="blog-card-title">TP-Link Wi-Fi 8 登陆马来西亚：它到底改变了什么？</div>
+          <p class="blog-card-excerpt">TP-Link 已经把 Wi-Fi 8 带到马来西亚，但真正值得关注的不是路由器包装上的更大数字。TP-Link 于 2026 年 9 月 15 日在吉隆坡举行的 APAC B2B Summit 20...</p>
+        </div></a><a href="/zh/blog/2026-5000-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/malaysias-internet-coverage-reaches-9975.webp" alt="2026 马来西亚日：为什么 5,000 人同时上网，不只是需要更快的网络" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">News</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">17/09/2026</div>
+          <div class="blog-card-title">2026 马来西亚日：为什么 5,000 人同时上网，不只是需要更快的网络</div>
+          <p class="blog-card-excerpt">如果超过 5,000 人同时集中在一个场地，网络最容易暴露的一个问题就是：Internet 很快，不代表 Wi-Fi 能同时服务这么多人。2026 年马来西亚日庆典在古晋 Borneo Convent...</p>
+        </div></a><a href="/zh/blog/wifi-6-vs-wifi-72026-broadband-router-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/wifi-6-vs-wifi-7-do-you-need.webp" alt="WiFi 6 vs WiFi 7：2026 年到底需要升级 Broadband Router 吗？" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">13/09/2026</div>
+          <div class="blog-card-title">WiFi 6 vs WiFi 7：2026 年到底需要升级 Broadband Router 吗？</div>
+          <p class="blog-card-excerpt">如果你已经使用 1Gbps 或 2Gbps Fibre，WiFi 7 确实有机会让你的无线网络跑得更快、更稳定，但这并不代表所有 WiFi 6 用户都需要马上换 Router。WiFi 7 真正值得关...</p>
+        </div></a><a href="/zh/blog/-tiktoknetflix-fibre/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/how-to-stop-your-kids-tiktok-scrolling.webp" alt="孩子一直刷 TikTok，Netflix 一直卡？先别急着升级 Fibre" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">04/09/2026</div>
+          <div class="blog-card-title">孩子一直刷 TikTok，Netflix 一直卡？先别急着升级 Fibre</div>
+          <p class="blog-card-excerpt">为什么孩子刷 TikTok，Netflix 就开始卡？如果孩子一刷 TikTok，你的 Netflix 就开始 Buffer，先不要急着升级 Fibre 配套。问题可能是家里的 网络拥塞、WiFi 干...</p>
+        </div></a><a href="/zh/blog/-fibre-distribution-pointdp/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/what-is-a-fibre-distribution-point-dp-box.webp" alt="什么是 Fibre Distribution Point（DP）箱？在马来西亚哪里可以找到？" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">23/09/2026</div>
+          <div class="blog-card-title">什么是 Fibre Distribution Point（DP）箱？在马来西亚哪里可以找到？</div>
+          <p class="blog-card-excerpt">申请 Fibre 时，技术人员有时会问你：“DP 在哪里？”如果你连 DP 是什么都不知道，就很容易在现场花很多时间来回找。其实，你只需要知道 DP 的作用、常见位置，以及怎么把正确的位置告诉技术人员...</p>
+        </div></a></div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script>const ROOT_PATH = "/"; const PAGE_TRANSLATIONS = {"zh":"/zh/blog/50-iot-matterzigbee-wi-fi-/","ms":"/ms/blog/keperluan-broadband-untuk-smart-home-dengan-50-peranti-iot/","en":"/en/blog/broadband-needs-for-smart-homes-with-50-iot-devices-matterzigbee/"};</script>
+  <script src="/assets/js/tracking.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/assets/js/supabase-client.js"></script>
+  <script src="/assets/js/translations.js"></script>
+  <script src="/assets/js/site.js"></script>
+  <script src="/assets/js/homepage-banner.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("#article-faq-list .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#article-faq-list .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
+    });
+  </script>
+
+  <div id="mascot-widget" class="mascot-widget">
+    <button type="button" class="mascot-close-btn" id="mascot-close-btn" aria-label="Close">✕</button>
+    <a href="https://wa.me/60178835110?text=Hi%20NetBijak%2C%20I'm%20reading%20%2250%2B%20IoT%20%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85%E9%9C%80%E8%A6%81%E5%A4%9A%E5%B0%91%E5%AE%BD%E5%B8%A6%EF%BC%9FMatter%E3%80%81Zigbee%20%E4%B8%8E%20Wi-Fi%20%E6%80%8E%E4%B9%88%E8%A7%84%E5%88%92%22%20and%20have%20a%20question." target="_blank" class="mascot-avatar-link">
+      <img src="/assets/images/mascot.png" alt="NetBijak Assistant" class="mascot-avatar-img" />
+      <span class="mascot-bubble">有问题吗？</span>
+    </a>
+  </div>
+  <script>
+    (function() {
+      var storageKey = "mascot-closed-50-iot-matterzigbee-wi-fi-";
+      var widget = document.getElementById("mascot-widget");
+      var closeBtn = document.getElementById("mascot-close-btn");
+      if (sessionStorage.getItem(storageKey)) {
+        widget.style.display = "none";
+      }
+      closeBtn.addEventListener("click", function() {
+        widget.style.display = "none";
+        sessionStorage.setItem(storageKey, "1");
+      });
+    })();
+  </script>
+</body>
+</html>
