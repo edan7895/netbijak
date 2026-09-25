@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>如何设置 Guest WiFi 隔离 Smart Home IoT 设备 | 马来西亚</title>
+  <meta name="description" content="将 Smart Plug、IP Camera 等 IoT 设备放进独立 Guest Network，限制它们访问电脑、NAS 和其他家庭设备，降低智能家居被入侵后的横向攻击风险。" />
+  <meta name="geo.region" content="MY" />
+  <meta name="geo.placename" content="Malaysia" />
+  <meta property="og:title" content="如何设置 Guest WiFi 隔离 Smart Home IoT 设备 | 马来西亚" />
+  <meta property="og:description" content="将 Smart Plug、IP Camera 等 IoT 设备放进独立 Guest Network，限制它们访问电脑、NAS 和其他家庭设备，降低智能家居被入侵后的横向攻击风险。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://netbijak.com/assets/images/articles/setting-up-a-guest-wifi-network.webp" />
+  <meta property="og:url" content="https://netbijak.com/zh/blog/-guest-wifi/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://netbijak.com/zh/blog/-guest-wifi/" />
+  <link rel="alternate" hreflang="en" href="https://netbijak.com/en/blog/setting-up-a-guest-wifi-network-to-secure-your-home-smart-devices/" />
+  <link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/blog/-guest-wifi/" />
+  <link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/blog/cara-menetapkan-guest-wifi-untuk-mengasingkan-peranti-smart-home/" />
+  <link rel="alternate" hreflang="x-default" href="https://netbijak.com/en/blog/setting-up-a-guest-wifi-network-to-secure-your-home-smart-devices/" />
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Smart Plug 和 IP Camera 可以放进 Guest WiFi 吗？","acceptedAnswer":{"@type":"Answer","text":"可以，前提是你的 Router 的 Guest Network 确实会阻止 Guest Client 访问 Main LAN。不同 Router 的实现方式可能不同，所以应该检查实际设置。"}},{"@type":"Question","name":"把 IP Camera 放进 Guest WiFi，是不是就不会被 Hack？","acceptedAnswer":{"@type":"Answer","text":"不是。Isolation 主要限制 Camera 被入侵后可以接触到什么。Camera 本身仍然需要 Firmware Update、强密码等基本安全措施。"}},{"@type":"Question","name":"我的 Phone 还能控制 Guest Network 里的 Smart Plug 吗？","acceptedAnswer":{"@type":"Answer","text":"要看 Router 的 Guest Isolation 设计。如果 Guest Network 无法访问 Main LAN，而 App 依赖 Local Network Discovery 或 Local Communication，那么控制功能可能无法正常工作。"}},{"@type":"Question","name":"所有 Smart Home Device 都应该放 Guest WiFi 吗？","acceptedAnswer":{"@type":"Answer","text":"不一定。需要访问 Home Assistant、NVR、NAS 等本地服务的设备，可能需要特定的 Local Network Access。这种情况下，IoT VLAN 会比简单 Guest Network 灵活。"}},{"@type":"Question","name":"Guest WiFi 和 VLAN 一样吗？","acceptedAnswer":{"@type":"Answer","text":"不一样。Guest WiFi 是 Router 提供的网络隔离功能；VLAN 可以把不同设备划分到不同 Network Segment，并配合 Firewall Rules 精确控制它们之间可以或不能访问什么。"}},{"@type":"Question","name":"AP Isolation 可以代替 Guest Network 吗？","acceptedAnswer":{"@type":"Answer","text":"不能完全代替。AP Isolation 主要限制同一个 WiFi Network 内的 Client 互相通信；Guest Network 则可以进一步把这些 Client 与 Main LAN 分开。"}}]}</script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="main">
+    <div id="blog-detail-container">
+      <a href="/zh/blog/" class="blog-back-link">← 返回部落格</a>
+      <span class="blog-type-tag">Article</span>
+      <img src="/assets/images/articles/setting-up-a-guest-wifi-network.webp" alt="如何设置 Guest WiFi，隔离智能家居设备保护家庭网络" class="blog-detail-cover" loading="lazy" width="800" height="450" />
+      <div class="blog-detail-date">26/09/2026</div>
+      <h1 class="blog-detail-title">如何设置 Guest WiFi，隔离智能家居设备保护家庭网络</h1>
+      
+    <section class="ai-summary-box">
+      <div class="ai-summary-badge">✨ NetBijak AI 智能摘要</div>
+      <p>为了保护家庭网络安全，将智能家居设备与个人电脑、NAS 等敏感设备隔离至关重要。许多人忽视了 IoT 设备本身的安全漏洞，将所有设备连接在同一个网络下会增加被入侵的风险。通过利用路由器自带的 Guest WiFi 或独立的 IoT 网络，您可以有效限制这些低信任度设备访问主网络。如果需要更高级的精细化控制，则可以考虑部署支持 VLAN 和防火墙规则的网络架构。即便实施了网络隔离，用户仍应保持设备固件更新并使用强密码，以确保多层防御体系的有效性。最终目标是缩小受攻击后的影响范围，防止恶意行为者在您的家庭网络中横向移动。</p>
+    </section>
+      <div id="homepage-banner-carousel" class="homepage-banner-carousel hidden"></div>
+      <div class="blog-detail-content"><p>家里的 Smart Plug 或 IP Camera <strong>不应该能够随便访问你的 Laptop、NAS 或 Printer</strong>。把安全性较低的 IoT 设备放到独立的 Guest / IoT Network，可以限制这些设备被入侵后进一步接触家庭主网络。</p><h2>为什么 Smart Home 应该使用独立网络？</h2><p>很多家庭的网络结构其实是：</p><p><strong>Phone → Laptop → NAS → Printer → Smart TV → IP Camera → Smart Plug</strong></p><p>全部设备都在同一个 LAN。</p><p>如果其中一台 IoT Device 存在漏洞、使用弱密码，或者日后被攻击者控制，它与其他设备处于同一个网络时，就可能增加进一步访问其他设备的风险。</p><p>Network Segmentation 的作用，就是把不同类型的设备放到不同 Network Segment，限制攻击者从一台设备向其他设备横向移动。CISA 将网络分段列为降低 IoT 风险的重要措施之一。(<a href="https://www.cisa.gov/sites/default/files/2024-08/Federal-Mobile-Workplace-Security_508_2024-08-14.pdf" rel="noopener noreferrer nofollow" target="_blank">CISA</a>)</p><p>FTC 也建议把 IP Camera 与电脑和 Printer 放在不同的网络中。(<a href="https://consumer.ftc.gov/articles/how-secure-your-home-security-cameras" rel="noopener noreferrer nofollow" target="_blank">FTC</a>)</p><p>所以，Guest / IoT Network 并不只是给访客使用。</p><h2>Guest WiFi 可以拿来放 Smart Plug 和 Camera</h2><p>大多数家用 Router 都提供 <strong>Guest Network</strong>。</p><p>它通常会建立另一个 SSID，并根据 Router 的设计，把 Guest Client 与 Main LAN 分开。</p><p>例如：</p><table><tbody><tr><td data-row="1">Main Network</td><td data-row="1">Guest / IoT Network</td></tr><tr><td data-row="2">Family Phone</td><td data-row="2">Smart Plug</td></tr><tr><td data-row="3">Laptop</td><td data-row="3">Smart Bulb</td></tr><tr><td data-row="4">Desktop PC</td><td data-row="4">IP Camera</td></tr><tr><td data-row="5">NAS</td><td data-row="5">Smart Speaker</td></tr><tr><td data-row="6">Printer</td><td data-row="6">老旧 IoT Device</td></tr><tr><td data-row="7">Home Server</td><td data-row="7">不太信任的品牌设备</td></tr></tbody></table><p>关键不是 SSID 名字叫不叫“Guest”。</p><p>真正需要检查的是 Router 有没有提供类似：</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Allow Guest to Access My Local Network</strong></li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Local Network Access</strong></li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Guest Network Isolation</strong></li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Client Isolation</strong></li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>AP Isolation</strong></li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>IoT Network</strong></li></ol><p>例如 TP-Link 的 Guest Network 设置可以控制 Guest Client 是否能够访问 Local Network；关闭 Local Network Access 后，Guest Client 就不能直接访问 Main Network 上的设备。(<a href="https://www.tp-link.com/us/support/faq/2798/" rel="noopener noreferrer nofollow" target="_blank">TP-Link</a>)</p><h2>Guest Network 和 AP Isolation 不是一回事</h2><p>这两个功能经常被混在一起。</p><p><strong>Guest Network：</strong> 主要负责把 Guest / IoT Client 与 Main LAN 分开。</p><p><strong>AP / Client Isolation：</strong> 主要阻止连接到同一个 WiFi Network 的 Client 互相通信。</p><p>TP-Link 的说明也区分了这两个功能：AP Isolation 用于阻止同一 WiFi Network 中的设备互相通信，而 Guest Network 则可以将 Guest Network 与 Main Network 分开。(<a href="https://www.tp-link.com/us/blog/2586/what-is-ap-isolation-and-when-to-enable-it-/" rel="noopener noreferrer nofollow" target="_blank">TP-Link</a>)</p><p>所以不要看到 Router 有 <strong>AP Isolation</strong>，就认为已经完成了 IoT Network Isolation。</p><p>对于家庭 Smart Home，最重要的是：</p><p><strong>IoT Device 能不能访问 Main LAN？</strong></p><h2>一个简单的家庭网络结构</h2><p>可以这样规划：</p><div class="ql-code-block-container" spellcheck="false"><div class="ql-code-block" data-language="plain">                    Internet</div><div class="ql-code-block" data-language="plain">                       │</div><div class="ql-code-block" data-language="plain">                  Main Router</div><div class="ql-code-block" data-language="plain">                  /          \</div><div class="ql-code-block" data-language="plain">                 /            \</div><div class="ql-code-block" data-language="plain">          Main Network     Guest / IoT Network</div><div class="ql-code-block" data-language="plain">              │                   │</div><div class="ql-code-block" data-language="plain">       ┌──────┼──────┐      ┌────┼────┐</div><div class="ql-code-block" data-language="plain">       │      │      │      │    │    │</div><div class="ql-code-block" data-language="plain">    Laptop   NAS   Printer  Camera Plug Bulb</div></div><p>目标很简单：</p><p><strong>Laptop 可以访问 NAS。</strong></p><p><strong>Smart Plug 不需要访问 NAS。</strong></p><p><strong>IP Camera 不需要访问 Laptop。</strong></p><p><strong>Guest / IoT Network 通常只需要 Internet，以及明确允许的本地服务。</strong></p><p>这样做比让所有设备共用同一个 WiFi Network 更容易控制风险。</p><h2>如果 IP Camera 被入侵怎么办？</h2><p>Network Isolation <strong>不会让 Camera 本身变得安全</strong>。</p><p>如果 Camera 使用弱密码、存在未修复漏洞或软件本身有安全问题，它仍然可能被攻击。</p><p>Isolation 的作用是限制 <strong>Blast Radius（影响范围）</strong>。</p><p>没有隔离：</p><p><strong>Compromised Camera → Main LAN → 其他设备</strong></p><p>有正确的 Guest / IoT Isolation：</p><p><strong>Compromised Camera → Guest / IoT Network → Main LAN 被阻挡</strong></p><p>CISA 的 IoT 风险资料指出，缺乏网络分段会让攻击者更容易在不同网络和设备之间进行横向移动。(<a href="https://www.cisa.gov/resources-tools/resources/pdm-iot-device-risk-mitigation-infographic" rel="noopener noreferrer nofollow" target="_blank">CISA</a>)</p><p>因此，Network Isolation 的目的不是保证 IoT Device 永远不会被 Hack，而是：</p><p><strong>即使它出事，也尽量不要让问题一路扩散到你的电脑和储存设备。</strong></p><h2>哪些设备适合放 Guest / IoT Network？</h2><p>优先考虑那些：</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>不需要访问 PC 的设备</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>不需要访问 NAS 的设备</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>不需要访问 Printer 的设备</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>主要只需要 Internet 的设备</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>来自你不太熟悉品牌的设备</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Firmware 更新支持很差的设备</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>你无法很好监控的设备</li></ol><p>例如：</p><p><strong>Smart Plug、Smart Bulb、廉价 IP Camera、WiFi Switch、旧款 Smart Appliance，以及部分 Smart Speaker。</strong></p><p>IP Camera 特别值得注意。FTC 建议将 Home Security Camera 与电脑、Printer 等设备分开网络，同时保持软件更新和使用强密码。(<a href="https://consumer.ftc.gov/articles/how-secure-your-home-security-cameras" rel="noopener noreferrer nofollow" target="_blank">FTC</a>)</p><h2>但不是所有 Smart Home Device 都能直接扔进 Guest Network</h2><p>这是最容易踩坑的地方。</p><p>有些 Smart Home Device 需要访问你的 Main LAN，例如：</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Phone 需要直接控制本地 Smart Device</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Home Assistant 需要与 Sensor 通讯</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>NVR 需要读取 IP Camera</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>NAS 需要储存 Camera Footage</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Smart Speaker 需要发现局域网设备</li></ol><p>如果 Guest Network 完全阻止访问 Main LAN，这些功能可能会失效。</p><p>这不代表 Router 出问题。</p><p><strong>这是 Isolation 正常工作的结果。</strong></p><p>所以在把设备搬进 Guest Network 之前，先判断它需要：</p><p><strong>Internet Only</strong></p><p>还是：</p><p><strong>Internet + 指定的 Local Network Access</strong></p><p>如果只是 Internet，Guest Network 很方便。</p><p>如果需要精确控制：</p><p><strong>Camera → NVR：允许</strong></p><p><strong>Camera → Laptop：禁止</strong></p><p><strong>IoT → Home Assistant：允许</strong></p><p><strong>IoT → NAS：禁止</strong></p><p>那么简单的 Guest Network 就开始不够灵活，需要考虑 VLAN + Firewall Rules。</p><h2>Guest Network 和 IoT VLAN 有什么区别？</h2><p>Guest Network 是比较简单的家庭方案。</p><p>IoT VLAN 则可以提供更细的控制。</p><table><tbody><tr><td data-row="1">功能</td><td data-row="1">Guest Network</td><td data-row="1">IoT VLAN</td></tr><tr><td data-row="2">设置难度</td><td data-row="2">低</td><td data-row="2">较高</td></tr><tr><td data-row="3">独立 Network</td><td data-row="3">通常有</td><td data-row="3">有</td></tr><tr><td data-row="4">独立 Subnet</td><td data-row="4">通常有</td><td data-row="4">有</td></tr><tr><td data-row="5">Firewall Rules</td><td data-row="5">有限</td><td data-row="5">更灵活</td></tr><tr><td data-row="6">基本 IoT Isolation</td><td data-row="6">可以</td><td data-row="6">可以</td></tr><tr><td data-row="7">Camera → NVR</td><td data-row="7">通常难以精确控制</td><td data-row="7">可以</td></tr><tr><td data-row="8">IoT → Home Assistant</td><td data-row="8">取决于 Router</td><td data-row="8">可以</td></tr><tr><td data-row="9">适合对象</td><td data-row="9">普通家庭</td><td data-row="9">Advanced User</td></tr></tbody></table><p>CISA 的网络安全资料也将 VLAN 与 Firewall / ACL 等技术列为实现更细致网络分段的方法。(<a href="https://www.cisa.gov/resources-tools/resources/enhanced-visibility-and-hardening-guidance-communications-infrastructure" rel="noopener noreferrer nofollow" target="_blank">CISA</a>)</p><p>普通家庭只有几个 Smart Plug，不需要为了它们马上部署 VLAN。</p><p>但如果已经有：</p><p><strong>多台 IP Camera + NVR + NAS + Home Assistant + 大量 IoT</strong></p><p>那么 VLAN 的价值就明显增加。</p><h2>设置之前，先检查你的 Router</h2><p>不要看到 Router 有 <strong>Guest WiFi</strong> 就直接认为设备已经隔离。</p><p>先检查：</p><ol><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span><strong>Guest Network / IoT Network</strong></li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span><strong>Local Network Access</strong></li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span><strong>Client Isolation</strong></li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span><strong>AP Isolation</strong></li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span><strong>Internet-only mode</strong></li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span><strong>Separate Subnet / DHCP Scope</strong></li></ol><p>例如 TP-Link 的 Guest Network 文档明确提供 Local Network Access 的控制选项。(<a href="https://www.tp-link.com/us/support/faq/1814/" rel="noopener noreferrer nofollow" target="_blank">TP-Link</a>)</p><p>一些较新的 Router 也直接提供 <strong>IoT Network</strong>，让 Smart Plug、Camera 等设备进入独立网络。(<a href="https://www.tp-link.com/us/support/faq/3775/" rel="noopener noreferrer nofollow" target="_blank">TP-Link IoT Network</a>)</p><p>所以不要只看功能名称。</p><p><strong>要看它实际上有没有阻止 IoT Device 访问 Main LAN。</strong></p><h2>Network Isolation 不能代替基本安全措施</h2><p>Guest / IoT Network 只是降低横向攻击风险，并不会修复有漏洞的设备。</p><p>Smart Plug、Camera 等设备仍然应该：</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>更改 Default Password</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>安装 Firmware Update</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>使用独立密码</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>有 MFA 就开启</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>关闭不需要的 Remote Management</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>停用已经不再获得安全更新的设备</li></ol><p>FTC 也建议更改默认凭证、保持设备更新，并关闭不需要的功能。(<a href="https://consumer.ftc.gov/articles/securing-your-internet-connected-devices-home" rel="noopener noreferrer nofollow" target="_blank">FTC</a>)</p><p>对于 IP Camera，FTC 特别建议使用强密码、保持软件更新，并检查异常的访问活动。(<a href="https://consumer.ftc.gov/articles/how-secure-your-home-security-cameras" rel="noopener noreferrer nofollow" target="_blank">FTC</a>)</p><h2>普通家庭可以这样设置</h2><p>不需要一开始就购买 Enterprise Firewall。</p><p>比较实际的家庭架构：</p><table><tbody><tr><td data-row="1">Network</td><td data-row="1">设备</td><td data-row="1">Local Access</td></tr><tr><td data-row="2">Main WiFi</td><td data-row="2">Phone、Laptop、PC</td><td data-row="2">Trusted LAN</td></tr><tr><td data-row="3">IoT / Guest WiFi</td><td data-row="3">Smart Plug、Bulb、基本 IoT</td><td data-row="3">Block Main LAN</td></tr><tr><td data-row="4">Camera Network</td><td data-row="4">IP Camera</td><td data-row="4">只允许需要的 NVR</td></tr><tr><td data-row="5">Wired LAN</td><td data-row="5">NAS、PC、NVR</td><td data-row="5">Trusted Devices</td></tr></tbody></table><p>如果你的 Router 只有基本 Guest Network，就先利用它。</p><p>等到你需要这种规则：</p><p><strong>Camera → NVR：Allow</strong></p><p><strong>Camera → Laptop：Block</strong></p><p><strong>IoT → Home Assistant：Allow</strong></p><p><strong>IoT → NAS：Block</strong></p><p>才有必要考虑支持 VLAN 和 Firewall Rules 的 Router / Firewall。</p><h2>NetBijak’s Take</h2><p>Guest WiFi 不只是给客人使用。对于普通家庭，它可以成为 <strong>Main LAN 与低信任 IoT Device 之间的一道简单网络边界</strong>。</p><p>Smart Plug、廉价 IP Camera 等设备可以放到独立 Guest / IoT Network，并关闭 Main LAN Access。如果 Smart Home 已经需要 Camera、NVR、Home Assistant 和 NAS 之间进行指定通讯，就不要为了方便把所有设备重新放回 Main LAN，而应该考虑 VLAN + Firewall Rules。</p><p class="ql-align-center"><strong style="color: rgb(255, 255, 255); background-color: initial;"><a href="/zh/find-your-plan/" rel="noopener noreferrer" target="_blank">🎯为我找配套 →</a></strong></p><h3><br></h3></div>
+      
+    <section class="section-card" id="article-faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div id="article-faq-list" class="faq-list">
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="0">
+        <span>Smart Plug 和 IP Camera 可以放进 Guest WiFi 吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>可以，前提是你的 Router 的 Guest Network 确实会阻止 Guest Client 访问 Main LAN。不同 Router 的实现方式可能不同，所以应该检查实际设置。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="1">
+        <span>把 IP Camera 放进 Guest WiFi，是不是就不会被 Hack？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>不是。Isolation 主要限制 Camera 被入侵后可以接触到什么。Camera 本身仍然需要 Firmware Update、强密码等基本安全措施。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="2">
+        <span>我的 Phone 还能控制 Guest Network 里的 Smart Plug 吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>要看 Router 的 Guest Isolation 设计。如果 Guest Network 无法访问 Main LAN，而 App 依赖 Local Network Discovery 或 Local Communication，那么控制功能可能无法正常工作。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="3">
+        <span>所有 Smart Home Device 都应该放 Guest WiFi 吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>不一定。需要访问 Home Assistant、NVR、NAS 等本地服务的设备，可能需要特定的 Local Network Access。这种情况下，IoT VLAN 会比简单 Guest Network 灵活。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="4">
+        <span>Guest WiFi 和 VLAN 一样吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>不一样。Guest WiFi 是 Router 提供的网络隔离功能；VLAN 可以把不同设备划分到不同 Network Segment，并配合 Firewall Rules 精确控制它们之间可以或不能访问什么。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="5">
+        <span>AP Isolation 可以代替 Guest Network 吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>不能完全代替。AP Isolation 主要限制同一个 WiFi Network 内的 Client 互相通信；Guest Network 则可以进一步把这些 Client 与 Main LAN 分开。</p></div>
+    </div></div>
+    </section>
+    </div>
+    
+    <section class="section-card" style="margin-top:1.5rem">
+      <h2>相关文章</h2>
+      <div class="blog-grid"><a href="/zh/blog/50-iot-matterzigbee-wi-fi-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/broadband-needs-for-smart-homes.webp" alt="50+ IoT 智能家居需要多少宽带？Matter、Zigbee 与 Wi-Fi 怎么规划" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">25/09/2026</div>
+          <div class="blog-card-title">50+ IoT 智能家居需要多少宽带？Matter、Zigbee 与 Wi-Fi 怎么规划</div>
+          <p class="blog-card-excerpt">如果家里已经有 50 个以上的智能家居设备，先别急着升级到 1Gbps。大多数 Smart Switch、Sensor 和 Smart Plug 实际产生的 Internet 流量非常少；真正容易出问...</p>
+        </div></a><a href="/zh/blog/-p2p-bittorrent-isp-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/home-broadband-for-heavy-p2p.webp" alt="马来西亚重度 P2P 用户的家用宽带怎么选？BitTorrent、端口转发与 ISP 限制" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">24/09/2026</div>
+          <div class="blog-card-title">马来西亚重度 P2P 用户的家用宽带怎么选？BitTorrent、端口转发与 ISP 限制</div>
+          <p class="blog-card-excerpt">如果你经常通过 BitTorrent 下载大型合法文件，宽带套餐标示的下载速度并不是唯一决定因素。真正值得检查的是三个东西：ISP 有没有对 P2P 流量进行管理、Torrent Client 能不能...</p>
+        </div></a><a href="/zh/blog/tp-link-wi-fi-8-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/tp-link-wi-fi-8-arrives-in-malaysia.webp" alt="TP-Link Wi-Fi 8 登陆马来西亚：它到底改变了什么？" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">18/09/2026</div>
+          <div class="blog-card-title">TP-Link Wi-Fi 8 登陆马来西亚：它到底改变了什么？</div>
+          <p class="blog-card-excerpt">TP-Link 已经把 Wi-Fi 8 带到马来西亚，但真正值得关注的不是路由器包装上的更大数字。TP-Link 于 2026 年 9 月 15 日在吉隆坡举行的 APAC B2B Summit 20...</p>
+        </div></a><a href="/zh/blog/2026-5000-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/malaysias-internet-coverage-reaches-9975.webp" alt="2026 马来西亚日：为什么 5,000 人同时上网，不只是需要更快的网络" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">News</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">17/09/2026</div>
+          <div class="blog-card-title">2026 马来西亚日：为什么 5,000 人同时上网，不只是需要更快的网络</div>
+          <p class="blog-card-excerpt">如果超过 5,000 人同时集中在一个场地，网络最容易暴露的一个问题就是：Internet 很快，不代表 Wi-Fi 能同时服务这么多人。2026 年马来西亚日庆典在古晋 Borneo Convent...</p>
+        </div></a><a href="/zh/blog/wifi-6-vs-wifi-72026-broadband-router-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/wifi-6-vs-wifi-7-do-you-need.webp" alt="WiFi 6 vs WiFi 7：2026 年到底需要升级 Broadband Router 吗？" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">13/09/2026</div>
+          <div class="blog-card-title">WiFi 6 vs WiFi 7：2026 年到底需要升级 Broadband Router 吗？</div>
+          <p class="blog-card-excerpt">如果你已经使用 1Gbps 或 2Gbps Fibre，WiFi 7 确实有机会让你的无线网络跑得更快、更稳定，但这并不代表所有 WiFi 6 用户都需要马上换 Router。WiFi 7 真正值得关...</p>
+        </div></a><a href="/zh/blog/-tiktoknetflix-fibre/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/how-to-stop-your-kids-tiktok-scrolling.webp" alt="孩子一直刷 TikTok，Netflix 一直卡？先别急着升级 Fibre" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">04/09/2026</div>
+          <div class="blog-card-title">孩子一直刷 TikTok，Netflix 一直卡？先别急着升级 Fibre</div>
+          <p class="blog-card-excerpt">为什么孩子刷 TikTok，Netflix 就开始卡？如果孩子一刷 TikTok，你的 Netflix 就开始 Buffer，先不要急着升级 Fibre 配套。问题可能是家里的 网络拥塞、WiFi 干...</p>
+        </div></a></div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script>const ROOT_PATH = "/"; const PAGE_TRANSLATIONS = {"en":"/en/blog/setting-up-a-guest-wifi-network-to-secure-your-home-smart-devices/","zh":"/zh/blog/-guest-wifi/","ms":"/ms/blog/cara-menetapkan-guest-wifi-untuk-mengasingkan-peranti-smart-home/"};</script>
+  <script src="/assets/js/tracking.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/assets/js/supabase-client.js"></script>
+  <script src="/assets/js/translations.js"></script>
+  <script src="/assets/js/site.js"></script>
+  <script src="/assets/js/homepage-banner.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("#article-faq-list .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#article-faq-list .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
+    });
+  </script>
+
+  <div id="mascot-widget" class="mascot-widget">
+    <button type="button" class="mascot-close-btn" id="mascot-close-btn" aria-label="Close">✕</button>
+    <a href="https://wa.me/60178835110?text=Hi%20NetBijak%2C%20I'm%20reading%20%22%E5%A6%82%E4%BD%95%E8%AE%BE%E7%BD%AE%20Guest%20WiFi%EF%BC%8C%E9%9A%94%E7%A6%BB%E6%99%BA%E8%83%BD%E5%AE%B6%E5%B1%85%E8%AE%BE%E5%A4%87%E4%BF%9D%E6%8A%A4%E5%AE%B6%E5%BA%AD%E7%BD%91%E7%BB%9C%22%20and%20have%20a%20question." target="_blank" class="mascot-avatar-link">
+      <img src="/assets/images/mascot.png" alt="NetBijak Assistant" class="mascot-avatar-img" />
+      <span class="mascot-bubble">有问题吗？</span>
+    </a>
+  </div>
+  <script>
+    (function() {
+      var storageKey = "mascot-closed--guest-wifi";
+      var widget = document.getElementById("mascot-widget");
+      var closeBtn = document.getElementById("mascot-close-btn");
+      if (sessionStorage.getItem(storageKey)) {
+        widget.style.display = "none";
+      }
+      closeBtn.addEventListener("click", function() {
+        widget.style.display = "none";
+        sessionStorage.setItem(storageKey, "1");
+      });
+    })();
+  </script>
+</body>
+</html>

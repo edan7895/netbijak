@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cara Set Guest WiFi untuk Asingkan Smart Home IoT di Malaysia</title>
+  <meta name="description" content="Asingkan Smart Plug, IP Camera dan peranti IoT lain daripada Main LAN untuk mengurangkan risiko peranti yang telah compromised mengakses PC, NAS dan peranti rumah yang lain." />
+  <meta name="geo.region" content="MY" />
+  <meta name="geo.placename" content="Malaysia" />
+  <meta property="og:title" content="Cara Set Guest WiFi untuk Asingkan Smart Home IoT di Malaysia" />
+  <meta property="og:description" content="Asingkan Smart Plug, IP Camera dan peranti IoT lain daripada Main LAN untuk mengurangkan risiko peranti yang telah compromised mengakses PC, NAS dan peranti rumah yang lain." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://netbijak.com/assets/images/articles/setting-up-a-guest-wifi-network.webp" />
+  <meta property="og:url" content="https://netbijak.com/ms/blog/cara-menetapkan-guest-wifi-untuk-mengasingkan-peranti-smart-home/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://netbijak.com/ms/blog/cara-menetapkan-guest-wifi-untuk-mengasingkan-peranti-smart-home/" />
+  <link rel="alternate" hreflang="en" href="https://netbijak.com/en/blog/setting-up-a-guest-wifi-network-to-secure-your-home-smart-devices/" />
+  <link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/blog/-guest-wifi/" />
+  <link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/blog/cara-menetapkan-guest-wifi-untuk-mengasingkan-peranti-smart-home/" />
+  <link rel="alternate" hreflang="x-default" href="https://netbijak.com/en/blog/setting-up-a-guest-wifi-network-to-secure-your-home-smart-devices/" />
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Bolehkan Smart Plug dan IP Camera diletakkan pada Guest WiFi?","acceptedAnswer":{"@type":"Answer","text":"Boleh, jika Guest Network pada Router anda benar-benar menghalang Guest Client daripada mengakses Main LAN. Semak setting Router kerana implementasi Guest Network berbeza mengikut model."}},{"@type":"Question","name":"Adakah IP Camera akan selamat daripada hacker selepas dimasukkan ke Guest WiFi?","acceptedAnswer":{"@type":"Answer","text":"Tidak. Isolation hanya mengehadkan apa yang boleh dicapai oleh Camera jika ia telah compromised. Device masih perlu menggunakan password yang kuat dan Firmware yang dikemas kini."}},{"@type":"Question","name":"Bolehkah Phone saya masih mengawal Smart Plug dalam Guest WiFi?","acceptedAnswer":{"@type":"Answer","text":"Bergantung kepada cara Guest Isolation pada Router berfungsi. Jika Guest Client tidak boleh mengakses Main LAN dan App bergantung kepada Local Network Discovery, fungsi kawalan mungkin tidak berfungsi."}},{"@type":"Question","name":"Patutkah semua Smart Home Device dimasukkan ke Guest WiFi?","acceptedAnswer":{"@type":"Answer","text":"Tidak semestinya. Device yang perlu berkomunikasi dengan Home Assistant, NVR atau NAS mungkin memerlukan Local Network Access tertentu. IoT VLAN lebih sesuai jika anda memerlukan kawalan seperti ini."}},{"@type":"Question","name":"Adakah Guest WiFi sama dengan VLAN?","acceptedAnswer":{"@type":"Answer","text":"Tidak. Guest WiFi ialah fungsi network separation pada Router. VLAN membolehkan beberapa network segment diwujudkan dan dikawal menggunakan Firewall Rules dengan lebih terperinci."}},{"@type":"Question","name":"Adakah AP Isolation boleh menggantikan Guest Network?","acceptedAnswer":{"@type":"Answer","text":"Tidak sepenuhnya. AP Isolation menghalang Client pada WiFi yang sama daripada berkomunikasi antara satu sama lain. Guest Network pula boleh mengasingkan Guest Client daripada Main LAN."}}]}</script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="main">
+    <div id="blog-detail-container">
+      <a href="/ms/blog/" class="blog-back-link">← Kembali ke Blog</a>
+      <span class="blog-type-tag">Article</span>
+      <img src="/assets/images/articles/setting-up-a-guest-wifi-network.webp" alt="Cara Menetapkan Guest WiFi untuk Mengasingkan Peranti Smart Home" class="blog-detail-cover" loading="lazy" width="800" height="450" />
+      <div class="blog-detail-date">26/09/2026</div>
+      <h1 class="blog-detail-title">Cara Menetapkan Guest WiFi untuk Mengasingkan Peranti Smart Home</h1>
+      
+    <section class="ai-summary-box">
+      <div class="ai-summary-badge">✨ Ringkasan AI NetBijak</div>
+      <p>Keselamatan rangkaian rumah sering terabai apabila kita menyambungkan semua peranti IoT terus ke rangkaian utama. Artikel ini menjelaskan kepentingan memisahkan peranti pintar seperti kamera IP dan palam pintar menggunakan fungsi Guest WiFi untuk mengurangkan risiko ancaman siber. Dengan mengasingkan peranti yang kurang dipercayai, anda dapat mengehadkan pergerakan penyerang sekiranya salah satu peranti berjaya diceroboh. Walaupun Guest WiFi adalah langkah awal yang mudah, peranti yang memerlukan akses kepada sistem tempatan seperti NVR atau Home Assistant mungkin memerlukan konfigurasi VLAN yang lebih terperinci. Pastikan anda mengenal pasti peranti mana yang hanya memerlukan akses internet dan mana yang perlu berkomunikasi dengan rangkaian utama untuk mengekalkan fungsi pintar di rumah.</p>
+    </section>
+      <div id="homepage-banner-carousel" class="homepage-banner-carousel hidden"></div>
+      <div class="blog-detail-content"><p>Smart Plug atau IP Camera di rumah <strong>tidak sepatutnya mempunyai akses bebas kepada Laptop, NAS atau Printer anda</strong>. Meletakkan IoT Device yang kurang dipercayai pada Guest / IoT Network yang berasingan boleh mengehadkan apa yang boleh dicapai jika peranti tersebut berjaya diceroboh.</p><h2>Kenapa Smart Home Patut Guna Network Berasingan?</h2><p>Banyak rumah menggunakan satu network untuk semua benda:</p><p><strong>Phone → Laptop → NAS → Printer → Smart TV → IP Camera → Smart Plug</strong></p><p>Semua peranti berada dalam LAN yang sama.</p><p>Jika salah satu IoT Device mempunyai vulnerability, menggunakan password yang lemah atau berjaya dikawal oleh attacker, aksesnya kepada peranti lain dalam network yang sama boleh meningkatkan risiko serangan secara lateral.</p><p>Network Segmentation digunakan untuk memisahkan kumpulan peranti dan mengehadkan pergerakan attacker dari satu peranti ke peranti lain. CISA menyenaraikan network segmentation sebagai salah satu langkah untuk mengurangkan risiko IoT. (<a href="https://www.cisa.gov/sites/default/files/2024-08/Federal-Mobile-Workplace-Security_508_2024-08-14.pdf" rel="noopener noreferrer nofollow" target="_blank">CISA</a>)</p><p>FTC juga mengesyorkan supaya IP Camera diletakkan pada network yang berasingan daripada komputer dan Printer. (<a href="https://consumer.ftc.gov/articles/how-secure-your-home-security-cameras" rel="noopener noreferrer nofollow" target="_blank">FTC</a>)</p><p>Sebab itu Guest / IoT Network bukan hanya untuk tetamu.</p><h2>Guest WiFi Boleh Digunakan untuk Smart Plug dan Camera</h2><p>Kebanyakan Home Router mempunyai fungsi <strong>Guest Network</strong>.</p><p>Ia biasanya menghasilkan SSID yang berasingan dan, bergantung kepada Router, memisahkan Guest Client daripada Main LAN.</p><p>Contohnya:</p><table><tbody><tr><td data-row="1">Main Network</td><td data-row="1">Guest / IoT Network</td></tr><tr><td data-row="2">Family Phone</td><td data-row="2">Smart Plug</td></tr><tr><td data-row="3">Laptop</td><td data-row="3">Smart Bulb</td></tr><tr><td data-row="4">Desktop PC</td><td data-row="4">IP Camera</td></tr><tr><td data-row="5">NAS</td><td data-row="5">Smart Speaker</td></tr><tr><td data-row="6">Printer</td><td data-row="6">IoT Device lama</td></tr><tr><td data-row="7">Home Server</td><td data-row="7">Peranti daripada vendor yang kurang dipercayai</td></tr></tbody></table><p>Nama “Guest” bukan perkara paling penting.</p><p>Perkara yang perlu diperiksa ialah sama ada Router mempunyai setting seperti:</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Allow Guest to Access My Local Network</strong></li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Local Network Access</strong></li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Guest Network Isolation</strong></li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>Client Isolation</strong></li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>AP Isolation</strong></li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span><strong>IoT Network</strong></li></ol><p>Sebagai contoh, Guest Network pada TP-Link mempunyai setting untuk menentukan sama ada Guest Client boleh mengakses Local Network. Jika Local Network Access dimatikan, Guest Client tidak boleh mengakses peranti pada Main Network. (<a href="https://www.tp-link.com/us/support/faq/2798/" rel="noopener noreferrer nofollow" target="_blank">TP-Link</a>)</p><h2>Guest Network dan AP Isolation Bukan Perkara yang Sama</h2><p>Dua setting ini sering disalah anggap sebagai benda yang sama.</p><p><strong>Guest Network:</strong> memisahkan Guest / IoT Client daripada Main LAN.</p><p><strong>AP / Client Isolation:</strong> menghalang Client yang berada pada WiFi Network yang sama daripada berkomunikasi antara satu sama lain.</p><p>TP-Link juga membezakan kedua-dua fungsi ini. AP Isolation menghalang peranti pada WiFi yang sama daripada berkomunikasi, manakala Guest Network boleh memisahkan Guest Network daripada Main Network. (<a href="https://www.tp-link.com/us/blog/2586/what-is-ap-isolation-and-when-to-enable-it-/" rel="noopener noreferrer nofollow" target="_blank">TP-Link</a>)</p><p>Jadi, jangan anggap menghidupkan <strong>AP Isolation</strong> sahaja sudah cukup untuk mengasingkan IoT.</p><p>Untuk Smart Home, soalan paling penting ialah:</p><p><strong>Bolehkah IoT Device mengakses Main LAN?</strong></p><h2>Struktur Network Rumah yang Mudah</h2><p>Struktur asas boleh kelihatan seperti ini:</p><div class="ql-code-block-container" spellcheck="false"><div class="ql-code-block" data-language="plain">                    Internet</div><div class="ql-code-block" data-language="plain">                       │</div><div class="ql-code-block" data-language="plain">                  Main Router</div><div class="ql-code-block" data-language="plain">                  /          \</div><div class="ql-code-block" data-language="plain">                 /            \</div><div class="ql-code-block" data-language="plain">          Main Network     Guest / IoT Network</div><div class="ql-code-block" data-language="plain">              │                   │</div><div class="ql-code-block" data-language="plain">       ┌──────┼──────┐      ┌────┼────┐</div><div class="ql-code-block" data-language="plain">       │      │      │      │    │    │</div><div class="ql-code-block" data-language="plain">    Laptop   NAS   Printer  Camera Plug Bulb</div></div><p>Matlamatnya mudah:</p><p><strong>Laptop boleh akses NAS.</strong></p><p><strong>Smart Plug tidak perlu akses NAS.</strong></p><p><strong>IP Camera tidak perlu akses Laptop.</strong></p><p><strong>Guest / IoT Network biasanya hanya memerlukan Internet dan Local Service yang memang dibenarkan.</strong></p><p>Ini memberikan security boundary yang lebih jelas berbanding meletakkan semua device dalam satu WiFi Network.</p><h2>Apa Berlaku Jika IP Camera Berjaya Diceroboh?</h2><p>Network Isolation <strong>tidak menjadikan Camera itu sendiri selamat</strong>.</p><p>Jika Camera mempunyai vulnerability, password lemah atau software yang tidak lagi dikemas kini, ia masih boleh menjadi sasaran serangan.</p><p>Fungsi Isolation ialah mengehadkan <strong>blast radius</strong> jika peranti tersebut sudah compromised.</p><p>Tanpa isolation:</p><p><strong>Compromised Camera → Main LAN → Peranti lain</strong></p><p>Dengan Guest / IoT Isolation:</p><p><strong>Compromised Camera → Guest / IoT Network → Main LAN disekat</strong></p><p>CISA menerangkan bahawa kekurangan network segmentation boleh memudahkan lateral movement antara peranti dan network. (<a href="https://www.cisa.gov/resources-tools/resources/pdm-iot-device-risk-mitigation-infographic" rel="noopener noreferrer nofollow" target="_blank">CISA</a>)</p><p>Jadi matlamatnya bukan untuk mengatakan IoT Device tidak boleh di-hack.</p><p>Matlamatnya ialah:</p><p><strong>Jika satu device bermasalah, kurangkan peluang masalah itu merebak ke PC, NAS dan peranti lain.</strong></p><h2>Peranti Mana Patut Masuk Guest / IoT Network?</h2><p>Utamakan device yang:</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>tidak perlu akses PC</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>tidak perlu akses NAS</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>tidak perlu akses Printer</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>hanya memerlukan Internet</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>datang daripada vendor yang kurang dikenali</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>mempunyai sokongan Firmware yang lemah</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>sukar dipantau</li></ol><p>Contohnya:</p><p><strong>Smart Plug, Smart Bulb, IP Camera murah, WiFi Switch, Smart Appliance lama dan sesetengah Smart Speaker.</strong></p><p>IP Camera patut diberi perhatian khusus. FTC mengesyorkan Home Security Camera diasingkan daripada komputer dan Printer serta menggunakan password yang kuat dan software yang dikemas kini. (<a href="https://consumer.ftc.gov/articles/how-secure-your-home-security-cameras" rel="noopener noreferrer nofollow" target="_blank">FTC</a>)</p><h2>Tetapi Jangan Masukkan Semua Smart Home Device ke Guest Network</h2><p>Di sinilah ramai pengguna akan menghadapi masalah.</p><p>Sesetengah Smart Home Device perlu berkomunikasi dengan Main LAN, contohnya:</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Phone mengawal Smart Device secara local</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Home Assistant berkomunikasi dengan Sensor</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>NVR membaca IP Camera</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>NAS menyimpan rakaman Camera</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Smart Speaker mencari peranti melalui Local Network</li></ol><p>Jika Guest Network menyekat akses kepada Main LAN, fungsi tersebut mungkin tidak lagi berfungsi.</p><p>Itu bukan semestinya masalah Router.</p><p><strong>Itulah kesan daripada Isolation yang anda tetapkan.</strong></p><p>Sebelum pindahkan device, tentukan sama ada ia memerlukan:</p><p><strong>Internet Only</strong></p><p>atau</p><p><strong>Internet + akses kepada Local Network tertentu</strong></p><p>Jika hanya Internet diperlukan, Guest Network mudah digunakan.</p><p>Jika anda memerlukan kawalan seperti:</p><p><strong>Camera → NVR: Allow</strong></p><p><strong>Camera → Laptop: Block</strong></p><p><strong>IoT → Home Assistant: Allow</strong></p><p><strong>IoT → NAS: Block</strong></p><p>maka VLAN + Firewall Rules lebih sesuai daripada Guest Network biasa.</p><h2>Guest Network vs IoT VLAN</h2><p>Guest Network lebih mudah untuk pengguna rumah.</p><p>IoT VLAN memberikan kawalan yang lebih terperinci.</p><table><tbody><tr><td data-row="1">Ciri</td><td data-row="1">Guest Network</td><td data-row="1">IoT VLAN</td></tr><tr><td data-row="2">Tahap setup</td><td data-row="2">Rendah</td><td data-row="2">Lebih tinggi</td></tr><tr><td data-row="3">Network berasingan</td><td data-row="3">Biasanya</td><td data-row="3">Ya</td></tr><tr><td data-row="4">Subnet berasingan</td><td data-row="4">Biasanya</td><td data-row="4">Ya</td></tr><tr><td data-row="5">Firewall Rules</td><td data-row="5">Terhad</td><td data-row="5">Lebih fleksibel</td></tr><tr><td data-row="6">Basic IoT Isolation</td><td data-row="6">Ya</td><td data-row="6">Ya</td></tr><tr><td data-row="7">Camera → NVR</td><td data-row="7">Biasanya sukar dikawal dengan tepat</td><td data-row="7">Boleh</td></tr><tr><td data-row="8">IoT → Home Assistant</td><td data-row="8">Bergantung pada Router</td><td data-row="8">Boleh</td></tr><tr><td data-row="9">Sesuai untuk</td><td data-row="9">Kebanyakan rumah</td><td data-row="9">Advanced users</td></tr></tbody></table><p>CISA turut menerangkan penggunaan VLAN serta Firewall / ACL untuk mendapatkan network segmentation yang lebih terperinci. (<a href="https://www.cisa.gov/resources-tools/resources/enhanced-visibility-and-hardening-guidance-communications-infrastructure" rel="noopener noreferrer nofollow" target="_blank">CISA</a>)</p><p>Kalau rumah hanya mempunyai beberapa Smart Plug, tidak perlu terus menggunakan VLAN.</p><p>Tetapi jika anda mempunyai:</p><p><strong>Banyak IP Camera + NVR + NAS + Home Assistant + banyak IoT Device</strong></p><p>VLAN menjadi lebih berguna.</p><h2>Semak Router Sebelum Buat Guest Network</h2><p>Jangan anggap Guest WiFi secara automatik bermaksud device sudah diasingkan.</p><p>Semak setting seperti:</p><ol><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span><strong>Guest Network / IoT Network</strong></li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span><strong>Local Network Access</strong></li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span><strong>Client Isolation</strong></li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span><strong>AP Isolation</strong></li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span><strong>Internet-only mode</strong></li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span><strong>Separate Subnet / DHCP Scope</strong></li></ol><p>Contohnya, TP-Link menyediakan setting khusus untuk mengawal akses Guest Network kepada Local Network. (<a href="https://www.tp-link.com/us/support/faq/1814/" rel="noopener noreferrer nofollow" target="_blank">TP-Link</a>)</p><p>Sesetengah Router yang lebih baru juga menyediakan <strong>IoT Network</strong> khusus untuk Smart Plug, Camera dan peranti lain. (<a href="https://www.tp-link.com/us/support/faq/3775/" rel="noopener noreferrer nofollow" target="_blank">TP-Link IoT Network</a>)</p><p>Jangan hanya lihat nama fungsi.</p><p><strong>Periksa apa yang berlaku pada network sebenarnya.</strong></p><h2>Network Isolation Bukan Pengganti Security Asas</h2><p>Guest / IoT Network hanya mengehadkan akses antara network. Ia tidak membaiki vulnerability pada device.</p><p>Untuk Smart Plug, Camera dan IoT Device lain:</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>tukar Default Password</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>pasang Firmware Update</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>gunakan password yang unik</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>aktifkan MFA jika tersedia</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>matikan Remote Management yang tidak diperlukan</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>gantikan device yang sudah tidak menerima security update</li></ol><p>FTC mengesyorkan menukar default credentials, memastikan device sentiasa dikemas kini dan mematikan fungsi yang tidak diperlukan. (<a href="https://consumer.ftc.gov/articles/securing-your-internet-connected-devices-home" rel="noopener noreferrer nofollow" target="_blank">FTC</a>)</p><p>Untuk IP Camera, FTC juga menyarankan password yang kuat, software terkini dan pemantauan aktiviti akses yang mencurigakan. (<a href="https://consumer.ftc.gov/articles/how-secure-your-home-security-cameras" rel="noopener noreferrer nofollow" target="_blank">FTC</a>)</p><h2>Setup Praktikal untuk Rumah</h2><p>Kebanyakan rumah tidak memerlukan Enterprise Firewall untuk bermula.</p><p>Struktur yang lebih praktikal:</p><table><tbody><tr><td data-row="1">Network</td><td data-row="1">Device</td><td data-row="1">Local Access</td></tr><tr><td data-row="2">Main WiFi</td><td data-row="2">Phone, Laptop, PC</td><td data-row="2">Trusted LAN</td></tr><tr><td data-row="3">IoT / Guest WiFi</td><td data-row="3">Smart Plug, Bulb, basic IoT</td><td data-row="3">Block Main LAN</td></tr><tr><td data-row="4">Camera Network</td><td data-row="4">IP Camera</td><td data-row="4">Benarkan NVR jika perlu</td></tr><tr><td data-row="5">Wired LAN</td><td data-row="5">NAS, PC, NVR</td><td data-row="5">Trusted Devices</td></tr></tbody></table><p>Jika Router anda hanya mempunyai Guest Network biasa, gunakan fungsi tersebut dahulu.</p><p>Jika anda sudah memerlukan rules seperti:</p><p><strong>Camera → NVR: Allow</strong></p><p><strong>Camera → Laptop: Block</strong></p><p><strong>IoT → Home Assistant: Allow</strong></p><p><strong>IoT → NAS: Block</strong></p><p>barulah masuk akal untuk menggunakan Router / Firewall yang menyokong VLAN dan Firewall Rules.</p><h2>NetBijak’s Take</h2><p>Guest WiFi bukan sekadar untuk tetamu. Untuk kebanyakan rumah, ia boleh menjadi <strong>network boundary antara IoT Device yang kurang dipercayai dengan Main LAN yang menyimpan data peribadi</strong>.</p><p>Letakkan Smart Plug, IP Camera murah dan IoT Device yang kurang dipercayai pada Guest / IoT Network, kemudian pastikan akses ke Main LAN disekat. Jika Smart Home anda memerlukan komunikasi khusus antara Camera, NVR, Home Assistant dan NAS, gunakan VLAN + Firewall Rules supaya akses boleh dikawal mengikut device, bukan sekadar membuka seluruh LAN.</p><p class="ql-align-center"><strong style="color: rgb(255, 255, 255); background-color: initial;"><a href="/ms/find-your-plan/" rel="noopener noreferrer" target="_blank">🎯Cari Pelan Saya →</a></strong></p><h3><br></h3></div>
+      
+    <section class="section-card" id="article-faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div id="article-faq-list" class="faq-list">
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="0">
+        <span>Bolehkan Smart Plug dan IP Camera diletakkan pada Guest WiFi?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Boleh, jika Guest Network pada Router anda benar-benar menghalang Guest Client daripada mengakses Main LAN. Semak setting Router kerana implementasi Guest Network berbeza mengikut model.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="1">
+        <span>Adakah IP Camera akan selamat daripada hacker selepas dimasukkan ke Guest WiFi?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Tidak. Isolation hanya mengehadkan apa yang boleh dicapai oleh Camera jika ia telah compromised. Device masih perlu menggunakan password yang kuat dan Firmware yang dikemas kini.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="2">
+        <span>Bolehkah Phone saya masih mengawal Smart Plug dalam Guest WiFi?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Bergantung kepada cara Guest Isolation pada Router berfungsi. Jika Guest Client tidak boleh mengakses Main LAN dan App bergantung kepada Local Network Discovery, fungsi kawalan mungkin tidak berfungsi.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="3">
+        <span>Patutkah semua Smart Home Device dimasukkan ke Guest WiFi?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Tidak semestinya. Device yang perlu berkomunikasi dengan Home Assistant, NVR atau NAS mungkin memerlukan Local Network Access tertentu. IoT VLAN lebih sesuai jika anda memerlukan kawalan seperti ini.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="4">
+        <span>Adakah Guest WiFi sama dengan VLAN?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Tidak. Guest WiFi ialah fungsi network separation pada Router. VLAN membolehkan beberapa network segment diwujudkan dan dikawal menggunakan Firewall Rules dengan lebih terperinci.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="5">
+        <span>Adakah AP Isolation boleh menggantikan Guest Network?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Tidak sepenuhnya. AP Isolation menghalang Client pada WiFi yang sama daripada berkomunikasi antara satu sama lain. Guest Network pula boleh mengasingkan Guest Client daripada Main LAN.</p></div>
+    </div></div>
+    </section>
+    </div>
+    
+    <section class="section-card" style="margin-top:1.5rem">
+      <h2>Artikel Berkaitan</h2>
+      <div class="blog-grid"><a href="/ms/blog/keperluan-broadband-untuk-smart-home-dengan-50-peranti-iot/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/broadband-needs-for-smart-homes.webp" alt="Keperluan Broadband untuk Smart Home dengan 50+ Peranti IoT" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">25/09/2026</div>
+          <div class="blog-card-title">Keperluan Broadband untuk Smart Home dengan 50+ Peranti IoT</div>
+          <p class="blog-card-excerpt">Kalau rumah anda mempunyai lebih daripada 50 peranti smart home, jangan terus anggap anda perlu naik...</p>
+        </div></a><a href="/ms/blog/tp-link-wi-fi-8-kini-di-malaysia-apa-yang-sebenarnya-berubah/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/tp-link-wi-fi-8-arrives-in-malaysia.webp" alt="TP-Link Wi-Fi 8 Kini di Malaysia: Apa Yang Sebenarnya Berubah?" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">18/09/2026</div>
+          <div class="blog-card-title">TP-Link Wi-Fi 8 Kini di Malaysia: Apa Yang Sebenarnya Berubah?</div>
+          <p class="blog-card-excerpt">TP-Link sudah memperkenalkan Wi-Fi 8 di Malaysia, tetapi perkara yang lebih penting bukan angka kela...</p>
+        </div></a><a href="/ms/blog/wifi-6-vs-wifi-7-perlukah-anda-upgrade-router-broadband-pada-2026/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/wifi-6-vs-wifi-7-do-you-need.webp" alt="WiFi 6 vs WiFi 7: Perlukah Anda Upgrade Router Broadband pada 2026?" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">13/09/2026</div>
+          <div class="blog-card-title">WiFi 6 vs WiFi 7: Perlukah Anda Upgrade Router Broadband pada 2026?</div>
+          <p class="blog-card-excerpt">Jika anda sudah menggunakan Fibre 1Gbps atau 2Gbps, WiFi 7 memang boleh membantu mengurangkan Wirele...</p>
+        </div></a><a href="/ms/blog/anak-asyik-scroll-tiktok-netflix-pula-buffer-jangan-terus-upgrade-fibre/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/how-to-stop-your-kids-tiktok-scrolling.webp" alt="Anak Asyik Scroll TikTok, Netflix Pula Buffer? Jangan Terus Upgrade Fibre" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">04/09/2026</div>
+          <div class="blog-card-title">Anak Asyik Scroll TikTok, Netflix Pula Buffer? Jangan Terus Upgrade Fibre</div>
+          <p class="blog-card-excerpt">Kenapa Anak Scroll TikTok, Netflix Terus Buffer?Kalau anak mula scroll TikTok dan Netflix anda terus...</p>
+        </div></a><a href="/ms/blog/home-broadband-untuk-heavy-p2p-torrent-user-di-malaysia/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/home-broadband-for-heavy-p2p.webp" alt="Home Broadband untuk Heavy P2P Torrent User di Malaysia" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">24/09/2026</div>
+          <div class="blog-card-title">Home Broadband untuk Heavy P2P Torrent User di Malaysia</div>
+          <p class="blog-card-excerpt">Kalau anda kerap menggunakan BitTorrent untuk memuat turun fail besar yang sah, kelajuan broadband s...</p>
+        </div></a><a href="/ms/blog/apa-itu-fiber-distributuin/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/what-is-a-fibre-distribution-point-dp-box.webp" alt="Apa Itu Fibre Distribution Point (DP) Box dan Di Mana Nak Cari di Malaysia?" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">23/09/2026</div>
+          <div class="blog-card-title">Apa Itu Fibre Distribution Point (DP) Box dan Di Mana Nak Cari di Malaysia?</div>
+          <p class="blog-card-excerpt">Masa pemasangan Fibre, technician kadang-kadang akan tanya, “DP dekat mana?” Kalau anda sendiri tak ...</p>
+        </div></a></div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script>const ROOT_PATH = "/"; const PAGE_TRANSLATIONS = {"en":"/en/blog/setting-up-a-guest-wifi-network-to-secure-your-home-smart-devices/","zh":"/zh/blog/-guest-wifi/","ms":"/ms/blog/cara-menetapkan-guest-wifi-untuk-mengasingkan-peranti-smart-home/"};</script>
+  <script src="/assets/js/tracking.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/assets/js/supabase-client.js"></script>
+  <script src="/assets/js/translations.js"></script>
+  <script src="/assets/js/site.js"></script>
+  <script src="/assets/js/homepage-banner.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("#article-faq-list .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#article-faq-list .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
+    });
+  </script>
+
+  <div id="mascot-widget" class="mascot-widget">
+    <button type="button" class="mascot-close-btn" id="mascot-close-btn" aria-label="Close">✕</button>
+    <a href="https://wa.me/60178835110?text=Hi%20NetBijak%2C%20I'm%20reading%20%22Cara%20Menetapkan%20Guest%20WiFi%20untuk%20Mengasingkan%20Peranti%20Smart%20Home%22%20and%20have%20a%20question." target="_blank" class="mascot-avatar-link">
+      <img src="/assets/images/mascot.png" alt="NetBijak Assistant" class="mascot-avatar-img" />
+      <span class="mascot-bubble">Ada soalan?</span>
+    </a>
+  </div>
+  <script>
+    (function() {
+      var storageKey = "mascot-closed-cara-menetapkan-guest-wifi-untuk-mengasingkan-peranti-smart-home";
+      var widget = document.getElementById("mascot-widget");
+      var closeBtn = document.getElementById("mascot-close-btn");
+      if (sessionStorage.getItem(storageKey)) {
+        widget.style.display = "none";
+      }
+      closeBtn.addEventListener("click", function() {
+        widget.style.display = "none";
+        sessionStorage.setItem(storageKey, "1");
+      });
+    })();
+  </script>
+</body>
+</html>
