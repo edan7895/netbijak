@@ -77,10 +77,19 @@
       if (!link) return;
 
       var providerSlug = nbExtractProviderSlugFromUrl(link.href);
+
       nbInsertRow("whatsapp_clicks", {
         provider_slug: providerSlug,
         page_path: window.location.pathname,
       });
+
+      if (typeof fbq === "function") {
+        fbq("track", "Lead", {
+          content_name: providerSlug || "unspecified",
+          content_category: "whatsapp_click",
+          page_path: window.location.pathname,
+        });
+      }
     });
   }
 
