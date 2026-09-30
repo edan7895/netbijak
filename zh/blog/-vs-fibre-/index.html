@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>马来西亚 Fibre 室内移机 vs 异地移机：收费、光纤墙盒与合约风险</title>
+  <meta name="description" content="要把 Fibre 搬到另一个房间、单位或新地址？了解 Unifi 和 TIME 的移机收费、Fibre Rosette 搬迁、额外布线费用，以及移机期间可能遇到的合约问题。" />
+  <meta name="geo.region" content="MY" />
+  <meta name="geo.placename" content="Malaysia" />
+  <meta property="og:title" content="马来西亚 Fibre 室内移机 vs 异地移机：收费、光纤墙盒与合约风险" />
+  <meta property="og:description" content="要把 Fibre 搬到另一个房间、单位或新地址？了解 Unifi 和 TIME 的移机收费、Fibre Rosette 搬迁、额外布线费用，以及移机期间可能遇到的合约问题。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://netbijak.com/assets/images/articles/internal-vs-external-fibre-relocation.webp" />
+  <meta property="og:url" content="https://netbijak.com/zh/blog/-vs-fibre-/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://netbijak.com/zh/blog/-vs-fibre-/" />
+  <link rel="alternate" hreflang="en" href="https://netbijak.com/en/blog/internal-vs-external-fibre-relocation-how-to-move-your-fibre-line-without-delays/" />
+  <link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/blog/internal-vs-external-relocation-cara-pindahkan-fibre-tanpa-kelewatan/" />
+  <link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/blog/-vs-fibre-/" />
+  <link rel="alternate" hreflang="x-default" href="https://netbijak.com/en/blog/internal-vs-external-fibre-relocation-how-to-move-your-fibre-line-without-delays/" />
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Unifi Relocation 是不是完全免费？","acceptedAnswer":{"@type":"Answer","text":"Relocation 本身目前不收费，但 Non-standard Installation 和 Additional Cabling 可以另外收费。TM 当前安装资料列出部分非标准布线为 RM212，以及超过 50m 的额外室内布线为 RM2.50/m。"}},{"@type":"Question","name":"搬 Unifi 后会自动重新绑 24 个月吗？","acceptedAnswer":{"@type":"Answer","text":"不是因为 Relocation 本身就自动重新绑约。但如果同时 Change of Plan，而新配套附带新设备、优惠或其他 Value，可能产生新的 Contract Period。"}},{"@type":"Question","name":"如果新家没有 Unifi Coverage 呢？","acceptedAnswer":{"@type":"Answer","text":"Unifi 可能提供 Unifi Air 作为替代方案。如果客户不接受可提供的替代方案，在适用情况下仍可能产生 Early Termination Fee。"}},{"@type":"Question","name":"TIME 搬家多少钱？","acceptedAnswer":{"@type":"Answer","text":"TIME 目前住宅 Relocation 是同一住宅 RM80，搬到另一个 Unit 或 Building RM120。额外工程可能另外收费。"}},{"@type":"Question","name":"TIME 搬到没有 Coverage 的新地址会怎样？","acceptedAnswer":{"@type":"Answer","text":"如果仍处于 Minimum Contract Period，而新地点没有 TIME Coverage，TIME 说明会产生 Early Termination Fee。"}}]}</script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="main">
+    <div id="blog-detail-container">
+      <a href="/zh/blog/" class="blog-back-link">← 返回部落格</a>
+      <span class="blog-type-tag">Article</span>
+      <img src="/assets/images/articles/internal-vs-external-fibre-relocation.webp" alt="室内 vs 异地移机：怎样搬 Fibre 才不会拖延？" class="blog-detail-cover" loading="lazy" width="800" height="450" />
+      <div class="blog-detail-date">01/10/2026</div>
+      <h1 class="blog-detail-title">室内 vs 异地移机：怎样搬 Fibre 才不会拖延？</h1>
+      
+    <section class="ai-summary-box">
+      <div class="ai-summary-badge">✨ NetBijak AI 智能摘要</div>
+      <p>搬家需要移动光纤网络时，室内移机与异地搬迁的处理方式完全不同。室内移机主要涉及光纤插座（Fibre Rosette）的重新布线，而异地搬迁则需优先确认新地址的覆盖范围及接口可用性。用户应向电信运营商明确“移机费”与“非标准布线费”的细目，切勿轻易自行拆除或移动设备。同时，搬家并不等于自动重新签约，但在合约期内迁往无覆盖区域可能面临解约罚款。建议在完成搬迁前先查询新地址网络状况，不要直接取消旧合约，以确保网络无缝衔接。</p>
+    </section>
+      <div id="homepage-banner-carousel" class="homepage-banner-carousel hidden"></div>
+      <div class="blog-detail-content"><p>把 Fibre 搬到另一个位置，不等于把 Router 搬过去就完成。</p><p>真正需要处理的是 <strong>Fibre Termination Point、光纤线路走向，以及新地址能不能继续提供原本的服务</strong>。</p><p>所以，室内移机和搬到另一个地址，是两件不同的事情。</p><h2>Internal vs External Relocation</h2><table><tbody><tr><td data-row="1">类型</td><td data-row="1">例子</td><td data-row="1">主要问题</td></tr><tr><td data-row="2"><strong>Internal Relocation</strong></td><td data-row="2">客厅 → 房间</td><td data-row="2">Fibre Termination Point 和布线</td></tr><tr><td data-row="3"><strong>External Relocation</strong></td><td data-row="3">旧家 → 新家</td><td data-row="3">Coverage、Port Availability、安装及合约</td></tr></tbody></table><p>TIME 目前住宅 Fibre 的移机收费是：<strong>同一住宅 RM80，搬到另一个单位或建筑物 RM120</strong>。如果符合相关 12 或 24 个月合约条件，部分 Relocation Fee 可以豁免。</p><p><a href="https://www.time.com.my/support/for-home/faq?faq=home&amp%3Butm_source=chatgpt.com" rel="noopener noreferrer nofollow" target="_blank">TIME Home FAQ</a></p><p>Unifi 目前则说明 <strong>Relocation 本身不收费</strong>，但非标准安装和额外布线可能另外收费。</p><p><a href="https://unifi.com.my/unifi-home-relocation" rel="noopener noreferrer nofollow" target="_blank">Unifi Home Relocation</a></p><h2>搬 Fibre Rosette，不是搬 Ethernet 插座</h2><p>墙上的小型 Fibre Box，通常会被称为 <strong>Fibre Rosette / Optical Rosette</strong>。</p><p>它不是普通 LAN Wall Socket，而是 Fibre Termination Point。TIME 的资料说明，ONU 是通过 Optical Fibre Cable 连接到 Fibre Termination Point。</p><p><a href="https://www.time.com.my/support/for-home/faq?faq=business&amp%3Butm_source=chatgpt.com" rel="noopener noreferrer nofollow" target="_blank">TIME FAQ</a></p><p>所以，如果你想把 Fibre Point 从客厅的一面墙搬到另一面墙：</p><p><strong>不要自己拆墙盒，也不要自己拉 Fibre。</strong></p><p>安装人员需要先判断现有线路能不能重新走线，还是必须重新铺一段室内 Fibre。</p><p>Unifi 目前的安装资料显示，室内标准布线可覆盖至 <strong>50 米</strong>；超过 50 米的额外室内布线是 <strong>RM2.50/m</strong>。TM 也列出特定非标准布线的收费，例如其中一项 landed property cabling 工作是 <strong>RM212</strong>。</p><p><a href="https://unifi.com.my/support/installation" rel="noopener noreferrer nofollow" target="_blank">Unifi Installation</a></p><p>所以，不应该简单写成：</p><blockquote>“Unifi 移机收费 RM200。”</blockquote><p>准确的说法是：</p><p><strong>Relocation 本身免费，但非标准布线可能产生额外 Contractor Charge。</strong></p><h2>Unifi：RM0 Relocation 不代表 RM0 改线</h2><p>Unifi 目前明确说明：</p><p><strong>Relocation Fee：Free</strong></p><p>但：</p><p><strong>Non-standard installation / additional cabling：可能收费</strong></p><p><a href="https://unifi.com.my/unifi-home-relocation" rel="noopener noreferrer nofollow" target="_blank">Unifi Home Relocation</a></p><p>TM 目前公开的安装资料包括：</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>室内布线 50m 以内：Standard</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>超过 50m：<strong>RM2.50/m</strong></li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>部分非标准 Outdoor Cabling：<strong>RM212</strong></li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>其他特殊工程：根据实际安装需求收费</li></ol><p><a href="https://unifi.com.my/support/installation" rel="noopener noreferrer nofollow" target="_blank">Unifi Installation</a></p><p>所以，如果 Contractor 现场报你 RM200 左右，不要只问：</p><blockquote>“为什么移机还要收费？”</blockquote><p>直接问：</p><p><strong>“这笔钱具体是 Cable、Access Port，还是其他 Non-standard Installation？”</strong></p><p>先确认收费对应什么工作。</p><h2>异地搬迁：先查新地址，不要先 Cancel</h2><p>从：</p><p><strong>House A → House B</strong></p><p>或者：</p><p><strong>Condo Unit A → Condo Unit B</strong></p><p>已经不是简单的改线。</p><p>ISP 需要确认新的地址是否可以继续提供你的服务。</p><p>Unifi 目前要求现有账户保持 Active，并建议先结清 Outstanding Bill。新地点也必须具备相应服务条件。Unifi 目前表示，在新地点属于其 Coverage 的情况下，Relocation 一般约需 <strong>7–14 个工作日</strong>，但仍取决于 Installation Slot。</p><p><a href="https://unifi.com.my/unifi-home-relocation" rel="noopener noreferrer nofollow" target="_blank">Unifi Home Relocation</a></p><p>TIME 同样要求新地址处于 TIME Coverage 内，而且 Relocation 只适用于符合条件的建筑物。</p><p><a href="https://www.time.com.my/support/for-home/faq?faq=home&amp%3Butm_source=chatgpt.com" rel="noopener noreferrer nofollow" target="_blank">TIME Home FAQ</a></p><p>尤其是 Condo，不要只查：</p><p><strong>Postcode</strong></p><p>应该确认：</p><p><strong>Building / Block / Unit</strong></p><p>同一个公寓里别人有 TIME 或 Unifi，不代表你的新 Unit 一定有可用 Port。</p><h2>Unifi vs TIME：目前 Relocation 收费</h2><table><tbody><tr><td data-row="1">Provider</td><td data-row="1">同一住宅 / Unit 内</td><td data-row="1">搬到另一个 Unit / Building</td></tr><tr><td data-row="2"><strong>Unifi Home</strong></td><td data-row="2">无 Relocation Fee</td><td data-row="2">无 Relocation Fee</td></tr><tr><td data-row="3"><strong>TIME Home</strong></td><td data-row="3">RM80</td><td data-row="3">RM120</td></tr></tbody></table><p>Unifi 的额外 Cabling 或 Non-standard Installation 可能另收费。TIME 的标准 Relocation Fee 之外，如果涉及额外工程，也可能产生费用。</p><p><a href="https://unifi.com.my/unifi-home-relocation" rel="noopener noreferrer nofollow" target="_blank">Unifi Home Relocation</a>｜<a href="https://www.time.com.my/support/for-home/faq?faq=home&amp%3Butm_source=chatgpt.com" rel="noopener noreferrer nofollow" target="_blank">TIME Home FAQ</a></p><h2>最大的延误点：有 Coverage，不代表一定能搬</h2><p>这里最容易出问题。</p><p>新地址“有 Fibre Coverage”，不一定代表你的现有服务马上可以 Relocate。</p><p>Unifi 某些配套还需要 <strong>Port Availability</strong>。</p><p><a href="https://unifi.com.my/sites/default/files/html/List-FAQ/Home/FAQ-for-basic-1Gbps-2Gbps.pdf" rel="noopener noreferrer nofollow" target="_blank">Unifi 1Gbps/2Gbps FAQ</a></p><p>TIME 则要求新地点有 TIME Coverage，而且必须是支援 Relocation 的 Building。</p><p><a href="https://www.time.com.my/support/for-home/faq?faq=home&amp%3Butm_source=chatgpt.com" rel="noopener noreferrer nofollow" target="_blank">TIME Home FAQ</a></p><p>所以，真正需要检查的是：</p><p><strong>Exact Address + Building + Unit + Port</strong></p><p>不是简单一句：</p><blockquote>“这个地区有 Unifi。”</blockquote><h2>合约问题：Relocation 不等于自动重新签约</h2><p>这是租房族和买房族最应该确认的一点。</p><p>不能简单理解成：</p><p><strong>换地址 = 自动重新绑 24 个月。</strong></p><p>Unifi 当前 FAQ 把 Relocation 和 Change of Plan 分开处理。某些情况下，如果你改到新的 Package，而新 Package 附带新设备、折扣或其他 Value，新计划可能产生新的 Contract Period。</p><p><a href="https://unifi.com.my/support/faq" rel="noopener noreferrer nofollow" target="_blank">Unifi FAQ</a></p><p>Unifi 某些 Smart Device Campaign 的条款也明确说明，Relocation 后原有 Campaign Subscription 仍可继续，而不是因为搬家就自动终止。</p><p><a href="https://unifi.com.my/sites/default/files/html/List-FAQ/Home/Terms.and.Conditions.Smart.Device.EzOwn.NI.and.Existing.16062026.pdf" rel="noopener noreferrer nofollow" target="_blank">Unifi Smart Device Terms</a></p><p>所以，提交 Relocation 前，最好直接要求 ISP 确认：</p><p><strong>原本的 Plan 会不会改变？</strong></p><p><strong>原本的 Contract End Date 会不会改变？</strong></p><p><strong>会不会产生新的 Minimum Contract Period？</strong></p><p><strong>有没有新设备或新优惠绑定？</strong></p><p><strong>如果新地址无法提供原本服务，会怎么处理？</strong></p><p>这比单纯问：</p><blockquote>“移机要多少钱？”</blockquote><p>更加重要。</p><h2>新地址没有 Unifi Coverage 怎么办？</h2><p>不要自行假设：</p><p><strong>No Coverage = 免费解约</strong></p><p>Unifi 目前表示，如果新地点不在 Unifi Coverage 内，可能提供 <strong>Unifi Air</strong> 作为替代方案。</p><p><a href="https://unifi.com.my/unifi-home-relocation" rel="noopener noreferrer nofollow" target="_blank">Unifi Home Relocation</a></p><p>Unifi 的公开 FAQ 也说明，如果客户搬到 Non-Serviceable Area，而又不接受可提供的替代方案，在适用情况下，<strong>Early Termination Fee 和 30-day policy 仍可能适用</strong>。</p><p><a href="https://unifi.com.my/sites/default/files/html/List-FAQ/Home/General-FAQ-unifi-Home-Plan-updated-August-2023.pdf" rel="noopener noreferrer nofollow" target="_blank">Unifi General FAQ</a></p><p>所以最危险的做法就是：</p><p><strong>先 Terminate → 再查新地址</strong></p><p>正确顺序应该是：</p><p><strong>查新地址 → 确认 Coverage / Port → 问清 Contract → 提交 Relocation → 再决定是否需要 Terminate</strong></p><h2>TIME 也有合约风险</h2><p>TIME 目前的 Home Fibre 资料说明，<strong>12 或 24 个月的合约与 Service Address 有关</strong>，而 Relocation 也必须符合 Coverage 条件。</p><p><a href="https://www.time.com.my/for-home/our-fibre-network" rel="noopener noreferrer nofollow" target="_blank">TIME Home Fibre</a></p><p>如果客户在 Minimum Contract Period 内搬到 TIME 没有 Coverage 的地址，TIME 说明会产生 <strong>Early Termination Fee</strong>。</p><p><a href="https://www.time.com.my/support/for-home/faq?faq=home&amp%3Butm_source=chatgpt.com" rel="noopener noreferrer nofollow" target="_blank">TIME Home FAQ</a></p><p>不过，搬州本身不是问题。</p><p>例如：</p><p><strong>KL → Penang</strong></p><p><strong>Selangor → Johor</strong></p><p>都不代表一定不能搬。</p><p>真正重要的是：</p><p><strong>新地址有没有该 ISP 的服务。</strong></p><h2>搬家前先做这 5 件事</h2><h3>1. 查 Exact Address</h3><p>不要只查邮编或地区。</p><h3>2. 确认 Coverage / Port</h3><p>尤其 Condo 要查到 Block 和 Unit。</p><h3>3. 确认 Contract End Date</h3><p>直接问：</p><blockquote>“Will my existing contract end date remain unchanged after relocation?”</blockquote><h3>4. 问清额外布线收费</h3><p>要求 Contractor 说明 Cable、Access Port 或其他 Non-standard Work 的收费项目。</p><h3>5. 不要先 Cancel</h3><p>先确认 Relocation 是否可行，再决定原服务怎么处理。</p><p>Unifi 目前可通过 MyUnifi / Selfcare、TMpoint / Unifi Store 或客服渠道办理 Relocation。</p><p><a href="https://unifi.com.my/unifi-home-relocation" rel="noopener noreferrer nofollow" target="_blank">Unifi Home Relocation</a></p><h2>搬去新地址，要带什么？</h2><p>外部移机时，现有设备通常需要带到新地点。</p><p>Unifi 要求客户把现有 Unifi Equipment 带到新地址。</p><p><a href="https://unifi.com.my/unifi-home-relocation" rel="noopener noreferrer nofollow" target="_blank">Unifi Home Relocation</a></p><p>TIME 则明确要求带上：</p><p><strong>ONU</strong></p><p><strong>Router</strong></p><p><strong>Power Adapters</strong></p><p>标准 Relocation Cabling 由安装人员处理。</p><p><a href="https://www.time.com.my/support/for-home/faq?faq=home&amp%3Butm_source=chatgpt.com" rel="noopener noreferrer nofollow" target="_blank">TIME Home FAQ</a></p><p>墙上的 Fibre Termination Point 不建议自己拆。</p><h3><br></h3><h3>NetBijak's Take</h3><p>室内移机，最需要注意的是 <strong>Fibre Rosette 和非标准布线收费</strong>。</p><p>异地搬迁，真正需要先确认的是 <strong>Exact Address、Port Availability 和合约期限</strong>。</p><p><strong>提交 Relocation 前，要求 ISP 把两件事说清楚：实际要付多少钱，以及原本的 Contract End Date 会不会改变。</strong></p><p class="ql-align-center"><strong style="color: rgb(255, 255, 255); background-color: initial;"><a href="/zh/find-your-plan/" rel="noopener noreferrer" target="_blank">🎯为我找配套 →</a></strong></p><p><br></p></div>
+      
+    <section class="section-card" id="article-faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div id="article-faq-list" class="faq-list">
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="0">
+        <span>Unifi Relocation 是不是完全免费？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Relocation 本身目前不收费，但 Non-standard Installation 和 Additional Cabling 可以另外收费。TM 当前安装资料列出部分非标准布线为 RM212，以及超过 50m 的额外室内布线为 RM2.50/m。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="1">
+        <span>搬 Unifi 后会自动重新绑 24 个月吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>不是因为 Relocation 本身就自动重新绑约。但如果同时 Change of Plan，而新配套附带新设备、优惠或其他 Value，可能产生新的 Contract Period。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="2">
+        <span>如果新家没有 Unifi Coverage 呢？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Unifi 可能提供 Unifi Air 作为替代方案。如果客户不接受可提供的替代方案，在适用情况下仍可能产生 Early Termination Fee。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="3">
+        <span>TIME 搬家多少钱？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>TIME 目前住宅 Relocation 是同一住宅 RM80，搬到另一个 Unit 或 Building RM120。额外工程可能另外收费。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="4">
+        <span>TIME 搬到没有 Coverage 的新地址会怎样？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>如果仍处于 Minimum Contract Period，而新地点没有 TIME Coverage，TIME 说明会产生 Early Termination Fee。</p></div>
+    </div></div>
+    </section>
+    </div>
+    
+    <section class="section-card" style="margin-top:1.5rem">
+      <h2>相关文章</h2>
+      <div class="blog-grid"><a href="/zh/blog/time-broadband-klang-valley-condo-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/time-broadband-in-klang-valley-condos.webp" alt="TIME Broadband 在 Klang Valley Condo 一定最快吗？" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">28/09/2026</div>
+          <div class="blog-card-title">TIME Broadband 在 Klang Valley Condo 一定最快吗？</div>
+          <p class="blog-card-excerpt">住在 Kuala Lumpur 或 Selangor 的 Condo，TIME 往往是住户最先会查询的 Fibre Provider 之一。这背后有原因。TIME 早期就是以高楼住宅为主要发展方向，后...</p>
+        </div></a><a href="/zh/blog/-fibre-distribution-pointdp/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/what-is-a-fibre-distribution-point-dp-box.webp" alt="什么是 Fibre Distribution Point（DP）箱？在马来西亚哪里可以找到？" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">23/09/2026</div>
+          <div class="blog-card-title">什么是 Fibre Distribution Point（DP）箱？在马来西亚哪里可以找到？</div>
+          <p class="blog-card-excerpt">申请 Fibre 时，技术人员有时会问你：“DP 在哪里？”如果你连 DP 是什么都不知道，就很容易在现场花很多时间来回找。其实，你只需要知道 DP 的作用、常见位置，以及怎么把正确的位置告诉技术人员...</p>
+        </div></a><a href="/zh/blog/-5g-cpe-5g-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/outdoor-5g-cpe-antenna-installation-boosting.webp" alt="室外 5G CPE 安装：解决家里室内 5G 信号太弱的问题" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">21/09/2026</div>
+          <div class="blog-card-title">室外 5G CPE 安装：解决家里室内 5G 信号太弱的问题</div>
+          <p class="blog-card-excerpt">如果你的 5G 路由器在屋里只有 1 格信号，先不要急着买室外天线。先确认是不是建筑物本身挡住了 5G 信号。把同一台 5G 路由器从房间中央移到窗边，然后比较 RSRP 和 SINR。这两个数据比单...</p>
+        </div></a><a href="/zh/blog/malaysias-internet-coverage-reaches-9975-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/malaysias-internet-coverage-reaches-9975.webp" alt="马来西亚网络覆盖率达99.75%，为什么还是有人装不到 Fibre？" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">17/09/2026</div>
+          <div class="blog-card-title">马来西亚网络覆盖率达99.75%，为什么还是有人装不到 Fibre？</div>
+          <p class="blog-card-excerpt">截至2026年7月31日，马来西亚人口聚集区的互联网及通信覆盖率已经达到 99.75%。但这并不代表99.75%的家庭都可以马上申请 Fibre Broadband。真正需要分清楚的是：Network...</p>
+        </div></a><a href="/zh/blog/fibre-installation-crossing-neighbour-properties-zh/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/fibre-installation-crossing-neighbour-properties.webp" alt="Fibre 安装跨过邻居屋顶怎么办？马来西亚消费者如何解决纠纷" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">14/09/2026</div>
+          <div class="blog-card-title">Fibre 安装跨过邻居屋顶怎么办？马来西亚消费者如何解决纠纷</div>
+          <p class="blog-card-excerpt">如果 Fibre 安装人员告诉你，要把 Fibre cable 拉过邻居屋顶、树木甚至私人范围才能接入你家，不要急着和邻居吵，也不要马上接受这个路线。 先要求 ISP 记录施工情况，并检查是否可以通过...</p>
+        </div></a><a href="/zh/blog/community-broadband-smart-rural-clinics-zh/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/community-broadband-smart-rural-clinics.webp" alt="社区宽带与智慧乡区诊所：马来西亚政府无线网络计划" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">12/09/2026</div>
+          <div class="blog-card-title">社区宽带与智慧乡区诊所：马来西亚政府无线网络计划</div>
+          <p class="blog-card-excerpt">如果你住在 Kampung、偏远地区或网络覆盖较弱的地方，JENDELA 和 NADI 解决的是两个不同的问题：JENDELA 负责改善网络基础设施，而 NADI 提供一个让居民实际使用 Intern...</p>
+        </div></a></div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script>const ROOT_PATH = "/"; const PAGE_TRANSLATIONS = {"en":"/en/blog/internal-vs-external-fibre-relocation-how-to-move-your-fibre-line-without-delays/","ms":"/ms/blog/internal-vs-external-relocation-cara-pindahkan-fibre-tanpa-kelewatan/","zh":"/zh/blog/-vs-fibre-/"};</script>
+  <script src="/assets/js/tracking.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/assets/js/supabase-client.js"></script>
+  <script src="/assets/js/translations.js"></script>
+  <script src="/assets/js/site.js"></script>
+  <script src="/assets/js/homepage-banner.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("#article-faq-list .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#article-faq-list .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
+    });
+  </script>
+
+  <div id="mascot-widget" class="mascot-widget">
+    <button type="button" class="mascot-close-btn" id="mascot-close-btn" aria-label="Close">✕</button>
+    <a href="https://wa.me/60178835110?text=Hi%20NetBijak%2C%20I'm%20reading%20%22%E5%AE%A4%E5%86%85%20vs%20%E5%BC%82%E5%9C%B0%E7%A7%BB%E6%9C%BA%EF%BC%9A%E6%80%8E%E6%A0%B7%E6%90%AC%20Fibre%20%E6%89%8D%E4%B8%8D%E4%BC%9A%E6%8B%96%E5%BB%B6%EF%BC%9F%22%20and%20have%20a%20question." target="_blank" class="mascot-avatar-link">
+      <img src="/assets/images/mascot.png" alt="NetBijak Assistant" class="mascot-avatar-img" />
+      <span class="mascot-bubble">有问题吗？</span>
+    </a>
+  </div>
+  <script>
+    (function() {
+      var storageKey = "mascot-closed--vs-fibre-";
+      var widget = document.getElementById("mascot-widget");
+      var closeBtn = document.getElementById("mascot-close-btn");
+      if (sessionStorage.getItem(storageKey)) {
+        widget.style.display = "none";
+      }
+      closeBtn.addEventListener("click", function() {
+        widget.style.display = "none";
+        sessionStorage.setItem(storageKey, "1");
+      });
+    })();
+  </script>
+</body>
+</html>
