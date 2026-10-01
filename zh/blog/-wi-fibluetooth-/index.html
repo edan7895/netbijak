@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2.4GHz Wi-Fi 干扰：微波炉、Bluetooth 与无绳电话</title>
+  <meta name="description" content="为什么一开微波炉，客厅 Wi-Fi 就变慢甚至掉线？了解 2.4GHz 干扰的原因，以及通过路由器摆位、5GHz Wi-Fi 和物理隔离改善问题的方法。" />
+  <meta name="geo.region" content="MY" />
+  <meta name="geo.placename" content="Malaysia" />
+  <meta property="og:title" content="2.4GHz Wi-Fi 干扰：微波炉、Bluetooth 与无绳电话" />
+  <meta property="og:description" content="为什么一开微波炉，客厅 Wi-Fi 就变慢甚至掉线？了解 2.4GHz 干扰的原因，以及通过路由器摆位、5GHz Wi-Fi 和物理隔离改善问题的方法。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://netbijak.com/assets/images/articles/interference-from-household-appliances-microwaves.webp" />
+  <meta property="og:url" content="https://netbijak.com/zh/blog/-wi-fibluetooth-/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://netbijak.com/zh/blog/-wi-fibluetooth-/" />
+  <link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/blog/-wi-fibluetooth-/" />
+  <link rel="alternate" hreflang="en" href="https://netbijak.com/en/blog/interference-from-household-appliances-microwaves-bluetooth-and-cordless-phones/" />
+  <link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/blog/gangguan-wi-fi-daripada-peralatan-rumah-microwave-bluetooth-dan-telefon-tanpa-wayar/" />
+  <link rel="alternate" hreflang="x-default" href="https://netbijak.com/en/blog/interference-from-household-appliances-microwaves-bluetooth-and-cordless-phones/" />
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"微波炉真的会让 Wi-Fi 掉线吗？","acceptedAnswer":{"@type":"Answer","text":"会。家用微波炉通常在约 2.45GHz 工作，因此可能对 2.4GHz Wi-Fi 造成干扰，尤其是在原本 Wi-Fi 信号已经较弱的情况下。"}},{"@type":"Question","name":"为什么 5GHz Wi-Fi 没事，2.4GHz 却掉线？","acceptedAnswer":{"@type":"Answer","text":"因为微波炉影响的是 2.4GHz 无线环境，而 5GHz 使用不同的频率范围。对于支持双频的设备，改用 5GHz 是避开这类干扰最简单的方法之一。"}},{"@type":"Question","name":"Bluetooth 会让 Wi-Fi 变慢吗？","acceptedAnswer":{"@type":"Answer","text":"Bluetooth 和 Wi-Fi 共用 2.4GHz 频段，因此理论上可能产生频谱竞争，但 Bluetooth 本身使用跳频等机制降低干扰。真正明显的问题通常出现在整体 2.4GHz 很拥挤的环境。"}},{"@type":"Question","name":"我应该把路由器放在厨房吗？","acceptedAnswer":{"@type":"Answer","text":"不建议。尤其不要把路由器直接放在微波炉旁边。应尽量让微波炉与 Wi-Fi Access Point 保持距离，中间有墙体会更理想。"}},{"@type":"Question","name":"2.4GHz 最好设置多少 MHz？","acceptedAnswer":{"@type":"Answer","text":"Apple 目前建议 2.4GHz 使用 20MHz Channel Width，以降低拥挤环境中的可靠性问题。"}}]}</script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="main">
+    <div id="blog-detail-container">
+      <a href="/zh/blog/" class="blog-back-link">← 返回部落格</a>
+      <span class="blog-type-tag">Article</span>
+      <img src="/assets/images/articles/interference-from-household-appliances-microwaves.webp" alt="家用电器干扰 Wi-Fi：微波炉、Bluetooth 与无绳电话" class="blog-detail-cover" loading="lazy" width="800" height="450" />
+      <div class="blog-detail-date">02/10/2026</div>
+      <h1 class="blog-detail-title">家用电器干扰 Wi-Fi：微波炉、Bluetooth 与无绳电话</h1>
+      
+    <section class="ai-summary-box">
+      <div class="ai-summary-badge">✨ NetBijak AI 智能摘要</div>
+      <p>当微波炉启动时家里Wi-Fi突然变卡，这通常不是宽带线路问题，而是2.4GHz频段受到干扰所致。由于微波炉、蓝牙设备和各种智能家居都使用2.4GHz频段，该频段极易出现信号拥挤与传输冲突。为了提升网速稳定性，建议将路由器移离微波炉，并尽可能让手机和电视等设备改用5GHz或6GHz频段。对于IoT设备，可以保留在2.4GHz频段，但要避免所有设备挤在一起。通过正确的摆位和频段分流，你无需更换宽带配套也能显著改善网络体验。</p>
+    </section>
+      <div id="homepage-banner-carousel" class="homepage-banner-carousel hidden"></div>
+      <div class="blog-detail-content"><p>微波炉一启动，客厅 Wi-Fi 就突然变得不稳定，不一定是宽带线路出了问题。很多时候，真正出问题的是 <strong>2.4GHz 无线环境</strong>。</p><p>Wi-Fi、Bluetooth，以及部分旧款无绳电话都可能使用或影响这一频段。微波炉工作时，也可能对附近的 2.4GHz Wi-Fi 造成干扰。</p><h2>为什么 2.4GHz 特别容易拥挤</h2><p>2.4GHz 并不是 Wi-Fi 独占的频段。</p><p>Bluetooth 使用 2.4GHz ISM 频段，而且需要与 Wi-Fi 和其他无线设备共同使用频谱。当不同无线传输发生冲突时，就可能出现封包损失和重传。(<a href="https://www.bluetooth.com/zh-cn/learn-about-bluetooth/key-attributes/reliability/" rel="noopener noreferrer nofollow" target="_blank">Bluetooth SIG</a>)</p><p>Cisco 也把微波炉、2.4GHz 无绳电话、Bluetooth 设备，以及附近其他 Wi-Fi 网络列为可能影响 2.4GHz WLAN 的干扰源。(<a href="https://meraki-go.xgslb-v3.cisco.com/c/en/us/support/docs/wireless-mobility/wireless-lan-wlan/68666-wireless-site-survey-faq.html" rel="noopener noreferrer nofollow" target="_blank">Cisco</a>)</p><p>现在的家庭如果同时有这些设备，2.4GHz 很容易变得拥挤：</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Smart Plug</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>智能感应器</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>IoT 设备</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Bluetooth 音箱、键盘、滑鼠</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>无线摄像头</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>邻居的 Wi-Fi</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>部分旧款 2.4GHz 无绳电话</li></ol><p>所以，即使 ISP 给到的宽带速度正常，家里的 2.4GHz Wi-Fi 仍然可能不稳定。</p><h2>为什么微波炉会影响 Wi-Fi</h2><p>家用微波炉通常在 <strong>约 2.45GHz</strong> 工作，正好接近 2.4GHz Wi-Fi 所使用的频率范围。Cisco 的无线网络资料也指出，微波炉可能对 2.4GHz WLAN 造成干扰。(<a href="https://www.cisco.com/c/dam/td-xml/en_us/voice-ip-comm/phones/mpp/Deployment-Guide/MPP-wlan-dg.pdf" rel="noopener noreferrer nofollow" target="_blank">Cisco</a>)</p><p>正常的微波炉会利用金属腔体、门板等结构把微波能量限制在机器内部。美国 FDA 规定，家用微波炉的泄漏量在距离炉体约 2 英寸的位置测量时，不得超过 <strong>5mW/cm²</strong>。(<a href="https://www.fda.gov/radiation-emitting-products/resources-you-radiation-emitting-products/microwave-ovens" rel="noopener noreferrer nofollow" target="_blank">U.S. FDA</a>)</p><p>问题在于，Wi-Fi 接收器接收到的无线信号本身可能已经很弱。</p><p>例如：</p><p><strong>厨房微波炉 → 开放式饭厅 → 客厅 Wi-Fi 设备</strong></p><p>当微波炉启动后，额外的 RF 干扰进入 Wi-Fi 接收器，可能导致封包错误增加、重新传输次数上升，最终出现：</p><p><strong>封包错误 ↑ → 重传 ↑ → 实际速度 ↓ → Wi-Fi 不稳定</strong></p><p>这时光纤连接本身可能完全正常，真正受影响的是屋内的无线连接。</p><h2>最有效的办法：先处理摆位</h2><p>遇到微波炉干扰，第一反应不应该只是一直换 Wi-Fi Channel。</p><p>更直接的方法是 <strong>拉开微波炉与 Wi-Fi 设备之间的距离</strong>。</p><h3>不要把路由器放在微波炉旁边</h3><p>不要把主路由器或 Mesh Node 放在厨房微波炉旁边，也不要把它们塞进紧邻微波炉的橱柜里。</p><p>更合理的布局是：</p><p><strong>厨房</strong></p><p>微波炉</p><p>↓</p><p><strong>墙壁 / 物理隔离</strong></p><p>↓</p><p><strong>客厅</strong></p><p>Wi-Fi Access Point</p><p>墙壁和建筑材料会削弱 RF 信号。Cisco 的 RF 资料也把混凝土、墙体和金属列为会造成无线信号衰减的材料。(<a href="https://www.cisco.com/c/en/us/td/docs/wireless/controller/9800/technical-reference/wireless-rf-reference-guide.html" rel="noopener noreferrer nofollow" target="_blank">Cisco</a>)</p><p>这里的目标不是把微波炉“封起来”，而是不要让 Wi-Fi 设备长期处在干扰较强的位置。</p><h2>把能用 5GHz 的设备移过去</h2><p>手机、Laptop、Smart TV 等支持双频的设备，优先连接 <strong>5GHz</strong>。</p><p>Cisco 指出，2.4GHz 更容易受到微波炉、Bluetooth 和部分无绳电话等设备影响，而 5GHz 所受的这类干扰较少。(<a href="https://www.cisco.com/c/en/us/td/docs/wireless/access_point/mob_exp/88/best_practices/b_ME_Best_Practices_Guide_88/rf-management.pdf" rel="noopener noreferrer nofollow" target="_blank">Cisco</a>)</p><p>因此，如果你的客厅就在厨房旁边，可以这样分配：</p><table><tbody><tr><td data-row="1">设备</td><td data-row="1">建议连接</td></tr><tr><td data-row="2">手机 / Laptop</td><td data-row="2">5GHz 或 6GHz</td></tr><tr><td data-row="3">Smart TV</td><td data-row="3">5GHz / Ethernet</td></tr><tr><td data-row="4">2.4GHz-only Smart Plug</td><td data-row="4">2.4GHz</td></tr><tr><td data-row="5">智能感应器</td><td data-row="5">2.4GHz</td></tr><tr><td data-row="6">经常受到微波炉影响的设备</td><td data-row="6">5GHz / 6GHz（支持的话）</td></tr></tbody></table><p>2.4GHz 适合留给确实需要较远覆盖范围的 IoT 设备，不需要让所有设备都挤在这个频段。</p><h2>Bluetooth 也会造成干扰吗？</h2><p>会，但情况不完全一样。</p><p>Bluetooth 同样使用 2.4GHz ISM 频段，不过它本身就是为了与其他无线系统共存而设计，并使用跳频等机制降低持续干扰。(<a href="https://www.bluetooth.com/zh-cn/learn-about-bluetooth/key-attributes/reliability/" rel="noopener noreferrer nofollow" target="_blank">Bluetooth SIG</a>)</p><p>因此，家里只有一个 Bluetooth Mouse 或一台 Bluetooth Speaker，通常不会单独造成严重的 Wi-Fi 掉线。</p><p>真正需要注意的是 <strong>大量 2.4GHz 设备同时工作</strong>。</p><p>例如一间 Smart Home 同时有几十个 IoT 设备、多个 Bluetooth 装置和附近大量邻居 Wi-Fi，2.4GHz 的竞争自然会更明显。</p><h2>无绳电话一定会干扰 2.4GHz 吗？</h2><p>不一定。</p><p>部分旧款无绳电话确实使用 2.4GHz，Cisco 也将它列为可能的 WLAN 干扰来源。(<a href="https://www.cisco.com/c/en/us/support/docs/wireless-mobility/wireless-lan-wlan/68666-wireless-site-survey-faq.html" rel="noopener noreferrer nofollow" target="_blank">Cisco</a>)</p><p>但不能看到“无绳电话”就直接认定它会影响 2.4GHz Wi-Fi。不同技术使用的频率不同，因此应该先看设备规格。</p><h2>要不要换 2.4GHz Channel？</h2><p>可以尝试，但不要把它当成万能解决方案。</p><p>Apple 目前建议 2.4GHz 使用 <strong>20MHz Channel Width</strong>，因为较窄的 Channel Width 在拥挤的无线环境下通常更有利于稳定性；同时，在路由器支持的情况下可以让系统自动选择 Channel。(<a href="https://support.apple.com/en-my/102766" rel="noopener noreferrer nofollow" target="_blank">Apple Support Malaysia</a>)</p><p>处理微波炉干扰时，可以按这个顺序：</p><p><strong>1. 把路由器 / Mesh Node 移离微波炉。</strong></p><p><strong>2. 手机、Laptop、TV 改用 5GHz 或 6GHz。</strong></p><p><strong>3. 2.4GHz 保持 20MHz。</strong></p><p><strong>4. 如果问题仍然存在，再测试其他 2.4GHz Channel。</strong></p><p>如果微波炉造成的干扰范围较广，仅仅换一个 Channel 未必能够彻底解决。</p><h2>怎么确定真的是 Wi-Fi 干扰？</h2><p>不要凭感觉判断。</p><h3>测试 1：2.4GHz</h3><p>让手机或 Laptop 固定连接 2.4GHz，并放在平时最容易出问题的位置。</p><p>开启微波炉，观察 Wi-Fi 是否马上恶化。</p><h3>测试 2：5GHz</h3><p>同一个设备改接 5GHz，再重复测试。</p><p>如果：</p><p><strong>2.4GHz 一开微波炉就不稳定</strong></p><p><strong>5GHz 基本正常</strong></p><p>那就很有可能是 2.4GHz 无线干扰，而不是 ISP 光纤线路的问题。</p><h3>测试 3：Ethernet</h3><p>再用网线连接电脑到路由器。</p><p>如果：</p><p><strong>Ethernet 正常</strong></p><p><strong>5GHz 正常</strong></p><p><strong>只有 2.4GHz 出问题</strong></p><p>就更应该从 Wi-Fi 环境找原因，而不是一直投诉“宽带很慢”。</p><h2>不要自己给微波炉加铝箔屏蔽</h2><p>“金属可以挡微波，所以拿铝箔包起来”这个想法听起来合理，但不应该这样处理家用微波炉。</p><p>微波炉的机身、门板、密封结构、散热和安全联锁都是按照整套设计运行。不要自行修改机身，也不要用金属板或铝箔做 DIY 屏蔽罩。FDA 对微波炉的门和安全联锁都有相关要求。(<a href="https://www.fda.gov/radiation-emitting-products/resources-you-radiation-emitting-products/microwave-ovens" rel="noopener noreferrer nofollow" target="_blank">U.S. FDA</a>)</p><p>真正应该做的是 <strong>拉开距离、改变 Wi-Fi 摆位，或者把设备移到 5GHz / 6GHz</strong>。</p><h2>NetBijak’s Take</h2><p>微波炉导致 2.4GHz Wi-Fi 不稳定，并不代表你的 fibre broadband 有问题。先处理 <strong>设备摆位和频段分流</strong>，通常比不断换 Channel 更实际；2.4GHz 留给需要覆盖范围的 IoT，手机、Laptop 和 TV 则尽量使用 5GHz 或 6GHz。</p><p class="ql-align-center"><strong style="color: rgb(255, 255, 255); background-color: initial;"><a href="/zh/find-your-plan/" rel="noopener noreferrer" target="_blank">🎯为我找配套 →</a></strong></p><p><br></p><h2><br></h2></div>
+      
+    <section class="section-card" id="article-faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div id="article-faq-list" class="faq-list">
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="0">
+        <span>微波炉真的会让 Wi-Fi 掉线吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>会。家用微波炉通常在约 2.45GHz 工作，因此可能对 2.4GHz Wi-Fi 造成干扰，尤其是在原本 Wi-Fi 信号已经较弱的情况下。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="1">
+        <span>为什么 5GHz Wi-Fi 没事，2.4GHz 却掉线？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>因为微波炉影响的是 2.4GHz 无线环境，而 5GHz 使用不同的频率范围。对于支持双频的设备，改用 5GHz 是避开这类干扰最简单的方法之一。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="2">
+        <span>Bluetooth 会让 Wi-Fi 变慢吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Bluetooth 和 Wi-Fi 共用 2.4GHz 频段，因此理论上可能产生频谱竞争，但 Bluetooth 本身使用跳频等机制降低干扰。真正明显的问题通常出现在整体 2.4GHz 很拥挤的环境。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="3">
+        <span>我应该把路由器放在厨房吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>不建议。尤其不要把路由器直接放在微波炉旁边。应尽量让微波炉与 Wi-Fi Access Point 保持距离，中间有墙体会更理想。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="4">
+        <span>2.4GHz 最好设置多少 MHz？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Apple 目前建议 2.4GHz 使用 20MHz Channel Width，以降低拥挤环境中的可靠性问题。</p></div>
+    </div></div>
+    </section>
+    </div>
+    
+    <section class="section-card" style="margin-top:1.5rem">
+      <h2>相关文章</h2>
+      <div class="blog-grid"><a href="/zh/blog/puncak-borneo-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/why-more-mobile-towers-do-not-always-mean-better.webp" alt="为什么基站越来越多，网络还是会断？Puncak Borneo 的真实案例" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">22/09/2026</div>
+          <div class="blog-card-title">为什么基站越来越多，网络还是会断？Puncak Borneo 的真实案例</div>
+          <p class="blog-card-excerpt">基站增加可以改善覆盖，但不代表网络就不会发生大范围中断。Puncak Borneo 就是一个现实案例。根据《Sarawak Tribune》2026 年 9 月 21 日报道，当地 35 座新的 JE...</p>
+        </div></a><a href="/zh/blog/-arp-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/how-to-clear-router-cache.webp" alt="如何清除路由器缓存并刷新 ARP 表，改善网络延迟" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">20/09/2026</div>
+          <div class="blog-card-title">如何清除路由器缓存并刷新 ARP 表，改善网络延迟</div>
+          <p class="blog-card-excerpt">如果你的 Ping 在路由器长时间运行后开始变得不稳定，重启路由器值得尝试。但“清除路由器缓存就能降低 Ping”并不是一个准确的技术解释。重启主要是重置路由器内部的临时运行状态。到底能不能改善延迟，...</p>
+        </div></a><a href="/zh/blog/submarine-cable-repairs-zh/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/submarine-cable-repairs.webp" alt="海底光缆维修：为什么国外网站会突然变慢？" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">09/09/2026</div>
+          <div class="blog-card-title">海底光缆维修：为什么国外网站会突然变慢？</div>
+          <p class="blog-card-excerpt">如果你发现 马来西亚本地网站正常，但美国、日本或其他海外网站突然变慢，问题不一定出在你家的 Fibre Broadband。国际海底光缆发生故障或进行维修时，ISP 可用的国际传输容量可能减少。ISP...</p>
+        </div></a><a href="/zh/blog/unifi-internet-troubleshooting-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/how-to-troubleshoot-unifi-internet-problems.webp" alt="Unifi Internet 出问题怎么办？官方 Troubleshooting 步骤" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">05/09/2026</div>
+          <div class="blog-card-title">Unifi Internet 出问题怎么办？官方 Troubleshooting 步骤</div>
+          <p class="blog-card-excerpt">如果你的 Unifi Internet 很慢或者完全无法使用，先检查有没有 Outage，再检查设备和指示灯，然后重启设备，最后使用 EasyFix 自助排查。1. 先检查有没有 Outage 或 M...</p>
+        </div></a><a href="/zh/blog/-internet-troubleshooting-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/why-is-my-internet-slow.webp" alt="为什么我的 Internet 很慢？马来西亚家庭宽带 Troubleshooting 指南" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">31/08/2026</div>
+          <div class="blog-card-title">为什么我的 Internet 很慢？马来西亚家庭宽带 Troubleshooting 指南</div>
+          <p class="blog-card-excerpt">为什么我的 Internet 很慢？Internet 很慢，不一定代表你的 Broadband Plan 不够快。实际使用速度可能受到 Wi-Fi、Router 位置、连接设备数量、网络拥堵、设备能力...</p>
+        </div></a><a href="/zh/blog/-vs-fibre-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/internal-vs-external-fibre-relocation.webp" alt="室内 vs 异地移机：怎样搬 Fibre 才不会拖延？" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">01/10/2026</div>
+          <div class="blog-card-title">室内 vs 异地移机：怎样搬 Fibre 才不会拖延？</div>
+          <p class="blog-card-excerpt">把 Fibre 搬到另一个位置，不等于把 Router 搬过去就完成。真正需要处理的是 Fibre Termination Point、光纤线路走向，以及新地址能不能继续提供原本的服务。所以，室内移机...</p>
+        </div></a></div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script>const ROOT_PATH = "/"; const PAGE_TRANSLATIONS = {"zh":"/zh/blog/-wi-fibluetooth-/","en":"/en/blog/interference-from-household-appliances-microwaves-bluetooth-and-cordless-phones/","ms":"/ms/blog/gangguan-wi-fi-daripada-peralatan-rumah-microwave-bluetooth-dan-telefon-tanpa-wayar/"};</script>
+  <script src="/assets/js/tracking.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/assets/js/supabase-client.js"></script>
+  <script src="/assets/js/translations.js"></script>
+  <script src="/assets/js/site.js"></script>
+  <script src="/assets/js/homepage-banner.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("#article-faq-list .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#article-faq-list .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
+    });
+  </script>
+
+  <div id="mascot-widget" class="mascot-widget">
+    <button type="button" class="mascot-close-btn" id="mascot-close-btn" aria-label="Close">✕</button>
+    <a href="https://wa.me/60178835110?text=Hi%20NetBijak%2C%20I'm%20reading%20%22%E5%AE%B6%E7%94%A8%E7%94%B5%E5%99%A8%E5%B9%B2%E6%89%B0%20Wi-Fi%EF%BC%9A%E5%BE%AE%E6%B3%A2%E7%82%89%E3%80%81Bluetooth%20%E4%B8%8E%E6%97%A0%E7%BB%B3%E7%94%B5%E8%AF%9D%22%20and%20have%20a%20question." target="_blank" class="mascot-avatar-link">
+      <img src="/assets/images/mascot.png" alt="NetBijak Assistant" class="mascot-avatar-img" />
+      <span class="mascot-bubble">有问题吗？</span>
+    </a>
+  </div>
+  <script>
+    (function() {
+      var storageKey = "mascot-closed--wi-fibluetooth-";
+      var widget = document.getElementById("mascot-widget");
+      var closeBtn = document.getElementById("mascot-close-btn");
+      if (sessionStorage.getItem(storageKey)) {
+        widget.style.display = "none";
+      }
+      closeBtn.addEventListener("click", function() {
+        widget.style.display = "none";
+        sessionStorage.setItem(storageKey, "1");
+      });
+    })();
+  </script>
+</body>
+</html>
