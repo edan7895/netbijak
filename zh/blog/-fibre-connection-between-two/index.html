@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>马来西亚相邻两间排屋如何共用一条 Fibre 宽带</title>
+  <meta name="description" content="两间相邻排屋可以共用一条 Fibre 吗？了解 Outdoor Cat6 与 PTP 无线网桥的实际做法，以及 ISP 合约限制、网络隔离和安装风险。" />
+  <meta name="geo.region" content="MY" />
+  <meta name="geo.placename" content="Malaysia" />
+  <meta property="og:title" content="马来西亚相邻两间排屋如何共用一条 Fibre 宽带" />
+  <meta property="og:description" content="两间相邻排屋可以共用一条 Fibre 吗？了解 Outdoor Cat6 与 PTP 无线网桥的实际做法，以及 ISP 合约限制、网络隔离和安装风险。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://netbijak.com/assets/images/articles/how-to-share-one-fibre-connection-between-two.webp" />
+  <meta property="og:url" content="https://netbijak.com/zh/blog/-fibre-connection-between-two/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://netbijak.com/zh/blog/-fibre-connection-between-two/" />
+  <link rel="alternate" hreflang="en" href="https://netbijak.com/en/blog/how-to-share-one-fibre-connection-between-two-adjacent-landed-houses/" />
+  <link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/blog/-fibre-connection-between-two/" />
+  <link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/blog/cara-berkongsi-satu-sambungan-fibre-antara-dua-rumah-teres-bersebelahan/" />
+  <link rel="alternate" hreflang="x-default" href="https://netbijak.com/en/blog/how-to-share-one-fibre-connection-between-two-adjacent-landed-houses/" />
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"我可以把 Fibre 从自己家拉到隔壁亲戚家吗？","acceptedAnswer":{"@type":"Answer","text":"技术上可以使用 Outdoor Cat6 或 PTP Bridge 延伸网络，但是否允许，要看 ISP 的住宅宽带条款。Maxis 和 TIME 现行条款都对向其他 premises 或第三方提供服务设有限制"}},{"@type":"Question","name":"Outdoor Cat6 一定要用户外版吗？","acceptedAnswer":{"@type":"Answer","text":"如果网线长期暴露在室外环境，应该使用 Outdoor-rated Cable。户外网线会针对 UV 和环境暴露进行设计。"}},{"@type":"Question","name":"Outdoor Cat6 和 PTP Bridge 哪个比较好？","acceptedAnswer":{"@type":"Answer","text":"两间屋子很近，而且容易安全拉线，Cat6 会比较直接。没有合适的走线路径时，PTP Bridge 会更方便。"}},{"@type":"Question","name":"PTP Bridge 一定要直线无遮挡吗？","acceptedAnswer":{"@type":"Answer","text":"对于 60GHz 这类高度定向的系统，Line of Sight 很重要。建筑物、树木等障碍物都可能影响连接。"}},{"@type":"Question","name":"House B 需要自己的 Router 吗？","acceptedAnswer":{"@type":"Answer","text":"建议使用。把跨屋子的连接接到 House B Router 的 WAN Port，可以让两个家庭保持各自的 Local Network。"}},{"@type":"Question","name":"两间屋子可以同时拿满 1Gbps 吗？","acceptedAnswer":{"@type":"Answer","text":"不能。两边共享的是同一个 1Gbps Internet Connection，不是两条独立的 1Gbps 宽带。"}},{"@type":"Question","name":"亲戚没有付钱给我，就一定可以共用吗？","acceptedAnswer":{"@type":"Answer","text":"不一定。是否允许共享取决于 ISP 条款，而不是单纯看有没有收费。TIME 的现行条款就涵盖未经批准向第三方提供服务，无论是否以营利为目的。"}}]}</script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="main">
+    <div id="blog-detail-container">
+      <a href="/zh/blog/" class="blog-back-link">← 返回部落格</a>
+      <span class="blog-type-tag">Article</span>
+      <img src="/assets/images/articles/how-to-share-one-fibre-connection-between-two.webp" alt="两间相邻排屋如何共用一条 Fibre 宽带" class="blog-detail-cover" loading="lazy" width="800" height="450" />
+      <div class="blog-detail-date">03/10/2026</div>
+      <h1 class="blog-detail-title">两间相邻排屋如何共用一条 Fibre 宽带</h1>
+      
+    <section class="ai-summary-box">
+      <div class="ai-summary-badge">✨ NetBijak AI 智能摘要</div>
+      <p>两间相邻的排屋在技术上确实可以通过 Outdoor Cat6 网线或无线网桥（PTP Bridge）共享同一条 Fibre 宽带。Outdoor Cat6 是通过实体线缆连接的直接方案，而无线网桥则适用于无法布线的环境，但两者均需确保安装的安全性和稳定性。在实施之前，用户必须优先查阅 ISP 的服务条款，因为大多数住宅宽带合同严禁将网络延伸至安装地点以外的第三方使用。此外，建议第二间屋子使用独立的路由器进行网络隔离，以保障各自的网络隐私和管理权限。请注意，无论网络路径如何连接，两间屋子共同使用 ISP 提供的总带宽，这意味着高负荷下载可能会影响另一方的上网速度。若 ISP 条款不允许共享，最稳妥的选择依然是为第二间屋子单独申请宽带服务。</p>
+    </section>
+      <div id="homepage-banner-carousel" class="homepage-banner-carousel hidden"></div>
+      <div class="blog-detail-content"><p>两间排屋紧紧相邻，一间住父母，一间住亲戚。与其申请两条 Fibre 宽带，技术上可以把 House A 的网络延伸到 House B。</p><p>常见做法只有两种：<strong>Outdoor Cat6 网线</strong>，或 <strong>Point-to-Point（PTP）无线网桥</strong>。</p><p>真正需要先确认的，不是“能不能接”，而是 <strong>ISP 是否允许住宅宽带服务提供给另一间屋子使用</strong>。</p><h2>先看 ISP 条款</h2><p>这是一个网络技术问题，也是一个合约问题。</p><p>Maxis 的现行 Fibre Fair Usage Policy 规定，客户不得向安装地点以外的第三方提供网络连接，也禁止转售或向其他人收费使用该连接。(<a href="https://www.maxis.com.my/en/terms-conditions/general/maxis-fair-usage-policy/" rel="noopener noreferrer nofollow" target="_blank">Maxis</a>)</p><p>TIME 的现行条款同样限制客户在没有书面批准的情况下，与第三方共享服务、转售、出租或以其他方式提供服务；条款同时涵盖营利或非营利的情况。(<a href="https://www.time.com.my/terms-and-conditions/complimentary-wifi" rel="noopener noreferrer nofollow" target="_blank">TIME</a>)</p><p>Unifi 较早公布的住宅宽带条款也曾限制未经 TM 书面批准向其他人共享服务。Unifi 已于 <strong>2026 年 8 月 26 日</strong> 更新 Home Broadband T&amp;C，因此不要直接套用旧版条款，应检查自己目前合约适用的版本。(<a href="https://unifi.com.my/announcements/update-tc-unifi-home-broadband-terms-conditions-update-effective-26-august-2026" rel="noopener noreferrer nofollow" target="_blank">Unifi</a>)</p><p>所以要记住：</p><p><strong>技术上做得到，不代表合约上一定允许。</strong></p><p>亲戚没有付钱给你，也不代表自动符合 ISP 条款。</p><h2>方法一：Outdoor Cat6</h2><p>如果两间屋子非常靠近，<strong>实体 Ethernet 是最直接的做法</strong>。</p><div class="ql-code-block-container" spellcheck="false"><div class="ql-code-block" data-language="plain">House A                         House B</div><div class="ql-code-block" data-language="plain"><br></div><div class="ql-code-block" data-language="plain">Fibre ONT</div><div class="ql-code-block" data-language="plain">   │</div><div class="ql-code-block" data-language="plain">Main Router</div><div class="ql-code-block" data-language="plain">   │</div><div class="ql-code-block" data-language="plain">Outdoor Cat6</div><div class="ql-code-block" data-language="plain">   │</div><div class="ql-code-block" data-language="plain">   └──────────────────────────► Router</div><div class="ql-code-block" data-language="plain">                                │</div><div class="ql-code-block" data-language="plain">                             Wi-Fi / LAN</div></div><p>重点是使用 <strong>Outdoor-rated Cat6</strong>，不要把普通室内 Patch Cable 长期暴露在屋外。</p><p>Outdoor Cat6 会针对 UV 与户外环境进行设计，部分型号也可用于地下铺设。(<a href="https://pt.commscope.com/product-type/cables/twisted-pair-cables/category-6-cables/item760170886/" rel="noopener noreferrer nofollow" target="_blank">CommScope</a>)</p><p>如果网线要在两间房屋之间长期走室外路线，还要考虑：</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Conduit</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>防水的墙体入线位置</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>正确的接头处理</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Surge protection</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Grounding</li></ol><p>Ubiquiti 的户外 Ethernet 安装资料也建议使用具屏蔽能力的户外网线，并配合接地及 Surge Protection。(<a href="https://dl.ui.com/qsg/ETH-SP-G2/ETH-SP-G2_EN.html" rel="noopener noreferrer nofollow" target="_blank">Ubiquiti</a>)</p><h3>House B 怎么接？</h3><p>比较干净的做法，是把网线接到 <strong>House B 自己的 Router WAN Port</strong>：</p><div class="ql-code-block-container" spellcheck="false"><div class="ql-code-block" data-language="plain">House A Router</div><div class="ql-code-block" data-language="plain">      │</div><div class="ql-code-block" data-language="plain"> Outdoor Cat6</div><div class="ql-code-block" data-language="plain">      │</div><div class="ql-code-block" data-language="plain">House B Router WAN</div><div class="ql-code-block" data-language="plain">      │</div><div class="ql-code-block" data-language="plain">House B Wi-Fi</div></div><p>这样两间屋子可以有各自的 Local Network，而不是把所有设备放在同一个 LAN。</p><h2>方法二：Point-to-Point 无线网桥</h2><p>如果不方便拉网线，可以使用 <strong>PTP Wireless Bridge</strong>。</p><div class="ql-code-block-container" spellcheck="false"><div class="ql-code-block" data-language="plain">House A                         House B</div><div class="ql-code-block" data-language="plain"><br></div><div class="ql-code-block" data-language="plain">Router                          Router</div><div class="ql-code-block" data-language="plain">  │                               │</div><div class="ql-code-block" data-language="plain">PTP Radio  ))))))))))))))  (((  PTP Radio</div></div><p>两端的无线设备会建立一条专用的 Point-to-Point Link，让 House B 通过无线方式取得 House A 的网络连接。</p><p>例如 Ubiquiti Building Bridge 就是为 Building-to-Building Connectivity 设计的产品，使用高度定向的 60GHz Link，并提供 5GHz Backup。(<a href="https://store.ui.com/us/en/category/wifi-bridging/products/ubb" rel="noopener noreferrer nofollow" target="_blank">Ubiquiti</a>)</p><p>这里最重要的是 <strong>Line of Sight</strong>。</p><p>60GHz 这类高频、定向无线连接容易受到建筑物、树木等障碍影响，天气状况也可能影响 Link。(<a href="https://dl.ui.com/ds/ubb_ds" rel="noopener noreferrer nofollow" target="_blank">Ubiquiti</a>)</p><p>对于两间相邻排屋，如果中间没有实际的拉线空间，PTP Bridge 会比较方便。</p><h2>Outdoor Cat6 还是 PTP Bridge？</h2><table><tbody><tr><td data-row="1"><br></td><td data-row="1">Outdoor Cat6</td><td data-row="1">PTP Bridge</td></tr><tr><td data-row="2">连接方式</td><td data-row="2">实体网线</td><td data-row="2">无线</td></tr><tr><td data-row="3">适合情况</td><td data-row="3">两屋距离近、容易走线</td><td data-row="3">不方便拉线</td></tr><tr><td data-row="4">是否需要 Line of Sight</td><td data-row="4">不需要</td><td data-row="4">需要</td></tr><tr><td data-row="5">主要安装问题</td><td data-row="5">走线、户外保护</td><td data-row="5">对准、障碍物</td></tr><tr><td data-row="6">额外设备</td><td data-row="6">网线、接头</td><td data-row="6">两套无线 Bridge</td></tr><tr><td data-row="7">稳定性</td><td data-row="7">较容易预测</td><td data-row="7">受无线环境影响</td></tr></tbody></table><p>两间屋子紧贴、又有安全的走线路径：</p><p><strong>Outdoor Cat6 通常更简单。</strong></p><p>如果施工走线很麻烦，才考虑 PTP Bridge。</p><h2>两间屋子最好使用不同的网络</h2><p>不要直接把 House A 的 LAN 原封不动拉到 House B，除非两边都接受共用同一个家庭网络。</p><p>比较合理的结构是：</p><div class="ql-code-block-container" spellcheck="false"><div class="ql-code-block" data-language="plain">               Fibre</div><div class="ql-code-block" data-language="plain">                 │</div><div class="ql-code-block" data-language="plain">           House A Router</div><div class="ql-code-block" data-language="plain">             /       \</div><div class="ql-code-block" data-language="plain">            /         └── House A devices</div><div class="ql-code-block" data-language="plain">           │</div><div class="ql-code-block" data-language="plain">      Outdoor Cat6</div><div class="ql-code-block" data-language="plain">           │</div><div class="ql-code-block" data-language="plain">      House B Router</div><div class="ql-code-block" data-language="plain">        │       │</div><div class="ql-code-block" data-language="plain">        │       └── House B devices</div></div><p>House B 的 Router 通过 WAN 接收 House A 的网络。</p><p>这样 House B 可以拥有自己的 DHCP、Wi-Fi 和 LAN，两个家庭的设备也不会默认全部暴露在同一个 Local Network。</p><h2>1Gbps 还是只有 1Gbps</h2><p>共享连接不会凭空增加带宽。</p><p>例如你家订的是 <strong>1Gbps Fibre</strong>：</p><div class="ql-code-block-container" spellcheck="false"><div class="ql-code-block" data-language="plain">                 1Gbps Internet</div><div class="ql-code-block" data-language="plain">                       │</div><div class="ql-code-block" data-language="plain">                 Main Router</div><div class="ql-code-block" data-language="plain">                  /       \</div><div class="ql-code-block" data-language="plain">             House A     House B</div></div><p>两个家庭共享的仍然是同一条 1Gbps Internet Connection。</p><p>如果 House A 正在使用 700Mbps 下载，House B 剩下的可用带宽自然会减少。</p><p>就算两屋之间的 Cat6 或 PTP Link 可以跑得很快，<strong>ISP 套餐本身仍然是共同的 Internet Bandwidth</strong>。</p><h2>不要把普通 Cat6 长期丢在屋外</h2><p>拿一条便宜的 Indoor Cat6 从窗边拉出去，再长期暴露在阳光和雨水下，并不是适合永久安装的做法。</p><p>应该使用适合户外环境的 Ethernet Cable，并做好走线、入墙位置和防水处理。户外跨建筑的 Ethernet Link 也要考虑 Surge Protection 与 Grounding。(<a href="https://pt.commscope.com/product-type/cables/twisted-pair-cables/category-6-cables/item760170886/" rel="noopener noreferrer nofollow" target="_blank">CommScope</a>; <a href="https://dl.ui.com/qsg/ETH-SP-G2/ETH-SP-G2_EN.html" rel="noopener noreferrer nofollow" target="_blank">Ubiquiti</a>)</p><p>涉及建筑接地或电气系统时，应由合资格的安装人员处理。</p><h2>安装前先确认这三件事</h2><p><strong>1. ISP 是否允许第二间屋子使用这条住宅宽带？</strong></p><p>先看合约。</p><p><strong>2. 实体连接能不能安全施工？</strong></p><p>如果拉 Cat6，要考虑 Outdoor Cable、走线、防水、接地和 Surge Protection。</p><p><strong>3. 两个家庭是否需要独立网络？</strong></p><p>如果是两个不同家庭，House B 使用自己的 Router 通常更容易管理，也更容易隔离设备。</p><p>如果 ISP 条款不允许把住宅宽带提供给另一处住所，最直接的做法仍然是为第二间屋子申请独立宽带。</p><h2>NetBijak’s Take</h2><p>两间相邻排屋共用一条 Fibre，<strong>技术上并不复杂，真正需要先确认的是 ISP 条款</strong>。有方便、安全的走线路径，就用 Outdoor Cat6；不方便拉线，再考虑 PTP Bridge。安装设备之前，先确认 ISP 是否允许住宅服务延伸到第二个 premises。</p><p class="ql-align-center"><strong style="color: rgb(255, 255, 255); background-color: initial;"><a href="/zh/find-your-plan/" rel="noopener noreferrer" target="_blank">🎯为我找配套 →</a></strong></p><p><br></p><h2><br></h2></div>
+      
+    <section class="section-card" id="article-faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div id="article-faq-list" class="faq-list">
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="0">
+        <span>我可以把 Fibre 从自己家拉到隔壁亲戚家吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>技术上可以使用 Outdoor Cat6 或 PTP Bridge 延伸网络，但是否允许，要看 ISP 的住宅宽带条款。Maxis 和 TIME 现行条款都对向其他 premises 或第三方提供服务设有限制</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="1">
+        <span>Outdoor Cat6 一定要用户外版吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>如果网线长期暴露在室外环境，应该使用 Outdoor-rated Cable。户外网线会针对 UV 和环境暴露进行设计。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="2">
+        <span>Outdoor Cat6 和 PTP Bridge 哪个比较好？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>两间屋子很近，而且容易安全拉线，Cat6 会比较直接。没有合适的走线路径时，PTP Bridge 会更方便。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="3">
+        <span>PTP Bridge 一定要直线无遮挡吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>对于 60GHz 这类高度定向的系统，Line of Sight 很重要。建筑物、树木等障碍物都可能影响连接。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="4">
+        <span>House B 需要自己的 Router 吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>建议使用。把跨屋子的连接接到 House B Router 的 WAN Port，可以让两个家庭保持各自的 Local Network。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="5">
+        <span>两间屋子可以同时拿满 1Gbps 吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>不能。两边共享的是同一个 1Gbps Internet Connection，不是两条独立的 1Gbps 宽带。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="6">
+        <span>亲戚没有付钱给我，就一定可以共用吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>不一定。是否允许共享取决于 ISP 条款，而不是单纯看有没有收费。TIME 的现行条款就涵盖未经批准向第三方提供服务，无论是否以营利为目的。</p></div>
+    </div></div>
+    </section>
+    </div>
+    
+    <section class="section-card" style="margin-top:1.5rem">
+      <h2>相关文章</h2>
+      <div class="blog-grid"><a href="/zh/blog/-guest-wifi/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/setting-up-a-guest-wifi-network.webp" alt="如何设置 Guest WiFi，隔离智能家居设备保护家庭网络" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">26/09/2026</div>
+          <div class="blog-card-title">如何设置 Guest WiFi，隔离智能家居设备保护家庭网络</div>
+          <p class="blog-card-excerpt">家里的 Smart Plug 或 IP Camera 不应该能够随便访问你的 Laptop、NAS 或 Printer。把安全性较低的 IoT 设备放到独立的 Guest / IoT Network，...</p>
+        </div></a><a href="/zh/blog/50-iot-matterzigbee-wi-fi-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/broadband-needs-for-smart-homes.webp" alt="50+ IoT 智能家居需要多少宽带？Matter、Zigbee 与 Wi-Fi 怎么规划" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">25/09/2026</div>
+          <div class="blog-card-title">50+ IoT 智能家居需要多少宽带？Matter、Zigbee 与 Wi-Fi 怎么规划</div>
+          <p class="blog-card-excerpt">如果家里已经有 50 个以上的智能家居设备，先别急着升级到 1Gbps。大多数 Smart Switch、Sensor 和 Smart Plug 实际产生的 Internet 流量非常少；真正容易出问...</p>
+        </div></a><a href="/zh/blog/-p2p-bittorrent-isp-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/home-broadband-for-heavy-p2p.webp" alt="马来西亚重度 P2P 用户的家用宽带怎么选？BitTorrent、端口转发与 ISP 限制" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">24/09/2026</div>
+          <div class="blog-card-title">马来西亚重度 P2P 用户的家用宽带怎么选？BitTorrent、端口转发与 ISP 限制</div>
+          <p class="blog-card-excerpt">如果你经常通过 BitTorrent 下载大型合法文件，宽带套餐标示的下载速度并不是唯一决定因素。真正值得检查的是三个东西：ISP 有没有对 P2P 流量进行管理、Torrent Client 能不能...</p>
+        </div></a><a href="/zh/blog/tp-link-wi-fi-8-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/tp-link-wi-fi-8-arrives-in-malaysia.webp" alt="TP-Link Wi-Fi 8 登陆马来西亚：它到底改变了什么？" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">18/09/2026</div>
+          <div class="blog-card-title">TP-Link Wi-Fi 8 登陆马来西亚：它到底改变了什么？</div>
+          <p class="blog-card-excerpt">TP-Link 已经把 Wi-Fi 8 带到马来西亚，但真正值得关注的不是路由器包装上的更大数字。TP-Link 于 2026 年 9 月 15 日在吉隆坡举行的 APAC B2B Summit 20...</p>
+        </div></a><a href="/zh/blog/2026-5000-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/malaysias-internet-coverage-reaches-9975.webp" alt="2026 马来西亚日：为什么 5,000 人同时上网，不只是需要更快的网络" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">News</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">17/09/2026</div>
+          <div class="blog-card-title">2026 马来西亚日：为什么 5,000 人同时上网，不只是需要更快的网络</div>
+          <p class="blog-card-excerpt">如果超过 5,000 人同时集中在一个场地，网络最容易暴露的一个问题就是：Internet 很快，不代表 Wi-Fi 能同时服务这么多人。2026 年马来西亚日庆典在古晋 Borneo Convent...</p>
+        </div></a><a href="/zh/blog/wifi-6-vs-wifi-72026-broadband-router-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/wifi-6-vs-wifi-7-do-you-need.webp" alt="WiFi 6 vs WiFi 7：2026 年到底需要升级 Broadband Router 吗？" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">13/09/2026</div>
+          <div class="blog-card-title">WiFi 6 vs WiFi 7：2026 年到底需要升级 Broadband Router 吗？</div>
+          <p class="blog-card-excerpt">如果你已经使用 1Gbps 或 2Gbps Fibre，WiFi 7 确实有机会让你的无线网络跑得更快、更稳定，但这并不代表所有 WiFi 6 用户都需要马上换 Router。WiFi 7 真正值得关...</p>
+        </div></a></div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script>const ROOT_PATH = "/"; const PAGE_TRANSLATIONS = {"en":"/en/blog/how-to-share-one-fibre-connection-between-two-adjacent-landed-houses/","zh":"/zh/blog/-fibre-connection-between-two/","ms":"/ms/blog/cara-berkongsi-satu-sambungan-fibre-antara-dua-rumah-teres-bersebelahan/"};</script>
+  <script src="/assets/js/tracking.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/assets/js/supabase-client.js"></script>
+  <script src="/assets/js/translations.js"></script>
+  <script src="/assets/js/site.js"></script>
+  <script src="/assets/js/homepage-banner.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("#article-faq-list .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#article-faq-list .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
+    });
+  </script>
+
+  <div id="mascot-widget" class="mascot-widget">
+    <button type="button" class="mascot-close-btn" id="mascot-close-btn" aria-label="Close">✕</button>
+    <a href="https://wa.me/60178835110?text=Hi%20NetBijak%2C%20I'm%20reading%20%22%E4%B8%A4%E9%97%B4%E7%9B%B8%E9%82%BB%E6%8E%92%E5%B1%8B%E5%A6%82%E4%BD%95%E5%85%B1%E7%94%A8%E4%B8%80%E6%9D%A1%20Fibre%20%E5%AE%BD%E5%B8%A6%22%20and%20have%20a%20question." target="_blank" class="mascot-avatar-link">
+      <img src="/assets/images/mascot.png" alt="NetBijak Assistant" class="mascot-avatar-img" />
+      <span class="mascot-bubble">有问题吗？</span>
+    </a>
+  </div>
+  <script>
+    (function() {
+      var storageKey = "mascot-closed--fibre-connection-between-two";
+      var widget = document.getElementById("mascot-widget");
+      var closeBtn = document.getElementById("mascot-close-btn");
+      if (sessionStorage.getItem(storageKey)) {
+        widget.style.display = "none";
+      }
+      closeBtn.addEventListener("click", function() {
+        widget.style.display = "none";
+        sessionStorage.setItem(storageKey, "1");
+      });
+    })();
+  </script>
+</body>
+</html>

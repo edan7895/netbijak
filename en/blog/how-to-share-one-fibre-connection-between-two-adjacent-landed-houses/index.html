@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Share One Fibre Connection Between Two Adjacent Houses in Malaysia</title>
+  <meta name="description" content="Can two adjacent terrace houses share one fibre connection? Compare Outdoor Cat6 and point-to-point wireless bridge setups, plus ISP contract restrictions and network security." />
+  <meta name="geo.region" content="MY" />
+  <meta name="geo.placename" content="Malaysia" />
+  <meta property="og:title" content="Share One Fibre Connection Between Two Adjacent Houses in Malaysia" />
+  <meta property="og:description" content="Can two adjacent terrace houses share one fibre connection? Compare Outdoor Cat6 and point-to-point wireless bridge setups, plus ISP contract restrictions and network security." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://netbijak.com/assets/images/articles/how-to-share-one-fibre-connection-between-two.webp" />
+  <meta property="og:url" content="https://netbijak.com/en/blog/how-to-share-one-fibre-connection-between-two-adjacent-landed-houses/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://netbijak.com/en/blog/how-to-share-one-fibre-connection-between-two-adjacent-landed-houses/" />
+  <link rel="alternate" hreflang="en" href="https://netbijak.com/en/blog/how-to-share-one-fibre-connection-between-two-adjacent-landed-houses/" />
+  <link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/blog/-fibre-connection-between-two/" />
+  <link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/blog/cara-berkongsi-satu-sambungan-fibre-antara-dua-rumah-teres-bersebelahan/" />
+  <link rel="alternate" hreflang="x-default" href="https://netbijak.com/en/blog/how-to-share-one-fibre-connection-between-two-adjacent-landed-houses/" />
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can I share my fibre connection with my relative next door?","acceptedAnswer":{"@type":"Answer","text":"Technically, yes, but the ISP may restrict this under its residential service terms. Maxis and TIME both currently have restrictions covering service provided to another premises or third party."}},{"@type":"Question","name":"Is Outdoor Cat6 better than a wireless bridge?","acceptedAnswer":{"@type":"Answer","text":"For two houses with an easy cable route, Outdoor Cat6 is simpler. A PTP bridge is useful when there is no practical way to run a cable between the buildings."}},{"@type":"Question","name":"Can I use normal Cat6 cable outdoors?","acceptedAnswer":{"@type":"Answer","text":"Use cable specifically rated for outdoor exposure instead of leaving ordinary indoor cable permanently exposed to sun and weather."}},{"@type":"Question","name":"Does a PTP bridge need line of sight?","acceptedAnswer":{"@type":"Answer","text":"Yes, particularly high-frequency directional systems such as 60GHz bridges. Buildings, trees and other obstructions can affect the link."}},{"@type":"Question","name":"Should House B use another router?","acceptedAnswer":{"@type":"Answer","text":"Yes, when you want the two households to have separate local networks. Connect the inter-house link to House B's router WAN port."}},{"@type":"Question","name":"Will both houses get the full speed of the fibre plan?","acceptedAnswer":{"@type":"Answer","text":"No. They share the same internet connection. A 1Gbps plan still provides a combined maximum of 1Gbps for both houses, subject to actual network conditions."}},{"@type":"Question","name":"Does not charging my relative make sharing automatically allowed?","acceptedAnswer":{"@type":"Answer","text":"No. The ISP's contract can restrict sharing regardless of whether money changes hands. TIME's published terms, for example, prohibit sharing without prior written approval and cover making the service available to a third party for profit or otherwise."}}]}</script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="main">
+    <div id="blog-detail-container">
+      <a href="/en/blog/" class="blog-back-link">← Back to Blog</a>
+      <span class="blog-type-tag">Article</span>
+      <img src="/assets/images/articles/how-to-share-one-fibre-connection-between-two.webp" alt="How to Share One Fibre Connection Between Two Adjacent Landed Houses" class="blog-detail-cover" loading="lazy" width="800" height="450" />
+      <div class="blog-detail-date">03/10/2026</div>
+      <h1 class="blog-detail-title">How to Share One Fibre Connection Between Two Adjacent Landed Houses</h1>
+      
+    <section class="ai-summary-box">
+      <div class="ai-summary-badge">✨ NetBijak AI Summary</div>
+      <p>Sharing a single fibre broadband subscription between two adjacent landed houses is technically possible using either an outdoor-rated Cat6 cable or a point-to-point wireless bridge. While these methods allow two homes to share one connection, it is essential to first review your ISP’s terms and conditions regarding third-party usage. Most Malaysian service providers explicitly prohibit sharing or reselling your home internet connection with other premises, even if you are not charging for it. If you proceed, using a dedicated router in the second house is recommended to keep networks separate and simplify management. Remember that sharing a single plan does not increase your bandwidth, meaning both houses must split the total speed of the subscription. Ultimately, the most reliable approach is to check your contract terms before investing in any networking equipment.</p>
+    </section>
+      <div id="homepage-banner-carousel" class="homepage-banner-carousel hidden"></div>
+      <div class="blog-detail-content"><p>Two terrace houses next to each other, one occupied by parents and the other by relatives. Instead of paying for two fibre subscriptions, it is technically possible to extend one connection from House A to House B.</p><p>The two practical methods are <strong>Outdoor Cat6</strong> and a <strong>point-to-point (PTP) wireless bridge</strong>.</p><p>The bigger question is whether your ISP permits its residential service to be shared with another premises.</p><h2>First: Check the ISP Terms</h2><p>This is not simply a networking question.</p><p>Maxis' current Fibre Fair Usage Policy says customers must not provide network connectivity to a third party that is not at the location where the connection is installed, and also prohibits resale or charging others for the connection. (<a href="https://www.maxis.com.my/en/terms-conditions/general/maxis-fair-usage-policy/" rel="noopener noreferrer nofollow" target="_blank">Maxis</a>)</p><p>TIME's current terms are more explicit: the customer must not share the service without prior written approval and must not resell, sublet or make the service available to a third party, whether for profit or otherwise. (<a href="https://www.time.com.my/terms-and-conditions/complimentary-wifi" rel="noopener noreferrer nofollow" target="_blank">TIME</a>)</p><p>Older published Unifi residential terms similarly prohibited sharing the service without TM's prior written approval. Unifi has since updated its Home Broadband T&amp;C effective <strong>26 August 2026</strong>, so customers should check the current terms attached to their own subscription rather than relying on the older document. (<a href="https://unifi.com.my/announcements/update-tc-unifi-home-broadband-terms-conditions-update-effective-26-august-2026" rel="noopener noreferrer nofollow" target="_blank">Unifi</a>)</p><p>So:</p><p><strong>Technically possible does not mean contractually permitted.</strong></p><p>Also, not charging your relative does not automatically remove the ISP's restriction. TIME's wording, for example, covers sharing whether for profit or otherwise. (<a href="https://www.time.com.my/terms-and-conditions/complimentary-wifi" rel="noopener noreferrer nofollow" target="_blank">TIME</a>)</p><h2>Option 1: Outdoor Cat6</h2><p>For two houses immediately next to each other, a physical Ethernet connection is the simplest design.</p><div class="ql-code-block-container" spellcheck="false"><div class="ql-code-block" data-language="plain">House A                         House B</div><div class="ql-code-block" data-language="plain"><br></div><div class="ql-code-block" data-language="plain">Fibre ONT</div><div class="ql-code-block" data-language="plain">   │</div><div class="ql-code-block" data-language="plain">Main Router</div><div class="ql-code-block" data-language="plain">   │</div><div class="ql-code-block" data-language="plain">Outdoor Cat6</div><div class="ql-code-block" data-language="plain">   │</div><div class="ql-code-block" data-language="plain">   └────────────────────────────► Router</div><div class="ql-code-block" data-language="plain">                                  │</div><div class="ql-code-block" data-language="plain">                               Wi-Fi / LAN</div></div><p>Use <strong>outdoor-rated Cat6</strong>, not ordinary indoor patch cable left outside. Outdoor cable is designed for environmental exposure such as UV; some products are also rated for direct burial. (<a href="https://pt.commscope.com/product-type/cables/twisted-pair-cables/category-6-cables/item760170886/" rel="noopener noreferrer nofollow" target="_blank">CommScope</a>)</p><p>For a permanent installation, also consider conduit, weather-sealed wall entry points and proper protection against electrical surges.</p><p>Ubiquiti recommends shielded outdoor Ethernet and grounding for outdoor installations, together with surge protection for exposed Ethernet runs. (<a href="https://dl.ui.com/qsg/ETH-SP-G2/ETH-SP-G2_EN.html" rel="noopener noreferrer nofollow" target="_blank">Ubiquiti</a>)</p><h3>How to connect the second house</h3><p>The cleaner arrangement is to terminate the cable at <strong>House B's own router</strong>:</p><div class="ql-code-block-container" spellcheck="false"><div class="ql-code-block" data-language="plain">House A Router</div><div class="ql-code-block" data-language="plain">      │</div><div class="ql-code-block" data-language="plain"> Outdoor Cat6</div><div class="ql-code-block" data-language="plain">      │</div><div class="ql-code-block" data-language="plain">House B Router WAN</div><div class="ql-code-block" data-language="plain">      │</div><div class="ql-code-block" data-language="plain">House B Wi-Fi</div></div><p>This gives House B its own local network instead of placing every device in both houses on the same LAN.</p><h2>Option 2: Point-to-Point Wireless Bridge</h2><p>When running a cable between the two houses is difficult, use a dedicated PTP bridge.</p><div class="ql-code-block-container" spellcheck="false"><div class="ql-code-block" data-language="plain">House A                         House B</div><div class="ql-code-block" data-language="plain"><br></div><div class="ql-code-block" data-language="plain">Router                          Router</div><div class="ql-code-block" data-language="plain">  │                               │</div><div class="ql-code-block" data-language="plain">PTP Radio  ))))))))))))))  (((  PTP Radio</div></div><p>The two radios create a dedicated wireless link between the buildings.</p><p>A system such as Ubiquiti's Building Bridge is designed specifically for building-to-building connectivity and uses a highly directional 60GHz link with a 5GHz backup connection. (<a href="https://store.ui.com/us/en/category/wifi-bridging/products/ubb" rel="noopener noreferrer nofollow" target="_blank">Ubiquiti</a>)</p><p>The important requirement is <strong>clear line of sight</strong>. High-frequency directional links can be affected by buildings, trees and other obstructions; Ubiquiti also notes that weather can affect 60GHz links. (<a href="https://dl.ui.com/ds/ubb_ds" rel="noopener noreferrer nofollow" target="_blank">Ubiquiti</a>)</p><p>For two adjacent terrace houses, a PTP bridge makes sense when there is no sensible route for an outdoor Ethernet cable.</p><h2>Outdoor Cat6 or PTP Bridge?</h2><table><tbody><tr><td data-row="1"><br></td><td data-row="1">Outdoor Cat6</td><td data-row="1">PTP Bridge</td></tr><tr><td data-row="2">Connection</td><td data-row="2">Physical cable</td><td data-row="2">Wireless</td></tr><tr><td data-row="3">Best for</td><td data-row="3">Houses very close together</td><td data-row="3">Difficult cable routes</td></tr><tr><td data-row="4">Line of sight</td><td data-row="4">Not required</td><td data-row="4">Required</td></tr><tr><td data-row="5">Main installation concern</td><td data-row="5">Cable routing / surge protection</td><td data-row="5">Alignment / obstruction</td></tr><tr><td data-row="6">Extra equipment</td><td data-row="6">Cable + termination</td><td data-row="6">Two bridge radios</td></tr><tr><td data-row="7">Network performance</td><td data-row="7">Predictable</td><td data-row="7">Depends on radio conditions</td></tr></tbody></table><p>For neighbouring houses with an easy and safe cable route, <strong>Outdoor Cat6 is the simpler setup</strong>.</p><p>PTP is mainly useful when physically connecting the buildings is the difficult part.</p><h2>Keep House B on a Separate Network</h2><p>Do not simply extend House A's LAN into House B unless both households are happy to share the same local network.</p><p>A better setup is:</p><div class="ql-code-block-container" spellcheck="false"><div class="ql-code-block" data-language="plain">               Fibre</div><div class="ql-code-block" data-language="plain">                 │</div><div class="ql-code-block" data-language="plain">           House A Router</div><div class="ql-code-block" data-language="plain">             │       │</div><div class="ql-code-block" data-language="plain">             │       └── House A devices</div><div class="ql-code-block" data-language="plain">             │</div><div class="ql-code-block" data-language="plain">       Outdoor Cat6</div><div class="ql-code-block" data-language="plain">             │</div><div class="ql-code-block" data-language="plain">       House B Router</div><div class="ql-code-block" data-language="plain">          │       │</div><div class="ql-code-block" data-language="plain">          │       └── House B devices</div></div><p>House B's router receives the connection through its WAN port and creates its own DHCP, Wi-Fi and LAN.</p><p>This prevents normal device discovery between the two homes and makes troubleshooting easier.</p><h2>One 1Gbps Connection Is Still One 1Gbps Connection</h2><p>Sharing the physical connection does not create additional bandwidth.</p><p>With a 1Gbps fibre plan:</p><div class="ql-code-block-container" spellcheck="false"><div class="ql-code-block" data-language="plain">                 1Gbps Internet</div><div class="ql-code-block" data-language="plain">                       │</div><div class="ql-code-block" data-language="plain">                 Main Router</div><div class="ql-code-block" data-language="plain">                  /       \</div><div class="ql-code-block" data-language="plain">             House A     House B</div></div><p>Both homes share that same internet capacity.</p><p>If House A is downloading at 700Mbps, House B cannot independently use another 1Gbps at the same time.</p><p>The Ethernet or PTP link between the houses can be capable of high speeds, but the ISP subscription remains the bottleneck.</p><h2>Don't Run Ordinary Indoor Cat6 Outside</h2><p>The shortcut of taking a cheap indoor Ethernet cable, running it across the exterior wall and leaving it exposed is not a good permanent installation.</p><p>Use cable designed for outdoor exposure, protect the route where necessary and properly seal the points where the cable enters each house. Outdoor Ethernet between buildings also needs attention to surge and grounding requirements. (<a href="https://pt.commscope.com/product-type/cables/twisted-pair-cables/category-6-cables/item760170886/" rel="noopener noreferrer nofollow" target="_blank">CommScope</a>; <a href="https://dl.ui.com/qsg/ETH-SP-G2/ETH-SP-G2_EN.html" rel="noopener noreferrer nofollow" target="_blank">Ubiquiti</a>)</p><p>For any installation involving electrical grounding or building electrical systems, use a qualified installer.</p><h2>What Should You Do?</h2><p>For two adjacent landed houses:</p><p><strong>Easy cable route:</strong></p><p>Use Outdoor Cat6 → House B router WAN.</p><p><strong>No practical cable route:</strong></p><p>Use a PTP bridge → House B router WAN.</p><p><strong>ISP does not allow service sharing:</strong></p><p>Take a separate broadband subscription instead.</p><p>The networking itself is straightforward. The ISP's service terms should be checked before you install anything.</p><h2>NetBijak's Take</h2><p>Outdoor Cat6 is the straightforward choice for two adjacent houses when a safe cable route exists. A PTP bridge solves the same problem wirelessly when cabling is impractical. <strong>Before spending money on either setup, check whether your ISP permits one residential connection to serve a second premises.</strong></p><p class="ql-align-center"><strong style="color: rgb(255, 255, 255); background-color: initial;"><a href="/en/find-your-plan/" rel="noopener noreferrer" target="_blank">🎯Find My Plan →</a></strong></p><p><br></p><h2><br></h2></div>
+      
+    <section class="section-card" id="article-faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div id="article-faq-list" class="faq-list">
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="0">
+        <span>Can I share my fibre connection with my relative next door?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Technically, yes, but the ISP may restrict this under its residential service terms. Maxis and TIME both currently have restrictions covering service provided to another premises or third party.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="1">
+        <span>Is Outdoor Cat6 better than a wireless bridge?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>For two houses with an easy cable route, Outdoor Cat6 is simpler. A PTP bridge is useful when there is no practical way to run a cable between the buildings.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="2">
+        <span>Can I use normal Cat6 cable outdoors?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Use cable specifically rated for outdoor exposure instead of leaving ordinary indoor cable permanently exposed to sun and weather.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="3">
+        <span>Does a PTP bridge need line of sight?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Yes, particularly high-frequency directional systems such as 60GHz bridges. Buildings, trees and other obstructions can affect the link.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="4">
+        <span>Should House B use another router?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Yes, when you want the two households to have separate local networks. Connect the inter-house link to House B's router WAN port.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="5">
+        <span>Will both houses get the full speed of the fibre plan?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>No. They share the same internet connection. A 1Gbps plan still provides a combined maximum of 1Gbps for both houses, subject to actual network conditions.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="6">
+        <span>Does not charging my relative make sharing automatically allowed?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>No. The ISP's contract can restrict sharing regardless of whether money changes hands. TIME's published terms, for example, prohibit sharing without prior written approval and cover making the service available to a third party for profit or otherwise.</p></div>
+    </div></div>
+    </section>
+    </div>
+    
+    <section class="section-card" style="margin-top:1.5rem">
+      <h2>Related Articles</h2>
+      <div class="blog-grid"><a href="/en/blog/setting-up-a-guest-wifi-network-to-secure-your-home-smart-devices/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/setting-up-a-guest-wifi-network.webp" alt="Setting Up a Guest WiFi Network to Secure Your Home Smart Devices" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">26/09/2026</div>
+          <div class="blog-card-title">Setting Up a Guest WiFi Network to Secure Your Home Smart Devices</div>
+          <p class="blog-card-excerpt">A cheap smart plug or IP camera does not need access to your laptop, NAS or home printer. Putting le...</p>
+        </div></a><a href="/en/blog/broadband-needs-for-smart-homes-with-50-iot-devices-matterzigbee/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/broadband-needs-for-smart-homes.webp" alt="Broadband Needs for Smart Homes with 50+ IoT Devices (Matter/Zigbee)" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">25/09/2026</div>
+          <div class="blog-card-title">Broadband Needs for Smart Homes with 50+ IoT Devices (Matter/Zigbee)</div>
+          <p class="blog-card-excerpt">If your smart home has 50 or more connected devices, upgrading to 1Gbps is not automatically the sol...</p>
+        </div></a><a href="/en/blog/tp-link-wi-fi-8-arrives-in-malaysia-what-it-actually-changes-for-home-users/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/tp-link-wi-fi-8-arrives-in-malaysia.webp" alt="TP-Link Wi-Fi 8 Arrives in Malaysia: What It Actually Changes for Home Users" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">18/09/2026</div>
+          <div class="blog-card-title">TP-Link Wi-Fi 8 Arrives in Malaysia: What It Actually Changes for Home Users</div>
+          <p class="blog-card-excerpt">TP-Link has introduced Wi-Fi 8 in Malaysia, but the important part is not the headline speed.At its ...</p>
+        </div></a><a href="/en/blog/malaysia-day-2026-what-5000-people-in-one-venue-teaches-us-about-network-congestion/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/malaysia-day-2026-what-5000-people.webp" alt="Malaysia Day 2026: What 5,000 People in One Venue Teaches Us About Network Congestion" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">News</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">17/09/2026</div>
+          <div class="blog-card-title">Malaysia Day 2026: What 5,000 People in One Venue Teaches Us About Network Congestion</div>
+          <p class="blog-card-excerpt">More than 5,000 people gathering inside one venue can expose a networking problem that a normal home...</p>
+        </div></a><a href="/en/blog/wifi-6-vs-wifi-7-do-you-need-to-upgrade-your-broadband-router-in-2026/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/wifi-6-vs-wifi-7-do-you-need.webp" alt="WiFi 6 vs WiFi 7: Do You Need to Upgrade Your Broadband Router in 2026?" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">13/09/2026</div>
+          <div class="blog-card-title">WiFi 6 vs WiFi 7: Do You Need to Upgrade Your Broadband Router in 2026?</div>
+          <p class="blog-card-excerpt">If you already have 1Gbps or 2Gbps Fibre, WiFi 7 can help remove the wireless bottleneck — but upgra...</p>
+        </div></a><a href="/en/blog/how-to-stop-your-kids-tiktok-scrolling-from-freezing-your-netflix-stream/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/how-to-stop-your-kids-tiktok-scrolling.webp" alt="How to Stop Your Kids’ TikTok Scrolling From Freezing Your Netflix Stream" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">04/09/2026</div>
+          <div class="blog-card-title">How to Stop Your Kids’ TikTok Scrolling From Freezing Your Netflix Stream</div>
+          <p class="blog-card-excerpt">Why Does TikTok Make Netflix Freeze?If your Netflix stream freezes whenever the kids start scrolling...</p>
+        </div></a></div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script>const ROOT_PATH = "/"; const PAGE_TRANSLATIONS = {"en":"/en/blog/how-to-share-one-fibre-connection-between-two-adjacent-landed-houses/","zh":"/zh/blog/-fibre-connection-between-two/","ms":"/ms/blog/cara-berkongsi-satu-sambungan-fibre-antara-dua-rumah-teres-bersebelahan/"};</script>
+  <script src="/assets/js/tracking.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/assets/js/supabase-client.js"></script>
+  <script src="/assets/js/translations.js"></script>
+  <script src="/assets/js/site.js"></script>
+  <script src="/assets/js/homepage-banner.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("#article-faq-list .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#article-faq-list .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
+    });
+  </script>
+
+  <div id="mascot-widget" class="mascot-widget">
+    <button type="button" class="mascot-close-btn" id="mascot-close-btn" aria-label="Close">✕</button>
+    <a href="https://wa.me/60178835110?text=Hi%20NetBijak%2C%20I'm%20reading%20%22How%20to%20Share%20One%20Fibre%20Connection%20Between%20Two%20Adjacent%20Landed%20Houses%22%20and%20have%20a%20question." target="_blank" class="mascot-avatar-link">
+      <img src="/assets/images/mascot.png" alt="NetBijak Assistant" class="mascot-avatar-img" />
+      <span class="mascot-bubble">Need help?</span>
+    </a>
+  </div>
+  <script>
+    (function() {
+      var storageKey = "mascot-closed-how-to-share-one-fibre-connection-between-two-adjacent-landed-houses";
+      var widget = document.getElementById("mascot-widget");
+      var closeBtn = document.getElementById("mascot-close-btn");
+      if (sessionStorage.getItem(storageKey)) {
+        widget.style.display = "none";
+      }
+      closeBtn.addEventListener("click", function() {
+        widget.style.display = "none";
+        sessionStorage.setItem(storageKey, "1");
+      });
+    })();
+  </script>
+</body>
+</html>
