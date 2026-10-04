@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>What Causes Random Broadband Disconnections? 3 Hidden Fibre Problems</title>
+  <meta name="description" content="Random broadband disconnections are not always caused by your ISP. Learn how dirty fibre connectors, overheating ONTs and unstable power adapters can cause intermittent internet problems." />
+  <meta name="geo.region" content="MY" />
+  <meta name="geo.placename" content="Malaysia" />
+  <meta property="og:title" content="What Causes Random Broadband Disconnections? 3 Hidden Fibre Problems" />
+  <meta property="og:description" content="Random broadband disconnections are not always caused by your ISP. Learn how dirty fibre connectors, overheating ONTs and unstable power adapters can cause intermittent internet problems." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://netbijak.com/assets/images/articles/what-causes-random-broadband-disconnections.webp" />
+  <meta property="og:url" content="https://netbijak.com/en/blog/what-causes-random-broadband-disconnections-intermittent-lag/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://netbijak.com/en/blog/what-causes-random-broadband-disconnections-intermittent-lag/" />
+  <link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/blog/-fibre-what-causes-random-broadband-disconnections/" />
+  <link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/blog/kenapa-broadband-selalu-terputus-secara-rawak-3-punca-yang-mudah-terlepas-pandang/" />
+  <link rel="alternate" hreflang="en" href="https://netbijak.com/en/blog/what-causes-random-broadband-disconnections-intermittent-lag/" />
+  <link rel="alternate" hreflang="x-default" href="https://netbijak.com/en/blog/what-causes-random-broadband-disconnections-intermittent-lag/" />
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Can a dirty fibre connector cause intermittent disconnections?","acceptedAnswer":{"@type":"Answer","text":"Yes. Contamination on an optical connector can increase insertion loss and reflections and may cause unstable optical performance."}},{"@type":"Question","name":"Can an ONT overheat and cause the internet to drop?","acceptedAnswer":{"@type":"Answer","text":"Yes. Huawei documents ONT temperature alarms and states that an ONT outside its normal temperature range may not operate properly."}},{"@type":"Question","name":"Can a faulty power adapter cause fibre broadband to disconnect?","acceptedAnswer":{"@type":"Answer","text":"Yes. An unstable power supply can cause an ONU/ONT or router to restart, interrupting the internet connection. Huawei specifically identifies unstable power voltage as a possible cause of repeated ONU restarts."}},{"@type":"Question","name":"Should I clean the fibre connector myself?","acceptedAnswer":{"@type":"Answer","text":"Do not use tissue, cotton buds or household cleaning products. Fibre connectors should be cleaned using appropriate fibre-optic cleaning equipment and inspected before being connected."}},{"@type":"Question","name":"How do I know whether the problem is Wi-Fi or fibre?","acceptedAnswer":{"@type":"Answer","text":"Test the connection with Ethernet while the problem is occurring. If Ethernet also disconnects and the ONT shows an optical problem, investigate the fibre side. If Ethernet remains stable while Wi-Fi devices disconnect, focus on the local wireless network."}},{"@type":"Question","name":"Can hot weather make an ONT unstable?","acceptedAnswer":{"@type":"Answer","text":"Excessive ambient temperature can affect ONT operation. Huawei recommends keeping an ONT within its normal temperature range and providing good ventilation."}},{"@type":"Question","name":"Should I replace the router first?","acceptedAnswer":{"@type":"Answer","text":"Not necessarily. If the ONT itself is losing optical synchronisation or rebooting, replacing the Wi-Fi router will not fix the underlying problem. Check the ONT, fibre connection and power supply first."}}]}</script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="main">
+    <div id="blog-detail-container">
+      <a href="/en/blog/" class="blog-back-link">← Back to Blog</a>
+      <span class="blog-type-tag">Article</span>
+      <img src="/assets/images/articles/what-causes-random-broadband-disconnections.webp" alt="What Causes Random Broadband Disconnections (Intermittent Lag)?" class="blog-detail-cover" loading="lazy" width="800" height="450" />
+      <div class="blog-detail-date">05/10/2026</div>
+      <h1 class="blog-detail-title">What Causes Random Broadband Disconnections (Intermittent Lag)?</h1>
+      
+    <section class="ai-summary-box">
+      <div class="ai-summary-badge">✨ NetBijak AI Summary</div>
+      <p>Intermittent broadband disconnections often originate from hardware issues within your home rather than the ISP’s network infrastructure. Key causes include contaminated fibre connectors, which can disrupt light signals, and ONT overheating due to poor ventilation. Additionally, an unstable power adapter may cause your equipment to restart randomly, leading to persistent connection drops. By observing the LED lights on your ONT during an outage, you can pinpoint whether the issue is optical, thermal, or power-related. It is advisable to address these local factors before assuming your broadband plan or ISP is at fault. Troubleshooting these common hardware points can often resolve your connectivity issues without requiring a service upgrade.</p>
+    </section>
+      <div id="homepage-banner-carousel" class="homepage-banner-carousel hidden"></div>
+      <div class="blog-detail-content"><p>Your broadband works normally for an hour, then suddenly disconnects for a few seconds or minutes before recovering. Sometimes it happens several times a day.</p><p>This is <strong>intermittent connectivity</strong>, and the cause may be inside the house rather than the ISP network.</p><p>Three often-overlooked areas are worth checking:</p><ol><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span>Fibre connector contamination</li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span>ONT/ONU overheating</li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span>Unstable power supply</li></ol><h2>1. Dirty or Contaminated Fibre Connectors</h2><p>A fibre connection depends on a very small optical interface. Dust, dirt, oil and other contaminants on the connector end-face can reduce the amount of light reaching the other side and create reflections. Corning states that contamination can cause insertion loss and back reflections that may lead to system instability. (<a href="https://www.corning.com/data-center/cala/es/home/knowledge-center/connector-cleaning-faqs.html" rel="noopener noreferrer nofollow" target="_blank">Corning</a>)</p><p>CommScope describes contamination as one of the most common causes of optical loss and warns that even microscopic particles can affect the fibre core. (<a href="https://www.commscope.com/globalassets/digizuite/52724-7654871-rev-e-fiber-optic-interface-cleanliness-guidelines-8-30-17-pdf.pdf" rel="noopener noreferrer nofollow" target="_blank">CommScope</a>)</p><p>In Malaysia, <strong>dust, humidity and mould around poorly ventilated or exposed telecom equipment</strong> can also become an environmental warning sign. IEC guidance notes that high humidity and warm conditions support fungal growth on optical cable materials, while NTT has documented mould occurrence in telecommunications equipment and facilities under persistently humid conditions. (<a href="https://webstore.iec.ch/en/publication/81633" rel="noopener noreferrer nofollow" target="_blank">IEC</a>; <a href="https://www.ntt-review.jp/archive/ntttechnical.php?contents=ntr202212pf1.html" rel="noopener noreferrer nofollow" target="_blank">NTT Technical Review</a>)</p><p>Do not interpret visible mould automatically as proof that the fibre signal is failing. The more important question is whether the <strong>optical connector itself is contaminated or damaged</strong>.</p><h3>What to do</h3><p>Do not repeatedly unplug and reconnect the fibre connector.</p><p>Have the ISP technician inspect the connector end-face and optical levels. Fibre manufacturers recommend proper cleaning and inspection before connectors are mated. (<a href="https://www.corning.com/optical-communications/asean/en/home/products/unicam-connectors-resource-center/unicam-faqs/faqs.html" rel="noopener noreferrer nofollow" target="_blank">Corning</a>)</p><p>A dirty connector should be <strong>cleaned with the correct fibre-optic cleaning equipment</strong>, not wiped with a normal tissue.</p><h2>2. ONT Overheating</h2><p>Your ONT/ONU is an active optical device. It needs proper ventilation.</p><p>Huawei's ONT troubleshooting documentation includes a specific <strong>ONT temperature alarm</strong> and states that an ONT operating outside its normal temperature range may not work properly. Its recommended action is to ensure normal temperature and good ventilation. (<a href="https://info.support.huawei.com/hedex/api/pages/EDOC1100413634/FEN1022J/03/resources/en-us_alarmref_0000001193537257.html" rel="noopener noreferrer nofollow" target="_blank">Huawei</a>)</p><p>A poorly ventilated installation can therefore create an intermittent fault pattern:</p><p><strong>Normal operation → temperature rises → device becomes unstable/restarts → connection returns after cooling</strong></p><p>This is especially worth checking when the ONT is:</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Inside a closed cabinet</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Stacked on another heat-producing device</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Exposed to direct afternoon heat</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Covered by objects</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Installed in a poorly ventilated utility area</li></ol><p>Do not assume the ONT is “reducing speed because it is hot”. A more defensible symptom is <strong>abnormal operation or repeated restarting</strong> when the temperature becomes excessive.</p><h3>What to check</h3><p>Move the ONT to a ventilated position and leave space around its vents.</p><p>Then observe whether the disconnections are more frequent during hotter periods of the day.</p><p>If the ONT repeatedly restarts even after improving ventilation, it may need to be tested or replaced.</p><h2>3. An Unstable Power Adapter</h2><p>The power adapter is easy to overlook because the ONT can appear completely normal most of the time.</p><p>Huawei's ONU troubleshooting guide specifically lists <strong>unstable power voltage</strong> as a possible cause when an ONU repeatedly restarts and recommends ensuring that the ONU's power supply is normal. (<a href="https://info.support.huawei.com/network/ptmngsys/Web/tsrev_access/en/content/access/20_gpononu_frequently_goes_online_and_offline/trouble_510805.html" rel="noopener noreferrer nofollow" target="_blank">Huawei</a>)</p><p>The same principle applies to routers and other network equipment. TP-Link lists unstable power, faulty adapters and overheating among common causes of repeated router reboots. (<a href="https://www.tp-link.com/us/support/faq/3032/?app=tether" rel="noopener noreferrer nofollow" target="_blank">TP-Link</a>)</p><p>A failing adapter can produce a particularly confusing symptom:</p><p><strong>Internet drops → ONT/router appears to recover by itself → Internet works again</strong></p><p>The fibre line may be perfectly healthy.</p><h3>What to check</h3><p>Use the <strong>original power adapter</strong> supplied for the device.</p><p>Check that the replacement adapter, if any, matches the required voltage, current and connector specification. TP-Link specifically warns that mismatched power specifications can cause unstable operation. (<a href="https://www.tp-link.com/us/support/faq/3032/?app=tether" rel="noopener noreferrer nofollow" target="_blank">TP-Link</a>)</p><p>Also try another electrical socket.</p><p>Do not randomly substitute an adapter just because the plug fits.</p><h2>How to Tell Which One Is Causing the Drop</h2><p>Look at the pattern rather than only the speed test result.</p><table><tbody><tr><td data-row="1">Symptom</td><td data-row="1">Possible cause</td></tr><tr><td data-row="2">ONT shows optical/LOS-related problem</td><td data-row="2">Fibre path / connector / optical signal</td></tr><tr><td data-row="3">Connection becomes unstable after long operation</td><td data-row="3">ONT overheating</td></tr><tr><td data-row="4">ONT or router suddenly restarts</td><td data-row="4">Power adapter / power supply / overheating</td></tr><tr><td data-row="5">Problem occurs more often in hot afternoons</td><td data-row="5">Thermal issue</td></tr><tr><td data-row="6">Cleaning/reseating fibre connector changes the problem</td><td data-row="6">Optical contamination or connection issue</td></tr><tr><td data-row="7">Ethernet and Wi-Fi fail at the same time</td><td data-row="7">Router/ONT/uplink/power issue</td></tr><tr><td data-row="8">Only Wi-Fi devices disconnect</td><td data-row="8">Local Wi-Fi problem rather than fibre</td></tr></tbody></table><p>The most useful test is to check the <strong>ONT LEDs during the actual outage</strong>.</p><p>If the ONT loses optical synchronisation, the ISP should investigate the fibre path and optical levels.</p><p>If the ONT completely restarts, investigate power and thermal conditions first.</p><p>If the ONT remains stable but only Wi-Fi devices disconnect, the problem may be somewhere downstream of the fibre connection.</p><h2>Don't Start by Changing the Broadband Plan</h2><p>Intermittent disconnections do not automatically mean you need a faster package.</p><p>A 500Mbps connection that repeatedly drops to zero for several seconds is still a fault even if a speed test shows 500Mbps when the connection happens to be working.</p><p>Before changing plans, establish whether the problem is:</p><p><strong>Optical → ONT → Power → Router → Wi-Fi</strong></p><p>That fault boundary matters more than the advertised broadband speed.</p><h2>When to Ask the ISP for a Fibre Check</h2><p>Contact the ISP when:</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>The ONT repeatedly loses optical synchronisation</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>The LOS indicator appears during the outage</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>The connection drops even with a wired Ethernet test</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>The ONT has already been given adequate ventilation</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>The power adapter has been checked</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>The problem continues after local equipment checks</li></ol><p>Ask the technician to check the <strong>optical receive/transmit levels, connector condition and ONT stability</strong>, rather than simply requesting a router restart.</p><p>Huawei's troubleshooting documentation uses optical signal levels and ONU restart behaviour to distinguish fibre-path problems from customer-side equipment faults. (<a href="https://info.support.huawei.com/network/ptmngsys/Web/tsrev_access/cn/content/access/25_epononu_frequently_goes_online_and_offline/trouble_500801.html" rel="noopener noreferrer nofollow" target="_blank">Huawei</a>)</p><h2>NetBijak's Take</h2><p>Random disconnections are easier to troubleshoot when you stop treating every outage as an ISP speed problem. <strong>Check the fibre connector, ONT temperature and power adapter before replacing the whole network setup.</strong> A dirty optical interface, overheating ONT or unstable power supply can all produce intermittent symptoms that disappear before a technician arrives.</p><p class="ql-align-center"><strong style="color: rgb(255, 255, 255); background-color: initial;"><a href="/en/find-your-plan/" rel="noopener noreferrer" target="_blank">🎯Find My Plan →</a></strong></p><p><br></p><h2><br></h2></div>
+      
+    <section class="section-card" id="article-faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div id="article-faq-list" class="faq-list">
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="0">
+        <span>Can a dirty fibre connector cause intermittent disconnections?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Yes. Contamination on an optical connector can increase insertion loss and reflections and may cause unstable optical performance.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="1">
+        <span>Can an ONT overheat and cause the internet to drop?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Yes. Huawei documents ONT temperature alarms and states that an ONT outside its normal temperature range may not operate properly.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="2">
+        <span>Can a faulty power adapter cause fibre broadband to disconnect?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Yes. An unstable power supply can cause an ONU/ONT or router to restart, interrupting the internet connection. Huawei specifically identifies unstable power voltage as a possible cause of repeated ONU restarts.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="3">
+        <span>Should I clean the fibre connector myself?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Do not use tissue, cotton buds or household cleaning products. Fibre connectors should be cleaned using appropriate fibre-optic cleaning equipment and inspected before being connected.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="4">
+        <span>How do I know whether the problem is Wi-Fi or fibre?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Test the connection with Ethernet while the problem is occurring. If Ethernet also disconnects and the ONT shows an optical problem, investigate the fibre side. If Ethernet remains stable while Wi-Fi devices disconnect, focus on the local wireless network.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="5">
+        <span>Can hot weather make an ONT unstable?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Excessive ambient temperature can affect ONT operation. Huawei recommends keeping an ONT within its normal temperature range and providing good ventilation.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="6">
+        <span>Should I replace the router first?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Not necessarily. If the ONT itself is losing optical synchronisation or rebooting, replacing the Wi-Fi router will not fix the underlying problem. Check the ONT, fibre connection and power supply first.</p></div>
+    </div></div>
+    </section>
+    </div>
+    
+    <section class="section-card" style="margin-top:1.5rem">
+      <h2>Related Articles</h2>
+      <div class="blog-grid"><a href="/en/blog/interference-from-household-appliances-microwaves-bluetooth-and-cordless-phones/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/interference-from-household-appliances-microwaves.webp" alt="Interference from Household Appliances: Microwaves, Bluetooth and Cordless Phones" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">02/10/2026</div>
+          <div class="blog-card-title">Interference from Household Appliances: Microwaves, Bluetooth and Cordless Phones</div>
+          <p class="blog-card-excerpt">A microwave starts in the kitchen and the living-room Wi-Fi suddenly becomes unstable. In many cases...</p>
+        </div></a><a href="/en/blog/how-to-clear-router-cache-and-refresh-arp-tables-for-better-latency/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/how-to-clear-router-cache.webp" alt="How to Clear Router Cache and Refresh ARP Tables for Better Latency" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">20/09/2026</div>
+          <div class="blog-card-title">How to Clear Router Cache and Refresh ARP Tables for Better Latency</div>
+          <p class="blog-card-excerpt">If your ping becomes unstable after the router has been running for a long time, a reboot is worth t...</p>
+        </div></a><a href="/en/blog/submarine-cable-repairs-why-international-sites-slow-down-suddenly/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/submarine-cable-repairs.webp" alt="Submarine Cable Repairs: Why International Sites Slow Down Suddenly" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">09/09/2026</div>
+          <div class="blog-card-title">Submarine Cable Repairs: Why International Sites Slow Down Suddenly</div>
+          <p class="blog-card-excerpt">When overseas websites suddenly become slow but Malaysian websites and your local speed test still l...</p>
+        </div></a><a href="/en/blog/how-to-troubleshoot-unifi-internet-problems-a-simple-step-by-step-guide/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/how-to-troubleshoot-unifi-internet-problems.webp" alt="How to Troubleshoot Unifi Internet Problems: A Simple Step-by-Step Guide" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">05/09/2026</div>
+          <div class="blog-card-title">How to Troubleshoot Unifi Internet Problems: A Simple Step-by-Step Guide</div>
+          <p class="blog-card-excerpt">If your Unifi Internet is slow or not working, check for an outage first, check your equipment and i...</p>
+        </div></a><a href="/en/blog/why-is-my-internet-slow-a-step-by-step-guide-to-troubleshooting-slow-broadband/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/why-is-my-internet-slow.webp" alt="Why Is My Internet Slow? A Step-by-Step Guide to Troubleshooting Slow Broadband" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">31/08/2026</div>
+          <div class="blog-card-title">Why Is My Internet Slow? A Step-by-Step Guide to Troubleshooting Slow Broadband</div>
+          <p class="blog-card-excerpt">Why Is My Internet Slow?A slow Internet connection does not necessarily mean that your broadband pla...</p>
+        </div></a><a href="/en/blog/how-landlords-can-include-broadband-in-rent-without-getting-stuck-with-the-bill/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/how-landlords-can-include-broadband-in-rent-without-getting-stuck.webp" alt="How Landlords Can Include Broadband in Rent Without Getting Stuck With the Bill" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">04/10/2026</div>
+          <div class="blog-card-title">How Landlords Can Include Broadband in Rent Without Getting Stuck With the Bill</div>
+          <p class="blog-card-excerpt">Including fibre broadband in the rent can make a rental property easier to market. The problem start...</p>
+        </div></a></div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script>const ROOT_PATH = "/"; const PAGE_TRANSLATIONS = {"zh":"/zh/blog/-fibre-what-causes-random-broadband-disconnections/","ms":"/ms/blog/kenapa-broadband-selalu-terputus-secara-rawak-3-punca-yang-mudah-terlepas-pandang/","en":"/en/blog/what-causes-random-broadband-disconnections-intermittent-lag/"};</script>
+  <script src="/assets/js/tracking.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/assets/js/supabase-client.js"></script>
+  <script src="/assets/js/translations.js"></script>
+  <script src="/assets/js/site.js"></script>
+  <script src="/assets/js/homepage-banner.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("#article-faq-list .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#article-faq-list .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
+    });
+  </script>
+
+  <div id="mascot-widget" class="mascot-widget">
+    <button type="button" class="mascot-close-btn" id="mascot-close-btn" aria-label="Close">✕</button>
+    <a href="https://wa.me/60178835110?text=Hi%20NetBijak%2C%20I'm%20reading%20%22What%20Causes%20Random%20Broadband%20Disconnections%20(Intermittent%20Lag)%3F%22%20and%20have%20a%20question." target="_blank" class="mascot-avatar-link">
+      <img src="/assets/images/mascot.png" alt="NetBijak Assistant" class="mascot-avatar-img" />
+      <span class="mascot-bubble">Need help?</span>
+    </a>
+  </div>
+  <script>
+    (function() {
+      var storageKey = "mascot-closed-what-causes-random-broadband-disconnections-intermittent-lag";
+      var widget = document.getElementById("mascot-widget");
+      var closeBtn = document.getElementById("mascot-close-btn");
+      if (sessionStorage.getItem(storageKey)) {
+        widget.style.display = "none";
+      }
+      closeBtn.addEventListener("click", function() {
+        widget.style.display = "none";
+        sessionStorage.setItem(storageKey, "1");
+      });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>宽带为什么会随机断线？3 个常见 Fibre 故障原因</title>
+  <meta name="description" content="宽带明明测速正常，却每天随机断线？检查光纤接口污染、光猫过热和 Power Adapter 不稳定，找出间歇性断网的真正原因。" />
+  <meta name="geo.region" content="MY" />
+  <meta name="geo.placename" content="Malaysia" />
+  <meta property="og:title" content="宽带为什么会随机断线？3 个常见 Fibre 故障原因" />
+  <meta property="og:description" content="宽带明明测速正常，却每天随机断线？检查光纤接口污染、光猫过热和 Power Adapter 不稳定，找出间歇性断网的真正原因。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://netbijak.com/assets/images/articles/what-causes-random-broadband-disconnections.webp" />
+  <meta property="og:url" content="https://netbijak.com/zh/blog/-fibre-what-causes-random-broadband-disconnections/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://netbijak.com/zh/blog/-fibre-what-causes-random-broadband-disconnections/" />
+  <link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/blog/-fibre-what-causes-random-broadband-disconnections/" />
+  <link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/blog/kenapa-broadband-selalu-terputus-secara-rawak-3-punca-yang-mudah-terlepas-pandang/" />
+  <link rel="alternate" hreflang="en" href="https://netbijak.com/en/blog/what-causes-random-broadband-disconnections-intermittent-lag/" />
+  <link rel="alternate" hreflang="x-default" href="https://netbijak.com/en/blog/what-causes-random-broadband-disconnections-intermittent-lag/" />
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"灰尘真的会导致 Fibre 断线吗？","acceptedAnswer":{"@type":"Answer","text":"会。Corning 指出，Fibre Connector 污染会造成光功率损失、Insertion Loss 和 Back Reflection，并可能导致系统不稳定。"}},{"@type":"Question","name":"ONT 过热会导致 Internet 断线吗？","acceptedAnswer":{"@type":"Answer","text":"会。Huawei 的 ONT 资料明确指出，温度超过警报范围时，ONT 可能无法正常工作，并建议保持正常温度和良好通风。"}},{"@type":"Question","name":"Power Adapter 坏了会导致 Fibre 断线吗？","acceptedAnswer":{"@type":"Answer","text":"会。电源不稳定可能让 ONT 或 Router 重启，从而中断 Internet。TP-Link 也把电源供应和 Power Adapter 列为设备反复重启时应检查的项目。"}},{"@type":"Question","name":"可以自己用纸巾清理 Fibre Connector 吗？","acceptedAnswer":{"@type":"Answer","text":"不建议。Fibre Connector 应使用适当的光纤清洁工具处理，并在重新连接前进行检查。"}},{"@type":"Question","name":"怎么知道是 Fibre 还是 Wi-Fi 出问题？","acceptedAnswer":{"@type":"Answer","text":"在断线时用 Ethernet 测试。如果 Ethernet 也同时断，而且 ONT 出现 Optical/LOS 异常，应检查 Fibre。若 Ethernet 正常、只有 Wi-Fi 设备掉线，就应该从 Wi-Fi 环境排查。"}},{"@type":"Question","name":"天气太热会影响 ONT 吗？","acceptedAnswer":{"@type":"Answer","text":"过高的工作温度可能影响 ONT 正常运行。Huawei 建议确保 ONT 处于正常温度并保持良好通风。"}},{"@type":"Question","name":"应该先换 Router 吗？","acceptedAnswer":{"@type":"Answer","text":"不一定。如果 ONT 本身出现 Optical Loss 或不断重新启动，单纯更换 Wi-Fi Router 并不能解决 Fibre 或电源问题。"}}]}</script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="main">
+    <div id="blog-detail-container">
+      <a href="/zh/blog/" class="blog-back-link">← 返回部落格</a>
+      <span class="blog-type-tag">Article</span>
+      <img src="/assets/images/articles/what-causes-random-broadband-disconnections.webp" alt="为什么宽带会随机断线？三个容易忽略的 Fibre 故障原因" class="blog-detail-cover" loading="lazy" width="800" height="450" />
+      <div class="blog-detail-date">05/10/2026</div>
+      <h1 class="blog-detail-title">为什么宽带会随机断线？三个容易忽略的 Fibre 故障原因</h1>
+      
+    <section class="ai-summary-box">
+      <div class="ai-summary-badge">✨ NetBijak AI 智能摘要</div>
+      <p>宽带出现随机断线不一定总是ISP的网络问题，很多时候故障源于家中设备的细微因素。首先，光纤接口上的灰尘或油污会严重影响信号传输的稳定性。其次，ONT光猫若放置在密闭或高温环境中，极易因为过热而反复重启。此外，不匹配或老化的电源适配器也是导致网络瞬间掉线的隐形杀手。在向运营商报修前，用户应先观察设备状态灯并排查这些容易被忽视的物理因素，从而更精准地定位问题。通过科学的排查方法，您可以有效减少无谓的等待与报修时间。</p>
+    </section>
+      <div id="homepage-banner-carousel" class="homepage-banner-carousel hidden"></div>
+      <div class="blog-detail-content"><p>宽带正常几个小时后，突然断几秒、几十秒，过一阵子又恢复。</p><p>这种 <strong>Intermittent Disconnection</strong> 不一定是 ISP 的 Fibre Network 有问题。家里的 Fibre Connector、ONT/ONU 和 Power Adapter 都可能造成类似症状。</p><p>最值得先查的三个地方：</p><ol><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span>光纤接口污染</li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span>ONT/ONU 过热</li><li data-list="ordered"><span class="ql-ui" contenteditable="false"></span>电源适配器不稳定</li></ol><h2>1. 光纤接口有灰尘或污染</h2><p>Fibre Connector 的端面非常小，灰尘、油脂和其他污染物都会影响光信号通过。</p><p>Corning 指出，连接器污染会减少传输光功率，并造成 <strong>Insertion Loss（插入损耗）</strong> 和 <strong>Back Reflection（后向反射）</strong>，严重时可能导致系统不稳定。(<a href="https://www.corning.com/data-center/cala/es/home/knowledge-center/connector-cleaning-faqs.html" rel="noopener noreferrer nofollow" target="_blank">Corning</a>)</p><p>所以，如果 Fibre Connector 被灰尘、油污污染，可能出现：</p><p><strong>光信号不稳定 → ONT 失去同步 → 宽带断线 → 之后又恢复</strong></p><p>不要看到接口附近有灰尘或霉，就直接认定 Fibre 已经坏了。真正需要检查的是 <strong>Connector End Face</strong> 和实际 Optical Signal Level。</p><h3>应该怎么处理？</h3><p>不要拿纸巾、棉花棒或普通清洁剂去擦 Fibre Connector。</p><p>Corning 建议在连接前检查并使用适合 Fibre Optic Connector 的清洁工具。(<a href="https://www.corning.com/optical-communications/asean/en/home/products/unicam-connectors-resource-center/unicam-faqs/faqs.html" rel="noopener noreferrer nofollow" target="_blank">Corning</a>)</p><p>如果怀疑接口污染，直接让 ISP Technician 检查 Connector 和 Optical Power，比自己反复拔插更合适。</p><h2>2. ONT/ONU 过热</h2><p>ONT/ONU 是有主动电子元件的设备，同样需要散热。</p><p>Huawei 的 ONT 故障资料明确列出 <strong>ONT Temperature Alarm</strong>，并指出温度超出正常范围时，ONT 可能无法正常工作；建议确保设备处于正常温度并保持良好通风。(<a href="https://info.support.huawei.com/hedex/api/pages/EDOC1100413634/FEN1022J/03/resources/en-us_alarmref_0000001193537257.html" rel="noopener noreferrer nofollow" target="_blank">Huawei</a>)</p><p>如果 ONT 被放在：</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>密闭橱柜</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>其他发热电子设备上面</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>阳光直射的位置</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>通风很差的角落</li></ol><p>长时间运行后可能更容易出现不稳定或重新启动。</p><p>典型情况是：</p><p><strong>正常运行 → 温度升高 → ONT 异常 / Restart → Internet 恢复</strong></p><p>所以不要只看“平时有没有速度下降”。</p><p>如果断线总是在设备运行很久、或者天气特别热的时候出现，<strong>温度问题值得优先检查</strong>。</p><h2>3. Power Adapter 电源不稳定</h2><p>很多人排查断网时会检查 Fibre 和 Router，却忘了 Power Adapter。</p><p>电源供应不稳定，可能让 ONT 或 Router 突然重启。</p><p>TP-Link 的官方故障排查资料把 <strong>Power Supply、Power Adapter 和 Overheating</strong> 都列为 Router 反复重启的常见原因，并建议确认电源规格匹配及尝试其他插座。(<a href="https://www.tp-link.com/us/support/faq/3032/?app=tether" rel="noopener noreferrer nofollow" target="_blank">TP-Link</a>)</p><p>因此可能出现：</p><p><strong>Internet 断线 → ONT / Router 重启 → 几十秒后恢复</strong></p><p>看起来像 Fibre 掉线，其实设备根本是重新开机。</p><h3>先检查这些</h3><p>使用设备原装 Power Adapter。</p><p>如果更换过 Adapter，确认输出的 <strong>Voltage、Current 和 Connector</strong> 都符合设备要求。</p><p>不要因为“插头插得进去”就认为 Adapter 一定兼容。TP-Link 也提醒，不匹配的电源规格可能造成设备不稳定。(<a href="https://www.tp-link.com/us/support/faq/3032/?app=tether" rel="noopener noreferrer nofollow" target="_blank">TP-Link</a>)</p><p>也可以尝试换另一个电源插座。</p><h2>怎么分辨是哪一个故障？</h2><p>不要只看 Speedtest。</p><p>观察断线发生时，ONT 的状态：</p><table><tbody><tr><td data-row="1">现象</td><td data-row="1">应优先检查</td></tr><tr><td data-row="2">LOS / Optical 状态异常</td><td data-row="2">Fibre 路径、Connector、Optical Signal</td></tr><tr><td data-row="3">运行很久后才出现问题</td><td data-row="3">ONT 过热</td></tr><tr><td data-row="4">ONT / Router 自己重新启动</td><td data-row="4">Power Adapter、电源、过热</td></tr><tr><td data-row="5">天气炎热时特别频繁</td><td data-row="5">散热</td></tr><tr><td data-row="6">Ethernet 和 Wi-Fi 同时断</td><td data-row="6">ONT、Router、Power 或 Fibre</td></tr><tr><td data-row="7">只有 Wi-Fi 设备掉线</td><td data-row="7">本地 Wi-Fi 问题</td></tr></tbody></table><p>最有价值的信息，是<strong>断线发生当下的 ONT LED 状态</strong>。</p><p>如果 ONT 出现 Optical Synchronisation Loss，应该让 ISP 检查 Fibre Path 和 Optical Level。</p><p>如果 ONT 直接重启，则应该先检查 Power 和 Temperature。</p><p>如果 ONT 一直正常，只有手机和 Laptop 掉线，就不应该马上把问题归咎于 Fibre。</p><h2>不要一开始就换更快的 Broadband Plan</h2><p>100Mbps、500Mbps 或 1Gbps，都可能遇到随机断线。</p><p>一条 1Gbps Fibre 如果每隔几分钟就断一次，问题仍然是 <strong>Reliability</strong>，不是套餐速度不够。</p><p>先确定故障发生在哪一层：</p><p><strong>Fibre → ONT → Power → Router → Wi-Fi</strong></p><p>找到故障位置之后，才知道应该找 ISP、换 Power Adapter，还是处理家里的网络设备。</p><h2>什么时候应该找 ISP 检查 Fibre？</h2><p>出现以下情况，就应该让 ISP Technician 检查：</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>ONT 经常出现 LOS</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Optical Signal 经常失去同步</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Ethernet 也会同时断线</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>ONT 已经放在通风的位置，仍然反复重启</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Power Adapter 已确认正常，但问题继续</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>断线持续发生数天或数周</li></ol><p>要求检查时，可以直接说明：</p><p><strong>“请检查 Optical Power、Fibre Connector 和 ONT stability。”</strong></p><p>比单纯说“Internet 慢”更容易让 Technician 快速定位问题。</p><h2>NetBijak’s Take</h2><p>随机断线不一定是 ISP Fibre Network 的问题。<strong>先查 Fibre Connector、ONT 散热和 Power Adapter</strong>，这三个位置成本低、也最容易被忽略。只有确认问题发生在 Fibre Path，才需要进一步要求 ISP 做线路检查。</p><p class="ql-align-center"><strong style="color: rgb(255, 255, 255); background-color: initial;"><a href="/zh/find-your-plan/" rel="noopener noreferrer" target="_blank">🎯为我找配套 →</a></strong></p><h2><br></h2></div>
+      
+    <section class="section-card" id="article-faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div id="article-faq-list" class="faq-list">
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="0">
+        <span>灰尘真的会导致 Fibre 断线吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>会。Corning 指出，Fibre Connector 污染会造成光功率损失、Insertion Loss 和 Back Reflection，并可能导致系统不稳定。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="1">
+        <span>ONT 过热会导致 Internet 断线吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>会。Huawei 的 ONT 资料明确指出，温度超过警报范围时，ONT 可能无法正常工作，并建议保持正常温度和良好通风。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="2">
+        <span>Power Adapter 坏了会导致 Fibre 断线吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>会。电源不稳定可能让 ONT 或 Router 重启，从而中断 Internet。TP-Link 也把电源供应和 Power Adapter 列为设备反复重启时应检查的项目。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="3">
+        <span>可以自己用纸巾清理 Fibre Connector 吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>不建议。Fibre Connector 应使用适当的光纤清洁工具处理，并在重新连接前进行检查。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="4">
+        <span>怎么知道是 Fibre 还是 Wi-Fi 出问题？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>在断线时用 Ethernet 测试。如果 Ethernet 也同时断，而且 ONT 出现 Optical/LOS 异常，应检查 Fibre。若 Ethernet 正常、只有 Wi-Fi 设备掉线，就应该从 Wi-Fi 环境排查。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="5">
+        <span>天气太热会影响 ONT 吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>过高的工作温度可能影响 ONT 正常运行。Huawei 建议确保 ONT 处于正常温度并保持良好通风。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="6">
+        <span>应该先换 Router 吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>不一定。如果 ONT 本身出现 Optical Loss 或不断重新启动，单纯更换 Wi-Fi Router 并不能解决 Fibre 或电源问题。</p></div>
+    </div></div>
+    </section>
+    </div>
+    
+    <section class="section-card" style="margin-top:1.5rem">
+      <h2>相关文章</h2>
+      <div class="blog-grid"><a href="/zh/blog/-wi-fibluetooth-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/interference-from-household-appliances-microwaves.webp" alt="家用电器干扰 Wi-Fi：微波炉、Bluetooth 与无绳电话" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">02/10/2026</div>
+          <div class="blog-card-title">家用电器干扰 Wi-Fi：微波炉、Bluetooth 与无绳电话</div>
+          <p class="blog-card-excerpt">微波炉一启动，客厅 Wi-Fi 就突然变得不稳定，不一定是宽带线路出了问题。很多时候，真正出问题的是 2.4GHz 无线环境。Wi-Fi、Bluetooth，以及部分旧款无绳电话都可能使用或影响这一频...</p>
+        </div></a><a href="/zh/blog/puncak-borneo-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/why-more-mobile-towers-do-not-always-mean-better.webp" alt="为什么基站越来越多，网络还是会断？Puncak Borneo 的真实案例" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">22/09/2026</div>
+          <div class="blog-card-title">为什么基站越来越多，网络还是会断？Puncak Borneo 的真实案例</div>
+          <p class="blog-card-excerpt">基站增加可以改善覆盖，但不代表网络就不会发生大范围中断。Puncak Borneo 就是一个现实案例。根据《Sarawak Tribune》2026 年 9 月 21 日报道，当地 35 座新的 JE...</p>
+        </div></a><a href="/zh/blog/-arp-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/how-to-clear-router-cache.webp" alt="如何清除路由器缓存并刷新 ARP 表，改善网络延迟" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">20/09/2026</div>
+          <div class="blog-card-title">如何清除路由器缓存并刷新 ARP 表，改善网络延迟</div>
+          <p class="blog-card-excerpt">如果你的 Ping 在路由器长时间运行后开始变得不稳定，重启路由器值得尝试。但“清除路由器缓存就能降低 Ping”并不是一个准确的技术解释。重启主要是重置路由器内部的临时运行状态。到底能不能改善延迟，...</p>
+        </div></a><a href="/zh/blog/submarine-cable-repairs-zh/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/submarine-cable-repairs.webp" alt="海底光缆维修：为什么国外网站会突然变慢？" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">09/09/2026</div>
+          <div class="blog-card-title">海底光缆维修：为什么国外网站会突然变慢？</div>
+          <p class="blog-card-excerpt">如果你发现 马来西亚本地网站正常，但美国、日本或其他海外网站突然变慢，问题不一定出在你家的 Fibre Broadband。国际海底光缆发生故障或进行维修时，ISP 可用的国际传输容量可能减少。ISP...</p>
+        </div></a><a href="/zh/blog/unifi-internet-troubleshooting-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/how-to-troubleshoot-unifi-internet-problems.webp" alt="Unifi Internet 出问题怎么办？官方 Troubleshooting 步骤" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">05/09/2026</div>
+          <div class="blog-card-title">Unifi Internet 出问题怎么办？官方 Troubleshooting 步骤</div>
+          <p class="blog-card-excerpt">如果你的 Unifi Internet 很慢或者完全无法使用，先检查有没有 Outage，再检查设备和指示灯，然后重启设备，最后使用 EasyFix 自助排查。1. 先检查有没有 Outage 或 M...</p>
+        </div></a><a href="/zh/blog/-internet-troubleshooting-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/why-is-my-internet-slow.webp" alt="为什么我的 Internet 很慢？马来西亚家庭宽带 Troubleshooting 指南" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">31/08/2026</div>
+          <div class="blog-card-title">为什么我的 Internet 很慢？马来西亚家庭宽带 Troubleshooting 指南</div>
+          <p class="blog-card-excerpt">为什么我的 Internet 很慢？Internet 很慢，不一定代表你的 Broadband Plan 不够快。实际使用速度可能受到 Wi-Fi、Router 位置、连接设备数量、网络拥堵、设备能力...</p>
+        </div></a></div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script>const ROOT_PATH = "/"; const PAGE_TRANSLATIONS = {"zh":"/zh/blog/-fibre-what-causes-random-broadband-disconnections/","ms":"/ms/blog/kenapa-broadband-selalu-terputus-secara-rawak-3-punca-yang-mudah-terlepas-pandang/","en":"/en/blog/what-causes-random-broadband-disconnections-intermittent-lag/"};</script>
+  <script src="/assets/js/tracking.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/assets/js/supabase-client.js"></script>
+  <script src="/assets/js/translations.js"></script>
+  <script src="/assets/js/site.js"></script>
+  <script src="/assets/js/homepage-banner.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("#article-faq-list .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#article-faq-list .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
+    });
+  </script>
+
+  <div id="mascot-widget" class="mascot-widget">
+    <button type="button" class="mascot-close-btn" id="mascot-close-btn" aria-label="Close">✕</button>
+    <a href="https://wa.me/60178835110?text=Hi%20NetBijak%2C%20I'm%20reading%20%22%E4%B8%BA%E4%BB%80%E4%B9%88%E5%AE%BD%E5%B8%A6%E4%BC%9A%E9%9A%8F%E6%9C%BA%E6%96%AD%E7%BA%BF%EF%BC%9F%E4%B8%89%E4%B8%AA%E5%AE%B9%E6%98%93%E5%BF%BD%E7%95%A5%E7%9A%84%20Fibre%20%E6%95%85%E9%9A%9C%E5%8E%9F%E5%9B%A0%22%20and%20have%20a%20question." target="_blank" class="mascot-avatar-link">
+      <img src="/assets/images/mascot.png" alt="NetBijak Assistant" class="mascot-avatar-img" />
+      <span class="mascot-bubble">有问题吗？</span>
+    </a>
+  </div>
+  <script>
+    (function() {
+      var storageKey = "mascot-closed--fibre-what-causes-random-broadband-disconnections";
+      var widget = document.getElementById("mascot-widget");
+      var closeBtn = document.getElementById("mascot-close-btn");
+      if (sessionStorage.getItem(storageKey)) {
+        widget.style.display = "none";
+      }
+      closeBtn.addEventListener("click", function() {
+        widget.style.display = "none";
+        sessionStorage.setItem(storageKey, "1");
+      });
+    })();
+  </script>
+</body>
+</html>
