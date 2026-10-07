@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fibre Cable Terputus Akibat Kerja Jalan: Bagaimana Ia Dibaiki?</title>
+  <meta name="description" content="Kenapa kerja jalan yang memotong satu Fibre Cable boleh menyebabkan Unifi, Maxis dan pengguna lain dalam satu kawasan terputus Internet? Fahami proses fault detection, rerouting, splicing dan cable replacement." />
+  <meta name="geo.region" content="MY" />
+  <meta name="geo.placename" content="Malaysia" />
+  <meta property="og:title" content="Fibre Cable Terputus Akibat Kerja Jalan: Bagaimana Ia Dibaiki?" />
+  <meta property="og:description" content="Kenapa kerja jalan yang memotong satu Fibre Cable boleh menyebabkan Unifi, Maxis dan pengguna lain dalam satu kawasan terputus Internet? Fahami proses fault detection, rerouting, splicing dan cable replacement." />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://netbijak.com/assets/images/articles/fibre-cable-cut-by-roadworks-how-infrastructure-damage.webp" />
+  <meta property="og:url" content="https://netbijak.com/ms/blog/fibre-cable-terputus-akibat-kerja-jalan-bagaimana-infrastruktur-dibaiki/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://netbijak.com/ms/blog/fibre-cable-terputus-akibat-kerja-jalan-bagaimana-infrastruktur-dibaiki/" />
+  <link rel="alternate" hreflang="en" href="https://netbijak.com/en/blog/fibre-cable-cut-by-roadworks-how-infrastructure-damage-gets-repaired/" />
+  <link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/blog/fibre-cable-terputus-akibat-kerja-jalan-bagaimana-infrastruktur-dibaiki/" />
+  <link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/blog/-fibre-cable-cut-by-roadworks/" />
+  <link rel="alternate" hreflang="x-default" href="https://netbijak.com/en/blog/fibre-cable-cut-by-roadworks-how-infrastructure-damage-gets-repaired/" />
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Kenapa satu Fibre Cable yang dipotong boleh menyebabkan seluruh kawasan terputus?","acceptedAnswer":{"@type":"Answer","text":"FTTH menggunakan Feeder dan Distribution Fibre untuk melayan ramai pelanggan. Jika bahagian upstream seperti feeder terputus, banyak sambungan di downstream boleh terjejas."}},{"@type":"Question","name":"Kenapa technician tidak boleh terus sambung dua hujung kabel?","acceptedAnswer":{"@type":"Answer","text":"Feeder Cable mungkin mengandungi banyak Fibre yang membawa pelbagai perkhidmatan. Technician perlu mengenal pasti Fibre yang betul, melakukan splicing dan melindunginya dalam Fibre Splice Closure yang sesuai."}},{"@type":"Question","name":"Bolehkah Internet dipulihkan sebelum Fibre Cable dibaiki?","acceptedAnswer":{"@type":"Answer","text":"Ya, jika terdapat laluan alternatif. TM pernah menggunakan Traffic Rerouting untuk memulihkan perkhidmatan ketika kerja Fibre Repair dan Replacement masih berjalan."}},{"@type":"Question","name":"Kenapa major Fibre Cut boleh mengambil masa beberapa hari?","acceptedAnswer":{"@type":"Answer","text":"Selain splicing, repair mungkin memerlukan fault localisation, excavation, kawalan trafik, cable replacement, network restoration dan testing."}},{"@type":"Question","name":"Bolehkah Unifi dan Maxis terjejas oleh kerja jalan yang sama?","acceptedAnswer":{"@type":"Answer","text":"Boleh. Brand yang berbeza tidak semestinya mempunyai physical route yang berasingan di setiap lokasi. Shared duct, laluan atau infrastructure boleh mewujudkan common point of failure."}},{"@type":"Question","name":"Bagaimana saya tahu sama ada masalah berlaku di rumah saya atau seluruh kawasan?","acceptedAnswer":{"@type":"Answer","text":"Semak sama ada jiran turut terputus dan periksa Network Status ISP. Unifi dan Maxis menyediakan alat untuk menyemak gangguan rangkaian."}},{"@type":"Question","name":"Adakah restart ONT boleh membaiki Fibre Cable yang dipotong?","acceptedAnswer":{"@type":"Answer","text":"Tidak. Jika external Fibre Infrastructure telah dipotong secara fizikal, restart ONT atau Router tidak akan membaiki kabel tersebut. Semak status outage ISP terlebih dahulu."}}]}</script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="main">
+    <div id="blog-detail-container">
+      <a href="/ms/blog/" class="blog-back-link">← Kembali ke Blog</a>
+      <span class="blog-type-tag">Article</span>
+      <img src="/assets/images/articles/fibre-cable-cut-by-roadworks-how-infrastructure-damage.webp" alt="Fibre Cable Terputus Akibat Kerja Jalan: Bagaimana Infrastruktur Dibaiki?" class="blog-detail-cover" loading="lazy" width="800" height="450" />
+      <div class="blog-detail-date">08/10/2026</div>
+      <h1 class="blog-detail-title">Fibre Cable Terputus Akibat Kerja Jalan: Bagaimana Infrastruktur Dibaiki?</h1>
+      
+    <section class="ai-summary-box">
+      <div class="ai-summary-badge">✨ Ringkasan AI NetBijak</div>
+      <p>Gangguan internet secara meluas sering berpunca daripada kerosakan kabel gentian optik bawah tanah akibat kerja-kerja pembinaan atau penyelenggaraan jalan raya. Apabila kabel utama seperti feeder atau distribution dipotong, ratusan hingga ribuan pelanggan boleh terjejas serentak kerana struktur rangkaian FTTH yang saling berkait. Proses pembaikan bukan sekadar menyambung semula kabel, tetapi melibatkan pengesanan lokasi kerosakan, penyediaan akses selamat, dan penyambungan teknikal yang rumit. Selain itu, ISP sering berkongsi infrastruktur fizikal yang sama, menyebabkan gangguan berlaku pada pelbagai jenama serentak di kawasan tersebut. Pengguna dinasihatkan untuk menyemak status rangkaian ISP terlebih dahulu sebelum membuat laporan gangguan jika mendapati jiran turut mengalami masalah yang sama.</p>
+    </section>
+      <div id="homepage-banner-carousel" class="homepage-banner-carousel hidden"></div>
+      <div class="blog-detail-content"><p>Apabila kerja jalan secara tidak sengaja memotong underground Fibre Cable, ratusan atau ribuan pelanggan broadband di kawasan berdekatan boleh kehilangan Internet pada masa yang sama.</p><p>Biasanya kabel yang rosak bukan sekadar <strong>drop cable untuk satu rumah</strong>. Ia mungkin sebahagian daripada <strong>feeder, trunk atau distribution network</strong> yang membawa sambungan kepada banyak pelanggan.</p><h2>Kenapa Satu Fibre Cable Boleh Menjejaskan Satu Kawasan?</h2><p>FTTH bukan dibina dengan satu kabel individu dari setiap rumah terus ke ISP.</p><p>Struktur PON secara ringkas kelihatan seperti ini:</p><div class="ql-code-block-container" spellcheck="false"><div class="ql-code-block" data-language="plain">ISP / OLT</div><div class="ql-code-block" data-language="plain">    │</div><div class="ql-code-block" data-language="plain">Feeder / Main Fibre</div><div class="ql-code-block" data-language="plain">    │</div><div class="ql-code-block" data-language="plain">Splitter / Distribution Point</div><div class="ql-code-block" data-language="plain">    │</div><div class="ql-code-block" data-language="plain">Distribution Fibre</div><div class="ql-code-block" data-language="plain">    ├── House A</div><div class="ql-code-block" data-language="plain">    ├── House B</div><div class="ql-code-block" data-language="plain">    ├── House C</div><div class="ql-code-block" data-language="plain">    ├── House D</div><div class="ql-code-block" data-language="plain">    └── ...</div></div><p>Dokumentasi FTTH Corning membezakan bahagian <strong>Feeder, Distribution dan Drop</strong>. Feeder berada di bahagian upstream dan menghubungkan Central Office dengan Distribution Network. (<a href="https://www.corning.com/fiber-to-the-premise/emea/en/home/define-needs.html" rel="noopener noreferrer nofollow" target="_blank">Corning</a>)</p><p>Jadi apabila kerja jalan memotong feeder yang penting, gangguan boleh melibatkan jauh lebih banyak rumah daripada lokasi kabel yang dipotong itu sendiri.</p><h2>Apa Yang Berlaku Selepas Fibre Dipotong?</h2><p>Technician tidak semestinya terus menyambung kedua-dua hujung kabel.</p><p>Pasukan rangkaian perlu menentukan:</p><p><strong>Di mana lokasi fault?</strong></p><p><strong>Perkhidmatan mana yang terjejas?</strong></p><p><strong>Adakah trafik boleh dialihkan melalui laluan lain?</strong></p><p>Secara umum:</p><p><strong>1. Fault dikesan</strong></p><p>Network monitoring atau aduan daripada ramai pelanggan menunjukkan gangguan.</p><p><strong>2. Break point dikenal pasti</strong></p><p>Technician menggunakan Fibre Testing Equipment dan network records untuk menentukan lokasi kerosakan.</p><p><strong>3. Traffic boleh di-reroute</strong></p><p>Jika terdapat laluan alternatif, trafik boleh dialihkan sementara.</p><p>TM pernah melaporkan insiden Fibre Cable Cut akibat kerja pembinaan di Sentul dan Sabak Bernam. Ketika kerja repair dan replacement masih berjalan, TM menggunakan <strong>Traffic Rerouting</strong> untuk memulihkan perkhidmatan yang terjejas. (<a href="https://www.tm.com.my/news/maklum-balak-kepada-kenyataan-media-mcmc-response-to-mcmcs-media-statement" rel="noopener noreferrer nofollow" target="_blank">TM</a>)</p><p>Jadi:</p><p><strong>Internet kembali normal ≠ Fibre Cable sudah dibaiki sepenuhnya.</strong></p><h2>Kenapa Kerja Jalan Menjadikan Repair Lebih Sukar?</h2><p>Jika kabel berada di bawah jalan, technician tidak boleh sekadar bekerja dari tepi jalan.</p><p>Kabel mungkin berada dalam:</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Underground duct</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Manhole</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Handhole</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Cable chamber</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Road reserve</li></ol><p>Akses yang selamat perlu disediakan sebelum kerja Fibre Repair boleh dibuat.</p><p>Dokumen JKR berkaitan kerja jalan turut merangkumi <strong>Underground Utility Detection and Mapping</strong>, termasuk pengesanan kabel telekomunikasi, kabel elektrik, paip air dan utiliti bawah tanah lain. (<a href="https://epsmg.jkr.gov.my/images/2/25/NTJ_14-87_%28Pindaan_2020%29_Model_Terms_Of_Reference_For_Road_And_Bridge_Engineering_Survey.pdf" rel="noopener noreferrer nofollow" target="_blank">JKR</a>)</p><p>Sebab itu Fibre Cable Cut akibat kerja jalan boleh menjadi gabungan:</p><p><strong>Telecom Repair + Excavation + Roadwork Coordination</strong></p><p>bukan sekadar technician datang ke rumah pelanggan.</p><h2>Bagaimana Fibre Yang Dipotong Dibaiki?</h2><p>Selepas kabel boleh diakses, pasukan teknikal akan menentukan sama ada kerosakan boleh diselesaikan dengan <strong>Fibre Splicing</strong> atau sebahagian kabel perlu diganti.</p><p>Rangkaian FTTH besar menggunakan kabel yang mengandungi banyak Fibre. Feeder dan Distribution Cable disambungkan dan dilindungi menggunakan <strong>Fibre Splice Closure</strong>. CommScope menyenaraikan enclosure yang direka untuk splicing feeder dan distribution cables. (<a href="https://www.commscope.com/network-type/fttx-access/outside-plant-fiber-connectivity/fiber-splice-closures/itemcj9788-000/" rel="noopener noreferrer nofollow" target="_blank">CommScope</a>)</p><p>Jadi prosesnya bukan sekadar:</p><blockquote>“Sambung dua hujung kabel.”</blockquote><p>Technician perlu mengenal pasti Fibre yang terjejas, menyediakan hujung Fibre dengan betul, melakukan Fusion Splicing dan melindungi sambungan tersebut di dalam closure yang sesuai.</p><h2>Kenapa Main Trunk Fibre Boleh Ambil Beberapa Hari Untuk Dipulihkan?</h2><p>Splicing itu sendiri bukan semestinya bahagian paling lama.</p><h3>Mencari lokasi kerosakan</h3><p>Pasukan network perlu menentukan lokasi sebenar break dan perkhidmatan yang terjejas.</p><h3>Mendapatkan akses kepada kabel</h3><p>Jika kabel berada di bawah jalan, kerja excavation dan kawalan keselamatan mungkin diperlukan.</p><h3>Mengurus kabel dengan banyak Fibre</h3><p>Satu feeder cable boleh membawa banyak sambungan kepada downstream network. Setiap Fibre yang terjejas perlu dikenal pasti dengan betul.</p><h3>Mengembalikan Network Path</h3><p>Jika trafik telah di-reroute, network mungkin perlu dikembalikan kepada laluan asal selepas cable repair selesai.</p><h3>Testing</h3><p>Selepas splicing atau cable replacement, Fibre perlu diuji sebelum network dianggap stabil.</p><p>Sebab itu major Fibre Cut tidak boleh dibandingkan dengan kerosakan drop cable di satu rumah.</p><h2>Kenapa Unifi dan Maxis Boleh Terputus Pada Masa Yang Sama?</h2><p>Brand yang berbeza tidak semestinya bermaksud laluan fizikal yang sepenuhnya berasingan.</p><p>Provider boleh bergantung pada:</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Laluan jalan yang sama</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Duct yang sama</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Infrastructure tertentu</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Common network facilities</li></ol><p>Jadi:</p><p><strong>Unifi ialah satu brand dan Maxis ialah satu lagi</strong></p><p>tidak bermaksud:</p><p><strong>kedua-duanya mempunyai Physical Fibre Route yang berasingan di setiap kawasan.</strong></p><p>Jika terdapat satu common infrastructure dependency, satu kejadian kerja jalan boleh menjadi common point of failure.</p><h2>Bolehkah ISP Bypass Fibre Yang Terputus?</h2><p><strong>Kadang-kadang boleh.</strong></p><p>Jika terdapat laluan alternatif dengan kapasiti yang mencukupi, traffic boleh di-reroute.</p><p>TM pernah menggunakan kaedah ini untuk memulihkan perkhidmatan ketika kerja repair Fibre Cable masih dijalankan. (<a href="https://www.tm.com.my/news/maklum-balak-kepada-kenyataan-media-mcmc-response-to-mcmcs-media-statement" rel="noopener noreferrer nofollow" target="_blank">TM</a>)</p><p>Tetapi ia bergantung kepada architecture rangkaian.</p><p>Tidak semua kawasan mempunyai backup route yang mencukupi untuk mengekalkan semua perkhidmatan.</p><h2>Apa Yang Pengguna Patut Buat Ketika Gangguan Besar?</h2><p>Jika ramai jiran terputus Internet pada masa yang sama, jangan terus restart ONT berkali-kali.</p><p>Semak dahulu status rangkaian ISP.</p><p>Unifi menyediakan Service Alerts dan Service Tracker untuk membantu pelanggan melihat perkembangan gangguan serta technical report mereka. (<a href="https://unifi.com.my/unifipromise" rel="noopener noreferrer nofollow" target="_blank">Unifi</a>)</p><p>Maxis juga mempunyai Network Status Checker berdasarkan lokasi untuk Planned Maintenance dan Unplanned Disruption. (<a href="https://www.maxis.com.my/en/about-maxis/maxis-network/mobile-network-checker/" rel="noopener noreferrer nofollow" target="_blank">Maxis</a>)</p><p>Jika:</p><p><strong>Rumah anda terputus + jiran juga terputus + berlaku serentak</strong></p><p>kemungkinan masalah infrastructure kawasan lebih tinggi berbanding beberapa router rumah rosak pada masa yang sama.</p><h2>Bagaimana Dengan Jaminan Pemulihan 24 Jam Unifi?</h2><p>Unifi kini menawarkan <strong>24-Hour Service Restoration</strong> dan menyatakan bahawa pelanggan yang layak boleh menerima <strong>RM50 Bill Rebate</strong> jika perkhidmatan tidak dipulihkan dalam tempoh 24 jam selepas laporan rasmi dibuat. Syarat dan pengecualian semasa tetap terpakai. (<a href="https://unifi.com.my/unifipromise" rel="noopener noreferrer nofollow" target="_blank">Unifi</a>)</p><p>Tetapi jangan tafsir ini sebagai:</p><blockquote>“Setiap Fibre Cable Cut akibat kerja jalan mesti dibaiki secara fizikal dalam 24 jam.”</blockquote><p><strong>Service Restoration dan Physical Cable Repair ialah dua perkara berbeza.</strong></p><p>ISP mungkin memulihkan Internet melalui rerouting terlebih dahulu sementara kabel yang rosak masih dalam proses repair.</p><h2>NetBijak's Take</h2><p>Fibre Cut akibat kerja jalan menjadi masalah besar apabila kabel yang rosak ialah <strong>Feeder atau Main Trunk</strong> yang membawa sambungan kepada banyak kawasan. Proses pemulihan boleh melibatkan fault localisation, excavation, splicing atau cable replacement, network rerouting dan testing. Jika terdapat laluan alternatif, Internet mungkin dipulihkan dahulu sebelum kabel fizikal selesai dibaiki.</p><p class="ql-align-center"><strong style="color: rgb(255, 255, 255); background-color: initial;"><a href="/ms/find-your-plan/" rel="noopener noreferrer" target="_blank">🎯Cari Pelan Saya →</a></strong></p><h2><br></h2></div>
+      
+    <section class="section-card" id="article-faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div id="article-faq-list" class="faq-list">
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="0">
+        <span>Kenapa satu Fibre Cable yang dipotong boleh menyebabkan seluruh kawasan terputus?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>FTTH menggunakan Feeder dan Distribution Fibre untuk melayan ramai pelanggan. Jika bahagian upstream seperti feeder terputus, banyak sambungan di downstream boleh terjejas.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="1">
+        <span>Kenapa technician tidak boleh terus sambung dua hujung kabel?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Feeder Cable mungkin mengandungi banyak Fibre yang membawa pelbagai perkhidmatan. Technician perlu mengenal pasti Fibre yang betul, melakukan splicing dan melindunginya dalam Fibre Splice Closure yang sesuai.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="2">
+        <span>Bolehkah Internet dipulihkan sebelum Fibre Cable dibaiki?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Ya, jika terdapat laluan alternatif. TM pernah menggunakan Traffic Rerouting untuk memulihkan perkhidmatan ketika kerja Fibre Repair dan Replacement masih berjalan.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="3">
+        <span>Kenapa major Fibre Cut boleh mengambil masa beberapa hari?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Selain splicing, repair mungkin memerlukan fault localisation, excavation, kawalan trafik, cable replacement, network restoration dan testing.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="4">
+        <span>Bolehkah Unifi dan Maxis terjejas oleh kerja jalan yang sama?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Boleh. Brand yang berbeza tidak semestinya mempunyai physical route yang berasingan di setiap lokasi. Shared duct, laluan atau infrastructure boleh mewujudkan common point of failure.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="5">
+        <span>Bagaimana saya tahu sama ada masalah berlaku di rumah saya atau seluruh kawasan?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Semak sama ada jiran turut terputus dan periksa Network Status ISP. Unifi dan Maxis menyediakan alat untuk menyemak gangguan rangkaian.</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="6">
+        <span>Adakah restart ONT boleh membaiki Fibre Cable yang dipotong?</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>Tidak. Jika external Fibre Infrastructure telah dipotong secara fizikal, restart ONT atau Router tidak akan membaiki kabel tersebut. Semak status outage ISP terlebih dahulu.</p></div>
+    </div></div>
+    </section>
+    </div>
+    
+    <section class="section-card" style="margin-top:1.5rem">
+      <h2>Artikel Berkaitan</h2>
+      <div class="blog-grid"><a href="/ms/blog/kenapa-broadband-selalu-terputus-secara-rawak-3-punca-yang-mudah-terlepas-pandang/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/what-causes-random-broadband-disconnections.webp" alt="Kenapa Broadband Selalu Terputus Secara Rawak? 3 Punca Yang Mudah Terlepas Pandang" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">05/10/2026</div>
+          <div class="blog-card-title">Kenapa Broadband Selalu Terputus Secara Rawak? 3 Punca Yang Mudah Terlepas Pandang</div>
+          <p class="blog-card-excerpt">Internet berfungsi seperti biasa selama beberapa jam, kemudian tiba-tiba terputus beberapa saat atau...</p>
+        </div></a><a href="/ms/blog/gangguan-wi-fi-daripada-peralatan-rumah-microwave-bluetooth-dan-telefon-tanpa-wayar/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/interference-from-household-appliances-microwaves.webp" alt="Gangguan Wi-Fi Daripada Peralatan Rumah: Microwave, Bluetooth dan Telefon Tanpa Wayar" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">02/10/2026</div>
+          <div class="blog-card-title">Gangguan Wi-Fi Daripada Peralatan Rumah: Microwave, Bluetooth dan Telefon Tanpa Wayar</div>
+          <p class="blog-card-excerpt">Apabila microwave di dapur dihidupkan dan Wi-Fi di ruang tamu terus menjadi perlahan atau tidak stab...</p>
+        </div></a><a href="/ms/blog/cara-kosongkan-cache-router-dan-refresh-arp-table-untuk-kurangkan-latency/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/how-to-clear-router-cache.webp" alt="Cara Kosongkan Cache Router dan Refresh ARP Table untuk Kurangkan Latency" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">20/09/2026</div>
+          <div class="blog-card-title">Cara Kosongkan Cache Router dan Refresh ARP Table untuk Kurangkan Latency</div>
+          <p class="blog-card-excerpt">Kalau Ping mula tidak stabil selepas router digunakan berterusan untuk tempoh yang lama, reboot mema...</p>
+        </div></a><a href="/ms/blog/pembaikan-kabel-dasar-laut-kenapa-website-antarabangsa-tiba-tiba-jadi-slow/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/submarine-cable-repairs.webp" alt="Pembaikan Kabel Dasar Laut: Kenapa Website Antarabangsa Tiba-Tiba Jadi Slow?" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">09/09/2026</div>
+          <div class="blog-card-title">Pembaikan Kabel Dasar Laut: Kenapa Website Antarabangsa Tiba-Tiba Jadi Slow?</div>
+          <p class="blog-card-excerpt">Kalau website Malaysia masih boleh dibuka seperti biasa tetapi website dari Amerika Syarikat, Jepun ...</p>
+        </div></a><a href="/ms/blog/cara-troubleshoot-internet-unifi-panduan-langkah-demi-langkah/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/how-to-troubleshoot-unifi-internet-problems.webp" alt="Cara Troubleshoot Internet Unifi: Panduan Langkah demi Langkah" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">05/09/2026</div>
+          <div class="blog-card-title">Cara Troubleshoot Internet Unifi: Panduan Langkah demi Langkah</div>
+          <p class="blog-card-excerpt">Jika Internet Unifi anda perlahan atau tidak berfungsi, semak outage dahulu, periksa peralatan dan l...</p>
+        </div></a><a href="/ms/blog/kenapa-internet-saya-perlahan/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/why-is-my-internet-slow.webp" alt="Kenapa Internet Saya Perlahan?" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">31/08/2026</div>
+          <div class="blog-card-title">Kenapa Internet Saya Perlahan?</div>
+          <p class="blog-card-excerpt">Kenapa Internet Saya Perlahan?Internet yang perlahan tidak semestinya bermaksud pelan broadband anda...</p>
+        </div></a></div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script>const ROOT_PATH = "/"; const PAGE_TRANSLATIONS = {"en":"/en/blog/fibre-cable-cut-by-roadworks-how-infrastructure-damage-gets-repaired/","ms":"/ms/blog/fibre-cable-terputus-akibat-kerja-jalan-bagaimana-infrastruktur-dibaiki/","zh":"/zh/blog/-fibre-cable-cut-by-roadworks/"};</script>
+  <script src="/assets/js/tracking.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/assets/js/supabase-client.js"></script>
+  <script src="/assets/js/translations.js"></script>
+  <script src="/assets/js/site.js"></script>
+  <script src="/assets/js/homepage-banner.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("#article-faq-list .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#article-faq-list .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
+    });
+  </script>
+
+  <div id="mascot-widget" class="mascot-widget">
+    <button type="button" class="mascot-close-btn" id="mascot-close-btn" aria-label="Close">✕</button>
+    <a href="https://wa.me/60178835110?text=Hi%20NetBijak%2C%20I'm%20reading%20%22Fibre%20Cable%20Terputus%20Akibat%20Kerja%20Jalan%3A%20Bagaimana%20Infrastruktur%20Dibaiki%3F%22%20and%20have%20a%20question." target="_blank" class="mascot-avatar-link">
+      <img src="/assets/images/mascot.png" alt="NetBijak Assistant" class="mascot-avatar-img" />
+      <span class="mascot-bubble">Ada soalan?</span>
+    </a>
+  </div>
+  <script>
+    (function() {
+      var storageKey = "mascot-closed-fibre-cable-terputus-akibat-kerja-jalan-bagaimana-infrastruktur-dibaiki";
+      var widget = document.getElementById("mascot-widget");
+      var closeBtn = document.getElementById("mascot-close-btn");
+      if (sessionStorage.getItem(storageKey)) {
+        widget.style.display = "none";
+      }
+      closeBtn.addEventListener("click", function() {
+        widget.style.display = "none";
+        sessionStorage.setItem(storageKey, "1");
+      });
+    })();
+  </script>
+</body>
+</html>

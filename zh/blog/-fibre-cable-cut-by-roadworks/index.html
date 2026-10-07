@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>道路施工切断 Fibre Cable：马来西亚主光缆如何修复？</title>
+  <meta name="description" content="为什么道路工程切断一条 Fibre Cable，会让整个区域的 Unifi、Maxis 等宽带一起断线？了解 Main Trunk、故障定位、绕路、熔纤和实际修复流程。" />
+  <meta name="geo.region" content="MY" />
+  <meta name="geo.placename" content="Malaysia" />
+  <meta property="og:title" content="道路施工切断 Fibre Cable：马来西亚主光缆如何修复？" />
+  <meta property="og:description" content="为什么道路工程切断一条 Fibre Cable，会让整个区域的 Unifi、Maxis 等宽带一起断线？了解 Main Trunk、故障定位、绕路、熔纤和实际修复流程。" />
+  <meta property="og:type" content="article" />
+  <meta property="og:image" content="https://netbijak.com/assets/images/articles/fibre-cable-cut-by-roadworks-how-infrastructure-damage.webp" />
+  <meta property="og:url" content="https://netbijak.com/zh/blog/-fibre-cable-cut-by-roadworks/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="canonical" href="https://netbijak.com/zh/blog/-fibre-cable-cut-by-roadworks/" />
+  <link rel="alternate" hreflang="en" href="https://netbijak.com/en/blog/fibre-cable-cut-by-roadworks-how-infrastructure-damage-gets-repaired/" />
+  <link rel="alternate" hreflang="ms" href="https://netbijak.com/ms/blog/fibre-cable-terputus-akibat-kerja-jalan-bagaimana-infrastruktur-dibaiki/" />
+  <link rel="alternate" hreflang="zh" href="https://netbijak.com/zh/blog/-fibre-cable-cut-by-roadworks/" />
+  <link rel="alternate" hreflang="x-default" href="https://netbijak.com/en/blog/fibre-cable-cut-by-roadworks-how-infrastructure-damage-gets-repaired/" />
+  <link rel="icon" type="image/png" href="/assets/images/favicon.png" />
+  <link rel="stylesheet" href="/assets/css/style.css" />
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"为什么一条 Fibre Cable 断掉，会影响整个区域？","acceptedAnswer":{"@type":"Answer","text":"FTTH 使用 Feeder 和 Distribution Fibre 为多个用户提供连接。如果受损的是上游 Feeder Cable，多个下游区域都可能同时失去服务。"}},{"@type":"Question","name":"为什么 Technician 不能直接把断掉的两端接起来？","acceptedAnswer":{"@type":"Answer","text":"主干 Fibre Cable 可能包含大量 Fibre，并承载多个下游服务。Technician 必须确认正确 Fibre、进行准备和 Splicing，再把接点安装在适当的 Splice Closure 内。"}},{"@type":"Question","name":"Fibre Cable 还没修好，Internet 可以先恢复吗？","acceptedAnswer":{"@type":"Answer","text":"可以，前提是网络存在可用的替代路径。TM 过去曾在 Fibre Cable Repair 尚未完成时，通过 Rerouting Traffic 恢复受影响服务。"}},{"@type":"Question","name":"为什么道路施工造成的 Fibre Cut 可能要几天？","acceptedAnswer":{"@type":"Answer","text":"除了 Splicing，本身还可能涉及断点定位、地下开挖、道路安全安排、Cable Replacement、网络重新切换和最终测试。"}},{"@type":"Question","name":"Unifi 和 Maxis 可以因为同一次道路施工一起断网吗？","acceptedAnswer":{"@type":"Answer","text":"有可能。不同品牌不代表每个地区都有完全独立的 Physical Fibre Route。共同使用的道路走廊、Duct 或其他 Infrastructure 都可能形成共同故障点。"}},{"@type":"Question","name":"怎么知道是我家自己的故障，还是整个地区断网？","acceptedAnswer":{"@type":"Answer","text":"看看邻居是否也同时断线，再检查 ISP 的 Network Status。\nUnifi 和 Maxis 都提供网络状态查询工具。"}},{"@type":"Question","name":"一直重启 ONT 能解决主干 Fibre Cut 吗？","acceptedAnswer":{"@type":"Answer","text":"不能。如果外部 Fibre Infrastructure 已经被道路工程物理切断，重启 ONT 或 Router 不会修好 Fibre。先检查 ISP 的 outage information 会更有效。"}}]}</script>
+</head>
+<body>
+  <div id="site-header"></div>
+
+  <main class="main">
+    <div id="blog-detail-container">
+      <a href="/zh/blog/" class="blog-back-link">← 返回部落格</a>
+      <span class="blog-type-tag">Article</span>
+      <img src="/assets/images/articles/fibre-cable-cut-by-roadworks-how-infrastructure-damage.webp" alt="道路施工切断 Fibre Cable 后，整区宽带是怎样修复的？" class="blog-detail-cover" loading="lazy" width="800" height="450" />
+      <div class="blog-detail-date">08/10/2026</div>
+      <h1 class="blog-detail-title">道路施工切断 Fibre Cable 后，整区宽带是怎样修复的？</h1>
+      
+    <section class="ai-summary-box">
+      <div class="ai-summary-badge">✨ NetBijak AI 智能摘要</div>
+      <p>道路施工导致光纤电缆被切断，通常是因为受损线路属于核心的Feeder或Trunk架构，导致大片区域用户同时断网。修复过程并非简单的连接电缆，而是涉及故障定位、地下设施挖掘、复杂的熔接以及网络流量重定向等多个步骤。即使宽带服务通过备用路径提前恢复，物理线路的修复仍需较长时间以确保稳定性。不同ISP可能会共享同一段物理基础设施，因此即使品牌不同，也可能出现同时受灾的情况。建议用户在遇到区域性断网时，优先通过官方渠道查询服务状态，而非盲目重启路由器。</p>
+    </section>
+      <div id="homepage-banner-carousel" class="homepage-banner-carousel hidden"></div>
+      <div class="blog-detail-content"><p>道路施工一不小心切断地下 Fibre Cable，附近几百甚至几千户的 Unifi、Maxis 或其他 Broadband 用户可能同时断网。</p><p>原因通常不是某一户的 Fibre Drop Cable 被切断，而是受损位置属于 <strong>Feeder、Trunk 或 Distribution Network</strong>，负责把网络带到多个下游地点。</p><h2>为什么一条 Fibre Cable 可以影响整个区域？</h2><p>FTTH 并不是每间屋子都单独拉一条光纤回到 ISP。</p><p>典型 PON 架构大致是：</p><div class="ql-code-block-container" spellcheck="false"><div class="ql-code-block" data-language="plain">ISP / OLT</div><div class="ql-code-block" data-language="plain">    │</div><div class="ql-code-block" data-language="plain">Feeder / Main Fibre</div><div class="ql-code-block" data-language="plain">    │</div><div class="ql-code-block" data-language="plain">Splitter / Distribution Point</div><div class="ql-code-block" data-language="plain">    │</div><div class="ql-code-block" data-language="plain">Distribution Fibre</div><div class="ql-code-block" data-language="plain">    ├── House A</div><div class="ql-code-block" data-language="plain">    ├── House B</div><div class="ql-code-block" data-language="plain">    ├── House C</div><div class="ql-code-block" data-language="plain">    ├── House D</div><div class="ql-code-block" data-language="plain">    └── ...</div></div><p>Corning 的 FTTH 架构资料把网络分成 <strong>Feeder、Distribution 和 Drop</strong> 等部分。Feeder 位于较上游，连接 Central Office 与下游 Distribution Network。(<a href="https://www.corning.com/fiber-to-the-premise/emea/en/home/define-needs.html" rel="noopener noreferrer nofollow" target="_blank">Corning</a>)</p><p>所以，如果 Roadworks 切断的是一段重要 Feeder Cable，影响范围自然远远超过被挖开的那一栋屋子。</p><h2>Fibre 被切断后，会先做什么？</h2><p>修复不是马上把两条断线接回去。</p><p>网络团队首先要确定：</p><p><strong>哪里断？</strong></p><p><strong>哪些服务受到影响？</strong></p><p><strong>有没有其他路径可以暂时绕开？</strong></p><p>通常流程是：</p><p><strong>1. 发现故障</strong></p><p>Network Monitoring 或大量用户投诉发现区域性断线。</p><p><strong>2. 找到实际断点</strong></p><p>Technician 使用 Fibre Testing Equipment 和网络记录定位故障位置。</p><p><strong>3. 尝试 Rerouting</strong></p><p>如果网络存在备用路径，流量可能先绕过损坏位置。</p><p>TM 过去曾处理过因为 MRT 和高速公路工程导致 Fibre Cable 被切断的事件。当时 TM 表示，实体 Fibre Repair 和 Replacement 还在进行时，技术团队已经通过 <strong>Rerouting Traffic</strong> 恢复受影响服务。(<a href="https://www.tm.com.my/news/maklum-balak-kepada-kenyataan-media-mcmc-response-to-mcmcs-media-statement" rel="noopener noreferrer nofollow" target="_blank">TM</a>)</p><p>所以：</p><p><strong>Internet 恢复 ≠ Fibre Cable 已经修好。</strong></p><h2>为什么道路施工会让修复变麻烦？</h2><p>如果 Fibre Cable 埋在地下，Technician 不能直接站在路边把 Cable 接起来。</p><p>受损 Cable 可能位于：</p><ol><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Underground Duct</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Manhole</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Handhole</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Cable Chamber</li><li data-list="bullet"><span class="ql-ui" contenteditable="false"></span>Road Reserve</li></ol><p>必须先取得安全施工空间，才能处理电缆。</p><p>JKR 的地下设施调查文件也明确涉及道路工程前的 <strong>Underground Utility Detection and Mapping</strong>，包括定位电力、电讯、水管和其他地下设施。(<a href="https://epsmg.jkr.gov.my/images/2/25/NTJ_14-87_%28Pindaan_2020%29_Model_Terms_Of_Reference_For_Road_And_Bridge_Engineering_Survey.pdf" rel="noopener noreferrer nofollow" target="_blank">JKR</a>)</p><p>因此，一次 Fibre Cut 很可能同时变成：</p><p><strong>Telecom Repair + Excavation + Roadwork Coordination</strong></p><p>而不只是普通的 Fibre Technician Callout。</p><h2>被切断的 Fibre 要怎样修？</h2><p>当 Cable 已经能够安全接触后，Technician 会判断：</p><p><strong>是进行 Splicing，还是更换损坏的一段 Cable。</strong></p><p>大型 FTTH Network 使用的是多芯 Fibre Cable，Feeder 与 Distribution Fibre 会通过专用的 <strong>Splice Closure</strong> 进行连接和保护。CommScope 的产品资料也明确显示，相关 Splice Closure 可用于 Feeder 和 Distribution Cable 的 Splicing。(<a href="https://www.commscope.com/network-type/fttx-access/outside-plant-fiber-connectivity/fiber-splice-closures/itemcj9788-000/" rel="noopener noreferrer nofollow" target="_blank">CommScope</a>)</p><p>所以维修不是简单地：</p><blockquote>“两边的 Fibre 接起来就行。”</blockquote><p>Technician 必须确认受影响的是哪几条 Fibre、正确准备 Fibre End、进行 Fusion Splicing，然后把接点放回适合的 Closure 中。</p><h2>为什么 Main Trunk Cable 断了，可能修几天？</h2><p>真正花时间的，往往不是 Fusion Splice 本身。</p><h3>找到断点</h3><p>道路工程可能覆盖、移动或破坏地下设施。Network Team 必须先确定准确的故障位置和受影响线路。</p><h3>打开地下设施</h3><p>如果断点在马路下面，可能需要 Excavation、Traffic Control 和现场安全安排。</p><h3>处理高芯数 Fibre Cable</h3><p>一条 Feeder Cable 可能承载多个下游 Network Services。</p><p>维修时必须逐一确认受影响 Fibre，不能随便接错。</p><h3>恢复正常 Network Path</h3><p>如果之前用了 Temporary Rerouting，实体线路修好后还需要把网络恢复到正常架构。</p><h3>最后测试</h3><p>完成 Splicing 或 Cable Replacement 后，需要进行 Fibre Testing，确认线路稳定后才能结束维修。</p><p>所以，<strong>主干 Fibre Cut 的维修时间不能拿普通家庭 Drop Cable 故障来比较。</strong></p><h2>为什么 Unifi 和 Maxis 可能同时断？</h2><p>不同 Broadband Brand 不一定代表拥有完全独立的 Physical Route。</p><p>不同服务商可能经过共同的道路走廊、Duct、Infrastructure 或其他共用设施。</p><p>因此：</p><p><strong>Unifi 是一个品牌、Maxis 是另一个品牌</strong></p><p>并不自动代表：</p><p><strong>两家公司在每个地区都有完全独立的地下 Fibre 路线。</strong></p><p>如果两套服务在某个位置依赖同一个 Physical Infrastructure，就可能出现共同故障点。</p><h2>ISP 可以绕过断掉的 Fibre 吗？</h2><p><strong>有时候可以。</strong></p><p>如果网络有备用 Route 和足够 Capacity，ISP 可以把 Traffic Reroute 到另一条路径。</p><p>TM 就曾在 Fibre Cable 被道路工程切断的事故中，通过 Traffic Rerouting 先恢复服务，同时继续进行实体 Fibre Repair。(<a href="https://www.tm.com.my/news/maklum-balak-kepada-kenyataan-media-mcmc-response-to-mcmcs-media-statement" rel="noopener noreferrer nofollow" target="_blank">TM</a>)</p><p>但能不能这样做，完全取决于当地网络架构。</p><p>不是每个住宅区都有足够的备用路径。</p><h2>大范围断网时，用户应该先做什么？</h2><p>如果同一地区突然很多邻居一起断网，不要第一时间不停 Reboot ONT。</p><p>先检查 ISP 是否公布了 Area Outage 或 Maintenance。</p><p>Unifi 提供 Service Alerts 与状态追踪功能，让用户查看网络和技术报告进度。(<a href="https://unifi.com.my/unifipromise" rel="noopener noreferrer nofollow" target="_blank">Unifi</a>)</p><p>Maxis 也提供按地址查询的 Network Status Tool，可以查看 Planned Maintenance 和 Unplanned Disruption。(<a href="https://www.maxis.com.my/en/about-maxis/maxis-network/mobile-network-checker/" rel="noopener noreferrer nofollow" target="_blank">Maxis</a>)</p><p>如果：</p><p><strong>你的家断网 + 邻居也断网 + 同时发生</strong></p><p>那就比单纯 Router Failure 更值得怀疑是区域性 Infrastructure Fault。</p><h2>Unifi 的 24 小时修复承诺呢？</h2><p>Unifi 目前公开提供 <strong>24-Hour Service Restoration</strong>，并说明在符合条件的情况下，如果正式报告建立后 24 小时内没有恢复服务，可获得 <strong>RM50 Bill Rebate</strong>。具体资格和例外情况以 Unifi 当前条款为准。(<a href="https://unifi.com.my/unifipromise" rel="noopener noreferrer nofollow" target="_blank">Unifi</a>)</p><p>但不要把这个承诺理解成：</p><blockquote>“任何道路工程切断 Fibre，都保证 24 小时内物理修好。”</blockquote><p>Service Restoration 和 <strong>Physical Cable Repair</strong> 是两件不同的事情。</p><p>ISP 可以先通过 Rerouting 恢复服务，而受损的 Cable 可能仍在后续维修。</p><h2>NetBijak’s Take</h2><p>道路施工造成的 Fibre Cut 一旦发生在 <strong>Feeder 或 Main Trunk</strong>，影响范围可以远大于一户家庭。修复过程通常包括故障定位、取得地下 Cable、Splicing 或更换 Cable、网络切换和最终测试；如果有备用路径，ISP 甚至可以在实体 Fibre 修好之前先恢复部分或全部服务。</p><p class="ql-align-center"><strong style="color: rgb(255, 255, 255); background-color: initial;"><a href="/zh/find-your-plan/" rel="noopener noreferrer" target="_blank">🎯为我找配套 →</a></strong></p><h2><br></h2></div>
+      
+    <section class="section-card" id="article-faq-section">
+      <h2>Frequently Asked Questions</h2>
+      <div id="article-faq-list" class="faq-list">
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="0">
+        <span>为什么一条 Fibre Cable 断掉，会影响整个区域？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>FTTH 使用 Feeder 和 Distribution Fibre 为多个用户提供连接。如果受损的是上游 Feeder Cable，多个下游区域都可能同时失去服务。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="1">
+        <span>为什么 Technician 不能直接把断掉的两端接起来？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>主干 Fibre Cable 可能包含大量 Fibre，并承载多个下游服务。Technician 必须确认正确 Fibre、进行准备和 Splicing，再把接点安装在适当的 Splice Closure 内。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="2">
+        <span>Fibre Cable 还没修好，Internet 可以先恢复吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>可以，前提是网络存在可用的替代路径。TM 过去曾在 Fibre Cable Repair 尚未完成时，通过 Rerouting Traffic 恢复受影响服务。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="3">
+        <span>为什么道路施工造成的 Fibre Cut 可能要几天？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>除了 Splicing，本身还可能涉及断点定位、地下开挖、道路安全安排、Cable Replacement、网络重新切换和最终测试。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="4">
+        <span>Unifi 和 Maxis 可以因为同一次道路施工一起断网吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>有可能。不同品牌不代表每个地区都有完全独立的 Physical Fibre Route。共同使用的道路走廊、Duct 或其他 Infrastructure 都可能形成共同故障点。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="5">
+        <span>怎么知道是我家自己的故障，还是整个地区断网？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>看看邻居是否也同时断线，再检查 ISP 的 Network Status。
+Unifi 和 Maxis 都提供网络状态查询工具。</p></div>
+    </div>
+    <div class="faq-item">
+      <button type="button" class="faq-question" data-index="6">
+        <span>一直重启 ONT 能解决主干 Fibre Cut 吗？</span>
+        <span class="faq-toggle-icon">+</span>
+      </button>
+      <div class="faq-answer"><p>不能。如果外部 Fibre Infrastructure 已经被道路工程物理切断，重启 ONT 或 Router 不会修好 Fibre。先检查 ISP 的 outage information 会更有效。</p></div>
+    </div></div>
+    </section>
+    </div>
+    
+    <section class="section-card" style="margin-top:1.5rem">
+      <h2>相关文章</h2>
+      <div class="blog-grid"><a href="/zh/blog/-fibre-what-causes-random-broadband-disconnections/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/what-causes-random-broadband-disconnections.webp" alt="为什么宽带会随机断线？三个容易忽略的 Fibre 故障原因" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">05/10/2026</div>
+          <div class="blog-card-title">为什么宽带会随机断线？三个容易忽略的 Fibre 故障原因</div>
+          <p class="blog-card-excerpt">宽带正常几个小时后，突然断几秒、几十秒，过一阵子又恢复。这种 Intermittent Disconnection 不一定是 ISP 的 Fibre Network 有问题。家里的 Fibre Con...</p>
+        </div></a><a href="/zh/blog/-wi-fibluetooth-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/interference-from-household-appliances-microwaves.webp" alt="家用电器干扰 Wi-Fi：微波炉、Bluetooth 与无绳电话" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">02/10/2026</div>
+          <div class="blog-card-title">家用电器干扰 Wi-Fi：微波炉、Bluetooth 与无绳电话</div>
+          <p class="blog-card-excerpt">微波炉一启动，客厅 Wi-Fi 就突然变得不稳定，不一定是宽带线路出了问题。很多时候，真正出问题的是 2.4GHz 无线环境。Wi-Fi、Bluetooth，以及部分旧款无绳电话都可能使用或影响这一频...</p>
+        </div></a><a href="/zh/blog/puncak-borneo-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/why-more-mobile-towers-do-not-always-mean-better.webp" alt="为什么基站越来越多，网络还是会断？Puncak Borneo 的真实案例" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">22/09/2026</div>
+          <div class="blog-card-title">为什么基站越来越多，网络还是会断？Puncak Borneo 的真实案例</div>
+          <p class="blog-card-excerpt">基站增加可以改善覆盖，但不代表网络就不会发生大范围中断。Puncak Borneo 就是一个现实案例。根据《Sarawak Tribune》2026 年 9 月 21 日报道，当地 35 座新的 JE...</p>
+        </div></a><a href="/zh/blog/-arp-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/how-to-clear-router-cache.webp" alt="如何清除路由器缓存并刷新 ARP 表，改善网络延迟" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">20/09/2026</div>
+          <div class="blog-card-title">如何清除路由器缓存并刷新 ARP 表，改善网络延迟</div>
+          <p class="blog-card-excerpt">如果你的 Ping 在路由器长时间运行后开始变得不稳定，重启路由器值得尝试。但“清除路由器缓存就能降低 Ping”并不是一个准确的技术解释。重启主要是重置路由器内部的临时运行状态。到底能不能改善延迟，...</p>
+        </div></a><a href="/zh/blog/submarine-cable-repairs-zh/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/submarine-cable-repairs.webp" alt="海底光缆维修：为什么国外网站会突然变慢？" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">09/09/2026</div>
+          <div class="blog-card-title">海底光缆维修：为什么国外网站会突然变慢？</div>
+          <p class="blog-card-excerpt">如果你发现 马来西亚本地网站正常，但美国、日本或其他海外网站突然变慢，问题不一定出在你家的 Fibre Broadband。国际海底光缆发生故障或进行维修时，ISP 可用的国际传输容量可能减少。ISP...</p>
+        </div></a><a href="/zh/blog/unifi-internet-troubleshooting-/" class="blog-card">
+        <div class="blog-card-img-wrap"><img src="/assets/images/articles/how-to-troubleshoot-unifi-internet-problems.webp" alt="Unifi Internet 出问题怎么办？官方 Troubleshooting 步骤" class="blog-card-img" loading="lazy" /><span class="blog-card-type-badge">Article</span></div>
+        <div class="blog-card-body">
+        <div class="blog-card-date">05/09/2026</div>
+          <div class="blog-card-title">Unifi Internet 出问题怎么办？官方 Troubleshooting 步骤</div>
+          <p class="blog-card-excerpt">如果你的 Unifi Internet 很慢或者完全无法使用，先检查有没有 Outage，再检查设备和指示灯，然后重启设备，最后使用 EasyFix 自助排查。1. 先检查有没有 Outage 或 M...</p>
+        </div></a></div>
+    </section>
+  </main>
+
+  <footer id="site-footer"></footer>
+
+  <script>const ROOT_PATH = "/"; const PAGE_TRANSLATIONS = {"en":"/en/blog/fibre-cable-cut-by-roadworks-how-infrastructure-damage-gets-repaired/","ms":"/ms/blog/fibre-cable-terputus-akibat-kerja-jalan-bagaimana-infrastruktur-dibaiki/","zh":"/zh/blog/-fibre-cable-cut-by-roadworks/"};</script>
+  <script src="/assets/js/tracking.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/assets/js/supabase-client.js"></script>
+  <script src="/assets/js/translations.js"></script>
+  <script src="/assets/js/site.js"></script>
+  <script src="/assets/js/homepage-banner.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      document.querySelectorAll("#article-faq-list .faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
+          document.querySelectorAll("#article-faq-list .faq-item").forEach((el) => el.classList.remove("open"));
+          if (!isOpen) item.classList.add("open");
+        });
+      });
+    });
+  </script>
+
+  <div id="mascot-widget" class="mascot-widget">
+    <button type="button" class="mascot-close-btn" id="mascot-close-btn" aria-label="Close">✕</button>
+    <a href="https://wa.me/60178835110?text=Hi%20NetBijak%2C%20I'm%20reading%20%22%E9%81%93%E8%B7%AF%E6%96%BD%E5%B7%A5%E5%88%87%E6%96%AD%20Fibre%20Cable%20%E5%90%8E%EF%BC%8C%E6%95%B4%E5%8C%BA%E5%AE%BD%E5%B8%A6%E6%98%AF%E6%80%8E%E6%A0%B7%E4%BF%AE%E5%A4%8D%E7%9A%84%EF%BC%9F%22%20and%20have%20a%20question." target="_blank" class="mascot-avatar-link">
+      <img src="/assets/images/mascot.png" alt="NetBijak Assistant" class="mascot-avatar-img" />
+      <span class="mascot-bubble">有问题吗？</span>
+    </a>
+  </div>
+  <script>
+    (function() {
+      var storageKey = "mascot-closed--fibre-cable-cut-by-roadworks";
+      var widget = document.getElementById("mascot-widget");
+      var closeBtn = document.getElementById("mascot-close-btn");
+      if (sessionStorage.getItem(storageKey)) {
+        widget.style.display = "none";
+      }
+      closeBtn.addEventListener("click", function() {
+        widget.style.display = "none";
+        sessionStorage.setItem(storageKey, "1");
+      });
+    })();
+  </script>
+</body>
+</html>
